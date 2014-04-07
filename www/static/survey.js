@@ -119,6 +119,7 @@ function new_m() {
 
 // ====================================Camera==========
 function get_pic() {
+	
 	navigator.camera.getPicture(onSuccess, onFail, { quality: 30,
     destinationType: Camera.DestinationType.FILE_URI });
 }
@@ -126,6 +127,7 @@ function get_pic() {
 function onSuccess_get_pic(imageURI) {
 //    var image = document.getElementById('myImage');
 //    image.src = imageURI;
+	alert('Phote taken');
 }
 
 function onFail_get_pic(message) {
