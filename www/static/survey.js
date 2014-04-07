@@ -59,7 +59,7 @@ navigator.app.exitApp();
 
 }
 
-
+/*
 //=========================Check user=====================
 function check_user() { 
 	var cm_id=$("#cm_id").val();
@@ -98,7 +98,7 @@ function check_user() {
 								$(location).attr('href',url);	
 							}
 						}
-				      },
+				      }
 				  error: function(result) {
 					  $("#error_login").html(apipath+'check_user?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode);
 					  var url = "#login";
@@ -107,6 +107,9 @@ function check_user() {
 			  });//end ajax
 		  }//end else	
 	}//function
+
+*/
+
 
 //=====================Toggle==========================
 function new_m() { 
@@ -129,4 +132,3 @@ function onFail_get_pic(message) {
     alert('Failed because: ' + message);
 }
 
-}
