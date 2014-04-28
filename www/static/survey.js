@@ -1043,13 +1043,15 @@ function marchandizing_add() {
 									 m_new=m_new+localStorage.m_new
 								 }
 								 
-								 
+								 //m_new = m_new.replace("undefined","");
 								 
 								 m_new=m_new+'</br><font color="#00007D">Item:&nbsp;&nbsp;  </font>'+item_name+'</br><font color="#00007D">   Brand: &nbsp;&nbsp;  </font>'+brand_name+'</br><font color="#00007D"> InsDate: &nbsp;&nbsp;  </font>'+m_date+'</br><font color="#00007D"> Qty:&nbsp;&nbsp;  </font>'+qty+'</br></br>'
 								 
-							     //$("#marchadizing_add_show").html(m_new);
+							     
+								 
+								 //$("#marchadizing_add_show").html(m_new);
 								  //alert (localStorage.m_new);
-								  localStorage.m_new=m_new
+								  localStorage.m_new=m_new.replace("undefined","");
 								 $("#marchadizing_add_show").html(localStorage.m_new);
 								 
 
