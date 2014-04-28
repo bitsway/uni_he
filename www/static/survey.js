@@ -382,14 +382,15 @@ function select_outlet() {
 			//$("#outletExString").html(localStorage.outletExStringShow);
 			var url = "#outletexceptionPage";
 			$(location).attr('href',url);
-			//location.reload()
+			location.reload()
 			
 		}
 		
 		else if ((localStorage.routeException_found == '0') && (localStorage.selectedOutlet!=undefined)){
 			//syncOutlet();
 			var url = "#mhskusPage";
-			$(location).attr('href',url);	
+			$(location).attr('href',url);
+			location.reload()	
 		}
 		else{
 			var url = "#outletPage";
