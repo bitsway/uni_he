@@ -419,6 +419,7 @@ function selectOutletException() {
 //=====================Select Outlet Start====================
 
 function syncOutlet() { 
+	localStorage.m_new='';
 	$.ajax({
 				 type: 'POST',
 				 url: apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel,
