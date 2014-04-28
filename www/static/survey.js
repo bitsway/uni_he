@@ -382,15 +382,14 @@ function select_outlet() {
 			//$("#outletExString").html(localStorage.outletExStringShow);
 			var url = "#outletexceptionPage";
 			$(location).attr('href',url);
-			location.reload()
+			//location.reload()
 			
 		}
 		
 		else if ((localStorage.routeException_found == '0') && (localStorage.selectedOutlet!=undefined)){
 			//syncOutlet();
 			var url = "#mhskusPage";
-			$(location).attr('href',url);
-			location.reload()	
+			$(location).attr('href',url);	
 		}
 		else{
 			var url = "#outletPage";
@@ -419,7 +418,6 @@ function selectOutletException() {
 //=====================Select Outlet Start====================
 
 function syncOutlet() { 
-	localStorage.m_new='';
 	$.ajax({
 				 type: 'POST',
 				 url: apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel,
@@ -959,7 +957,7 @@ function submit_data() {
 	var latlong=lat.toString()+","+long.toString()
 	//alert (latlong);
 	
-	//$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+mhskus_data+'&npd_data='+npd_data+'&fdisplay_data='+fdisplay_data+'&qpds_data='+qpds_data+'&gift_data='+gift_data+'&mar_data='+mar_data);
+	$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+mhskus_data+'&npd_data='+npd_data+'&fdisplay_data='+fdisplay_data+'&qpds_data='+qpds_data+'&gift_data='+gift_data+'&mar_data='+mar_data);
 	$.ajax({
 				 type: 'POST',
 				 url: apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+mhskus_data+'&npd_data='+npd_data+'&fdisplay_data='+fdisplay_data+'&qpds_data='+qpds_data+'&gift_data='+gift_data+'&mar_data='+mar_data,
@@ -1044,7 +1042,7 @@ function marchandizing_add() {
 								 if (localStorage.m_new!='undefined'){
 									 m_new=m_new+localStorage.m_new
 								 }
-								 m_new = m_new.replace("undefined","");
+								 
 								 
 								 
 								 m_new=m_new+'</br><font color="#00007D">Item:&nbsp;&nbsp;  </font>'+item_name+'</br><font color="#00007D">   Brand: &nbsp;&nbsp;  </font>'+brand_name+'</br><font color="#00007D"> InsDate: &nbsp;&nbsp;  </font>'+m_date+'</br><font color="#00007D"> Qty:&nbsp;&nbsp;  </font>'+qty+'</br></br>'
