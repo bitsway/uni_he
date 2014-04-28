@@ -6,19 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>UNILEVER</title>
         
-<!--        <link rel="stylesheet" href="static/jquery.mobile-1.2.0/jquery.mobile-1.2.0.min.css" />-->
+
 		
         <link rel="stylesheet" href="static/my.css"  />
-<!--        <style> 
-		/* App custom styles */
-		#help>.ui-btn{ height:85px; border:5px solid #E2E2FE; color:#0080FF; font-weight:bold; padding:0px 0px 0px 0px;}
-		#help>.ui-btn{ height:85px; border:5px solid #E2E2FE; color:#0080FF; font-weight:bold; padding:0px 0px 0px 0px;}
-		.btnClicked{background-color:#900;}
 
-        </style>-->
-
-<!--        <script src="static/jquery/1.7.2/jquery.min.js">   </script>
-        <script src="static/jquery.mobile-1.2.0/jquery.mobile-1.2.0.min.js">   </script>-->
         
 		<link rel="stylesheet" href="static/themes/c.min.css" />
 		<link rel="stylesheet" href="static/themes/jquery.mobile.icons.min.css" />
@@ -27,27 +18,7 @@
         <script src="static/jquery/1.10.2/jquery-1.10.2.min.js">   </script>
         <script src="static/jquery.mobile-1.4.0/jquery.mobile-1.4.0.min.js">   </script>
 		<script src="static/survey.js">  </script>
-		
-		<script type="text/javascript">
-/*$(document).ready(function(){
-				$("#mbNo").val(localStorage.mobileNo);
-				$("#emName").val(localStorage.emName);
-				$("#emAdd").val(localStorage.address);
-				$("#cnNo1").val(localStorage.cnNo1);
-				$("#cnNo2").val(localStorage.cnNo2);
-				$("#cnNo3").val(localStorage.cnNo3);
-				$("#cnNo4").val(localStorage.cnNo4);
-				$("#cnNo5").val(localStorage.cnNo5);
-				$("#emNotes").val(localStorage.emnotes);
-				$("#pnNo").val(localStorage.pinNo)
-		
-		 
-		});
-function MM_jumpMenu(targ,selObj,restore){ //v3.0
-  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
-  if (restore) selObj.selectedIndex=0;
-}*/
-        </script>
+
         
         
         <style>
@@ -86,10 +57,43 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		
 	
 		</style>
+        
+        
+   <script>     
+    $(document).ready(function(){
+				$("#routeString").html(localStorage.routeString);
+				$("#routeExString").html(localStorage.routeExStringShow);
+				$("#outletString").html(localStorage.outletString);
+				
+				
+				//$("#outletExString").html(localStorage.outletExStringShow);
+				$("#outletInfo").html(localStorage.outletinfoString);
+				
+				
+				$("#mhskus").html(localStorage.mhskusStringShow);
+				$("#npd").html(localStorage.npdStringShow);
+				$("#fdisplay").html(localStorage.fdisplayStringShow);
+				$("#qpds").html(localStorage.qpdsStringShow);
+				$("#gift").html(localStorage.giftStringShow);
+				
+				$("#marchadizing").html(localStorage.marchadizingStringShow);
+				
+				$("#startTime").val(localStorage.startTime);
+				$("#endTime").val(localStorage.endTime);
+				
+				
+				$("#marchadizing_add_show").html(localStorage.m_new);
+				
+			
+   
+  
+		});    
 		
+	</script>	
+  
     </head>
     
-	<!--onLoad="checkNew()"-->
+
     <body>  
     
   
@@ -127,19 +131,14 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                 <h3>Login</h3>
             </div>
 			
-			<div data-role="content" align="center">
-         
-           
-				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1"> 
-                        
+			<div data-role="content" align="center">    
+               
+				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">                         
 				<input type="text" name="cm_id" id="cm_id" placeholder="CM ID" value="">
 				<input type="text" name="cm_pass" id="cm_pass" placeholder="CM Pass" value="">
-                </font>
-                
+                </font>                
 				</br></br>	
-				<a data-role="button"  href="#menuPage" onClick="check_user()" >Login</a>
-				
-				
+				<a data-role="button"  onClick="check_user()" >Login</a>				
 				<div id="error_login"></div>
 				
 					   
@@ -176,7 +175,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			
 			<div data-role="content" align="center">
 				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">         
-				<a data-role="button" href="#routePage" >Market PJP</a>
+				<a data-role="button" onClick="marketPJP()" >Market PJP</a>
                 <a data-role="button" href="#menuPage" >Information</a>
                 </font>
             </div>
@@ -191,22 +190,11 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                 <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
                 <h3>Select Route</h3>
             </div>
-			<div  data-role="content" >
+			<div  data-role="content" >						
+						<div id="routeString"> </div>
 			
-							<label>
-							        <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_0">
-							        Bashundhara Road</label>
-							<label>
-							        <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_1">
-							        Kuril Bishaw road</label>
-							<label>
-							        <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_1">
-							        Khilkhet</label>
-									
-									
-									
 				<br/><br/>					
-				<a data-role="button" href="#routeexceptionPage" >Sync Route</a>
+				<a data-role="button" onClick="selectRoute()" >Sync Route</a>
                 <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
 
@@ -226,34 +214,13 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                 <h3>Route Exception</h3>
             </div>
 		    
-			<div  data-role="content" >
-			
-						
+			<div  data-role="content" >					
 			Select Cause:
-              
-			<label>
-                    <input type="radio" name="RadioGroup1"  id="RadioGroup1_1" value="1">
-                    TMs instruction</label>
-            <label>
-                    <input type="radio" name="RadioGroup1"  id="RadioGroup1_1" value="2">
-                    Strike/ Hartal on scheduled day</label>
-            <label>
-                    <input type="radio" name="RadioGroup1" id="RadioGroup1_1" value="3">
-                    Holiday on the scheduled day</label>
-             <label>
-                    <input type="radio" name="RadioGroup1"  id="RadioGroup1_1" value="4">
-                    Bad weather</label>
-              <label>
-                    <input type="radio" name="RadioGroup1" id="RadioGroup1_1" value="5">
-                    All outlet were not called</label>
-              <label>
-                    <input type="radio" name="RadioGroup1"  id="RadioGroup1_1" value="6">
-                    To match addition frequency for outlet channel</label>
-
-
+              		<div id="routeExString"> </div>		
+			
 				<br/><br/>
 
-				<a data-role="button" href="#uotletPage" >Confirm Route Exception</a>
+				<a data-role="button"  onClick="selectRouteException()" >Confirm Route Exception</a>
 
                 <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -266,8 +233,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         
         <!--=====================Route exception page end=============-->
     
-    <!--  ===================    uotletPage ========================  -->
-		<div data-theme="c" data-role="page" id="uotletPage">
+    <!--  ===================    outletPage ========================  -->
+		<div data-theme="c" data-role="page" id="outletPage">
 			
 			<div data-theme="c" data-role="header" data-position="fixed" >
 			    <a  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
@@ -275,50 +242,12 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                 <h3>Select Outlet</h3>
             </div>
 		    
-			<div  data-role="content" >
-			
-						
-			
-				
-                
-                <label >
-                        <table width="100%" border="0">
-						  <tr>
-						   <td width="5%"><input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_0"></td>
-							<td width="60%">Molla Store (D03-5712)</td>
-							<td width="15%"> 2/2 </td>
-							<td><img style="height:20px; width:20px" src="green.png"></td>
-						  </tr>
-						</table>
-
-                         </label>
-                <label >
-                        <table width="100%" border="0">
-						  <tr>
-						   <td width="5%"><input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_0"></td>
-							<td width="60%">Mukter Store (D03-3400)</td>
-							<td width="15%"> 1/2 </td>
-							<td><img style="height:20px; width:20px" src="orange.png"></td>
-						  </tr>
-						</table>
-						
-						</label>
-                <label>
-                        <table width="100%" border="0">
-						  <tr>
-						   <td width="5%"><input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_0"></td>
-							<td width="60%">Muradnagar Store (D03-3410)</td>
-							<td width="15%"> 2/2 </td>
-							<td><img style="height:20px; width:20px" src="red.png"></td>
-						  </tr>
-						</table>
-				</label>
-                
+			<div  data-role="content" >                
+                <div id="outletString"> </div>	
+				<!--<div id="outletInfo1">fdsgdf </div>	-->
                 <br/><br/>
-				<a data-role="button" href="#outletexceptionPage" >Next</a>
-
-				
-			 
+				<a data-role="button" onClick="select_outlet()" >Next</a>
+                
                 <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
 
@@ -331,6 +260,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
     <!--=========================outlet page end================== -->
      <!--====================Outlet Exception==================-->
+     
     <div data-theme="c" data-role="page" id="outletexceptionPage">	
 		   <div data-theme="c" data-role="header" data-position="fixed" >
 			    <a  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
@@ -338,70 +268,30 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                 <h3>Outlet Info</h3>
             </div>
 		    
-			<div  data-role="content" >
-            
-              <table width="100%" border="0" cellpadding="0" cellspacing="0"  style=" height:25px; ">
-                  <tr>
-                  
-                    <td colspan="3" style="color:#048; font-weight:bold">
-					 Muradnagar Store (D03-3410)
-					
-					
-					</td>
-                  </tr>
-                  
-                  <tr style="background-color:#BCDBE0;">
-                    <td width="2%">&nbsp;</br></td>
-                    <td width="60">Channel </td>
-                    <td>&nbsp;&nbsp;:UNG</td>
-                  </tr>
-                  <tr style="background-color:#BCDBE0;">
-                    <td width="1%"></td>
-                    <td width="60">PS Slab</td>
-                    <td>&nbsp;&nbsp;:Face_Care </td>
-                  </tr>
-                  <tr style="background-color:#BCDBE0;">
-                    <td width="1%"></td>
-                    <td width="60">Freq/Visit</td>
-                    <td>&nbsp;&nbsp;:2/0</td>
-                  </tr>
-                
-                </table>  
-                
+			<div  data-role="content" > 
+                <div id="outletInfo"> </div>
+				
                 </br>
                 
                 Select Cause:
-              
-                <label>
-                        <input type="radio" name="RadioGroup1" id="RadioGroup1_1" value="1">
-                        Outlet Closed on previous day</label>
-                <label>
-                        <input type="radio" name="RadioGroup1" id="RadioGroup1_1" value="2">
-                        Proprietor was absent</label>
-                <label>
-                        <input type="radio" name="RadioGroup1" id="RadioGroup1_1" value="3">
-                        Adequate product was not available</label>                    
-			   <label>
-                        <input type="radio" name="RadioGroup1" id="RadioGroup1_0" value="4">
-                        Bad weather</label>
-                <label>
-                        <input type="radio" name="RadioGroup1" id="RadioGroup1_1" value="5">
-                        Not enough time to work on scheduled day</label>
-                <label>
-                        <input type="radio" name="RadioGroup1" id="RadioGroup1_1" value="6">
-                        Does not allow CM to work</label>		
-                 <label>
-                        <input type="radio" name="RadioGroup1" id="RadioGroup1_1" value="7">
-                        To deploy new POSM on priority</label>
-                <label>
-                        <input type="radio" name="RadioGroup1" id="RadioGroup1_1" value="8">
-                        Discontinue  from Perfect Store Program  </label>
-                <label>
-                        <input type="radio" name="RadioGroup1" id="RadioGroup1_1" value="9">
-                        Addition visit frequency is required for the outlet channel  </label>
-
+              		<label><input type="radio" name="RadioOutletEx"    value="Outlet Closed on previous day" > Outlet Closed on previous day</label>
+                    <label><input type="radio" name="RadioOutletEx"    value="Proprietor was absent" > Proprietor was absent</label>
+                    <label><input type="radio" name="RadioOutletEx"    value="Adequate product was not avai" > Adequate product was not avai</label>
+                    <label><input type="radio" name="RadioOutletEx"    value="Bad weather" > Bad weather</label>
+                    <label><input type="radio" name="RadioOutletEx"    value="Not enough time to work on scheduled day" > Not enough time to work on scheduled day</label>
+                    <label><input type="radio" name="RadioOutletEx"    value="Does not allow CM to work" > Does not allow CM to work</label>
+                    <label><input type="radio" name="RadioOutletEx"    value="To deploy new POSM on priority" > To deploy new POSM on priority</label>
+                    <label><input type="radio" name="RadioOutletEx"    value="Discontinue from Perfect Store Program" > Discontinue from Perfect Store Program</label>
+                    <label><input type="radio" name="RadioOutletEx"    value="Addition visit frequency is required for the outlet channel" > Addition visit frequency is required for the outlet channel</label>
+                    
+                    
+                    
+                    
+                    
+                    <div id="outletExString"> </div>
+               				
 				<br/><br/>
-				<a data-role="button" href="#mhskusPage" >Next</a>
+				<a data-role="button" onClick="selectOutletException()" >Next</a>
 
                 <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -425,108 +315,11 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             </div>
 			<div  data-role="content" >
             
-			<table width="100%" border="0">
-              <tr style="color:#0329C0">
-                <td colspan="2" style="color:#048; font-weight:bold">
-				
-				Muradnagar Store (D03-3410)
-				
-				</td>
-              </tr>
-              <tr >
-            </table>  
-				
-              <table  width="100%" border="0" cellpadding="0" cellspacing="0">
-                  
-                  <tr bgcolor="#9FCED7"  >
-                  <td></td>
-                    <td>Item</td>
-                    <td> QTY</td>
-                    <td ></td>
-                    </tr>
-                  
-                  <tr height="1px" bgcolor="#CCCCCC" >
-                    <td></td>
-                    <td></td>
-                    <td> </td>
-                    <td ></td>
-                  </tr>
-                  <tr >
-                    <td>&nbsp;</td>
-                    <td>BB TAAZA BLACK PACKET TEA 100G</td>
-                    <td width="60"><input type="number" name="cm_id" id="cm_id" value="" min="0"></td>
-                    <td width="5px">&nbsp;</td>
-                  </tr>
-                  <tr height="1px" bgcolor="#CCCCCC" >
-                    <td></td>
-                    <td></td>
-                    <td> </td>
-                    <td ></td>
-                  </tr>
-                  <tr >
-                    <td>&nbsp;</td>
-                    <td>BB TAAZA BLACK PACKET TEA 200G </td>
-                    <td ><input type="number" name="cm_id" id="cm_id" value="" min="0"> </td>
-                    <td >&nbsp;</td>
-                  </tr>
-                  <tr height="1px" bgcolor="#CCCCCC" >
-                    <td></td>
-                    <td></td>
-                    <td> </td>
-                    <td ></td>
-                  </tr>
-                  <tr >
-                    <td>&nbsp;</td>
-                   
-                    <td>BB TAAZA BLACK PACKET TEA 50G </td>
-                    <td ><input type="number" name="cm_id" id="cm_id" value="" min="0"> </td>
-                    <td >&nbsp;</td>
-                  </tr>
-                  <tr height="1px" bgcolor="#CCCCCC" >
-                    <td></td>
-                    <td></td>
-                    <td> </td>
-                    <td ></td>
-                  </tr>
-                   <tr >
-                     <td>&nbsp;</td>
-                    <td>CLEAR SHAMPOO C. ACTVE CARE 5ml </td>
-                    <td ><input type="number" name="cm_id" id="cm_id" value="" min="0"> </td>
-                    <td >&nbsp;</td>
-                  </tr>
-                  <tr height="1px" bgcolor="#CCCCCC" >
-                    <td></td>
-                    <td></td>
-                    <td> </td>
-                    <td ></td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td>CLOSE UP TOOTHPASTE MINT CHILL 11g</td>
-                    <td><input type="number" name="cm_id" id="cm_id" value="" min="0"> </td>
-                    <td >&nbsp;</td>
-                  </tr>
-                  <tr height="1px" bgcolor="#CCCCCC" >
-                    <td></td>
-                    <td></td>
-                    <td> </td>
-                    <td ></td>
-                  </tr>
-                  <tr >
-                    <td>&nbsp;</td>
-                    <td>CLOSE-UP TOOTHPASTE MINT CHILL 50g</td>
-                    <td ><input type="number" name="cm_id" id="cm_id" value="" min="0"> </td>
-                    <td >&nbsp;</td>
-                  </tr>
-                  <tr height="1px" bgcolor="#CCCCCC" >
-                    <td></td>
-                    <td></td>
-                    <td> </td>
-                    <td ></td>
-                  </tr>
-                </table>  
 
-		
+				<div id="mhskus"></div>
+                <input name="startTime" id="startTime"  value="" type="hidden">
+                <!--<div id="mhskus1"></div>-->
+                
 				<a data-role="button" href="#marchandizingPage" >Next</a>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -548,240 +341,12 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		    
 			<div  data-role="content" >   
             
-            
-            <table width="100%" border="0">
-              <tr style="color:#048; font-weight:bold">
-                <td colspan="2">Muradnagar Store (D03-3410)</td>
-                <td  colspan="2"><a data-role="button" href="#dialogMarchandizing" >+</a> </td>
-              </tr>
-              <tr >
-            </table>
+            <div id="marchadizing"></div>
+			<div id="marchadizing_add_show"></div>
+          
               
-              
-
-			<div id="newMarchandizing" title="Cancellation Policy" style="display:none" >	
-              <table id="newMarchandizing_1"  width="100%" border="0" >
-                  <tr >
-                    <td width="30">Item </td>
-                    <td><select name="select_item" id="select_item">
-                            <option value="0" >&nbsp; </option>
-                            <option value="1" >Hanger </option>
-                            <option value="2" >Plug in dispenser</option>
-                            <option value="3" >Food Corner </option>
-                            <option value="4" >Glass Shelf Branding </option>
-                            <option value="5" >Counter Top </option>
-                        </select></td>
-                  </tr>
-                  <tr >
-                    <td>Brand</td>
-                    <td>
-                    <select name="select_item" id="select_item">
-                            <option value="0" >&nbsp; </option>
-                            <option value="1" >Pureit </option>
-                            <option value="2" >REXONA </option>
-                            <option value="3" >Rin   </option>
-                            <option value="4" >Sunsilk </option>
-                            <option value="4" >Surf    </option>
-                            <option value="4" >Vaseline </option>
-                            <option value="4" >Vim     </option>
-                            <option value="4" >Wheel (HPC)</option>
-                        </select>
-                    </td>
-                  </tr>
-                  <tr >
-                    <td>Qty</td>
-                    <td><input type="number" name="qty" id="qty" value=""></td>
-                  </tr>
-                  <tr >
-                    <td>Date of Installation</td>
-                    <td><input type="text" name="cm_id" id="cm_id" value=""></td>
-                  </tr>
-                  <tr >
-                    <td>Condition</td>
-                    <td>
-                       <select name="select_item" id="select_item">
-                            <option value="0" >&nbsp; </option>
-                            <option value="1" >Good/ Sound</option>
-                            <option value="2" >Damaged/ Torn</option>
-                            <option value="3" >Need repair</option>
-                        </select>
-                    </td>
-                  </tr>
-                  <tr >
-                    <td>Call to Action</td>
-                    <td>
-                       <select name="select_item" id="select_item">
-                            <option value="0" >&nbsp; </option>
-                            <option value="1" >Visible</option>
-                            <option value="2" >Not Visible</option>
-                        </select>
-                    </td>
-                  </tr>
-                  <tr >
-                    <td></td>
-                    <td><a data-role="button" href="#" >Add</a></td>
-                  </tr>
-                </table>  
-
-		</div>
-			
             
-            
-            
-           <!-- ============================================-->
-				
-				
-              <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                
-                  <tr bgcolor="#9FCED7" >
-                    <td width="1%" >&nbsp;</td>
-                    <td >Item / Brand</td>
-                    
-                    
-                   <td>QTY </td>
-                   <td> </td>
-                    <td>Condition</td>
-                    <td > </td>
-                    <td>Visible</td>
-                    <td> </td>
-                    <td >Dismantled</td>
-                  </tr>
-                  <tr height="1px" bgcolor="#CCCCCC" >
-                    <td  ></td>
-                    <td  ></td>
-                    <td ></td>
-                    <td></td>
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr >
-                    <td  >&nbsp;</td>
-                    <td  >Hanger </br>Pureit</br><font face="Verdana, Geneva, sans-serif" size="-10">2014-03-01</font>
-                    
-                   
-                    </td>
-                    
-                   <td width="3%" align="center">1</td>
-                   <td width="1%"> </td>
-                    <td width="20%"  >
-                    <select style="height:20px" name="select_c1" id="select_c1" data-native-menu="false">
-                            <option value="0" >&nbsp; </option>
-                            <option value="1" >Good/ Sound</option>
-                            <option value="2" >Damaged/ Torn</option>
-                            <option value="3" >Need repair</option>
-                        </select>
-                     </td>
-                     <td width="1%"> </td>
-                     <td>
-                     <select style="height:20px" name="select_v1" id="select_v1" data-native-menu="false">
-                            <option value="0" >&nbsp; </option>
-                            <option value="1" >Yes</option>
-                            <option value="2" >No</option>
-                        </select>
-                     </td>
-                     <td width="1%"> </td>
-                    <td width="5%"> <label  style="width:5px; height:20px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>  
-                    </td>
-                  </tr>
-                  <tr height="1px" bgcolor="#CCCCCC" >
-                    <td  ></td>
-                    <td  ></td>
-                    <td ></td>
-                    <td></td>
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  
-                  <tr >
-                    <td  >&nbsp;</td>
-                    <td  >
-                    Food Corner </br>Sunsilk </br> <font face="Verdana, Geneva, sans-serif" size="-10">2014-01-01</font> 
-                    
-                    </td>
-                    
-                    <td  align="center">1</td>
-                   <td> </td>
-                    <td >
-                  
-                    <select style="height:20px" name="select_c2" id="select_c2" data-native-menu="false">
-                            <option value="0" >&nbsp; </option>
-                            <option value="1" >Good/ Sound</option>
-                            <option value="2" >Damaged/ Torn</option>
-                            <option value="3" >Need repair</option>
-                        </select>
-                   </td>
-                   <td > </td>
-                   
-                   
-                    <td >
-                    
-                       <select style="height:20px" name="select_v2" id="select_v2" data-native-menu="false">
-                            <option value="0" > &nbsp; </option>
-                            <option value="1" >Yes</option>
-                            <option value="2" >No</option>
-                        </select>
-					</td>
-                    <td > </td>
-                    <td> <label  style="width:5px; height:20px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>    </td>
-                  </tr>
-                  <tr height="1px" bgcolor="#CCCCCC" >
-                    <td  ></td>
-                    <td  ></td>
-                    <td ></td>
-                    <td></td>
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr >
-                    <td >&nbsp;</td>
-                    <td >Counter Top</br>Rin</br><font face="Verdana, Geneva, sans-serif" size="-10">2013-02-30</font></td>
-                    
-                   <td  align="center">2</td>
-                   <td> </td>
-                     <td>
-                    
-                    <select style="height:20px" name="select_c3" id="select_c3" data-native-menu="false">
-                            <option value="0" >&nbsp; </option>
-                            <option value="1" >Good/ Sound</option>
-                            <option value="2" >Damaged/ Torn</option>
-                            <option value="3" >Need repair</option>
-                        </select>
-                
-                   </td>
-                   <td > </td>
-                    <td>
-                       <select style="height:20px" name="select_v3" id="select_v3" data-native-menu="false">
-                            <option value="0" >&nbsp;</option>
-                            <option value="1" >Yes</option>
-                            <option value="2" >No</option>
-                        </select>
-					</td>
-                    <td > </td>
-                    <td> <label  style="width:5px; height:20px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>  </td>
-                  </tr>
-                  <tr height="1px" bgcolor="#CCCCCC" >
-                    <td  ></td>
-                    <td  ></td>
-                    <td ></td>
-                    <td></td>
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </table>  
-
-		
+           
 
 
 				<a data-role="button" href="#npdPage" >Next</a>
@@ -807,49 +372,9 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		    
 			<div  data-role="content" >
            	
-				<table width="100%" border="0">
-              <tr style="color:#048; font-weight:bold">
-                <td colspan="2">Muradnagar Store (D03-3410) </td>
-              </tr>
-              <tr >
-            </table>
-            
-              <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                 
-                 <tr bgcolor="#9FCED7">
-                   <td width="1%">&nbsp;</td>
-                 <td>Item</td>
-                    <td>QTY</td>
-                  </tr>
-                 
-                 <tr height="1px" bgcolor="#CCCCCC" >
-                   <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr >
-                    <td>&nbsp;</td>
-                    <td>BB TAAZA BLACK PACKET TEA 100G  </td>
-                    <td width="60"><input type="number" name="cm_id" id="cm_id" value="" min="0"> </td>
-                  </tr>
-                  <tr height="1px" bgcolor="#CCCCCC" >
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr >
-                    <td>&nbsp;</td>
-                    <td>BB TAAZA BLACK PACKET TEA 200G </td>
-                    <td width="60"><input type="number" name="cm_id" id="cm_id" value="" min="0"> </td>
-                  </tr>
-                  <tr height="1px" bgcolor="#CCCCCC" >
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </table>  
-		
-				<a data-role="button" href="#fdaPage" >Next</a>
+			 
+				<div id="npd"></div>
+				<a data-role="button" href="#fixedDisplay" >Next</a>
 
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -864,7 +389,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
      <!-- ============================Fixed Display page Start============================-->
     
-    <div data-theme="c" data-role="page" id="fdaPage">
+    <div data-theme="c" data-role="page" id="fixedDisplay">
 		   <div data-theme="c" data-role="header" data-position="fixed" >
 			    <a  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
                 <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
@@ -872,238 +397,26 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             </div>
 		    
 			<div  data-role="content" >
-           
-			<table width="100%" border="0">
-              <tr style="color:#048; font-weight:bold">
-                <td colspan="2">Muradnagar Store (D03-3410)</td>
-              </tr>
-              <tr >
-            </table>
-            <img height="100px" width="100%"  src="fixedDisplay.png" alt="FixedDisplay" />
-			<table width="100%" border="0" cellpadding="0" cellspacing="0">
-			
-		<tr bgcolor="#9FCED7" >
-		  <td width="1%" >&nbsp;</td>
-			  <td >Item</td>
-			  <td>QTY</td>
-			  <td></td>
-			  <td>Face Up</td>
-			  <td></td>
-			  <td>Visible</td>
-			  </tr>
-              
-          <tr height="1px" bgcolor="#CCCCCC" >
-            <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-              <td></td>
-              <td></td>
-			  <td></td>
-			  </tr>    
-              
-			<tr>
-			  <td >&nbsp;</td>
-              <td >BB TAAZA BLACK PACKET TEA 100G </td>
+
             
-              <td width="10%">
-                <input type="number" name="cm_id2" id="cm_id2" value="" min="0" >
-              </td>
-              <td width="2px"></td>
-              <td width="20%">
-                <input type="number" name="cm_id2" id="cm_id2" value="" min="0">
-              </td>
-              <td width="2px"></td>
-              <td width="10%"><span style="width:5px; height:8px">
-                <input type="checkbox" name="amountFlag'+ str(divCount) +'7" id="amountFlag'+ str(divCount) +'8" value=""/>
-              </span></td>
-              
-            </tr>
-            <tr height="1px" bgcolor="#CCCCCC" >
-              <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-              <td></td>
-			  <td></td>
-			  </tr>
-			<tr>
-            
-            
-            <tr>
-              <td width="60">&nbsp;</td>
-              <td width="60">BB TAAZA BLACK PACKET TEA 100G </td>
-              <td width="60">
-                <input type="number" name="cm_id2" id="cm_id2" value="" min="0" >
-              </td>
-              <td width="2px"></td>
-              <td width="60">
-                <input type="number" name="cm_id2" id="cm_id2" value="" min="0" >
-              </td>
-              <td width="2px"></td>
-              <td width="60"><span style="width:5px; height:8px">
-                <input type="checkbox" name="amountFlag'+ str(divCount) +'6" id="amountFlag'+ str(divCount) +'7" value=""/>
-              </span></td>
-            </tr>
-            <tr height="1px" bgcolor="#CCCCCC" >
-              <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-              <td></td>
-			  <td></td>
-			  </tr>
-			<tr>
-            
-            <tr>
-              <td width="60">&nbsp;</td>
-              <td width="60">BB TAAZA BLACK PACKET TEA 200G </td>
-              <td width="60">
-                <input type="number" name="cm_id2" id="cm_id2" value="" min="0" >
-              </td>
-              <td width="2px"></td>
-              <td width="60">
-                <input type="number" name="cm_id2" id="cm_id2" value="" min="0" >
-              </td>
-              <td width="2px"></td>
-              <td width="60"><span style="width:5px; height:8px">
-                <input type="checkbox" name="amountFlag'+ str(divCount) +'5" id="amountFlag'+ str(divCount) +'6" value=""/>
-              </span></td>
-            </tr>
-            <tr height="1px" bgcolor="#CCCCCC" >
-              <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-              <td></td>
-			  <td></td>
-			  </tr>
-			<tr>
-            
-            <tr>
-              <td width="60">&nbsp;</td>
-              <td width="60">BB TAAZA BLACK PACKET TEA 50G </td>
-              <td width="60">
-                <input type="number" name="cm_id2" id="cm_id2" value="" min="0">
-              </td>
-              <td width="2px"></td>
-              <td width="60">
-                <input type="number" name="cm_id2" id="cm_id2" value="" min="0" >
-              </td>
-              <td width="2px"></td>
-              <td width="60"><span style="width:5px; height:8px">
-                <input type="checkbox" name="amountFlag'+ str(divCount) +'4" id="amountFlag'+ str(divCount) +'5" value=""/>
-              </span></td>
-            </tr>
-            <tr height="1px" bgcolor="#CCCCCC" >
-              <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-              <td></td>
-			  <td></td>
-			  </tr>
-			<tr>
-            
-            
-            <tr>
-              <td width="60">&nbsp;</td>
-              <td width="60">CLEAR SHAMPOO C. ACTVE CARE 5ml </td>
-              <td width="60">
-                <input type="number" name="cm_id2" id="cm_id2" value="" min="0" >
-              </td>
-              <td width="2px"></td>
-              <td width="60">
-                <input type="number" name="cm_id2" id="cm_id2" value="" min="0" >
-              </td>
-              <td width="2px"></td>
-              <td width="60"><span style="width:5px; height:8px">
-                <input type="checkbox" name="amountFlag'+ str(divCount) +'3" id="amountFlag'+ str(divCount) +'4" value=""/>
-              </span></td>
-            </tr>
-            <tr height="1px" bgcolor="#CCCCCC" >
-              <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-              <td></td>
-			  <td></td>
-			  </tr>
-			<tr>
-            
-            <tr>
-              <td width="60">&nbsp;</td>
-              <td width="60">CLOSE UP TOOTHPASTE MINT CHILL 11g </td>
-              <td width="60">
-                <input type="number" name="cm_id2" id="cm_id2" value="" min="0" >
-              </td>
-              <td width="2px"></td>
-              <td width="60">
-                <input type="number" name="cm_id2" id="cm_id2" value="" min="0" >
-              </td>
-              <td width="2px"></td>
-              <td width="60"><span style="width:5px; height:8px">
-                <input type="checkbox" name="amountFlag'+ str(divCount) +'2" id="amountFlag'+ str(divCount) +'3" value=""/>
-              </span></td>
-            </tr>
-            <tr height="1px" bgcolor="#CCCCCC" >
-              <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-              <td></td>
-			  <td></td>
-			  </tr>
-			<tr>
-            
-            <tr>
-              <td>&nbsp;</td>
-              <td>CLOSE-UP TOOTHPASTE MINT CHILL 50g </td>
-              <td >
-                <input type="number" name="cm_id2" id="cm_id2" value="" min="0" >
-              </td>
-              <td width="2px"></td>
-              <td>
-                <input type="number" name="cm_id2" id="cm_id2" value="" min="0" >
-              </td>
-              <td width="2px"></td>
-              <td ><span style="width:5px; height:8px">
-                <input type="checkbox" name="amountFlag'+ str(divCount) +'" id="amountFlag'+ str(divCount) +'2" value=""/>
-              </span></td>
-            </tr>
-            <tr height="1px" bgcolor="#CCCCCC" >
-              <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-              <td></td>
-			  <td></td>
-			  </tr>
-			<tr>
+	
+    		<div id="fdisplay"></div>
+    
+    		
+   <!--<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	
              <tr>
-               <td>&nbsp;</td>
-               <td>&nbsp;</td>
-               <td>&nbsp;</td>
-               <td>&nbsp;</td>
-               <td>&nbsp;</td>
-               <td>&nbsp;</td>
+               
                <td>&nbsp;</td>
              </tr>
              <tr >
-               <td colspan="7">
+               <td >
                
                 <a data-role="button" href="#" onClick="get_pic()" >Take Picture </a></td>
                
              </tr>
             </table>
-			
+			-->
 				<a data-role="button" href="#qpdsPage" >Next</a>
 
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
@@ -1125,129 +438,22 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             </div>
 		    
 			<div  data-role="content" >
-            <table width="100%" border="0">
-              <tr style="color:#0329C0">
-                <td colspan="2">Muradnagar Store (D03-3410)</td>
-              </tr>
-              <tr >
-            </table>
-			
-            <img height="100px" width="100%"  src="fixedDisplay.png" alt="FixedDisplay" />
-			<table width="100%" border="0" cellpadding="0" cellspacing="0">
-			
-           <tr bgcolor="#9FCED7" >
-             <td width="1%" >&nbsp;</td>
-              <td >Item</td>
-              <td>QTY</td>
-              <td>Face Up</td>
-              <td>Visible</td>
-            </tr>
-            <tr height="1px" bgcolor="#CCCCCC" >
-			  <td colspan="5"></td>
-			  </tr>
-            <tr>
-              <td >&nbsp;</td>
-              <td >BB TAAZA BLACK PACKET TEA 100G</td>
-              <td width="10%"><input type="number" name="cm_id3" id="cm_id3" value="" min="0" ></td>
-              <td width="20%"><input type="number" name="cm_id10" id="cm_id10" value="" min="0"></td>
-              <td width="10%">
-                <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-              </td>
-              
-            </tr>
-            <tr height="1px" bgcolor="#CCCCCC" >
-			  <td colspan="5"></td>
-			  </tr>
+            
+          
+            <div id="qpds"></div>
+            <!--<table width="100%" border="0">
+            
              <tr>
-               <td width="30">&nbsp;</td>
-               <td width="30">BB TAAZA BLACK PACKET TEA 100G </td>
-              <td width="30"><input type="number" name="cm_id4" id="cm_id4" value="" min="0" ></td>
-              <td width="30"><input type="number" name="cm_id11" id="cm_id11" value="" min="0"></td>
-              <td width="30">
-              <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-              </td>
-            </tr>
-           <tr height="1px" bgcolor="#CCCCCC" >
-			  <td colspan="5"></td>
-			  </tr>
-             <tr>
-               <td width="30">&nbsp;</td>
-               <td width="30">BB TAAZA BLACK PACKET TEA 200G</td>
-              <td width="30"><input type="number" name="cm_id5" id="cm_id5" value="" min="0" ></td>
-              <td width="30"><input type="number" name="cm_id12" id="cm_id12" value="" min="0"></td>
-              <td width="30">
-                <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-              </td>
-            </tr>
-            <tr height="1px" bgcolor="#CCCCCC" >
-			  <td colspan="5"></td>
-			  </tr>
-             <tr>
-               <td width="30">&nbsp;</td>
-               <td width="30">BB TAAZA BLACK PACKET TEA 50G </td>
-              <td width="30"><input type="number" name="cm_id6" id="cm_id6" value="" min="0" ></td>
-              <td width="30"><input type="number" name="cm_id13" id="cm_id13" value="" min="0"></td>
-              <td width="30">
-                <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-              </td>
-            </tr>
-            <tr height="1px" bgcolor="#CCCCCC" >
-			  <td colspan="5"></td>
-			  </tr>
-             <tr>
-               <td width="30">&nbsp;</td>
-               <td width="30">CLEAR SHAMPOO C. ACTVE CARE 5ml </td>
-              <td width="30"><input type="number" name="cm_id7" id="cm_id7" value="" min="0" ></td>
-              <td width="30"><input type="number" name="cm_id14" id="cm_id14" value="" min="0"></td>
-              <td width="30">
-                <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-              </td>
-            </tr>
-            <tr height="1px" bgcolor="#CCCCCC" >
-			  <td colspan="5"></td>
-			  </tr>
-             <tr>
-               <td width="30">&nbsp;</td>
-               <td width="30">CLOSE UP TOOTHPASTE MINT CHILL 11g </td>
-              <td width="30"><input type="number" name="cm_id8" id="cm_id8" value="" min="0" ></td>
-              <td width="30"><input type="number" name="cm_id15" id="cm_id15" value="" min="0"></td>
-              <td width="30">
-                <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-              </td>
-            </tr>
-           <tr height="1px" bgcolor="#CCCCCC" >
-			  <td colspan="5"></td>
-			  </tr>
-             <tr>
-               <td width="30">&nbsp;</td>
-               <td width="30">CLOSE-UP TOOTHPASTE MINT CHILL 50g </td>
-              <td width="30"><input type="number" name="cm_id9" id="cm_id9" value="" min="0" ></td>
-              <td width="30"><input type="number" name="cm_id16" id="cm_id16" value="" min="0"></td>
-              <td width="30">
-                <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-              </td>
-            </tr>
-            <tr height="1px" bgcolor="#CCCCCC" >
-			  <td colspan="5"></td>
-			  </tr>
-             <tr>
-               <td>&nbsp;</td>
-               <td>&nbsp;</td>
-               <td>&nbsp;</td>
-               <td>&nbsp;</td>
-               <td>&nbsp;</td>
-             </tr>
-             <tr>
-               <td colspan="5">
+               <td >
                
                 <a data-role="button" href="#" onClick="get_pic()" >Take Picture </a></td>
                
              </tr>
-            </table>
+            </table>-->
 			
 			
 
-				<a data-role="button" href="#giftAckPage" >Next</a>
+				<a data-role="button" href="#giftAckPage" onClick="getlocationand_askhelp();" >Next</a>
 
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -1270,110 +476,15 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             </div>
 		    
 			<div  data-role="content" >
-           <table width="100%" border="0">
-              <tr style="color:#0329C0">
-                <td colspan="2">Muradnagar Store (D03-3410)</td>
-              </tr>
-              <tr >
-            </table>
+            
+            
+            
+            <div id="gift"></div>
+      
 			
-            <img height="100px" width="100%"  src="fixedDisplay.png" alt="FixedDisplay" />
+            
 			
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
-             <tr bgcolor="#9FCED7" >
-               <td width="1%" >&nbsp;</td>
-			  <td >
-			    Item 
-		      </td>
-              <td >
-			    Received 
-		      </td>
-              <td >
-			    Memo 
-		      </td>
-			  </tr>
-			<tr height="1px" bgcolor="#CCCCCC" >
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  </tr>
-			<tr >
-			  <td>&nbsp;</td>
-			  <td>
-			    PSFD Face_Care ( March 14 ) BDT 300 
-		      </td>
-              <td width="12%">
-			    <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-		      </td>
-              <td width="12%">
-			    <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-		      </td>
-			  </tr>
-              <tr >
-              <tr height="1px" bgcolor="#CCCCCC" >
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  </tr>
-              
-			  <tr>
-			    <td>&nbsp;</td>
-			    <td>
-			    PSFD Face_Hair_Care  March 14 BDT 400 
-		      </td>
-              <td>
-			    <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-		      </td>
-              <td>
-			   <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-		      </td>
-			  </tr>
-              <tr height="1px" bgcolor="#CCCCCC" >
-                <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  </tr>
-              <tr >
-                <td>&nbsp;</td>
-			  <td>
-			    Lux & Lifebuoy Eid Utshab 2014  BDT 300 
-		      </td>
-              <td>
-			    <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-		      </td>
-              <td>
-			    <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-		      </td>
-			  </tr>
-              <tr height="1px" bgcolor="#CCCCCC" >
-                <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  </tr>
-               <tr >
-                 <td>&nbsp;</td>
-			  <td>
-			    Fair & Lovely Eid Utshab 2014  BDT 300 
-		      </td>
-              <td>
-			    <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-		      </td>
-              <td>
-			    <label  style="width:5px; height:8px"><input type="checkbox" name="amountFlag" id="amountFlag'+ str(divCount) +'" value=""/></label>   
-		      </td>
-			  </tr>
-              <tr height="1px" bgcolor="#CCCCCC" >
-                <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  </tr>
-              
-            
             <tr>
               <td>&nbsp;</td>
                <td>&nbsp;</td>
@@ -1388,8 +499,13 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
              </tr>
             </table>
 			
-			<a data-role="button" href="#menuPage" onClick="doTimer()" >Submit</a>
+			<a data-role="button" onClick="submit_data()" >Submit</a>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
+               
+               <div id="submit_data"></div>
+               <input name="lat" id="lat" placesholder="" value="" type="hidden">
+			   <input name="long" id="long" placeholder="" value="" type="hidden">
+               
                 <br/><br/>
                 <br/><br/><br/>
 	  </div>
@@ -1438,13 +554,25 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <table id="newMarchandizing_1"  width="100%" border="0" >
                   <tr >
                     
-                    <td><select name="select_item" id="select_item" data-native-menu="false">
+                    <td><select name="select_mar_item" id="select_mar_item" data-native-menu="false">
                             <option value="0" >Item </option>
-                            <option value="1" >Hanger </option>
-                            <option value="2" >Plug in dispenser</option>
-                            <option value="3" >Food Corner </option>
-                            <option value="4" >Glass Shelf Branding </option>
-                            <option value="5" >Counter Top </option>
+                            <option value="101" >Backlit Shop Board </option>
+                            <option value="102" >Perfect Store identifier </option>
+                            <option value="103" >Shelf Talker for Fixed Display </option>
+                            <option value="104" >Shelf Talker for QPDS </option>
+                            <option value="105" >Permanent Shelf Talker Holder for Grocer </option>
+                            <option value="106" >Permanent Shelf Talke </option>
+                            <option value="107" >Permanent Hair Care Units </option>
+                            <option value="108" >Permanent Skin Care Units (MINI Solomon ) </option>
+                            <option value="109" >Permanent Menz Zone Units </option>
+                            <option value="110" >Shelf in Shelf (SIS) </option>
+                            <option value="111" >Poster Box </option>
+                            <option value="112" >Shop Board with Pillar & Shutter Branding & Paint </option>
+                            <option value="113" >Hanger </option>
+                            <option value="114" >Plug in dispenser </option>
+                            <option value="115" >Food Corner </option>
+                            <option value="116" >Glass Shelf Branding </option>
+                            <option value="117" >Counter Top </option>
                         </select></td>
                   </tr>
                   
@@ -1455,32 +583,43 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                   <tr >
                     
                     <td>
-                    <select name="select_brand" id="select_brand" data-native-menu="false">
+                    <select name="select_mar_brand" id="select_mar_brand" data-native-menu="false">
                             <option value="0" >Brand</option>
-                            <option value="1" >Pureit </option>
-                            <option value="2" >REXONA </option>
-                            <option value="3" >Rin   </option>
-                            <option value="4" >Sunsilk </option>
-                            <option value="5" >Surf    </option>
-                            <option value="6" >Vaseline </option>
-                            <option value="7" >Vim     </option>
-                            <option value="8" >Wheel (HPC)</option>
+                            <option value="101" >Axe </option>
+                            <option value="102" >BB TAAZA </option>
+                            <option value="103" >CLEAR </option>
+                            <option value="104" >Close Up </option>
+                            <option value="105" >Dove </option>
+                            <option value="106" >Fair & Lovely </option>
+                            <option value="107" >Knorr</option>
+                            <option value="108" >Lifebuoy</option>
+                            <option value="109" >Lux</option>
+                            <option value="110" >Pepsodent</option>
+                            <option value="111" >Ponds</option>
+                            <option value="112" >Pureit</option>
+                            <option value="113" >REXONA</option>
+                            <option value="114" >Rin</option>
+                            <option value="115" >Sunsilk</option>
+                            <option value="116" >Surf</option>
+                            <option value="117" >Vaseline</option>
+                            <option value="118" >Vim</option>
+                            <option value="119" >Wheel (HPC)</option>
                         </select>
                     </td>
                   </tr>
                   <tr >
                    
-                    <td><input type="number" name="qty" id="qty" value="" placeholder="Qty"></td>
+                    <td><input type="number" name="mar_qty_add" id="mar_qty_add" value="" placeholder="Qty"></td>
                   </tr>
                   <tr >
                     
-                    <td><input type="text" name="cm_id" id="cm_id" value=""  placeholder="Date of Installation"></td>
+                    <td><input type="date" name="mar_date_add" id="mar_date_add" value=""  ></td>
                   </tr>
             
               
                   <tr >
                     
-                    <td><a  data-role="button" href="#marchandizingPage" >Add</a></td>
+                    <td><a  data-role="button" href="#marchandizingPage" onClick="marchandizing_add()" >Add</a></td>
                   </tr>
                   
                    <tr >
