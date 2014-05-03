@@ -7,8 +7,9 @@
 //var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
 //var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
-var apipath='http://127.0.0.1:8000/unilever/syncmobile/';
-var apipath_image = 'http://127.0.0.1:8000/unilever/';
+var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
+var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
+
 var temp_image_div='';
 
 //var helpCount = 0;
