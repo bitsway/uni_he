@@ -90,7 +90,7 @@
    				first_page();
 				
 				
-				//alert (localStorage.show_cancel)
+				
 				if (localStorage.show_cancel==0){
 				 cancel_outlet();
 				}
@@ -133,7 +133,7 @@
 			</div><!-- panel -->
 			
 			
-
+		
 		
             <div data-theme="c" data-role="header" data-position="fixed" >
 			
@@ -260,8 +260,7 @@
                 <div id="outletCancel" style="display:none"> 
                 Working progress on Outlet:
                 		<div id="outletName_show"></div>
-                		<a data-role="button" onClick="cancel_outlet()" >Cancel</a>
-                        <a data-role="button" onClick="outlet_next_page()" >OK</a>
+                		<a data-role="button" onClick="cancel_outlet()" >Cancell</a>
                 </div>	
 				<div id="outletInfo1"> </div>	
                 <!--<br/><br/>
@@ -339,7 +338,7 @@
                 <input name="startTime" id="startTime"  value="" type="hidden">
                 <!--<div id="mhskus1"></div>-->
                 
-				<a data-role="button" href="#marchandizingPage" onClick="mhskus_ready_data()" >Next</a>
+				<a data-role="button" href="#marchandizingPage" >Next</a>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
                 <br/><br/><br/>
@@ -368,7 +367,7 @@
            
 
 
-				<a data-role="button" href="#npdPage" onClick="mar_ready_data()" >Next</a>
+				<a data-role="button" href="#npdPage" >Next</a>
 
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -393,7 +392,7 @@
            	
 			 
 				<div id="npd"></div>
-				<a data-role="button" href="#fixedDisplay" onClick="npd_ready_data()" >Next</a>
+				<a data-role="button" href="#fixedDisplay" >Next</a>
 
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -436,7 +435,7 @@
              </tr>
             </table>
 			-->
-				<a data-role="button" href="#qpdsPage" onClick="fdisplay_ready_data()" >Next</a>
+				<a data-role="button" href="#qpdsPage" >Next</a>
 
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -472,7 +471,7 @@
 			
 			
 
-				<a data-role="button" href="#giftAckPage" onClick="qpds_ready_data();getlocationand_askhelp();" >Next</a>
+				<a data-role="button" href="#giftAckPage" onClick="getlocationand_askhelp();" >Next</a>
 
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -518,7 +517,7 @@
              </tr>
             </table>
 			
-			<a data-role="button" onClick="gift_ready_data();submit_data()" >Submit</a>
+			<a data-role="button" onClick="submit_data()" >Submit</a>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                
                <div id="submit_data"></div>

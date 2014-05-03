@@ -84,19 +84,8 @@
 				
 				$("#marchadizing_add_show").html(localStorage.m_new);
 				
-				
-				
-				$("#outletName_show").html(localStorage.outletNameID);
-   				first_page();
-				
-				
-				//alert (localStorage.show_cancel)
-				if (localStorage.show_cancel==0){
-				 cancel_outlet();
-				}
-				if (localStorage.show_cancel==1){
-				 div_change();
-				}
+			
+   
   
 		});    
 		
@@ -123,7 +112,7 @@
 				<br><br><br>
 				  <ul data-role="listview">
 							<li><a href="#login" >Login</a></li>
-							<li ><a href="#routePage">Sync Route</a></li>
+							<li><a href="#routePage">Sync Route</a></li>
 							<li><a href="#login">Logout</a></li>
 					</ul>
 					<br>
@@ -133,7 +122,7 @@
 			</div><!-- panel -->
 			
 			
-
+		
 		
             <div data-theme="c" data-role="header" data-position="fixed" >
 			
@@ -186,7 +175,7 @@
 			
 			<div data-role="content" align="center">
 				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">         
-				<a data-role="button" onClick="marketPJP()"  href="#outletPage" >Market PJP</a>
+				<a data-role="button" onClick="marketPJP()" >Market PJP</a>
                 <a data-role="button" href="#menuPage" >Information</a>
                 </font>
             </div>
@@ -205,8 +194,8 @@
 						<div id="routeString"> </div>
 			
 				<br/><br/>					
-				<a data-role="button" onClick="selectRoute();" >Sync Route</a>
-                <div id="dataerror" > </div>
+				<a data-role="button" onClick="selectRoute()" >Sync Route</a>
+                <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
 
                 <br/><br/><br/>
@@ -248,24 +237,16 @@
 		<div data-theme="c" data-role="page" id="outletPage">
 			
 			<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a id="menujpj"  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a id="backjpj" data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+			    <a  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
+                <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
                 <h3>Select Outlet</h3>
             </div>
 		    
-			<div  data-role="content"  >                
+			<div  data-role="content" >                
                 <div id="outletString"> </div>	
-
-
-                <div id="outletCancel" style="display:none"> 
-                Working progress on Outlet:
-                		<div id="outletName_show"></div>
-                		<a data-role="button" onClick="cancel_outlet()" >Cancel</a>
-                        <a data-role="button" onClick="outlet_next_page()" >OK</a>
-                </div>	
-				<div id="outletInfo1"> </div>	
-                <!--<br/><br/>
-				<a data-role="button" onClick="div_change();select_outlet();" >Next</a>-->
+				<!--<div id="outletInfo1">fdsgdf </div>	-->
+                <br/><br/>
+				<a data-role="button" onClick="select_outlet()" >Next</a>
                 
                 <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -279,6 +260,16 @@
     
     <!--=========================outlet page end================== -->
      <!--====================Outlet Exception==================-->
+     
+     
+     
+    
+     
+     
+     
+     
+     
+     
      
     <div data-theme="c" data-role="page" id="outletexceptionPage">	
 		   <div data-theme="c" data-role="header" data-position="fixed" >
@@ -310,7 +301,7 @@
                     <div id="outletExString"> </div>
                				
 				<br/><br/>
-				<a data-role="button" onClick="selectOutletException();" >Next</a>
+				<a data-role="button" onClick="selectOutletException()" >Next</a>
 
                 <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -339,7 +330,7 @@
                 <input name="startTime" id="startTime"  value="" type="hidden">
                 <!--<div id="mhskus1"></div>-->
                 
-				<a data-role="button" href="#marchandizingPage" onClick="mhskus_ready_data()" >Next</a>
+				<a data-role="button" href="#marchandizingPage" >Next</a>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
                 <br/><br/><br/>
@@ -364,11 +355,81 @@
 			<div id="marchadizing_add_show"></div>
           
               
+              
+
+			<!--<div id="newMarchandizing" title="Cancellation Policy" style="display:none" >	
+              <table id="newMarchandizing_1"  width="100%" border="0" >
+                  <tr >
+                    <td width="30">Item </td>
+                    <td><select name="select_mar_item" id="select_mar_item">
+                            <option value="0" >&nbsp; </option>
+                            <option value="101" >Backlit Shop Board </option>
+                          <option value="2" >Plug in dispenser</option>
+                            <option value="3" >Food Corner </option>
+                            <option value="4" >Glass Shelf Branding </option>
+                            <option value="5" >Counter Top </option>
+                        </select></td>
+                  </tr>
+                  <tr >
+                    <td>Brand</td>
+                    <td>
+                    <select name="select_mar_brand" id="select_mar_brand">
+                            <option value="0" >&nbsp; </option>
+                            <option value="101" >Axe </option>
+                           <option value="2" >REXONA </option>
+                            <option value="3" >Rin   </option>
+                            <option value="4" >Sunsilk </option>
+                            <option value="4" >Surf    </option>
+                            <option value="4" >Vaseline </option>
+                            <option value="4" >Vim     </option>
+                            <option value="4" >Wheel (HPC)</option>
+                        </select>
+                    </td>
+                  </tr>
+                  <tr >
+                    <td>Qty</td>
+                    <td><input type="number" name="qty" id="qty" value=""></td>
+                  </tr>
+                  <tr >
+                    <td>Date of Installation</td>
+                    <td><input type="text" name="cm_id" id="cm_id" value=""></td>
+                  </tr>
+                  <tr >
+                    <td>Condition</td>
+                    <td>
+                       <select name="select_item" id="select_item">
+                            <option value="0" >&nbsp; </option>
+                            <option value="1" >Good/ Sound</option>
+                            <option value="2" >Damaged/ Torn</option>
+                            <option value="3" >Need repair</option>
+                        </select>
+                    </td>
+                  </tr>
+                  <tr >
+                    <td>Call to Action</td>
+                    <td>
+                       <select name="select_item" id="select_item">
+                            <option value="0" >&nbsp; </option>
+                            <option value="1" >Visible</option>
+                            <option value="2" >Not Visible</option>
+                        </select>
+                    </td>
+                  </tr>
+                  <tr >
+                    <td></td>
+                    <td><a data-role="button" href="#" >Add</a></td>
+                  </tr>
+                </table>  
+
+		</div>-->
+			
+            
+            
             
            
 
 
-				<a data-role="button" href="#npdPage" onClick="mar_ready_data()" >Next</a>
+				<a data-role="button" href="#npdPage" >Next</a>
 
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -393,7 +454,7 @@
            	
 			 
 				<div id="npd"></div>
-				<a data-role="button" href="#fixedDisplay" onClick="npd_ready_data()" >Next</a>
+				<a data-role="button" href="#fixedDisplay" >Next</a>
 
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -422,21 +483,26 @@
     		<div id="fdisplay"></div>
     
     		
-   <!--<table width="100%" border="0" cellpadding="0" cellspacing="0">
+   <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	
              <tr>
-               
+               <td>&nbsp;</td>
+               <td>&nbsp;</td>
+               <td>&nbsp;</td>
+               <td>&nbsp;</td>
+               <td>&nbsp;</td>
+               <td>&nbsp;</td>
                <td>&nbsp;</td>
              </tr>
              <tr >
-               <td >
+               <td colspan="7">
                
                 <a data-role="button" href="#" onClick="get_pic()" >Take Picture </a></td>
                
              </tr>
             </table>
-			-->
-				<a data-role="button" href="#qpdsPage" onClick="fdisplay_ready_data()" >Next</a>
+			
+				<a data-role="button" href="#qpdsPage" >Next</a>
 
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -460,19 +526,19 @@
             
           
             <div id="qpds"></div>
-            <!--<table width="100%" border="0">
+            <table width="100%" border="0">
             
              <tr>
-               <td >
+               <td colspan="5">
                
                 <a data-role="button" href="#" onClick="get_pic()" >Take Picture </a></td>
                
              </tr>
-            </table>-->
+            </table>
 			
 			
 
-				<a data-role="button" href="#giftAckPage" onClick="qpds_ready_data();getlocationand_askhelp();" >Next</a>
+				<a data-role="button" href="#giftAckPage" onClick="getlocationand_askhelp();" >Next</a>
 
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -518,7 +584,7 @@
              </tr>
             </table>
 			
-			<a data-role="button" onClick="gift_ready_data();submit_data()" >Submit</a>
+			<a data-role="button" onClick="submit_data()" >Submit</a>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                
                <div id="submit_data"></div>
