@@ -1344,9 +1344,19 @@ function get_pic_fdisplay(id) {
 	
 	
 	
-//	alert (div_id);
+
 	
 	temp_image_div=div_id;
+	
+	
+	var hidden_name="fdSL_image_name_hidden_"+id;
+	var tempTime = $.now();
+	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet;
+	
+	//alert (fd_image_name);
+	$("#"+hidden_name).val(fd_image_name);
+	//alert (hidden_name);
+	
 	navigator.camera.getPicture(onSuccessA, onFailA, { quality: 20,
 		destinationType: Camera.DestinationType.FILE_URI });
 }
@@ -1360,12 +1370,12 @@ function onSuccessA(imageURI) {
 	$("#"+hidden_path).val(imageURI);
 	
 	
-	var hidden_name=temp_image_div.replace("fdSL_image_div","fdSLfdisplay_image_name");
+	//var hidden_name=temp_image_div.replace("fdSL_image_div","fdSLfdisplay_image_name");
 	
-	var tempTime = $.now();
-	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet;
+	//var tempTime = $.now();
+	//fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet;
 	
-	$("#"+hidden_name).val(fd_image_name);
+	//$("#"+hidden_name).val(fd_image_name);
 	
 	
 }
