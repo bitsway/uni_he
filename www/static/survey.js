@@ -7,9 +7,13 @@
 //var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
 //var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
+//var apipath='http://127.0.0.1:8000/unilever/syncmobile/';
+//var apipath_image = 'http://127.0.0.1:8000/unilever/';
+
 var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
 var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
+	
 var temp_image_div='';
 
 //var helpCount = 0;
@@ -64,22 +68,25 @@ navigator.app.exitApp();
 
 
 function first_page(){
-	//alert (localStorage.routeDone);
-	if ((localStorage.synced=='NO')){
+	//alert (localStorage.synced);
+	if ((localStorage.synced!='YES')){
+		//alert ('nadira')
 		var url = "#login";
 		$(location).attr('href',url);
 		
 	}
-	if ((localStorage.synced=='YES') && (localStorage.routeDone=='NO')){
+
+	/*if ((localStorage.synced=='YES') && (localStorage.routeDone=='NO')){
+		alert ('123')
 		var url = "#menuPage";
 		$(location).attr('href',url);
 		
-	}
-	if ((localStorage.synced=='YES') && (localStorage.routeDone=='YES')){
+	}*/
+	/*if ((localStorage.synced=='YES') && (localStorage.routeDone=='YES')){
 		var url = "#outletPage";
 		$(location).attr('href',url);
 		
-	}
+	}*/
 
 
 }
@@ -100,9 +107,6 @@ function outlet_next_page(){
 }
 
 //=================after select an outlet
-function outlet_confim(){
-	localStorage.routeDone='YES'
-}
 
 
 function div_change(){
@@ -158,6 +162,7 @@ function check_user() {
 							if (resultArray[0]=='SUCCESS'){
 								
 								localStorage.synced='YES';
+								
 								
 								result_string=resultArray[1];
 								var routeArray = result_string.split('</routeList>');									
@@ -257,12 +262,15 @@ function selectRoute() {
 		if (selected_routeDay==today_get){
 			localStorage.selectedRoute=selected_routeID;
 			localStorage.routeException_found='0';
+		
 			var url = "#menuPage";
 			$(location).attr('href',url);	
 		}
 		else {
 			localStorage.selectedRoute=selected_routeID;
 			localStorage.routeException_found='1';
+			
+			
 			var url = "#routeexceptionPage";
 			$(location).attr('href',url);	
 		}
@@ -479,7 +487,7 @@ function select_outlet() {
 		if ((localStorage.routeException_found == '1') && (localStorage.selectedOutlet!=undefined)){
 			//syncOutlet();
 			//$("#outletExString").html(localStorage.outletExStringShow);
-			localStorage.routeDone=''
+			localStorage.routeDone='YES'
 			var url = "#outletexceptionPage";
 			$(location).attr('href',url);
 			//location.reload()
@@ -660,7 +668,8 @@ function syncOutlet() {
 										var fdSL_image_div_hidden='fdSL_image_div_hidden_'+slab_text
 										var fdSL_image_name_hidden='fdSL_image_name_hidden_'+slab_text
 										
-										
+										var fdSL_image='fdSL_image_'+slab_text
+									    var fdSL_image_div='fdSL_image_div_'+slab_text
 										
 										
 										fdisplayStringShow=fdisplayStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/fd/'+fdisplaySlab_image+'.png" alt="FixedDisplay" />';
@@ -668,7 +677,7 @@ function syncOutlet() {
 										fdisplayStringShow=fdisplayStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">Face Up</td><td></td><td width="100px">Visible</td></tr>'
 										
 										
-										
+										alert (fdSL_image_div);
 										
 										
 										var fdisplaySingleArray = fdisplaySlabList.split('rdrd');	
@@ -694,17 +703,17 @@ function syncOutlet() {
 											var ItemVisiblefdisplay='ItemVisiblefdisplay_'+i_text
 											var slabfdisplay='slabfdisplay_'+i_text
 											var fdSLfdisplay='fdSLfdisplay_'+i_text
-											var fdSL_image='fdSL_image_'+i_text
-											var fdSL_image_div='fdSL_image_div_'+i_text
 											
-											//alert ('nadira');
+											
+											
 											fdisplayStringShow=fdisplayStringShow+'<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemfdisplay +'" id="'+ Itemfdisplay +'" value="'+itemID+'" min="0"> <input type="hidden" name="'+ slabfdisplay +'" id="'+ slabfdisplay +'" value="'+slab_fdisplay+'" min="0"> <input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  </td> <td><input type="number" name="'+ItemQtyfdisplay +'" id="'+ ItemQtyfdisplay +'" value="" min="0"></td><td></td><td><input type="number" name="'+ItemFaceupfdisplay +'" id="'+ ItemFaceupfdisplay +'" value="" min="0"></td><td></td><td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ ItemVisiblefdisplay +'" id="'+ ItemVisiblefdisplay +'" value=""/></label></td></tr>'
 											fdisplayStringShow=fdisplayStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
 											
 										}
 										fdisplayStringShow=fdisplayStringShow+'</table>'
 										
-										fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr><td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+fdSL_image_div+')" >Take Picture </a></td></tr></table>'+ 
+										fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
+												'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+fdSL_image_div+')" >Take Picture </a></td></tr></table>'+ 
 											    '<div id="'+fdSL_image_div+'">aaa</div>' +
 												'<input type="text" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
 												'<input type="text" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'
@@ -1323,15 +1332,16 @@ function uploadAll(){
 		var fdisplayTotal='fdisplayTotal'+i.toString()
 		var fdTotal=localStorage.fdisplayTotal
 		var image_name='';
-		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val(); 
-		for (var d=0; d < 1; d++){	
+		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
+		image_name=$("#fdSLfdisplay_image_name"+i.toString()).val();  
+		/*for (var d=0; d < 1; d++){	
 			if ( d==0){
 				image_name=$("#fdSLfdisplay_image_name"+i.toString()).val(); 
 				alert(image_name);
 				//uploadPhoto(fdSLfdisplay_image_path, image_name)
 				
 			}
-		}
+		}*/
 	}	
 	
 	

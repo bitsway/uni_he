@@ -109,7 +109,42 @@
     
   
     
+     <!--======================Menu page start==================-->        
+        <div data-theme="c" data-role="page" id="menuPage"   >
+        
+           <div data-role="panel" id="routePanel" data-display="overlay" style="width:60%;">
+				<!-- panel content goes here -->
+				<img style="width:100%;"  src="unilogo1.jpg" alt="UNILEVER" /><br>
+				<font style="color:#007D7D; font-size:25px;">HAWK'S EYE</font>
+				<br><br><br>
+				  <ul data-role="listview">
+							<li><a href="#login" >Sync Authorization</a></li>
+							<li><a href="#routePage">Sync Route</a></li>
+							<li><a href="#login">Clear Authorization</a></li>
+					</ul>
+					<br>
+				<div style="margin:100%;"></div>
+				<img src="logo_gp_p.png" alt="Grameen Phone" />
+				
+			</div><!-- /panel -->
+            
+             <div data-theme="c" data-role="header" data-position="fixed" >
+			
+			    <a  data-role="button" href="#routePanel" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
+                <a data-role="button" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right ui-icon-power ui-btn-icon-notext " onClick="exit()" >Exit </a>
+                <h3>Home</h3>
+            </div>
+			
+			<div data-role="content" align="center">
+				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">         
+				<a data-role="button" onClick="marketPJP()"  href="#outletPage" >Market PJP</a>
+                <a data-role="button" href="#menuPage" >Information</a>
+                </font>
+            </div>
+        </div>
     
+    
+     <!--======================Menu page end==================-->   
     
     
       <!--  ================= login page=================  -->
@@ -158,46 +193,11 @@
 		
 			
         </div><!--/login page-->
-    <!--======================Menu page start==================-->        
-        <div data-theme="c" data-role="page" id="menuPage"   >
-        
-           <div data-role="panel" id="routePanel" data-display="overlay" style="width:60%;">
-				<!-- panel content goes here -->
-				<img style="width:100%;"  src="unilogo1.jpg" alt="UNILEVER" /><br>
-				<font style="color:#007D7D; font-size:25px;">HAWK'S EYE</font>
-				<br><br><br>
-				  <ul data-role="listview">
-							<li><a href="#login" >Sync Authorization</a></li>
-							<li><a href="#routePage">Sync Route</a></li>
-							<li><a href="#login">Clear Authorization</a></li>
-					</ul>
-					<br>
-				<div style="margin:100%;"></div>
-				<img src="logo_gp_p.png" alt="Grameen Phone" />
-				
-			</div><!-- /panel -->
-            
-             <div data-theme="c" data-role="header" data-position="fixed" >
-			
-			    <a  data-role="button" href="#routePanel" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a data-role="button" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right ui-icon-power ui-btn-icon-notext " onClick="exit()" >Exit </a>
-                <h3>Home</h3>
-            </div>
-			
-			<div data-role="content" align="center">
-				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">         
-				<a data-role="button" onClick="marketPJP()"  href="#outletPage" >Market PJP</a>
-                <a data-role="button" href="#menuPage" >Information</a>
-                </font>
-            </div>
-        </div>
-    
-    
-     <!--======================Menu page end==================-->   
+   
      <!--  ====================== routePage ======================  -->
 		<div data-theme="c" data-role="page" id="routePage">
 			<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
+			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
                 <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
                 <h3>Select Route</h3>
             </div>
@@ -220,7 +220,7 @@
     <!--====================Route Exception==================-->
     <div data-theme="c" data-role="page" id="routeexceptionPage">
 		    <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
+			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
                 <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
                 <h3>Route Exception</h3>
             </div>
@@ -248,7 +248,7 @@
 		<div data-theme="c" data-role="page" id="outletPage">
 			
 			<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a id="menujpj"  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
+			    <a id="menujpj"  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
                 <a id="backjpj" data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
                 <h3>Select Outlet</h3>
             </div>
@@ -282,7 +282,7 @@
      
     <div data-theme="c" data-role="page" id="outletexceptionPage">	
 		   <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
+			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
                 <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
                 <h3>Outlet Info</h3>
             </div>
@@ -328,7 +328,7 @@
     
     <div data-theme="c" data-role="page" id="mhskusPage">	
 		  <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
+			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
                 <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
                 <h3>Must Have SKUS</h3>
             </div>
@@ -353,7 +353,7 @@
     
     <div data-theme="c" data-role="page" id="marchandizingPage">
    		  <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
+			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
                 <a data-role="button" href="#mhskusPage" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
                 <h3>Marchandizing</h3>
             </div>
@@ -384,7 +384,7 @@
     
     <div data-theme="c" data-role="page" id="npdPage">
 		   <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
+			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
                 <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
                 <h3>NPD</h3>
             </div>
@@ -410,7 +410,7 @@
     
     <div data-theme="c" data-role="page" id="fixedDisplay">
 		   <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
+			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
                 <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
                 <h3>Fixed Display Audit</h3>
             </div>
@@ -451,7 +451,7 @@
     
     <div data-theme="c" data-role="page" id="qpdsPage">
 		<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
+			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
                 <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
                 <h3>QPDS (Scheme)</h3>
             </div>
@@ -489,7 +489,7 @@
     
     <div data-theme="c" data-role="page" id="giftAckPage">
 		    <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
+			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
                 <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
                 <h3>Gift Acknowledgement</h3>
             </div>
@@ -537,7 +537,7 @@
     
     <div data-theme="c" data-role="page" id="waitPage">
 		    <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
+			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
                 <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
                 <h3>Wait</h3>
             </div>
