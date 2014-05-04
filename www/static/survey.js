@@ -982,7 +982,7 @@ function fdisplay_ready_data() {
 		var image_name='';
 		var fd_image_name=fd_image_name+i.toString();
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val(); 
-//		var fdSLfdisplay_image_name=$("#fdSL_image_name_hidden_"+i.toString()).val(); 
+		var fdSLfdisplay_image_name=$("#fdSL_image_name_hidden_"+i.toString()).val(); 
 		
 		
 		for (var d=0; d < fdTotal-1; d++){
@@ -992,13 +992,13 @@ function fdisplay_ready_data() {
 			var slabfdisplay=$("#slabfdisplay_"+d.toString()).val();
 			var fdSLfdisplay=$("#fdSLfdisplay_"+d.toString()).val(); 
 			
-			if (d==0){
-				
-				
-				fd_image_name=localStorage.selectedOutlet+"_"+fdSLfdisplay+"_"+image_time.toString();
-				//$("#fdSLfdisplay_image_name"+i.toString()).val(fd_image_name);
-				
-			}
+//			if (d==0){
+//				
+//				
+//				fd_image_name=localStorage.selectedOutlet+"_"+fdSLfdisplay+"_"+image_time.toString();
+//				$("#fdSLfdisplay_image_name_"+i.toString()).val(fd_image_name);
+//				
+//			}
 			
 			
 			
@@ -1016,7 +1016,7 @@ function fdisplay_ready_data() {
 			
 			
 			
-			fdisplay_data=fdisplay_data+Itemfdisplay+'fdfd'+ItemQtyfdisplay+'fdfd'+ItemFaceupfdisplay+'fdfd'+ItemVisiblefdisplay+'fdfd'+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+fd_image_name+'rdrd'
+			fdisplay_data=fdisplay_data+Itemfdisplay+'fdfd'+ItemQtyfdisplay+'fdfd'+ItemFaceupfdisplay+'fdfd'+ItemVisiblefdisplay+'fdfd'+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+fdSLfdisplay_image_name+'rdrd'
 		}
 		
 
@@ -1356,8 +1356,16 @@ function onSuccessA(imageURI) {
 	var image = document.getElementById(temp_image_div);
     image.src = imageURI;
     //alert (imageURI);
-    var hidden_value=div_id.replace("fdSL_image_div","fdSL_image_div_hidden");
-	$("#"+hidden_value).val(imageURI);
+    var hidden_path=temp_image_div.replace("fdSL_image_div","fdSL_image_div_hidden");
+	$("#"+hidden_path).val(imageURI);
+	
+	
+	var hidden_name=temp_image_div.replace("fdSL_image_div","fdSLfdisplay_image_name_");
+	
+	fd_image_name=image_time.toString()+"_"+localStorage.selectedOutlet;
+	$("#"+hidden_name).val(fd_image_name);
+	
+	
 }
 
 function onFailA(message) {
@@ -1371,30 +1379,12 @@ function onFailA(message) {
 function uploadAll(){
 	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
 		//alert (localStorage.fdisplaySlabTotal);
-		var fdisplayTotal='fdisplayTotal'+i.toString()
-		var fdTotal=localStorage.fdisplayTotal
-		var image_name=$("#fdSLfdisplay_image_name"+i.toString()).val();  
+		//var fdisplayTotal='fdisplayTotal'+i.toString()
+		//var fdTotal=localStorage.fdisplayTotal
+		var image_name=$("#fdSLfdisplay_image_name_"+i.toString()).val();  
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
-		
-		alert (image_name);
-		alert (fdSLfdisplay_image_path);
-		
-		
-		//image_name=$("#fdSLfdisplay_image_name"+i.toString()).val();  
-		/*for (var d=0; d < 1; d++){	
-			if ( d==0){
-				image_name=$("#fdSLfdisplay_image_name"+i.toString()).val(); 
-				alert(image_name);
-				//uploadPhoto(fdSLfdisplay_image_path, image_name)
-				
-			}
-		}*/
+		uploadPhoto(fdSLfdisplay_image_path, image_name);
 	}	
-	
-	
-	
-	
-	
 }
 
 
@@ -1414,8 +1404,9 @@ function uploadPhoto(imageURI, imageName) {
   options.params = params;
 
   var ft = new FileTransfer();
-  ft.upload(imageURI, encodeURI("http://m.businesssolutionapps.com/welcome/wab_sync/fileUploader/"),win,fail,options);
-	//ft.upload(imageURI, encodeURI("http://127.0.0.1:8000/welcome/wab_sync/fileUploader/"),win,fail,options);
+//  ft.upload(imageURI, encodeURI("http://m.businesssolutionapps.com/welcome/wab_sync/fileUploader/"),win,fail,options);
+  ft.upload(imageURI, encodeURI("http://e2.businesssolutionapps.com/unilever/syncmobile/fileUploader/"),win,fail,options);
+//ft.upload(imageURI, encodeURI("http://127.0.0.1:8000/welcome/wab_sync/fileUploader/"),win,fail,options);
 }
 
 function win(r) {
