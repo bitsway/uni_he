@@ -979,8 +979,8 @@ function fdisplay_ready_data() {
 		var fdTotal=localStorage.fdisplayTotal
 		
 		var image_time=$.now();
-		var image_name='';
-		var fd_image_name=fd_image_name+i.toString();
+		//var image_name='';
+		//var fd_image_name=fd_image_name+i.toString();
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val(); 
 		var fdSLfdisplay_image_name=$("#fdSL_image_name_hidden_"+i.toString()).val(); 
 		
@@ -1017,6 +1017,7 @@ function fdisplay_ready_data() {
 			
 			
 			fdisplay_data=fdisplay_data+Itemfdisplay+'fdfd'+ItemQtyfdisplay+'fdfd'+ItemFaceupfdisplay+'fdfd'+ItemVisiblefdisplay+'fdfd'+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+fdSLfdisplay_image_name+'rdrd'
+			//alert (fdisplay_data);
 		}
 		
 
@@ -1351,7 +1352,7 @@ function get_pic_fdisplay(id) {
 	
 	var hidden_name="fdSL_image_name_hidden_"+id;
 	var tempTime = $.now();
-	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet;
+	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	
 	//alert (fd_image_name);
 	$("#"+hidden_name).val(fd_image_name);
