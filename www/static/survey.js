@@ -9,11 +9,11 @@
 
 //var apipath='http://127.0.0.1:8000/unilever/syncmobile/';
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
-
 var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
 var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
-	
+
+
 var temp_image_div='';
 
 //var helpCount = 0;
@@ -677,7 +677,7 @@ function syncOutlet() {
 										fdisplayStringShow=fdisplayStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">Face Up</td><td></td><td width="100px">Visible</td></tr>'
 										
 										
-										alert (fdSL_image_div);
+										//alert (fdSL_image_div);
 										
 										
 										var fdisplaySingleArray = fdisplaySlabList.split('rdrd');	
@@ -713,16 +713,20 @@ function syncOutlet() {
 										fdisplayStringShow=fdisplayStringShow+'</table>'
 										
 										fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
-												'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+fdSL_image_div+')" >Take Picture </a></td></tr></table>'+ 
+												'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture </a></td></tr></table>'+ 
 											    '<div id="'+fdSL_image_div+'">aaa</div>' +
 												'<input type="text" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
 												'<input type="text" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'
 										
 										
 										
+										
+										
 								}
 								localStorage.fdisplayStringShow=fdisplayStringShow
 								$("#fdisplay").html(localStorage.fdisplayStringShow);
+							
+								$("#fdisplay_test").val(localStorage.fdisplayStringShow);
 								
 								
 								
@@ -992,7 +996,7 @@ function fdisplay_ready_data() {
 				
 				
 				fd_image_name=localStorage.selectedOutlet+"_"+fdSLfdisplay+"_"+image_time.toString();
-				$("#fdSLfdisplay_image_name"+i.toString()).val(fd_image_name);
+				//$("#fdSLfdisplay_image_name"+i.toString()).val(fd_image_name);
 				
 			}
 			
@@ -1012,7 +1016,7 @@ function fdisplay_ready_data() {
 			
 			
 			
-			fdisplay_data=fdisplay_data+Itemfdisplay+'fdfd'+ItemQtyfdisplay+'fdfd'+ItemFaceupfdisplay+'fdfd'+ItemVisiblefdisplay+'fdfd'+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+image_name+'rdrd'
+			fdisplay_data=fdisplay_data+Itemfdisplay+'fdfd'+ItemQtyfdisplay+'fdfd'+ItemFaceupfdisplay+'fdfd'+ItemVisiblefdisplay+'fdfd'+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+fd_image_name+'rdrd'
 		}
 		
 
@@ -1170,6 +1174,32 @@ function submit_data() {
 								
 								
 								
+								localStorage.show_cancel=0;
+								localStorage.m_new_string="";
+								localStorage.m_new="";
+								localStorage.selectedOutlet="";
+								localStorage.outletExStringShow="";
+								localStorage.outletException="";
+								localStorage.outletChanne="";
+								localStorage.outletNameID="";
+								localStorage.mhskusTotal="";
+								localStorage.npdTotal="";
+								localStorage.fdisplaySlabTotal="";
+								localStorage.fdisplayTotal="";
+								localStorage.qpdsSlabTotal="";
+								localStorage.qpdsTotal="";
+								localStorage.giftTotal="";
+								localStorage.marchadizingTotal="";
+								localstorage.m_new="";
+								localStorage.mhskus_data_ready="";
+								localStorage.npd_data_ready="";
+								localStorage.fdisplay_data_ready="";
+								localStorage.qpds_data_ready="";
+								localStorage.gift_data_ready="";
+								localStorage.mar_data_ready="";
+								
+								
+								
 								
 							}
 									
@@ -1305,7 +1335,17 @@ function marchandizing_add() {
 //====================================Camera==========
 
 //fixed display
-function get_pic_fdisplay(div_id) {
+function get_pic_fdisplay(id) {
+	
+	
+	
+	var div_id="fdSL_image_div_"+id;
+	$("#"+div_id).html("nadira");
+	
+	
+	
+	alert (div_id);
+	
 	temp_image_div=div_id;
 	navigator.camera.getPicture(onSuccessA, onFailA, { quality: 20,
 		destinationType: Camera.DestinationType.FILE_URI });
@@ -1331,9 +1371,14 @@ function uploadAll(){
 		//alert (localStorage.fdisplaySlabTotal);
 		var fdisplayTotal='fdisplayTotal'+i.toString()
 		var fdTotal=localStorage.fdisplayTotal
-		var image_name='';
+		var image_name=$("#fdSLfdisplay_image_name"+i.toString()).val();  
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
-		image_name=$("#fdSLfdisplay_image_name"+i.toString()).val();  
+		
+		alert (image_name);
+		alert (fdSLfdisplay_image_path);
+		
+		
+		//image_name=$("#fdSLfdisplay_image_name"+i.toString()).val();  
 		/*for (var d=0; d < 1; d++){	
 			if ( d==0){
 				image_name=$("#fdSLfdisplay_image_name"+i.toString()).val(); 

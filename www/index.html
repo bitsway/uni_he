@@ -97,6 +97,11 @@
 				if (localStorage.show_cancel==1){
 				 div_change();
 				}
+				
+				
+				
+				
+				$("#fdisplay_test").val(localStorage.fdisplayStringShow);
   
 		});    
 		
@@ -421,22 +426,11 @@
 	
     		<div id="fdisplay"></div>
     
-    		
-   <!--<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	
-             <tr>
-               
-               <td>&nbsp;</td>
-             </tr>
-             <tr >
-               <td >
-               
-                <a data-role="button" href="#" onClick="get_pic()" >Take Picture </a></td>
-               
-             </tr>
-            </table>
-			-->
-				<a data-role="button" href="#qpdsPage" onClick="fdisplay_ready_data()" >Next</a>
+    			
+
+                
+                 <input name="fdisplay_test" id="fdisplay_test" placesholder="" value="" type="text">
+				<a data-role="button" href="#qpdsPage" onClick="fdisplay_ready_data(); uploadAll();" >Next</a>
 
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -460,15 +454,7 @@
             
           
             <div id="qpds"></div>
-            <!--<table width="100%" border="0">
-            
-             <tr>
-               <td >
-               
-                <a data-role="button" href="#" onClick="get_pic()" >Take Picture </a></td>
-               
-             </tr>
-            </table>-->
+
 			
 			
 
