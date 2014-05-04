@@ -1362,7 +1362,9 @@ function onSuccessA(imageURI) {
 	
 	var hidden_name=temp_image_div.replace("fdSL_image_div","fdSLfdisplay_image_name_");
 	
-	fd_image_name=image_time.toString()+"_"+localStorage.selectedOutlet;
+	var tempTime = $.now();
+	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet;
+	
 	$("#"+hidden_name).val(fd_image_name);
 	
 	
