@@ -1344,7 +1344,7 @@ function get_pic_fdisplay(id) {
 	
 	
 	
-	alert (div_id);
+//	alert (div_id);
 	
 	temp_image_div=div_id;
 	navigator.camera.getPicture(onSuccessA, onFailA, { quality: 20,
@@ -1352,8 +1352,10 @@ function get_pic_fdisplay(id) {
 }
 
 function onSuccessA(imageURI) {
-    var image = document.getElementById(temp_image_div);
+	alert (temp_image_div);
+	var image = document.getElementById(temp_image_div);
     image.src = imageURI;
+    alert (imageURI);
     var hidden_value=div_id.replace("fdSL_image_div","fdSL_image_div_hidden");
 	$("#"+hidden_value).val(imageURI);
 }
