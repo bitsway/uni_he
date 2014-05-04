@@ -726,7 +726,7 @@ function syncOutlet() {
 								localStorage.fdisplayStringShow=fdisplayStringShow
 								$("#fdisplay").html(localStorage.fdisplayStringShow);
 							
-								$("#fdisplay_test").val(localStorage.fdisplayStringShow);
+								//$("#fdisplay_test").val(localStorage.fdisplayStringShow);
 								
 								
 								
@@ -1360,7 +1360,7 @@ function onSuccessA(imageURI) {
 	$("#"+hidden_path).val(imageURI);
 	
 	
-	var hidden_name=temp_image_div.replace("fdSL_image_div","fdSLfdisplay_image_name_");
+	var hidden_name=temp_image_div.replace("fdSL_image_div","fdSLfdisplay_image_name");
 	
 	var tempTime = $.now();
 	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet;
