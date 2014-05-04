@@ -1396,8 +1396,8 @@ function uploadAll(){
 		//var fdisplayTotal='fdisplayTotal'+i.toString()
 		//var fdTotal=localStorage.fdisplayTotal
 		var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
-		$("#fdSLfdisplay_image_name_"+i.toString()).val();  
-		//var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
+		//$("#fdSLfdisplay_image_name_"+i.toString()).val();  
+		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
 		//alert (image_name);
 		uploadPhoto(fdSLfdisplay_image_path, image_name);
 	}	
