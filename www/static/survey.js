@@ -714,7 +714,7 @@ function syncOutlet() {
 										
 										fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
 												'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture </a></td></tr></table>'+ 
-											    '<div id="'+fdSL_image_div+'">aaa</div>' +
+											    '<img id="'+fdSL_image_div+'" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
 												'<input type="text" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
 												'<input type="text" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'
 										
@@ -1340,7 +1340,7 @@ function get_pic_fdisplay(id) {
 	
 	
 	var div_id="fdSL_image_div_"+id;
-	$("#"+div_id).html("nadira");
+	//$("#"+div_id).html("nadira");
 	
 	
 	
@@ -1352,10 +1352,10 @@ function get_pic_fdisplay(id) {
 }
 
 function onSuccessA(imageURI) {
-	alert (temp_image_div);
+	//alert (temp_image_div);
 	var image = document.getElementById(temp_image_div);
     image.src = imageURI;
-    alert (imageURI);
+    //alert (imageURI);
     var hidden_value=div_id.replace("fdSL_image_div","fdSL_image_div_hidden");
 	$("#"+hidden_value).val(imageURI);
 }
