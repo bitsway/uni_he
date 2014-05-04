@@ -3,14 +3,15 @@
 //var apipath='http://e.businesssolutionapps.com/em/default/';
 //var apipath='http://127.0.0.1:8000/em/default/';
 
-
-//var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
-//var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
+var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
+var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
 //var apipath='http://127.0.0.1:8000/unilever/syncmobile/';
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
-var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
-var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
+
+
+//var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
+//var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
 
 
@@ -715,8 +716,8 @@ function syncOutlet() {
 										fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
 												'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture </a></td></tr></table>'+ 
 											    '<img id="'+fdSL_image_div+'" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
-												'<input type="text" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
-												'<input type="text" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'
+												'<input type="hidden" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
+												'<input type="hidden" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'
 										
 										
 										
@@ -1145,7 +1146,7 @@ function submit_data() {
 	var latlong=lat.toString()+","+long.toString()
 	//alert (latlong);
 	
-	$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);
+	//$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);
 	$.ajax({
 				 type: 'POST',
 				 url: apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string,
@@ -1394,8 +1395,10 @@ function uploadAll(){
 		//alert (localStorage.fdisplaySlabTotal);
 		//var fdisplayTotal='fdisplayTotal'+i.toString()
 		//var fdTotal=localStorage.fdisplayTotal
-		var image_name=$("#fdSLfdisplay_image_name_"+i.toString()).val();  
-		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
+		var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
+		$("#fdSLfdisplay_image_name_"+i.toString()).val();  
+		//var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
+		//alert (image_name);
 		uploadPhoto(fdSLfdisplay_image_path, image_name);
 	}	
 }
