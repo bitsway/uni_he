@@ -10,8 +10,6 @@ var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
 
 
-//var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
-//var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
 
 
@@ -69,25 +67,13 @@ navigator.app.exitApp();
 
 
 function first_page(){
-	//alert (localStorage.synced);
+	//alert (apipath);
 	if ((localStorage.synced!='YES')){
 		//alert ('nadira')
 		var url = "#login";
 		$(location).attr('href',url);
 		
 	}
-
-	/*if ((localStorage.synced=='YES') && (localStorage.routeDone=='NO')){
-		alert ('123')
-		var url = "#menuPage";
-		$(location).attr('href',url);
-		
-	}*/
-	/*if ((localStorage.synced=='YES') && (localStorage.routeDone=='YES')){
-		var url = "#outletPage";
-		$(location).attr('href',url);
-		
-	}*/
 
 
 }
@@ -104,11 +90,9 @@ function outlet_next_page(){
 			$(location).attr('href',url);
 			location.reload();	
 	}
-
 }
 
 //=================after select an outlet
-
 
 function div_change(){
 	localStorage.show_cancel=1
@@ -237,7 +221,6 @@ function check_user() {
 function selectRoute() { 
 	var selected_route=($("input:radio[name='RadioRoute']:checked").val())
 	
-	
 	var d=new Date();
 	var weekday=new Array(7);
 	weekday[0]="Sunday";
@@ -343,13 +326,14 @@ function marketPJP() {
 								outletStringShow=outletStringShow+'<br/><br/> <a data-role="button" onClick="select_outlet();div_change();" >Next</a>'
 								
 								
+								
+								
 								localStorage.outletString=outletStringShow
 								$("#outletString").html(localStorage.outletString);
-								//location.reload();
-							
+								location.reload();
 							//=======end outlet list====================								
 							}
-							if ((resultArray[0]=='SUCCESS') && (localStorage.route=='')){
+							/*if ((resultArray[0]=='SUCCESS') && (localStorage.route=='')){
 								var url = "#routePage";
 								$(location).attr('href',url);	
 							}
@@ -358,12 +342,9 @@ function marketPJP() {
 								//div_change()
 								var url = "#outletPage";
 								$(location).attr('href',url);
+								//location.reload();	
 								
-								
-								
-								
-								location.reload();	
-							}
+							}*/
 						}
 				      },
 				  error: function(result) {
@@ -379,6 +360,31 @@ function marketPJP() {
 //		location.reload();
 	}
 }
+
+
+
+function marketPJP_check() { 
+	if(localStorage.selectedRoute!=undefined){
+	
+				if (localStorage.route==''){
+					var url = "#routePage";
+					$(location).attr('href',url);	
+				}
+				if (localStorage.route!=''){
+					
+					//div_change()
+					var url = "#outletPage";
+					$(location).attr('href',url);
+					//location.reload();	
+					
+				}
+
+	}
+}
+
+
+
+
 //=====================Outlet end===================
 //=====================select Outlet start============
 
@@ -581,9 +587,8 @@ function syncOutlet() {
 								giftList = giftArray[0].replace("<giftList>","");
 								
 								marchadizing = giftArray[1];
-								var marchadizingArray = marchadizing.split('</marist>');									
-								marchadizingList = marchadizingArray[0].replace("<marist>","");
-								
+								var marchadizingArray = marchadizing.split('</marList>');									
+								marchadizingList = marchadizingArray[0].replace("<marList>","");
 								
 								//==========Create MHSKUS list
 								
@@ -671,9 +676,10 @@ function syncOutlet() {
 										
 										var fdSL_image='fdSL_image_'+slab_text
 									    var fdSL_image_div='fdSL_image_div_'+slab_text
+										var fdSLfdisplay='fdSLfdisplay_'+slab_text
 										
 										
-										fdisplayStringShow=fdisplayStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/fd/'+fdisplaySlab_image+'.png" alt="FixedDisplay" />';
+										fdisplayStringShow=fdisplayStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/display/'+fdisplaySlab_image+'" alt="FixedDisplay" />';
 										fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
 										fdisplayStringShow=fdisplayStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">Face Up</td><td></td><td width="100px">Visible</td></tr>'
 										
@@ -689,6 +695,9 @@ function syncOutlet() {
 		//								alert (i.toString())
 										
 										var fdisplayTotal='fdisplayTotal'+slab.toString()
+										
+										var fdSL_total_hidden='fdSL_total_hidden_'+slab.toString()
+										
 										localStorage.fdisplayTotal=fdisplaySingleTotal
 										//alert (localStorage.fdisplayTotal)
 										for (var i=0; i < fdisplaySingleTotal-1; i++){
@@ -703,21 +712,25 @@ function syncOutlet() {
 											var ItemFaceupfdisplay='ItemFaceupfdisplay_'+i_text
 											var ItemVisiblefdisplay='ItemVisiblefdisplay_'+i_text
 											var slabfdisplay='slabfdisplay_'+i_text
-											var fdSLfdisplay='fdSLfdisplay_'+i_text
+											//var fdSLfdisplay='fdSLfdisplay_'+i_text
 											
 											
 											
-											fdisplayStringShow=fdisplayStringShow+'<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemfdisplay +'" id="'+ Itemfdisplay +'" value="'+itemID+'" min="0"> <input type="hidden" name="'+ slabfdisplay +'" id="'+ slabfdisplay +'" value="'+slab_fdisplay+'" min="0"> <input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  </td> <td><input type="number" name="'+ItemQtyfdisplay +'" id="'+ ItemQtyfdisplay +'" value="" min="0"></td><td></td><td><input type="number" name="'+ItemFaceupfdisplay +'" id="'+ ItemFaceupfdisplay +'" value="" min="0"></td><td></td><td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ ItemVisiblefdisplay +'" id="'+ ItemVisiblefdisplay +'" value=""/></label></td></tr>'
+											fdisplayStringShow=fdisplayStringShow+'<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemfdisplay +'" id="'+ Itemfdisplay +'" value="'+itemID+'" min="0"> <input type="hidden" name="'+ slabfdisplay +'" id="'+ slabfdisplay +'" value="'+slab_fdisplay+'" min="0"></td>'+
+															  '<td><input type="number" name="'+ItemQtyfdisplay +'" id="'+ ItemQtyfdisplay +'" value="" min="0"></td><td></td><td><input type="number" name="'+ItemFaceupfdisplay +'" id="'+ ItemFaceupfdisplay +'" value="" min="0"></td>'+
+															  '<td></td><td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ ItemVisiblefdisplay +'" id="'+ ItemVisiblefdisplay +'" value=""/></label></td></tr>'
 											fdisplayStringShow=fdisplayStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
 											
 										}
 										fdisplayStringShow=fdisplayStringShow+'</table>'
 										
 										fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
+												' <input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  '+
 												'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture </a></td></tr></table>'+ 
 											    '<img id="'+fdSL_image_div+'" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
 												'<input type="hidden" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
-												'<input type="hidden" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'
+												'<input type="hidden" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
+												'<input type="hidden" name="'+ fdSL_total_hidden +'" id="'+ fdSL_total_hidden +'" value="'+fdisplaySingleTotal+'" >'
 										
 										
 										
@@ -733,8 +746,12 @@ function syncOutlet() {
 								
 								//==========Create QPDS Display list
 								
-								var qpdsSlabArray = qpdsList.split('</scheme>');
 								
+								//qpdsList= '<qpdsList>sm_qpds.imageLink.a12cbe2b6718ca79.6f702e706e67.png<scheme>Pepsodent QPDS 2014 (Tooth Powder)fdfd322680A48SZ016523fdfdPUREIT WP ULT M4X15 SCREW,NUT&WASHER 1PCfdfd2rdrdPepsodent QPDS 2014 (Tooth Powder)fdfd322680A48SZ016524fdfdPUREIT WP ULT M5X50 SCREW,NUT&WASHER 1PCfdfd2rdrd</scheme>sm_qpds.imageLink.8c6f1d02ca14b514.73702e706e67.png<scheme>Rin Power White Display Chamak 2014fdfd322680A48SZ016522fdfdPUREIT WP ULT M5X25 SCREW,NUT&WASHER 1PCfdfd1rdrd</scheme></qpdsList>';
+								
+								
+								
+								var qpdsSlabArray = qpdsList.split('</scheme>');
 								var qpdsSlabTotal = qpdsSlabArray.length;
 								
 								
@@ -746,12 +763,16 @@ function syncOutlet() {
 								
 								localStorage.qpdsSlabTotal=qpdsSlabTotal
 								for (var slab=0; slab < qpdsSlabTotal-1; slab++){
-										var qpdsSlabList = qpdsSlabArray[slab].replace("<scheme>","");
-										var qpdsSlab_1Array = fdisplayList.split('<scheme>');
+																				
+										
+										var qpdsSlab_1Array = qpdsSlabArray[slab].split('<scheme>');
 										var qpdsSlab_image = qpdsSlab_1Array[0];
 										
+										var qpdsSlabList = qpdsSlab_1Array[1].replace("<scheme>","");
 										
-										qpdsStringShow=qpdsStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/scheme/'+qpdsSlab_image+'.png" alt="QPDS" />';
+										
+										
+										qpdsStringShow=qpdsStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/scheme/'+qpdsSlab_image+'" alt="QPDS" />';
 										qpdsStringShow=qpdsStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
 										qpdsStringShow=qpdsStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">Face Up</td><td></td><td>Visible</td></tr>'
 										
@@ -765,15 +786,30 @@ function syncOutlet() {
 										
 										//i=6;
 		//								alert (i.toString())
-										var qpdsTotal='qpdsTotal'+slab.toString()
+										//var qpdsTotal='qpdsTotal'+slab.toString()
+										
+										//alert (qpdsTotal);
+										
+										var qpdsSL_image_div='qpdsSL_image_div_'+slab.toString()
+										var qpdsSL_image_div_hidden='qpdsSL_image_div_hidden_'+slab.toString()
+										var qpdsSL_image_name_hidden='qpdsSL_image_name_hidden_'+slab.toString()
+										
+										
+										var qpdsSL_total_hidden='qpdsSL_total_hidden_'+slab.toString()
+										
+										var qpdsSL_f='qpdsSL_'+slab.toString()
+										
 										localStorage.qpdsTotal=qpdsSingleTotal
 										
+										//alert (localStorage.qpdsTotal);
 										for (var i=0; i < qpdsSingleTotal-1; i++){
 											qpdsArray = qpdsSingleArray[i].split('fdfd');
 											scheme_qpds=qpdsArray[0]
+											//alert (scheme_qpds);
+											
 											itemID=qpdsArray[1];
 											itemName=qpdsArray[2];
-											qpdsSL=fdisplayArray[3];
+											qpdsSL=qpdsArray[3];
 											
 											var i_text=i.toString()
 											var ItemQtyqpds='ItemQtyqpds_'+i_text
@@ -781,14 +817,30 @@ function syncOutlet() {
 											var ItemFaceupqpds='ItemFaceupqpds_'+i_text
 											var ItemVisibleqpds='ItemVisibleqpds_'+i_text
 											var schemeqpds='schemeqpds_'+i_text
-											var qpdsSL_f='qpdsSL_'+i_text
+											//var qpdsSL_f='qpdsSL_'+i_text
 											
-											qpdsStringShow=qpdsStringShow+'<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemqpds +'" id="'+ Itemqpds +'" value="'+itemID+'" min="0"> <input type="hidden" name="'+ schemeqpds +'" id="'+ schemeqpds +'" value="'+scheme_qpds+'" min="0"> <input type="hidden" name="'+ qpdsSL_f +'" id="'+ qpdsSL_f +'" value="'+qpdsSL+'" min="0">  </td> <td><input type="number" name="'+ItemQtyqpds +'" id="'+ ItemQtyqpds +'" value="" min="0"></td><td></td><td><input type="number" name="'+ItemFaceupqpds +'" id="'+ ItemFaceupqpds +'" value="" min="0"></td><td></td><td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ ItemVisibleqpds +'" id="'+ ItemVisibleqpds +'" value=""/></label></td></tr>'
+											qpdsStringShow=qpdsStringShow+
+														   '<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemqpds +'" id="'+ Itemqpds +'" value="'+itemID+'" min="0">'+
+														   '<input type="hidden" name="'+ schemeqpds +'" id="'+ schemeqpds +'" value="'+scheme_qpds+'" min="0"> </td>'+
+														   '<td><input type="number" name="'+ItemQtyqpds +'" id="'+ ItemQtyqpds +'" value="" min="0"></td>'+
+														   '<td></td><td><input type="number" name="'+ItemFaceupqpds +'" id="'+ ItemFaceupqpds +'" value="" min="0"></td><td></td>'+
+														   '<td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ ItemVisibleqpds +'" id="'+ ItemVisibleqpds +'" value=""/></label></td></tr>'
 											qpdsStringShow=qpdsStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
-											
+											//alert (qpdsSL);
 										}
 										qpdsStringShow=qpdsStringShow+'</table>'
-										qpdsStringShow=qpdsStringShow+'<table width="100%" border="0"><tr><td> <a data-role="button" href="#" onClick="get_pic()" >Take Picture </a></td></tr></table>'
+										qpdsStringShow=qpdsStringShow+
+													  '<table width="100%" border="0"><tr><td>'+
+													  ' <input type="hidden" name="'+ qpdsSL_f +'" id="'+ qpdsSL_f +'" value="'+qpdsSL+'" min="0">  '+
+													  ' <a data-role="button" href="#" onClick="get_pic_qpds('+slab+')" >Take Picture </a></td></tr></table>'
+										
+										//alert (qpdsSL);
+										
+										 qpdsStringShow=qpdsStringShow+
+										 		'<img id="'+qpdsSL_image_div+'" height="100px" width="100px"  src="" alt="QPDS" />'+
+												'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
+												'<input type="text" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
+												'<input type="text" name="'+ qpdsSL_total_hidden +'" id="'+ qpdsSL_total_hidden +'" value="'+qpdsSingleTotal+'" >'
 								}
 								localStorage.qpdsStringShow=qpdsStringShow
 								$("#qpds").html(localStorage.qpdsStringShow);
@@ -806,6 +858,7 @@ function syncOutlet() {
 								
 								//i=6;
 //								alert (i.toString())
+								//alert ('nadira');
 								localStorage.giftTotal=giftSingleTotal
 								for (var i=0; i < giftSingleTotal-1; i++){
 									giftArray = giftSingleArray[i].split('fdfd');
@@ -824,6 +877,15 @@ function syncOutlet() {
 									
 								}
 								giftStringShow=giftStringShow+'</table>'
+								if (giftSingleTotal > 0){
+									giftStringShow=giftStringShow+'</br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>'+              
+												   '<a data-role="button" href="#" onClick="get_pic_gift()" >Take Picture </a></td> </tr></table>'
+								}
+								giftStringShow=giftStringShow+
+												'<img id="gift_image_div" height="100px" width="100px"  src="" alt="Gift" />'+
+												'<input type="text" name="gift_image_div_hidden" id="gift_image_div_hidden" value="" >'+
+												'<input type="text" name="gift_image_name_hidden" id="gift_image_name_hidden" value="" >'
+												
 								//alert (giftStringShow);
 								localStorage.giftStringShow=giftStringShow
 								$("#gift").html(localStorage.giftStringShow);
@@ -831,7 +893,7 @@ function syncOutlet() {
 								//==========Create Marchandizing list
 								var marchadizingSingleArray = marchadizingList.split('rdrd');	
 								var marchadizingSingleTotal = marchadizingSingleArray.length;
-								//alert (marchadizingList);
+								
 								var marchadizingStringShow=''
 								marchadizingStringShow=marchadizingStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#048; font-weight:bold">'+localStorage.outletNameID+'</td><td  colspan="2"><a data-role="button" href="#dialogMarchandizing" >+</a> </td></tr><tr > </table></br>'
 								marchadizingStringShow=marchadizingStringShow+'<table  width="100%" border="0" cellpadding="0" cellspacing="0">'
@@ -974,55 +1036,49 @@ function npd_ready_data() {
 function fdisplay_ready_data() { 
 	//===============fixeddisplay data==================
 	var fdisplay_data=""
+	var fdisplay_data_detail="";
+	var fdisplay_data_head="";
 	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
 		//alert (localStorage.fdisplaySlabTotal);
 		var fdisplayTotal='fdisplayTotal'+i.toString()
-		var fdTotal=localStorage.fdisplayTotal
+		//var fdTotal=localStorage.fdisplayTotal
 		
-		var image_time=$.now();
+		
+		var fdTotal=$("#fdSL_total_hidden_"+i.toString()).val();
+		//var image_time=$.now();
 		//var image_name='';
 		//var fd_image_name=fd_image_name+i.toString();
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val(); 
 		var fdSLfdisplay_image_name=$("#fdSL_image_name_hidden_"+i.toString()).val(); 
-		
-		
-		for (var d=0; d < fdTotal-1; d++){
-			var ItemQtyfdisplay=$("#ItemQtyfdisplay_"+d.toString()).val();
-			var Itemfdisplay=$("#Itemfdisplay_"+d.toString()).val();
-			var ItemFaceupfdisplay=$("#ItemFaceupfdisplay_"+d.toString()).val();
-			var slabfdisplay=$("#slabfdisplay_"+d.toString()).val();
-			var fdSLfdisplay=$("#fdSLfdisplay_"+d.toString()).val(); 
-			
-//			if (d==0){
-//				
-//				
-//				fd_image_name=localStorage.selectedOutlet+"_"+fdSLfdisplay+"_"+image_time.toString();
-//				$("#fdSLfdisplay_image_name_"+i.toString()).val(fd_image_name);
-//				
-//			}
-			
-			
-			
-			
-
-			var ItemVisiblefdisplay_f="#ItemVisiblefdisplay_"+d.toString();
-     		var ItemVisiblefdisplay_g= ($(ItemVisiblefdisplay_f).is(':checked') ? 1 : 0);
-			
-			if (ItemVisiblefdisplay_g==0){
-				ItemVisiblefdisplay='NO'
+		var fdSLfdisplay=$("#fdSLfdisplay_"+i.toString()).val(); 
+		//alert ("#fdSLfdisplay_"+i.toString());
+			for (var d=0; d < fdTotal-1; d++){
+				var ItemQtyfdisplay=$("#ItemQtyfdisplay_"+d.toString()).val();
+				var Itemfdisplay=$("#Itemfdisplay_"+d.toString()).val();
+				var ItemFaceupfdisplay=$("#ItemFaceupfdisplay_"+d.toString()).val();
+				var slabfdisplay=$("#slabfdisplay_"+d.toString()).val();
+				//var fdSLfdisplay=$("#fdSLfdisplay_"+d.toString()).val(); 
+				
+				
+	
+				var ItemVisiblefdisplay_f="#ItemVisiblefdisplay_"+d.toString();
+				var ItemVisiblefdisplay_g= ($(ItemVisiblefdisplay_f).is(':checked') ? 1 : 0);
+				
+					if (ItemVisiblefdisplay_g==0){
+						ItemVisiblefdisplay='NO'
+					}
+					if (ItemVisiblefdisplay_g==1){
+						ItemVisiblefdisplay='YES'
+					}	
+				
+					fdisplay_data_detail=fdisplay_data_detail+Itemfdisplay+'fdfd'+ItemQtyfdisplay+'fdfd'+ItemFaceupfdisplay+'fdfd'+ItemVisiblefdisplay+'fdfd'+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+'rdrd'
+					//alert (fdisplay_data);
 			}
-			if (ItemVisiblefdisplay_g==1){
-				ItemVisiblefdisplay='YES'
-			}
-			
-			
-			
-			fdisplay_data=fdisplay_data+Itemfdisplay+'fdfd'+ItemQtyfdisplay+'fdfd'+ItemFaceupfdisplay+'fdfd'+ItemVisiblefdisplay+'fdfd'+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+fdSLfdisplay_image_name+'rdrd'
-			//alert (fdisplay_data);
-		}
-		
+		//alert (fdSLfdisplay);
+		fdisplay_data_head=fdisplay_data_head+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+fdSLfdisplay_image_name+'rdrd'
 
 	}
+	 fdisplay_data='headstart'+fdisplay_data_head+'headend'+fdisplay_data_detail
 	 localStorage.fdisplay_data_ready=fdisplay_data
 	//alert (npd_data);
 
@@ -1033,23 +1089,33 @@ function fdisplay_ready_data() {
 function qpds_ready_data() { 
 	//===============QPDS data==================
 	var qpds_data=""
+	var qpds_data_detail="";
+	var qpds_data_head="";
 	
-	//var currentdate = new Date(); 
-	var image=$.now();
+	
+	
+	
+	//alert ('gggg');
 	
 	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
-		//alert (localStorage.fdisplaySlabTotal);
+		
+		var qpdsSL_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val(); 
+		var qpdsSL_image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val(); 
+		var qpdsSL=$("#qpdsSL_"+i.toString()).val();
+
+		
+		
 		var qpdsTotal='qpdsTotal'+i.toString()
-		var qpdsTotal_1=localStorage.qpdsTotal
+		var qpdsTotal_1=$("#qpdsSL_total_hidden_"+i.toString()).val();
+		//alert (qpdsTotal_1)
+		
 		for (var d=0; d < qpdsTotal_1-1; d++){
 			var ItemQtyqpds= $("#ItemQtyqpds_"+d.toString()).val();  
 			var Itemqpds= $("#Itemqpds_"+d.toString()).val();  
 			var ItemFaceupqpds=$("#ItemFaceupqpds_"+d.toString()).val();   
 			var schemeqpds=$("#schemeqpds_"+d.toString()).val(); 
-			var qpdsSL =$("#qpdsSL_"+d.toString()).val(); 
-			
-			
-			//var ItemVisibleqpds=$("#ItemVisibleqpds_"+d.toString()).val(); 
+
+ 
 			var ItemVisibleqpds_f="#ItemVisibleqpds_"+d.toString();
      		var ItemVisibleqpds_g= ($(ItemVisibleqpds_f).is(':checked') ? 1 : 0);
 			
@@ -1059,17 +1125,18 @@ function qpds_ready_data() {
 			if (ItemVisibleqpds_g==1){
 				ItemVisibleqpds='YES'
 			}
-			
-			
-			
-			
-			qpds_data=qpds_data+Itemqpds+'fdfd'+ItemQtyqpds+'fdfd'+ItemFaceupqpds+'fdfd'+ItemVisibleqpds+'fdfd'+schemeqpds+'fdfd'+qpdsSL+'fdfd'+image+'rdrd'
+			//alert (ItemFaceupqpds);
+			qpds_data_detail=qpds_data_detail+Itemqpds+'fdfd'+ItemQtyqpds+'fdfd'+ItemFaceupqpds+'fdfd'+ItemVisibleqpds+'fdfd'+schemeqpds+'fdfd'+qpdsSL+'rdrd'
 		}
-		
-
+		qpds_data_head=qpds_data_head+schemeqpds+'fdfd'+qpdsSL+'fdfd'+qpdsSL_image_name+'rdrd'
+	
 	}
+	
+	
+	qpds_data='headstart'+qpds_data_head+'headend'+qpds_data_detail
+	//alert ('QPDSDETAIL:  '+qpds_data_detail);
 	localStorage.qpds_data_ready=qpds_data
-	//alert (qpds_data);
+	
 
 }
 
@@ -1077,7 +1144,7 @@ function qpds_ready_data() {
 function gift_ready_data() { 
 	//===============Gift data==================
 	
-	var gift_data=""
+	var gift_data="";
 	
 	for (var i=0; i < localStorage.giftTotal-1; i++){
 		var slabSchemeName_gift=$( "#slabSchemeNamegift_"+i.toString()).val();
@@ -1142,11 +1209,16 @@ function submit_data() {
 	var long=$( "#long").val();
 	var visitDate=get_date().substring(0,10);
     var endTime=get_date();
-	var giftImage=""
+	var giftImage=$( "#gift_image_name_hidden").val();
 	var latlong=lat.toString()+","+long.toString()
+	
+	
+	
+	
+	
 	//alert (latlong);
 	
-	//$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);
+	$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);
 	$.ajax({
 				 type: 'POST',
 				 url: apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string,
@@ -1173,6 +1245,9 @@ function submit_data() {
 								var url = "#menuPage";
 								$(location).attr('href',url);
 								location.reload
+								
+								cancel_outlet();
+								
 								
 								
 								
@@ -1206,7 +1281,7 @@ function submit_data() {
 							}
 									
 						}
-						cancel_outlet();
+						
 				      },
 				  error: function(result) {
 					 // alert (result);
@@ -1338,27 +1413,62 @@ function marchandizing_add() {
 
 //fixed display
 function get_pic_fdisplay(id) {
-	
-	
-	
 	var div_id="fdSL_image_div_"+id;
-	//$("#"+div_id).html("nadira");
-	
-	
-	
-
-	
 	temp_image_div=div_id;
-	
-	
 	var hidden_name="fdSL_image_name_hidden_"+id;
 	var tempTime = $.now();
 	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
-	
-	//alert (fd_image_name);
 	$("#"+hidden_name).val(fd_image_name);
-	//alert (hidden_name);
-	
+	navigator.camera.getPicture(onSuccessA, onFailA, { quality: 20,
+		destinationType: Camera.DestinationType.FILE_URI });
+}
+
+function onSuccessA(imageURI) {
+	var image = document.getElementById(temp_image_div);
+    image.src = imageURI;
+    var hidden_path=temp_image_div.replace("fdSL_image_div","fdSL_image_div_hidden");
+	$("#"+hidden_path).val(imageURI);
+}
+
+function onFailA(message) {
+	imagePathA="";
+    alert('Failed because: ' + message);
+}
+
+
+
+
+//QPDS
+function get_pic_qpds(id) {
+	var div_id="qpdsSL_image_div_"+id;
+	temp_image_div=div_id;
+	var hidden_name="qpdsSL_image_name_hidden_"+id;
+	var tempTime = $.now();
+	qpds_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
+	$("#"+hidden_name).val(qpds_image_name);
+	navigator.camera.getPicture(onSuccessA, onFailA, { quality: 20,
+		destinationType: Camera.DestinationType.FILE_URI });
+}
+
+function onSuccessA(imageURI) {
+	var image = document.getElementById(temp_image_div);
+    image.src = imageURI;
+    var hidden_path=temp_image_div.replace("qpdsSL_image_div","qpdsSL_image_div_hidden");
+	$("#"+hidden_path).val(imageURI);
+}
+
+function onFailA(message) {
+	imagePathA="";
+    alert('Failed because: ' + message);
+}
+
+
+//===========gift======
+//QPDS
+function get_pic_gift() {
+	var tempTime = $.now();
+	gift_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
+	$("#gift_image_name_hidden").val(gift_image_name);
 	navigator.camera.getPicture(onSuccessA, onFailA, { quality: 20,
 		destinationType: Camera.DestinationType.FILE_URI });
 }
@@ -1368,18 +1478,8 @@ function onSuccessA(imageURI) {
 	var image = document.getElementById(temp_image_div);
     image.src = imageURI;
     //alert (imageURI);
-    var hidden_path=temp_image_div.replace("fdSL_image_div","fdSL_image_div_hidden");
+    var hidden_path="gift_image_div_hidden";
 	$("#"+hidden_path).val(imageURI);
-	
-	
-	//var hidden_name=temp_image_div.replace("fdSL_image_div","fdSLfdisplay_image_name");
-	
-	//var tempTime = $.now();
-	//fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet;
-	
-	//$("#"+hidden_name).val(fd_image_name);
-	
-	
 }
 
 function onFailA(message) {
@@ -1391,6 +1491,8 @@ function onFailA(message) {
 //==================upload image===============
 //------------------------------------------------------------------------------
 function uploadAll(){
+	
+	//fixed display
 	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
 		//alert (localStorage.fdisplaySlabTotal);
 		//var fdisplayTotal='fdisplayTotal'+i.toString()
@@ -1400,7 +1502,20 @@ function uploadAll(){
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
 		//alert (image_name);
 		uploadPhoto(fdSLfdisplay_image_path, image_name);
-	}	
+	}
+	//QPDS
+	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
+		var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
+		var qpds_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val();
+		uploadPhoto(qpds_image_path, image_name);
+	}
+	
+	//Gift
+		var image_name=$("#gift_image_name_hidden").val();
+		var gift_image_path=$("#gift_image_div_hidden").val();
+		uploadPhoto(gift_image_path, image_name);
+
+		
 }
 
 
