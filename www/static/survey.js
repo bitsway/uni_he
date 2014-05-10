@@ -3,11 +3,11 @@
 //var apipath='http://e.businesssolutionapps.com/em/default/';
 //var apipath='http://127.0.0.1:8000/em/default/';
 
-var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
-var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
+//var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
+//var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
-//var apipath='http://127.0.0.1:8000/unilever/syncmobile/';
-//var apipath_image = 'http://127.0.0.1:8000/unilever/';
+var apipath='http://127.0.0.1:8000/unilever/syncmobile/';
+var apipath_image = 'http://127.0.0.1:8000/unilever/';
 
 
 
@@ -95,6 +95,7 @@ function outlet_next_page(){
 //=================after select an outlet
 
 function div_change(){
+	//alert (localStorage.outletNameID);
 	localStorage.show_cancel=1
 	$("#outletCancel").show();
 	$("#outletString").hide();
@@ -403,6 +404,7 @@ function select_outlet() {
 				 type: 'POST',
 				 url: apipath+'sync_outlet_ex?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet,
 				 success: function(result) {	
+						//alert (result);
 						if (result==''){
 							alert ('Sorry Network not available');
 						}
@@ -413,7 +415,7 @@ function select_outlet() {
 							}
 							
 							if (resultArray[0]=='SUCCESS'){
-								//alert (resultArray[1]);
+								
 								result_string=resultArray[1];
 								var outletArray = result_string.split('</outletList>');									
 								outletList = outletArray[0].replace("<outletList>","");
@@ -433,11 +435,12 @@ function select_outlet() {
 								
 								for (var o=0; o < outletSingleTtotal-1; o++){
 									outletArray = outletSingleArray[o].split('fdfd');
+								
 									outlet=outletArray[0];
 									channel=outletArray[1];
 									visit=outletArray[2];
 									psSlab=outletArray[3];
-									
+									//alert (outlet);
 					
 									 
 									outletStringShow=outletStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
@@ -454,6 +457,7 @@ function select_outlet() {
 								localStorage.outletinfoString=outletStringShow
 								localStorage.outletChannel=channel
 								localStorage.outletNameID=outlet
+								//alert (localStorage.outletNameID);
 								
 								
 								$("#outletName_show").html(localStorage.outletNameID);
@@ -476,12 +480,44 @@ function select_outlet() {
 							
 							syncOutlet()
 							
+							
+							
 							}//end success if
 							
 							
 							
 									
 						}//end else
+						
+						
+						//============Set page===========
+						
+							if ((localStorage.routeException_found == '1') && (localStorage.selectedOutlet!=undefined)){
+								//syncOutlet();
+								//$("#outletExString").html(localStorage.outletExStringShow);
+								//localStorage.routeDone='YES'
+								var url = "#outletexceptionPage";
+								$(location).attr('href',url);
+								location.reload()
+							}
+							
+							else if ((localStorage.routeException_found == '0') && (localStorage.selectedOutlet!=undefined)){
+								//alert (outlet) 
+								var url = "#mhskusPage";
+								$(location).attr('href',url);
+								location.reload();
+								
+							
+							}
+							else{
+								var url = "#outletPage";
+								$(location).attr('href',url);
+								//location.reload()
+							}
+						
+						//============End set page=============
+						
+						
 				      },
 				  error: function(result) {
 					 // alert (result);
@@ -491,36 +527,28 @@ function select_outlet() {
 			  });//end ajax*/
 		
 		//alert (localStorage.selectedOutlet);
-		if ((localStorage.routeException_found == '1') && (localStorage.selectedOutlet!=undefined)){
+	/*	if ((localStorage.routeException_found == '1') && (localStorage.selectedOutlet!=undefined)){
 			//syncOutlet();
 			//$("#outletExString").html(localStorage.outletExStringShow);
-			localStorage.routeDone='YES'
+			//localStorage.routeDone='YES'
 			var url = "#outletexceptionPage";
 			$(location).attr('href',url);
 			//location.reload()
-			
-			
 		}
 		
 		else if ((localStorage.routeException_found == '0') && (localStorage.selectedOutlet!=undefined)){
-			//syncOutlet();
-			
-			localStorage.routeDone=''
+			 
 			var url = "#mhskusPage";
 			$(location).attr('href',url);
 			location.reload();
 			
-		//	==Div hide after confirm outlet	
-			div_change()
+		
 		}
 		else{
 			var url = "#outletPage";
 			$(location).attr('href',url);
 			//location.reload()
-			
-			
-			
-		}
+		}*/
 }
 
 //=====================select Outlet end===============
@@ -533,7 +561,7 @@ function selectOutletException() {
 	if(selected_outlet_exception!=undefined){
 		localStorage.outletException=selected_outlet_exception;
 		syncOutlet();
-		localStorage.routeDone=''
+		//localStorage.routeDone=''
 		var url = "#mhskusPage";
 		$(location).attr('href',url);
 		
@@ -549,6 +577,7 @@ function selectOutletException() {
 function syncOutlet() { 
 	
 	//$("#outletInfo1").html(apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel);
+	//alert (apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel);
 	$.ajax({
 				 type: 'POST',
 				 url: apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel,
@@ -1475,7 +1504,7 @@ function get_pic_gift() {
 
 function onSuccessA(imageURI) {
 	//alert (temp_image_div);
-	var image = document.getElementById(temp_image_div);
+	var image = document.getElementById('gift_image_div');
     image.src = imageURI;
     //alert (imageURI);
     var hidden_path="gift_image_div_hidden";
@@ -1494,13 +1523,8 @@ function uploadAll(){
 	
 	//fixed display
 	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
-		//alert (localStorage.fdisplaySlabTotal);
-		//var fdisplayTotal='fdisplayTotal'+i.toString()
-		//var fdTotal=localStorage.fdisplayTotal
 		var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
-		//$("#fdSLfdisplay_image_name_"+i.toString()).val();  
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
-		//alert (image_name);
 		uploadPhoto(fdSLfdisplay_image_path, image_name);
 	}
 	//QPDS
