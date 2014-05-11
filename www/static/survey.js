@@ -151,7 +151,7 @@ function check_user() {
 	//alert ('nadira');
 	var cm_id=$("#cm_id").val();
 	var cm_pass=$("#cm_pass").val();
-	var synccode='123456'
+	var synccode=localStorage.synccode
 	if (cm_id=="" || cm_id==undefined || cm_pass=="" || cm_pass==undefined){
 		var url = "#login";      
 		$(location).attr('href',url);
@@ -1311,7 +1311,7 @@ function submit_data() {
 								
 								
 								
-								//uploadAll()
+								uploadAll();
 								
 								var url = "#menuPage";
 								$(location).attr('href',url);
