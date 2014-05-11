@@ -93,7 +93,39 @@ function outlet_next_page(){
 }
 
 //=================after select an outlet
-
+function clear_autho(){
+	localStorage.cm_id='';
+	localStorage.cm_pass='';
+	localStorage.synccode='';
+	localStorage.routeString='';
+	localStorage.routeExStringShow='';
+	localStorage.show_cancel=0;
+	localStorage.m_new_string="";
+	localStorage.m_new="";
+	localStorage.selectedOutlet="";
+	localStorage.outletExStringShow="";
+	localStorage.outletException="";
+	localStorage.outletChanne="";
+	localStorage.outletNameID="";
+	localStorage.mhskusTotal="";
+	localStorage.npdTotal="";
+	localStorage.fdisplaySlabTotal="";
+	localStorage.fdisplayTotal="";
+	localStorage.qpdsSlabTotal="";
+	localStorage.qpdsTotal="";
+	localStorage.giftTotal="";
+	localStorage.marchadizingTotal="";
+	localstorage.m_new="";
+	localStorage.mhskus_data_ready="";
+	localStorage.npd_data_ready="";
+	localStorage.fdisplay_data_ready="";
+	localStorage.qpds_data_ready="";
+	localStorage.gift_data_ready="";
+	localStorage.mar_data_ready="";
+	var url = "#login";
+	$(location).attr('href',url);
+	location.reload();
+}
 function div_change(){
 	//alert (localStorage.outletNameID);
 	localStorage.show_cancel=1
@@ -197,7 +229,8 @@ function check_user() {
 							}
 							if ((resultArray[0]=='SUCCESS') && (localStorage.route==undefined)){
 								var url = "#routePage";
-								$(location).attr('href',url);	
+								$(location).attr('href',url);
+								location.reload();
 							}
 							if ((resultArray[0]=='SUCCESS') && (localStorage.route!=undefined)){
 								var url = "#menuPage";
@@ -324,7 +357,7 @@ function marketPJP() {
 								}
 								
 								
-								outletStringShow=outletStringShow+'<br/><br/> <a data-role="button" onClick="select_outlet();div_change();" >Next</a>'
+								outletStringShow=outletStringShow+'<br/><br/> <a data-role="button" onClick="select_outlet();div_change();syncOutlet();" >Next</a>'
 								
 								
 								
@@ -478,7 +511,7 @@ function select_outlet() {
 								//$("#outletExString").html(localStorage.outletExStringShow);
 							//=======end outlet exception list====================	
 							
-							syncOutlet()
+							syncOutlet();
 							
 							
 							
@@ -493,19 +526,21 @@ function select_outlet() {
 						//============Set page===========
 						
 							if ((localStorage.routeException_found == '1') && (localStorage.selectedOutlet!=undefined)){
-								//syncOutlet();
-								//$("#outletExString").html(localStorage.outletExStringShow);
-								//localStorage.routeDone='YES'
+
 								var url = "#outletexceptionPage";
 								$(location).attr('href',url);
-								location.reload()
+								//location.reload()
 							}
 							
 							else if ((localStorage.routeException_found == '0') && (localStorage.selectedOutlet!=undefined)){
-								//alert (outlet) 
-								var url = "#mhskusPage";
+								
+								//alert ('sync Done'); 
+								var url = "#outletSyncingPage";
 								$(location).attr('href',url);
-								location.reload();
+								
+								
+								doTimer();
+								//location.reload();
 								
 							
 							}
@@ -552,8 +587,11 @@ function select_outlet() {
 }
 
 //=====================select Outlet end===============
-
-
+function reloadPages() { 
+		   var url = "#mhskusPage";
+			$(location).attr('href',url);
+			location.reload();
+}
 //=====================Outlet Exception start=====================
 function selectOutletException() { 
 	var selected_outlet_exception=($("input:radio[name='RadioOutletEx']:checked").val())
@@ -562,12 +600,13 @@ function selectOutletException() {
 		localStorage.outletException=selected_outlet_exception;
 		syncOutlet();
 		//localStorage.routeDone=''
-		var url = "#mhskusPage";
+		var url = "#outletSyncingPage";
 		$(location).attr('href',url);
+		doTimer();
 		
 		///	==Div hide after confirm outlet	
 			
-		location.reload();	
+		
 	}
 }
 //=====================Outlet Exception end=====================
@@ -578,6 +617,8 @@ function syncOutlet() {
 	
 	//$("#outletInfo1").html(apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel);
 	//alert (apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel);
+	
+	//alert (localStorage.outletNameID);
 	$.ajax({
 				 type: 'POST',
 				 url: apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel,
@@ -1005,6 +1046,7 @@ function syncOutlet() {
 					  $(location).attr('href',url);	
 				  }
 			  });//end ajax*/
+			  
 }
 //=====================Select Outlet End=========================
 
@@ -1269,7 +1311,7 @@ function submit_data() {
 								
 								
 								
-								uploadAll()
+								//uploadAll()
 								
 								var url = "#menuPage";
 								$(location).attr('href',url);
@@ -1351,21 +1393,7 @@ function marchandizing_add() {
 		m_new_string=m_new_string+select_mar_item+"fdfd"+select_mar_brand+"fdfd"+select_mar_qty+"fdfd"+select_mar_date+"rdrd"
 		localStorage.m_new_string=m_new_string.replace("undefined","");
 		
-	/*	if (start_new_mar==0){
-			start_new_mar=1;
-			var m_new = '<font color="#00007D">New Added: </font> </br>'
-		}
-		m_new=m_new+'</br><font color="#00007D">Item:&nbsp;&nbsp;  </font>'+select_mar_item+'</br><font color="#00007D">   Brand: &nbsp;&nbsp;  </font>'+select_mar_brand+'</br><font color="#00007D"> InsDate: &nbsp;&nbsp;  </font>'+select_mar_date+'</br><font color="#00007D"> Qty:&nbsp;&nbsp;  </font>'+select_mar_qty+'</br></br>'	
-		localStorage.m_new=m_new.replace("undefined","");
-	$("#marchadizing_add_show").html(localStorage.m_new);*/
-	//alert (localStorage.m_new_string);
 	
-	
-	/*if (localStorage.m_new!='undefined'){
-		 m_new=m_new+localStorage.m_new
-	}*/
-	//m_new=m_new+'</br><font color="#00007D">Item:&nbsp;&nbsp;  </font>'+item_name+'</br><font color="#00007D">   Brand: &nbsp;&nbsp;  </font>'+brand_name+'</br><font color="#00007D"> InsDate: &nbsp;&nbsp;  </font>'+m_date+'</br><font color="#00007D"> Qty:&nbsp;&nbsp;  </font>'+qty+'</br></br>'	
-		
 		
 		//$("#marchadizing_add_show").html(apipath+'marchandizing_add?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&m_item='+select_mar_item+'&m_brand='+select_mar_brand+'&m_qty='+select_mar_qty+'&m_date='+select_mar_date);
 		start_new_mar=0;
@@ -1395,10 +1423,6 @@ function marchandizing_add() {
 									var m_new = '<font color="#00007D">New Added: </font> </br>'
 								}
 								
-								
-							    // var m_new = '<font color="#00007D">New Added: </font> </br>'
-								 
-								
 								 m_new=localStorage.m_new
 
 								 
@@ -1406,8 +1430,6 @@ function marchandizing_add() {
 								 
 								 m_new=m_new+'</br><font color="#00007D">Item:&nbsp;&nbsp;  </font>'+item_name+'</br><font color="#00007D">   Brand: &nbsp;&nbsp;  </font>'+brand_name+'</br><font color="#00007D"> InsDate: &nbsp;&nbsp;  </font>'+m_date+'</br><font color="#00007D"> Qty:&nbsp;&nbsp;  </font>'+qty+'</br></br>'
 								 
-							     //$("#marchadizing_add_show").html(m_new);
-								  //alert (localStorage.m_new);
 								 localStorage.m_new=m_new.replace("undefined","");
 								 $("#marchadizing_add_show").html(localStorage.m_new);
 								 
@@ -1523,8 +1545,13 @@ function uploadAll(){
 	
 	//fixed display
 	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
+		//alert (localStorage.fdisplaySlabTotal);
+		//var fdisplayTotal='fdisplayTotal'+i.toString()
+		//var fdTotal=localStorage.fdisplayTotal
 		var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
+		//$("#fdSLfdisplay_image_name_"+i.toString()).val();  
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
+		//alert (image_name);
 		uploadPhoto(fdSLfdisplay_image_path, image_name);
 	}
 	//QPDS
@@ -1574,4 +1601,20 @@ function fail(error) {
   alert("An error has occurred: Code = " + error.code);
 //  console.log("upload error source " + error.source);
 //  console.log("upload error target " + error.target);
+}
+
+//=====================Dialog==========================
+
+//============wait for data submit  
+
+function doTimer()
+{
+  setTimeout(setOutlet(),6000);
+ 
+}
+function setOutlet(){
+	
+	localStorage.syncinfo=localStorage.outletNameID+'Sync Completed Successfully';
+	$('#outletSyncmsg').html(localStorage.syncinfo);
+	//$("#outletOk").show();
 }

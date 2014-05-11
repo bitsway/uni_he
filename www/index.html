@@ -103,6 +103,8 @@
 				
 				$("#fdisplay_test").val(localStorage.fdisplayStringShow);
 				
+				$('#outletSyncmsg').html(localStorage.syncinfo);
+				
 				
   
 		});    
@@ -127,9 +129,9 @@
 				  <ul data-role="listview">
 							<li><a href="#login" >Sync Authorization</a></li>
 							<li><a href="#routePage">Sync Route</a></li>
-							<li><a href="#login">Clear Authorization</a></li>
+							<li><a onClick="clear_autho()" href="#login">Clear Authorization</a></li>
 					</ul>
-				  <br>
+					<br>
 				<div style="margin:100%;"></div>
 				<img src="logo_gp_p.png" alt="Grameen Phone" />
 				
@@ -166,7 +168,7 @@
 				  <ul data-role="listview">
 							<li><a href="#login" >Login</a></li>
 							<li ><a href="#routePage">Sync Route</a></li>
-							<li><a href="#login">Logout</a></li>
+							<li><a onClick="clear_autho()" href="#login" >Logout</a></li>
 					</ul>
 					<br>
 				<div style="margin:100%;"></div>
@@ -190,8 +192,7 @@
 				<input type="text" name="cm_id" id="cm_id" placeholder="CM ID" value="">
 				<input type="text" name="cm_pass" id="cm_pass" placeholder="CM Pass" value="">
                 </font>                
-				</br>
-                20150510</br>	
+				</br></br>	
 				<a data-role="button"  onClick="check_user()" >Login</a>				
 				<div id="error_login"></div>
 				
@@ -330,7 +331,44 @@
 	</div><!-- /route page -->
         
         <!--=====================uotlet exception page end=============-->
-    
+     <!--====================Outlet syncing==================-->
+     
+    <div data-theme="c" data-role="page" id="outletSyncingPage">	
+		   <div data-theme="c" data-role="header" data-position="fixed" >
+			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
+                <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+                <h3>Outlet Info</h3>
+            </div>
+		    
+			<div  data-role="content" > 
+                <div id="syncInfo"> </div>
+				
+                </br>
+             <div id="outletSyncmsg">  
+              
+                    
+               </div>
+                    
+           		<div id="outletOk">  
+                  <a data-role="button"  onClick="reloadPages()">OK</a>
+                    
+                  </div>
+                   
+					
+               				
+				<br/><br/>
+				
+
+                <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
+                <br/><br/>
+
+                <br/><br/><br/>
+								
+	  </div>
+		   
+	</div><!-- /route page -->
+        
+        <!--=====================Outlet syncing page end=============-->
     
    <!-- ============================MH SKUS page Start============================-->
     
@@ -586,7 +624,7 @@
                             <option value="117" >Counter Top </option>
                         </select>
                         
-                        </div>
+                         </div>
                         
                         </td>
                   </tr>
@@ -601,25 +639,28 @@
                     <div id="selectBrand">
                     <select name="select_mar_brand" id="select_mar_brand" data-native-menu="false">
                             <option value="0" >Brand</option>
-                            <option value="101" >Axe </option>
-                            <option value="102" >BB TAAZA </option>
-                            <option value="103" >CLEAR </option>
-                            <option value="104" >Close Up </option>
-                            <option value="105" >Dove </option>
-                            <option value="106" >Fair & Lovely </option>
-                            <option value="107" >Knorr</option>
-                            <option value="108" >Lifebuoy</option>
-                            <option value="109" >Lux</option>
-                            <option value="110" >Pepsodent</option>
-                            <option value="111" >Ponds</option>
-                            <option value="112" >Pureit</option>
-                            <option value="113" >REXONA</option>
-                            <option value="114" >Rin</option>
-                            <option value="115" >Sunsilk</option>
-                            <option value="116" >Surf</option>
-                            <option value="117" >Vaseline</option>
-                            <option value="118" >Vim</option>
-                            <option value="119" >Wheel (HPC)</option>
+                            <option value="310205013" >KNORR</option>
+                            <option value="320611387" >BB TAAZA </option>
+                            <option value="322680A48" >PUREIT </option>
+                            <option value="431332090" >SURF</option>
+                            <option value="431332794" >RIN </option>
+                            <option value="431332803" >WHEEL (HPC)</option>
+                            <option value="431475960" >VIM</option>
+                            <option value="433083764" >UNILEVER OTHER NON-BRANDED</option>
+                            <option value="441741067" >DOVE</option>
+                            <option value="441741082" >SUNSILK</option>
+                            <option value="441741B84" >CLEAR</option>
+                            <option value="441845040" >PEPSODENT</option>
+                            <option value="441845093" >CLOSE UP</option>
+                            <option value="441846040" >PEPSODENT</option>
+                            <option value="441948070" >AXE</option>
+                            <option value="441948A79" >REXONA</option>
+                            <option value="473439022" >FAIR & LOVELY</option>
+                            <option value="473439041" >PONDS</option>
+							<option value="473440084" >VASELINE</option>
+							<option value="473538036" >LIFEBUOY</option>
+							<option value="473538088" >LUX</option>
+							
                         </select>
                         </div>
                     </td>
