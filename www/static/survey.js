@@ -1470,18 +1470,18 @@ function get_pic_fdisplay(id) {
 	var tempTime = $.now();
 	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#"+hidden_name).val(fd_image_name);
-	navigator.camera.getPicture(onSuccessA, onFailA, { quality: 20,
+	navigator.camera.getPicture(onSuccessFd, onFailFd, { quality: 20,
 		destinationType: Camera.DestinationType.FILE_URI });
 }
 
-function onSuccessA(imageURI) {
+function onSuccessFd(imageURI) {
 	var image = document.getElementById(temp_image_div);
     image.src = imageURI;
     var hidden_path=temp_image_div.replace("fdSL_image_div","fdSL_image_div_hidden");
 	$("#"+hidden_path).val(imageURI);
 }
 
-function onFailA(message) {
+function onFailFd(message) {
 	imagePathA="";
     alert('Failed because: ' + message);
 }
@@ -1497,18 +1497,18 @@ function get_pic_qpds(id) {
 	var tempTime = $.now();
 	qpds_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#"+hidden_name).val(qpds_image_name);
-	navigator.camera.getPicture(onSuccessA, onFailA, { quality: 20,
+	navigator.camera.getPicture(onSuccessQpds, onFailQpds, { quality: 20,
 		destinationType: Camera.DestinationType.FILE_URI });
 }
 
-function onSuccessA(imageURI) {
+function onSuccessQpds(imageURI) {
 	var image = document.getElementById(temp_image_div);
     image.src = imageURI;
     var hidden_path=temp_image_div.replace("qpdsSL_image_div","qpdsSL_image_div_hidden");
 	$("#"+hidden_path).val(imageURI);
 }
 
-function onFailA(message) {
+function onFailQpds(message) {
 	imagePathA="";
     alert('Failed because: ' + message);
 }
@@ -1520,11 +1520,11 @@ function get_pic_gift() {
 	var tempTime = $.now();
 	gift_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#gift_image_name_hidden").val(gift_image_name);
-	navigator.camera.getPicture(onSuccessA, onFailA, { quality: 20,
+	navigator.camera.getPicture(onSuccessGift, onFailGift, { quality: 20,
 		destinationType: Camera.DestinationType.FILE_URI });
 }
 
-function onSuccessA(imageURI) {
+function onSuccessGift(imageURI) {
 	//alert (temp_image_div);
 	var image = document.getElementById('gift_image_div');
     image.src = imageURI;
@@ -1533,7 +1533,7 @@ function onSuccessA(imageURI) {
 	$("#"+hidden_path).val(imageURI);
 }
 
-function onFailA(message) {
+function onFailGift(message) {
 	imagePathA="";
     alert('Failed because: ' + message);
 }
