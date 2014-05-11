@@ -151,7 +151,7 @@ function check_user() {
 	//alert ('nadira');
 	var cm_id=$("#cm_id").val();
 	var cm_pass=$("#cm_pass").val();
-	var synccode=localStorage.synccode
+	var synccode='123456'
 	if (cm_id=="" || cm_id==undefined || cm_pass=="" || cm_pass==undefined){
 		var url = "#login";      
 		$(location).attr('href',url);
@@ -795,7 +795,7 @@ function syncOutlet() {
 										fdisplayStringShow=fdisplayStringShow+'</table>'
 										
 										fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
-												' <input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  '+
+												'<input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  '+
 												'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture </a></td></tr></table>'+ 
 											    '<img id="'+fdSL_image_div+'" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
 												'<input type="hidden" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
@@ -909,8 +909,8 @@ function syncOutlet() {
 										 qpdsStringShow=qpdsStringShow+
 										 		'<img id="'+qpdsSL_image_div+'" height="100px" width="100px"  src="" alt="QPDS" />'+
 												'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
-												'<input type="text" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
-												'<input type="text" name="'+ qpdsSL_total_hidden +'" id="'+ qpdsSL_total_hidden +'" value="'+qpdsSingleTotal+'" >'
+												'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
+												'<input type="hidden" name="'+ qpdsSL_total_hidden +'" id="'+ qpdsSL_total_hidden +'" value="'+qpdsSingleTotal+'" >'
 								}
 								localStorage.qpdsStringShow=qpdsStringShow
 								$("#qpds").html(localStorage.qpdsStringShow);
@@ -953,8 +953,8 @@ function syncOutlet() {
 								}
 								giftStringShow=giftStringShow+
 												'<img id="gift_image_div" height="100px" width="100px"  src="" alt="Gift" />'+
-												'<input type="text" name="gift_image_div_hidden" id="gift_image_div_hidden" value="" >'+
-												'<input type="text" name="gift_image_name_hidden" id="gift_image_name_hidden" value="" >'
+												'<input type="hidden" name="gift_image_div_hidden" id="gift_image_div_hidden" value="" >'+
+												'<input type="hidden" name="gift_image_name_hidden" id="gift_image_name_hidden" value="" >'
 												
 								//alert (giftStringShow);
 								localStorage.giftStringShow=giftStringShow
@@ -1289,7 +1289,7 @@ function submit_data() {
 	
 	//alert (latlong);
 	
-	$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);
+	//$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);
 	$.ajax({
 				 type: 'POST',
 				 url: apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string,
@@ -1551,20 +1551,30 @@ function uploadAll(){
 		var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
 		//$("#fdSLfdisplay_image_name_"+i.toString()).val();  
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
-		//alert (image_name);
-		uploadPhoto(fdSLfdisplay_image_path, image_name);
+		
+		if (fdSLfdisplay_image_path!=''){
+			uploadPhoto(fdSLfdisplay_image_path, image_name);
+		}
+		
 	}
 	//QPDS
 	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
 		var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
 		var qpds_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val();
-		uploadPhoto(qpds_image_path, image_name);
+		
+		if (qpds_image_path!=''){
+			uploadPhoto(qpds_image_path, image_name);
+		}
+		
 	}
 	
 	//Gift
 		var image_name=$("#gift_image_name_hidden").val();
 		var gift_image_path=$("#gift_image_div_hidden").val();
-		uploadPhoto(gift_image_path, image_name);
+		
+		if (gift_image_path!=''){
+			uploadPhoto(gift_image_path, image_name);
+		}
 
 		
 }
