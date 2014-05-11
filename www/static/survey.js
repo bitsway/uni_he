@@ -1552,7 +1552,7 @@ function uploadAll(){
 		//$("#fdSLfdisplay_image_name_"+i.toString()).val();  
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
 		
-		if (fdSLfdisplay_image_path!=''){
+		if (fdSLfdisplay_image_path.length >10){
 			uploadPhoto(fdSLfdisplay_image_path, image_name);
 		}
 		
@@ -1562,7 +1562,7 @@ function uploadAll(){
 		var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
 		var qpds_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val();
 		
-		if (qpds_image_path!=''){
+		if (qpds_image_path.length >10){
 			uploadPhoto(qpds_image_path, image_name);
 		}
 		
@@ -1572,7 +1572,7 @@ function uploadAll(){
 		var image_name=$("#gift_image_name_hidden").val();
 		var gift_image_path=$("#gift_image_div_hidden").val();
 		
-		if (gift_image_path!=''){
+		if (gift_image_path.length >10){
 			uploadPhoto(gift_image_path, image_name);
 		}
 
