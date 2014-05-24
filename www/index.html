@@ -162,7 +162,7 @@
 				<br><br><br>
 				  <ul data-role="listview">
 							<li><a href="#login" >Sync Authorization</a></li>
-							<li><a href="#routePage">Sync Route</a></li>
+							<li id="link_route"><a href="#routePage">Sync Route</a></li>
 							<li><a onClick="clear_autho()" href="#login">Clear Authorization</a></li>
 					</ul>
 					<br>
@@ -194,29 +194,31 @@
         
         <div data-theme="c" data-role="page" id="login"   >
 			<!-- login UNILEVER panel-->
-			<div data-role="panel" id="loginPanel" data-display="overlay" style="width:60%;">
-				<!-- panel content goes here -->
+			 <!--<div data-role="panel" id="loginPanel" data-display="overlay" style="width:60%;">
+				<!-- panel content goes here
 				<img style="width:100%;"  src="unilogo1.jpg" alt="UNILEVER" /><br>
 				<font style="color:#007D7D; font-size:25px;">HAWK'S EYE</font>
 				<br><br><br>
 				  <ul data-role="listview">
 							<li><a href="#login" >Login</a></li>
-							<li ><a href="#routePage">Sync Route</a></li>
+							
+                           <li ><a href="#routePage">Sync Route</a></li>
+                            
 							<li><a onClick="clear_autho()" href="#login" >Logout</a></li>
 					</ul>
 					<br>
 				<div style="margin:100%;"></div>
 				<img src="logo_gp_p.png" alt="Grameen Phone" />
 				
-			</div><!-- panel -->
+			</div>--><!-- panel -->
 			
 			
 
 		
             <div data-theme="c" data-role="header" data-position="fixed" >
 			
-			    <a  data-role="button" href="#loginPanel" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a data-role="button" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right ui-icon-power ui-btn-icon-notext " onClick="exit()" >Exit </a>
+			   <a   href="#" ><img src="unilogo13.jpg"></a>
+               <a data-role="button" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right ui-icon-power ui-btn-icon-notext " onClick="exit()" >Exit </a>
                 <h3>Login</h3>
             </div>
 			
