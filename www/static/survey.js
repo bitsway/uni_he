@@ -60,7 +60,7 @@ navigator.app.exitApp();
 
 
 function first_page(){
-	//alert (apipath);
+	//alert (localStorage.synced);
 	if ((localStorage.synced!='YES')){
 		//alert ('nadira')
 		var url = "#login";
@@ -72,8 +72,9 @@ function first_page(){
 }
 
 function outlet_next_page(){
-	//alert (localStorage.outletException);
-	if ((localStorage.routeException_found == '1') && (localStorage.outletException==undefined)){
+	
+	if ((localStorage.routeException_found == '1') && ((localStorage.outletException=='undefined') || (localStorage.outletException==undefined))){
+		//alert (localStorage.routeException_found);
 		var url = "#outletexceptionPage";
 		$(location).attr('href',url);
 		
@@ -94,7 +95,6 @@ function clear_autho(){
 	localStorage.routeExStringShow='';
 	localStorage.show_cancel=0;
 	localStorage.m_new_string="";
-	localStorage.m_new="";
 	localStorage.selectedOutlet="";
 	localStorage.outletExStringShow="";
 	localStorage.outletException="";
@@ -107,17 +107,23 @@ function clear_autho(){
 	localStorage.qpdsSlabTotal="";
 	localStorage.qpdsTotal="";
 	localStorage.giftTotal="";
+	
 	localStorage.marchadizingTotal="";
-	localstorage.m_new="";
+	//localstorage.m_new="";
 	localStorage.mhskus_data_ready="";
 	localStorage.npd_data_ready="";
 	localStorage.fdisplay_data_ready="";
 	localStorage.qpds_data_ready="";
 	localStorage.gift_data_ready="";
+	
 	localStorage.mar_data_ready="";
+	localStorage.synced="";
+	
 	var url = "#login";
 	$(location).attr('href',url);
 	location.reload();
+	//alert ('ccc');
+	localStorage.m_new="";
 }
 function div_change(){
 	//alert (localStorage.outletNameID);
@@ -126,8 +132,16 @@ function div_change(){
 	$("#outletString").hide();
 	$("#menujpj").hide();
 	$("#backjpj").hide();
+	$("#link_route").hide();
+	
+	
+	
+	
 	$("#outletName_show").html(localStorage.outletNameID);
 	$("#outletButton").delay(6000).show(0);
+	$("#outletWait").delay(6000).hide(0);
+	
+	//$("#outletWait").hide();
 	//doTimer();
 	
 	
@@ -136,11 +150,17 @@ function div_change(){
 function cancel_outlet(){
 	localStorage.show_cancel=0
 	localStorage.outletNameID=''
+	
+	localStorage.outletException='undefined';
 	$("#outletCancel").hide();
 	$("#outletString").show();
 	$("#menujpj").show();
 	$("#backjpj").show();
+	$("#link_route").show();
+	
+	$("#outletWait").show();
 	$("#outletButton").hide();
+	
 	$("#outletName_show").html(localStorage.outletNameID);
 	//alert ('abcd');
 }
@@ -282,7 +302,7 @@ function selectRoute() {
 	
 	localStorage.routeIDName=selected_routeName+"( "+selected_routeID+" )"
 	
-
+	//cancel_outlet();
 	
 	if(selected_route!=undefined){
 		if (selected_routeDay==today_get){
@@ -341,7 +361,7 @@ function marketPJP() {
 								var outletSingleTtotal = outletSingleArray.length;
 								var outletStringShow=''
 								
-								outletStringShow=outletStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>'+localStorage.routeIDName+'</td></tr></table>'
+								outletStringShow=outletStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr style="color:#006A6A; font-size:18px;"><td>'+localStorage.routeIDName+'</td></tr></table>'
 								for (var o=0; o < outletSingleTtotal-1; o++){
 									outletArray = outletSingleArray[o].split('fdfd');
 									outletID=outletArray[0];
@@ -360,7 +380,7 @@ function marketPJP() {
 										outletColor='<img style="height:20px; width:20px" src="red.png">';
 									}
 									
-									outletStringShow=outletStringShow+'<label ><table width="100%" border="0"> <tr> <td width="5%"><input type="radio" name="RadioOutlet" value="'+outletID+'" id="RadioGroup1_0"></td><td width="60%">'+outletName +'('+depot_id+'-'+outletID+')</td><td width="15%">'+ total_visit+'/'+total_visit_done+' </td>	<td>'+outletColor+'</td> </tr></table></label> '
+									outletStringShow=outletStringShow+'<label ><table width="100%" border="0"> <tr> <td width="5%"><input type="radio" name="RadioOutlet" value="'+outletID+'" id="RadioGroup1_0"></td><td width="60%">'+outletName +'('+outletID+')</td><td width="15%">'+ total_visit+'/'+total_visit_done+' </td>	<td>'+outletColor+'</td> </tr></table></label> '
 								}
 								
 								
@@ -461,13 +481,13 @@ function select_outlet() {
 									psSlab=outletArray[3];
 									 
 									outletStringShow=outletStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
-									outletStringShow=outletStringShow+'<tr> <td colspan="3" style="color:#048; font-weight:bold">'+outlet+'</td></tr> '
-				 					outletStringShow=outletStringShow+'<tr style="background-color:#BCDBE0;"><td width="2%">&nbsp;</br></td><td width="60">Channel </td><td>&nbsp;&nbsp;:'+channel+'</td></tr>'
-									outletStringShow=outletStringShow+'<tr style="background-color:#BCDBE0;">'
-                    				outletStringShow=outletStringShow+'<td width="1%"></td><td width="60">PS Slab</td><td>&nbsp;&nbsp;:'+ psSlab +'</td></tr>'
+									outletStringShow=outletStringShow+'<tr> <td colspan="3" style="color:#006A6A; font-size:18px;">'+outlet+'</td></tr> '
+				 					/*outletStringShow=outletStringShow+'<tr style="background-color:#BCDBE0;"><td width="2%">&nbsp;</br></td><td width="60">Channel </td><td>&nbsp;&nbsp;:'+channel+'</td></tr>'
+									//outletStringShow=outletStringShow+'<tr style="background-color:#BCDBE0;">'
+//                    				outletStringShow=outletStringShow+'<td width="1%"></td><td width="60">PS Slab</td><td>&nbsp;&nbsp;:'+ psSlab +'</td></tr>'
 									outletStringShow=outletStringShow+'<tr style="background-color:#BCDBE0;">'
                     				outletStringShow=outletStringShow+'<td width="1%"></td><td width="60">Freq/Visit</td><td>&nbsp;&nbsp;:'+visit+'</td>'
-                  					outletStringShow=outletStringShow+'</tr>'
+                  					outletStringShow=outletStringShow+'</tr>'*/
 									outletStringShow=outletStringShow+'</table>'
 								}
 								
@@ -550,7 +570,7 @@ function selectOutletException() {
 
 function syncOutlet() { 
 	
-	$("#outletInfo1").html(apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel);
+	//$("#outletInfo1").html(apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel);
 	$.ajax({
 				 type: 'POST',
 				 url: apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel,
@@ -609,7 +629,7 @@ function syncOutlet() {
 								var mhskusSingleTotal = mhskusSingleArray.length;
 								//alert (mhskusList);
 								var mhskusStringShow=''
-								mhskusStringShow=mhskusStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#048; font-weight:bold">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
+								mhskusStringShow=mhskusStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
 								mhskusStringShow=mhskusStringShow+'<table  width="100%" border="0" cellpadding="0" cellspacing="0">'
                   				mhskusStringShow=mhskusStringShow+'<tr bgcolor="#9FCED7"  ><td></td><td>Item</td><td> QTY</td><td ></td></tr><tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td> </td><td ></td></tr>'
 								
@@ -647,7 +667,7 @@ function syncOutlet() {
 								var npdSingleTotal = npdSingleArray.length;
 								//alert (mhskusList);
 								var npdStringShow=''
-								npdStringShow=npdStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#048; font-weight:bold">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
+								npdStringShow=npdStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
 								npdStringShow=npdStringShow+'<table  width="100%" border="0" cellpadding="0" cellspacing="0">'
                   				npdStringShow=npdStringShow+'<tr bgcolor="#9FCED7"  ><td></td><td>Item</td><td> QTY</td><td ></td></tr><tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td> </td><td ></td></tr>'
 								
@@ -683,7 +703,7 @@ function syncOutlet() {
 								var fdisplaySlabTotal = fdisplaySlabArray.length;
 
 								var fdisplayStringShow=''
-								fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#048; font-weight:bold">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
+								fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
 								
 								localStorage.fdisplaySlabTotal=fdisplaySlabTotal
 								for (var slab=0; slab < fdisplaySlabTotal-1; slab++){
@@ -749,8 +769,8 @@ function syncOutlet() {
 												'<input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  '+
 												'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture </a></td></tr></table>'+ 
 											    '<img id="'+fdSL_image_div+'" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
-												'<input type="text" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
-												'<input type="text" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
+												'<input type="hidden" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
+												'<input type="hidden" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
 												'<input type="hidden" name="'+ fdSL_total_hidden +'" id="'+ fdSL_total_hidden +'" value="'+fdisplaySingleTotal+'" >'
 										
 										
@@ -768,7 +788,7 @@ function syncOutlet() {
 								var qpdsSlabTotal = qpdsSlabArray.length;
 								
 								var qpdsStringShow=''
-								qpdsStringShow=qpdsStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#048; font-weight:bold">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
+								qpdsStringShow=qpdsStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
 								
 								localStorage.qpdsSlabTotal=qpdsSlabTotal
 								for (var slab=0; slab < qpdsSlabTotal-1; slab++){
@@ -837,8 +857,8 @@ function syncOutlet() {
 										
 										 qpdsStringShow=qpdsStringShow+
 										 		'<img id="'+qpdsSL_image_div+'" height="100px" width="100px"  src="" alt="QPDS" />'+
-												'<input type="text" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
-												'<input type="text" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
+												'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
+												'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
 												'<input type="hidden" name="'+ qpdsSL_total_hidden +'" id="'+ qpdsSL_total_hidden +'" value="'+qpdsSingleTotal+'" >'
 								
 								 
@@ -852,7 +872,7 @@ function syncOutlet() {
 								var giftSingleArray = giftList.split('rdrd');	
 								var giftSingleTotal = giftSingleArray.length;
 								var giftStringShow=''
-								giftStringShow=giftStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#048; font-weight:bold">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
+								giftStringShow=giftStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
 								giftStringShow=giftStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
                   				giftStringShow=giftStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td>Received</td><td></td><td>Memo</td></tr>'
 								
@@ -873,16 +893,25 @@ function syncOutlet() {
 									giftStringShow=giftStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
 									
 								}
+								
 								giftStringShow=giftStringShow+'</table>'
-								if (giftSingleTotal > 0){
+								if (localStorage.giftTotal > 1){
+									//alert (localStorage.giftTotal);
 									giftStringShow=giftStringShow+'</br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>'+              
 												   '<a data-role="button" href="#" onClick="get_pic_gift();gift_ready_data();gift_page_set();" >Take Picture </a></td> </tr></table>'
 								}
+								
+								if (localStorage.giftTotal > 1){
+								   giftStringShow=giftStringShow+'<img id="gift_image_div"  height="100px" width="100px"  src="" alt="Gift" />'
+								}
+								else{
+									giftStringShow=giftStringShow+'<img id="gift_image_div" style="display:none" height="100px" width="100px"  src="" alt="Gift" />'
+								}
 								giftStringShow=giftStringShow+
-												'<img id="gift_image_div" height="100px" width="100px"  src="" alt="Gift" />'+
-												'<input type="text" name="gift_image_div_hidden" id="gift_image_div_hidden" value="" >'+
-												'<input type="text" name="gift_image_name_hidden" id="gift_image_name_hidden" value="" >'
+												'<input type="hidden" name="gift_image_div_hidden" id="gift_image_div_hidden" value="" >'+
+												'<input type="hidden" name="gift_image_name_hidden" id="gift_image_name_hidden" value="" >'
 												
+								
 								localStorage.giftStringShow=giftStringShow
 								$("#gift").html(localStorage.giftStringShow);
 								
@@ -891,7 +920,7 @@ function syncOutlet() {
 								var marchadizingSingleTotal = marchadizingSingleArray.length;
 								
 								var marchadizingStringShow=''
-								marchadizingStringShow=marchadizingStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#048; font-weight:bold">'+localStorage.outletNameID+'</td><td  colspan="2"><a data-role="button" href="#dialogMarchandizing" >+</a> </td></tr><tr > </table></br>'
+								marchadizingStringShow=marchadizingStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td><td  colspan="2"><a data-role="button" href="#dialogMarchandizing" >+</a> </td></tr><tr > </table></br>'
 								marchadizingStringShow=marchadizingStringShow+'<table  width="100%" border="0" cellpadding="0" cellspacing="0">'
                   				marchadizingStringShow=marchadizingStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td> <td >Item / Brand</td><td>QTY </td><td> </td><td>Condition</td><td > </td><td>Visible</td><td> </td><td >Dismantled</td></tr>'
 								
@@ -1295,7 +1324,7 @@ function gift_ready_data() {
 
 function gift_page_set() { 
 	//===============Gift data==================
-	//alert ('nadira');
+	//alert (localStorage.gift_data_ready);
 	var gift_array =  localStorage.gift_data_ready.split('rdrd');
 	//var giftTotal=gift_array.length
 	
@@ -1315,9 +1344,9 @@ function gift_page_set() {
 		$("#gift_image_name_hidden").val(giftImg);
 		$("#gift_image_div_hidden").val(giftPath);
 		
-		//if ((giftImg.length > 10) & (giftPath.length > 10)){
-		//	$('#gift').find('input, textarea, button, select').attr('disabled','disabled');
-		//}
+		if ((giftImg.length > 10) & (giftPath.length > 10)){
+			$('#gift').find('input, textarea, button, select').attr('disabled','disabled');
+		}
 		
 
 		
@@ -1463,6 +1492,7 @@ function submit_data() {
 				      },
 				  error: function(result) {
 					 // alert (result);
+					 $("#submit_data").html("Please Try Again");
 					  var url = "#giftAckPage";
 					  $(location).attr('href',url);	
 				  }
@@ -1707,7 +1737,7 @@ function doTimer()
 }
 function setOutlet(){
 	//$("#outletButton").show();
-	localStorage.syncinfo=localStorage.outletNameID+'Sync Completed Successfully';
+	localStorage.syncinfo='<div  style="color:#006A6A; font-size:18px;" id="outletName_show">'+localStorage.outletNameID +'</div>Sync Completed Successfully';
 	$('#outletSyncmsg').html(localStorage.syncinfo);
 	$("#outletOk").show();
 }
