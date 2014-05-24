@@ -338,7 +338,7 @@ function selectRouteException() {
 function marketPJP() { 
 	var selected_route_exception=($("input:radio[name='RadioRouteEx']:checked").val())
 	if(localStorage.selectedRoute!=undefined){
-		$("#dataerror").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
+	//	$("#dataerror").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
 	//======================================	
 		$.ajax({
 				 type: 'POST',
@@ -1639,8 +1639,8 @@ function get_pic_gift() {
 	var tempTime = $.now();
 	gift_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#gift_image_name_hidden").val(gift_image_name);
-	//navigator.camera.getPicture(onSuccessGift, onFailGift, { quality: 20,
-	//	destinationType: Camera.DestinationType.FILE_URI });
+	navigator.camera.getPicture(onSuccessGift, onFailGift, { quality: 20,
+		destinationType: Camera.DestinationType.FILE_URI });
 }
 
 function onSuccessGift(imageURI) {
