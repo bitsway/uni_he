@@ -14,9 +14,8 @@ var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
 
 var temp_image_div='';
+localstorage.m_new="";
 
-//var helpCount = 0;
-//var slideFlag=0;
 
 
 //-------GET GEO LOCATION Start----------------------------
@@ -52,13 +51,7 @@ function get_date() {
 }
 //=============get tieme end=============
 
-
-
-  
-
-
 //============================================
-
 //--------------------------------------------- Exit Application
 function exit() {
 navigator.app.exitApp();
@@ -134,6 +127,10 @@ function div_change(){
 	$("#menujpj").hide();
 	$("#backjpj").hide();
 	$("#outletName_show").html(localStorage.outletNameID);
+	$("#outletButton").delay(6000).show(0);
+	//doTimer();
+	
+	
 }
 
 function cancel_outlet(){
@@ -143,7 +140,9 @@ function cancel_outlet(){
 	$("#outletString").show();
 	$("#menujpj").show();
 	$("#backjpj").show();
+	$("#outletButton").hide();
 	$("#outletName_show").html(localStorage.outletNameID);
+	//alert ('abcd');
 }
 //=============================================
 //=========================Check user=====================
@@ -151,7 +150,7 @@ function check_user() {
 	//alert ('nadira');
 	var cm_id=$("#cm_id").val();
 	var cm_pass=$("#cm_pass").val();
-	var synccode='123456'
+	//var synccode=''
 	if (cm_id=="" || cm_id==undefined || cm_pass=="" || cm_pass==undefined){
 		var url = "#login";      
 		$(location).attr('href',url);
@@ -159,11 +158,10 @@ function check_user() {
 		localStorage.cid='UNILEVER';
 		localStorage.cm_id=cm_id;
    		localStorage.cm_pass=cm_pass;
-   		localStorage.synccode=synccode;
+   		//localStorage.synccode=synccode;
 		localStorage.synced='NO'
    		
 		//$("#error_login").html(apipath+'check_user?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode);	
-		//$("#dataerror").html(apipath+'check_user?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode);	
    		$.ajax({
 				 type: 'POST',
 				 url: apipath+'check_user?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode,
@@ -179,7 +177,10 @@ function check_user() {
 							}
 							if (resultArray[0]=='SUCCESS'){
 								
+								
 								localStorage.synced='YES';
+								localStorage.synccode=resultArray[2];
+								//alert (localStorage.synccode);
 								
 								
 								result_string=resultArray[1];
@@ -189,9 +190,6 @@ function check_user() {
 								routeException = routeArray[1];
 								var routeExArray = routeException.split('</routeexList>');									
 								routeExList = routeExArray[0].replace("<routeexList>","");
-								//routeVisit = routeExArray[1];
-//								var routeVisitArray = routeVisit.split('</RepVisitRoute_string>');									
-//								routeVisitList = routeVisitArray[0];
 								
 								
 						  //==========Create route list
@@ -201,8 +199,7 @@ function check_user() {
 								for (var r=0; r < routeSingleTtotal-1; r++){
 									routeArray = routeSingleArray[r].split('fdfd');
 									routeID=routeArray[0];
-									routeName=routeArray[1];
-									
+									routeName=routeArray[1];									
 									routeStringShow=routeStringShow+'<label><input type="radio" name="RadioRoute"  value="'+routeID+'" id="RadioGroup1_0"> '+routeName+'</label>'
 								}
 								localStorage.routeString=routeStringShow
@@ -228,6 +225,7 @@ function check_user() {
 								
 							}
 							if ((resultArray[0]=='SUCCESS') && (localStorage.route==undefined)){
+								
 								var url = "#routePage";
 								$(location).attr('href',url);
 								location.reload();
@@ -236,8 +234,10 @@ function check_user() {
 								var url = "#menuPage";
 								$(location).attr('href',url);
 								//location.reload();
-									
 							}
+							
+							
+							
 						}
 				      },
 				  error: function(result) {
@@ -266,6 +266,14 @@ function selectRoute() {
 	weekday[6]="Saturday";
 	
 	var today_get = weekday[d.getDay()];
+	
+	var sync_date_get=get_date();
+	var sync_date=sync_date_get.substring(0,10);
+	
+	//sync_date.substring(1,10)
+	//alert (sync_date);
+	localStorage.sync_date=sync_date;
+	
 	
 	var selected_routeArray = selected_route.split('_');	
 	var selected_routeID=selected_routeArray[0];
@@ -309,9 +317,8 @@ function selectRouteException() {
 //=====================outlet start=====================
 function marketPJP() { 
 	var selected_route_exception=($("input:radio[name='RadioRouteEx']:checked").val())
-   // alert (selected_route_exception);
 	if(localStorage.selectedRoute!=undefined){
-		//$("#outletString").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
+		$("#dataerror").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
 	//======================================	
 		$.ajax({
 				 type: 'POST',
@@ -367,31 +374,16 @@ function marketPJP() {
 								location.reload();
 							//=======end outlet list====================								
 							}
-							/*if ((resultArray[0]=='SUCCESS') && (localStorage.route=='')){
-								var url = "#routePage";
-								$(location).attr('href',url);	
-							}
-							if ((resultArray[0]=='SUCCESS') && (localStorage.route!='')){
-								
-								//div_change()
-								var url = "#outletPage";
-								$(location).attr('href',url);
-								//location.reload();	
-								
-							}*/
+
 						}
 				      },
 				  error: function(result) {
-					 // $("#error_login").html(apipath+'check_user?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode);
+
 					  var url = "#login";
-					  $(location).attr('href',url);	
+					  $(location).attr('href',url);
 				  }
 			  });//end ajax*/
 		
-		//localStorage.routeDone='YES'		
-		//var url = "#outletPage";
-//		$(location).attr('href',url);	
-//		location.reload();
 	}
 }
 
@@ -429,15 +421,11 @@ function select_outlet() {
 		}
 		//alert (selected_outletID);
 		//$("#outletInfo1").html(apipath+'sync_outlet_ex?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet);
-		//http://127.0.0.1:8000/unilever/default/sync_outlet_ex?cid=UNILEVER&cm_id=101&cm_pass=1234&synccode=123456&outlet=1004
-		//alert (apipath+'sync_outlet_ex?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet);
-		
 		
 			$.ajax({
 				 type: 'POST',
 				 url: apipath+'sync_outlet_ex?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet,
 				 success: function(result) {	
-						//alert (result);
 						if (result==''){
 							alert ('Sorry Network not available');
 						}
@@ -453,8 +441,6 @@ function select_outlet() {
 								var outletArray = result_string.split('</outletList>');									
 								outletList = outletArray[0].replace("<outletList>","");
 								outletException = outletArray[1];
-								
-								//alert (outletList);
 								var outletExArray = outletException.split('</outletexList>');									
 								outletExList = outletExArray[0].replace("<outletexList>","");
 								
@@ -473,8 +459,6 @@ function select_outlet() {
 									channel=outletArray[1];
 									visit=outletArray[2];
 									psSlab=outletArray[3];
-									//alert (outlet);
-					
 									 
 									outletStringShow=outletStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
 									outletStringShow=outletStringShow+'<tr> <td colspan="3" style="color:#048; font-weight:bold">'+outlet+'</td></tr> '
@@ -490,8 +474,7 @@ function select_outlet() {
 								localStorage.outletinfoString=outletStringShow
 								localStorage.outletChannel=channel
 								localStorage.outletNameID=outlet
-								//alert (localStorage.outletNameID);
-								
+							
 								
 								$("#outletName_show").html(localStorage.outletNameID);
 								$("#outletInfo").html(localStorage.outletinfoString);
@@ -507,8 +490,8 @@ function select_outlet() {
 									outletExStringShow=outletExStringShow+'<label><input type="radio" name="RadioOutletEx"    value="'+outletExName+'" > '+outletExName+'</label>'
 								}
 								localStorage.outletExStringShow=outletExStringShow;
+								$("#outletExString").html(localStorage.outletExStringShow);
 								
-								//$("#outletExString").html(localStorage.outletExStringShow);
 							//=======end outlet exception list====================	
 							
 							syncOutlet();
@@ -523,32 +506,7 @@ function select_outlet() {
 						}//end else
 						
 						
-						//============Set page===========
-						
-							if ((localStorage.routeException_found == '1') && (localStorage.selectedOutlet!=undefined)){
-
-								var url = "#outletexceptionPage";
-								$(location).attr('href',url);
-								//location.reload()
-							}
-							
-							else if ((localStorage.routeException_found == '0') && (localStorage.selectedOutlet!=undefined)){
-								
-								//alert ('sync Done'); 
-								var url = "#outletSyncingPage";
-								$(location).attr('href',url);
-								
-								
-								doTimer();
-								//location.reload();
-								
-							
-							}
-							else{
-								var url = "#outletPage";
-								$(location).attr('href',url);
-								//location.reload()
-							}
+				
 						
 						//============End set page=============
 						
@@ -561,29 +519,6 @@ function select_outlet() {
 				  }
 			  });//end ajax*/
 		
-		//alert (localStorage.selectedOutlet);
-	/*	if ((localStorage.routeException_found == '1') && (localStorage.selectedOutlet!=undefined)){
-			//syncOutlet();
-			//$("#outletExString").html(localStorage.outletExStringShow);
-			//localStorage.routeDone='YES'
-			var url = "#outletexceptionPage";
-			$(location).attr('href',url);
-			//location.reload()
-		}
-		
-		else if ((localStorage.routeException_found == '0') && (localStorage.selectedOutlet!=undefined)){
-			 
-			var url = "#mhskusPage";
-			$(location).attr('href',url);
-			location.reload();
-			
-		
-		}
-		else{
-			var url = "#outletPage";
-			$(location).attr('href',url);
-			//location.reload()
-		}*/
 }
 
 //=====================select Outlet end===============
@@ -615,10 +550,7 @@ function selectOutletException() {
 
 function syncOutlet() { 
 	
-	//$("#outletInfo1").html(apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel);
-	//alert (apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel);
-	
-	//alert (localStorage.outletNameID);
+	$("#outletInfo1").html(apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel);
 	$.ajax({
 				 type: 'POST',
 				 url: apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel,
@@ -660,6 +592,17 @@ function syncOutlet() {
 								var marchadizingArray = marchadizing.split('</marList>');									
 								marchadizingList = marchadizingArray[0].replace("<marList>","");
 								
+								
+								//=====marchandizing Item=======
+								marchadizingItem = marchadizingArray[1];
+								var marchadizingItemArray = marchadizingItem.split('</marItemList>');									
+								marchadizingItemList = marchadizingItemArray[0].replace("<marItemList>","");
+								
+								//=====marchandizing Brand=======
+								marchadizingBrand = marchadizingItemArray[1];
+								var marchadizingBrandArray = marchadizingBrand.split('</marBrandList>');									
+								marchadizingBrandList = marchadizingBrandArray[0].replace("<marBrandList>","");
+								
 								//==========Create MHSKUS list
 								
 								var mhskusSingleArray = mhskusList.split('rdrd');	
@@ -678,12 +621,17 @@ function syncOutlet() {
 									mhskusArray = mhskusSingleArray[i].split('fdfd');
 									itemID=mhskusArray[0];
 									itemName=mhskusArray[1];
+									minQty=mhskusArray[2];
 									var i_text=i.toString()
 									var ItemQtymskus='ItemQtymskus_'+i_text
 									var Itemmskus='Itemmskus_'+i_text
+									var minQtymskus='minQtymskus_'+i_text
 									
 									
-									mhskusStringShow=mhskusStringShow+'<tr ><td>&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemmskus +'" id="'+ Itemmskus +'" value="'+itemID+'" min="0"></td><td width="60"><input type="number" name="'+ItemQtymskus +'" id="'+ ItemQtymskus +'" value="" min="0"></td><td width="5px">&nbsp;</td></tr>'
+									mhskusStringShow=mhskusStringShow+'<tr ><td>&nbsp;</td><td>'+itemName+
+									'<input type="hidden" name="'+ Itemmskus +'" id="'+ Itemmskus +'" value="'+itemID+'" min="0">'+
+									'<input type="hidden" name="'+ minQtymskus +'" id="'+ minQtymskus +'" value="'+minQty+'" min="0">'+
+									'</td><td width="60"><input type="number" name="'+ItemQtymskus +'" id="'+ ItemQtymskus +'" value="" min="0"></td><td width="5px">&nbsp;</td></tr>'
 									mhskusStringShow=mhskusStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td> </td><td ></td></tr>'
 									
 								}
@@ -710,12 +658,18 @@ function syncOutlet() {
 									npdArray = npdSingleArray[i].split('fdfd');
 									itemID=npdArray[0];
 									itemName=npdArray[1];
+									minQty_npd=npdArray[2];
 									var i_text=i.toString()
 									var ItemQtynpd='ItemQtynpd_'+i_text
 									var Itemnpd='Itemnpd_'+i_text
+									var minQty='minQty_npd_'+i_text
 									
 									
-									npdStringShow=npdStringShow+'<tr ><td>&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemnpd +'" id="'+ Itemnpd +'" value="'+itemID+'" min="0"></td><td width="60"><input type="number" name="'+ItemQtynpd +'" id="'+ ItemQtynpd +'" value="" min="0"></td><td width="5px">&nbsp;</td></tr>'
+									npdStringShow=npdStringShow+'<tr ><td>&nbsp;</td><td>'+itemName+
+									'<input type="hidden" name="'+ Itemnpd +'" id="'+ Itemnpd +'" value="'+itemID+'" min="0">'+
+									'<input type="hidden" name="'+ minQty +'" id="'+ minQty +'" value="'+minQty_npd+'" min="0">'+
+									'</td>'+
+									'<td width="60"><input type="number" name="'+ItemQtynpd +'" id="'+ ItemQtynpd +'" value="" min="0"></td><td width="5px">&nbsp;</td></tr>'
 									npdStringShow=npdStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td> </td><td ></td></tr>'
 									
 								}
@@ -749,27 +703,22 @@ function syncOutlet() {
 										var fdSLfdisplay='fdSLfdisplay_'+slab_text
 										
 										
+										fdisplayStringShow=fdisplayStringShow+'<div id="fddiv_'+slab.toString()+'">'
 										fdisplayStringShow=fdisplayStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/display/'+fdisplaySlab_image+'" alt="FixedDisplay" />';
 										fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
 										fdisplayStringShow=fdisplayStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">Face Up</td><td></td><td width="100px">Visible</td></tr>'
 										
-										
-										//alert (fdSL_image_div);
-										
-										
 										var fdisplaySingleArray = fdisplaySlabList.split('rdrd');	
 										var fdisplaySingleTotal = fdisplaySingleArray.length;
-										//alert (fdisplaySingleTotal);
-										
-										//i=6;
-		//								alert (i.toString())
 										
 										var fdisplayTotal='fdisplayTotal'+slab.toString()
 										
 										var fdSL_total_hidden='fdSL_total_hidden_'+slab.toString()
 										
+										//alert (fdSL_image_name_hidden);
+										
 										localStorage.fdisplayTotal=fdisplaySingleTotal
-										//alert (localStorage.fdisplayTotal)
+										
 										for (var i=0; i < fdisplaySingleTotal-1; i++){
 											fdisplayArray = fdisplaySingleArray[i].split('fdfd');
 											slab_fdisplay=fdisplayArray[0]
@@ -793,41 +742,31 @@ function syncOutlet() {
 											
 										}
 										fdisplayStringShow=fdisplayStringShow+'</table>'
+										fdisplayStringShow=fdisplayStringShow+'</div>'	
+										
 										
 										fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
 												'<input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  '+
 												'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture </a></td></tr></table>'+ 
 											    '<img id="'+fdSL_image_div+'" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
-												'<input type="hidden" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
-												'<input type="hidden" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
+												'<input type="text" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
+												'<input type="text" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
 												'<input type="hidden" name="'+ fdSL_total_hidden +'" id="'+ fdSL_total_hidden +'" value="'+fdisplaySingleTotal+'" >'
 										
 										
 										
-										
+									
 										
 								}
 								localStorage.fdisplayStringShow=fdisplayStringShow
 								$("#fdisplay").html(localStorage.fdisplayStringShow);
-							
-								//$("#fdisplay_test").val(localStorage.fdisplayStringShow);
-								
-								
-								
+
 								//==========Create QPDS Display list
-								
-								
-								//qpdsList= '<qpdsList>sm_qpds.imageLink.a12cbe2b6718ca79.6f702e706e67.png<scheme>Pepsodent QPDS 2014 (Tooth Powder)fdfd322680A48SZ016523fdfdPUREIT WP ULT M4X15 SCREW,NUT&WASHER 1PCfdfd2rdrdPepsodent QPDS 2014 (Tooth Powder)fdfd322680A48SZ016524fdfdPUREIT WP ULT M5X50 SCREW,NUT&WASHER 1PCfdfd2rdrd</scheme>sm_qpds.imageLink.8c6f1d02ca14b514.73702e706e67.png<scheme>Rin Power White Display Chamak 2014fdfd322680A48SZ016522fdfdPUREIT WP ULT M5X25 SCREW,NUT&WASHER 1PCfdfd1rdrd</scheme></qpdsList>';
-								
 								
 								
 								var qpdsSlabArray = qpdsList.split('</scheme>');
 								var qpdsSlabTotal = qpdsSlabArray.length;
 								
-								
-								
-								
-
 								var qpdsStringShow=''
 								qpdsStringShow=qpdsStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#048; font-weight:bold">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
 								
@@ -841,6 +780,7 @@ function syncOutlet() {
 										var qpdsSlabList = qpdsSlab_1Array[1].replace("<scheme>","");
 										
 										
+										qpdsStringShow=qpdsStringShow+'<div id="qpdsdiv_'+slab.toString()+'">'
 										
 										qpdsStringShow=qpdsStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/scheme/'+qpdsSlab_image+'" alt="QPDS" />';
 										qpdsStringShow=qpdsStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
@@ -852,14 +792,7 @@ function syncOutlet() {
 										
 										var qpdsSingleArray = qpdsSlabList.split('rdrd');	
 										var qpdsSingleTotal = qpdsSingleArray.length;
-										//alert (qpdsSingleTotal);
-										
-										//i=6;
-		//								alert (i.toString())
-										//var qpdsTotal='qpdsTotal'+slab.toString()
-										
-										//alert (qpdsTotal);
-										
+																				
 										var qpdsSL_image_div='qpdsSL_image_div_'+slab.toString()
 										var qpdsSL_image_div_hidden='qpdsSL_image_div_hidden_'+slab.toString()
 										var qpdsSL_image_name_hidden='qpdsSL_image_name_hidden_'+slab.toString()
@@ -870,13 +803,10 @@ function syncOutlet() {
 										var qpdsSL_f='qpdsSL_'+slab.toString()
 										
 										localStorage.qpdsTotal=qpdsSingleTotal
-										
-										//alert (localStorage.qpdsTotal);
+
 										for (var i=0; i < qpdsSingleTotal-1; i++){
 											qpdsArray = qpdsSingleArray[i].split('fdfd');
 											scheme_qpds=qpdsArray[0]
-											//alert (scheme_qpds);
-											
 											itemID=qpdsArray[1];
 											itemName=qpdsArray[2];
 											qpdsSL=qpdsArray[3];
@@ -886,9 +816,7 @@ function syncOutlet() {
 											var Itemqpds='Itemqpds_'+i_text
 											var ItemFaceupqpds='ItemFaceupqpds_'+i_text
 											var ItemVisibleqpds='ItemVisibleqpds_'+i_text
-											var schemeqpds='schemeqpds_'+i_text
-											//var qpdsSL_f='qpdsSL_'+i_text
-											
+											var schemeqpds='schemeqpds_'+i_text											
 											qpdsStringShow=qpdsStringShow+
 														   '<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemqpds +'" id="'+ Itemqpds +'" value="'+itemID+'" min="0">'+
 														   '<input type="hidden" name="'+ schemeqpds +'" id="'+ schemeqpds +'" value="'+scheme_qpds+'" min="0"> </td>'+
@@ -896,9 +824,10 @@ function syncOutlet() {
 														   '<td></td><td><input type="number" name="'+ItemFaceupqpds +'" id="'+ ItemFaceupqpds +'" value="" min="0"></td><td></td>'+
 														   '<td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ ItemVisibleqpds +'" id="'+ ItemVisibleqpds +'" value=""/></label></td></tr>'
 											qpdsStringShow=qpdsStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
-											//alert (qpdsSL);
 										}
 										qpdsStringShow=qpdsStringShow+'</table>'
+										qpdsStringShow=qpdsStringShow+'</div>'
+										
 										qpdsStringShow=qpdsStringShow+
 													  '<table width="100%" border="0"><tr><td>'+
 													  ' <input type="hidden" name="'+ qpdsSL_f +'" id="'+ qpdsSL_f +'" value="'+qpdsSL+'" min="0">  '+
@@ -908,9 +837,11 @@ function syncOutlet() {
 										
 										 qpdsStringShow=qpdsStringShow+
 										 		'<img id="'+qpdsSL_image_div+'" height="100px" width="100px"  src="" alt="QPDS" />'+
-												'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
-												'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
+												'<input type="text" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
+												'<input type="text" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
 												'<input type="hidden" name="'+ qpdsSL_total_hidden +'" id="'+ qpdsSL_total_hidden +'" value="'+qpdsSingleTotal+'" >'
+								
+								 
 								}
 								localStorage.qpdsStringShow=qpdsStringShow
 								$("#qpds").html(localStorage.qpdsStringShow);
@@ -920,15 +851,11 @@ function syncOutlet() {
 								//==========Create Gift Ack list
 								var giftSingleArray = giftList.split('rdrd');	
 								var giftSingleTotal = giftSingleArray.length;
-								//alert (mhskusList);
 								var giftStringShow=''
 								giftStringShow=giftStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#048; font-weight:bold">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
 								giftStringShow=giftStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
                   				giftStringShow=giftStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td>Received</td><td></td><td>Memo</td></tr>'
 								
-								//i=6;
-//								alert (i.toString())
-								//alert ('nadira');
 								localStorage.giftTotal=giftSingleTotal
 								for (var i=0; i < giftSingleTotal-1; i++){
 									giftArray = giftSingleArray[i].split('fdfd');
@@ -949,14 +876,13 @@ function syncOutlet() {
 								giftStringShow=giftStringShow+'</table>'
 								if (giftSingleTotal > 0){
 									giftStringShow=giftStringShow+'</br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>'+              
-												   '<a data-role="button" href="#" onClick="get_pic_gift()" >Take Picture </a></td> </tr></table>'
+												   '<a data-role="button" href="#" onClick="get_pic_gift();gift_ready_data();gift_page_set();" >Take Picture </a></td> </tr></table>'
 								}
 								giftStringShow=giftStringShow+
 												'<img id="gift_image_div" height="100px" width="100px"  src="" alt="Gift" />'+
-												'<input type="hidden" name="gift_image_div_hidden" id="gift_image_div_hidden" value="" >'+
-												'<input type="hidden" name="gift_image_name_hidden" id="gift_image_name_hidden" value="" >'
+												'<input type="text" name="gift_image_div_hidden" id="gift_image_div_hidden" value="" >'+
+												'<input type="text" name="gift_image_name_hidden" id="gift_image_name_hidden" value="" >'
 												
-								//alert (giftStringShow);
 								localStorage.giftStringShow=giftStringShow
 								$("#gift").html(localStorage.giftStringShow);
 								
@@ -975,7 +901,6 @@ function syncOutlet() {
 									marchadizingArray = marchadizingSingleArray[i].split('fdfd');
 									
 									
-									//str(itemID_mar) + "fdfd" + str(itemName_mar) + "fdfd" + str(brandID_mar) + "fdfd" + str(brand_mar) + "fdfd" + str(qty_mar) + "fdfd" + str(insDate_mar)
 									itemID_mar=marchadizingArray[0];
 									itemName_mar=marchadizingArray[1];
 									brandID_mar=marchadizingArray[2];
@@ -1006,38 +931,75 @@ function syncOutlet() {
 									
 									
 									
-									//marchadizingStringShow=marchadizingStringShow+'<tr ><td>&nbsp;</td><td>'+itemName+'<input type="text" name="'+ Itemmskus +'" id="'+ Itemmskus +'" value="'+itemID+'" min="0"></td><td width="60"><input type="number" name="'+ItemQtymskus +'" id="'+ ItemQtymskus +'" value="" min="0"></td><td width="5px">&nbsp;</td></tr>'
 									
 									marchadizingStringShow=marchadizingStringShow+'<tr ><td  >&nbsp;</td><td>'+itemName_mar+ '</br>'+brand_mar+'</br><font face="Verdana, Geneva, sans-serif" size="-10">'+insDate_mar+'</font>'+'<input type="hidden" name="'+ itemID_mar_f +'" id="'+ itemID_mar_f +'" value="'+itemID_mar +'" >'+'<input type="hidden" name="'+ id_mar_f +'" id="'+ id_mar_f +'" value="'+id_mar +'" >'+'<input type="hidden" name="'+ itemName_mar_f +'" id="'+ itemName_mar_f +'" value="'+itemName_mar +'" >'+'<input type="hidden" name="'+ brandID_mar_f +'" id="'+ brandID_mar_f +'" value="'+brandID_mar +'" >'+'<input type="hidden" name="'+ brand_mar_f +'" id="'+ brand_mar_f +'" value="'+brand_mar +'" >'+'<input type="hidden" name="'+ qty_mar_f +'" id="'+ qty_mar_f +'" value="'+qty_mar +'" >'+'<input type="hidden" name="'+ insDate_mar_f +'" id="'+ insDate_mar_f +'" value="'+insDate_mar +'" >'+'</td><td width="3%" align="center">'+qty_mar+'</td><td width="1%"> </td>'
                     				marchadizingStringShow=marchadizingStringShow+'<td width="20%"  ><select style="height:20px" name="'+condition_mar_f+'" id="'+condition_mar_f+'" data-native-menu="false">'+condition_combo+ '</select></td><td width="1%"> </td>'
 									marchadizingStringShow=marchadizingStringShow+'<td><select style="height:20px" name="'+visible_mar_f+'" id="'+visible_mar_f+'" data-native-menu="false">'+visible_combo+ '</select></td><td width="1%"> </td>'
                     				marchadizingStringShow=marchadizingStringShow+'<td width="5%"> <label  style="width:5px; height:20px"><input type="checkbox" name="'+dism_mar_f+'" id="'+dism_mar_f+'" value=""/></label> </td></tr>'
 									
-									
-									//alert (marchadizingStringShow);
-									
+																		
 									marchadizingStringShow=marchadizingStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td  ></td><td ></td><td></td><td ></td><td></td><td></td><td></td><td></td></tr>'
 									
 								}
 								marchadizingStringShow=marchadizingStringShow+'</table>'
 								
-								//alert (marchadizingStringShow);
-								
 								localStorage.marchadizingStringShow=marchadizingStringShow
 								$("#marchadizing").html(localStorage.marchadizingStringShow);
 								
+					//========dynamic modal form for new marchandizing start=========
+							// Item	
+								var marchadizingItemSingleArray = marchadizingItemList.split('rdrd');	
+								var marchadizingItemSingleTotal = marchadizingItemSingleArray.length;
+								
+								var marchadizingItemStringShow=''
+								marchadizingItemStringShow=marchadizingItemStringShow+'<select name="select_mar_item" id="select_mar_item" data-native-menu="false"><option value="0" >Item </option>'
+								
+								localStorage.marchadizingItemTotal=marchadizingItemSingleTotal
+								for (var i=0; i < marchadizingItemSingleTotal-1; i++){
+									marchadizingItemArray = marchadizingItemSingleArray[i].split('fdfd');
+									
+									
+									marItemID=marchadizingItemArray[0];
+									marItemName=marchadizingItemArray[1];
+									
+									marchadizingItemStringShow=marchadizingItemStringShow+'<option value="'+marItemID+'" >'+marItemName+'</option>'
+								}
+								marchadizingItemStringShow=marchadizingItemStringShow+'</select>'
+								
+								localStorage.marchadizingItemStringShow=marchadizingItemStringShow
+								$("#selectItem").html(localStorage.marchadizingItemStringShow);
+								
+							//Brand
+							   
+							    var marchadizingBrandSingleArray = marchadizingBrandList.split('rdrd');	
+								var marchadizingBrandSingleTotal = marchadizingBrandSingleArray.length;
+								
+								var marchadizingBrandStringShow=''
+								marchadizingBrandStringShow=marchadizingBrandStringShow+'<select name="select_mar_brand" id="select_mar_brand" data-native-menu="false"><option value="0" >Brand</option>'
+								
+								localStorage.marchadizingBrandTotal=marchadizingBrandSingleTotal
+								for (var i=0; i < marchadizingBrandSingleTotal-1; i++){
+									marchadizingBrandArray = marchadizingBrandSingleArray[i].split('fdfd');
+									
+									
+									marBrandID=marchadizingBrandArray[0];
+									marBrandName=marchadizingBrandArray[1];
+									
+									marchadizingBrandStringShow=marchadizingBrandStringShow+'<option value="'+marBrandID+'" >'+marBrandName+'</option>'
+								}
+								marchadizingBrandStringShow=marchadizingBrandStringShow+'</select>'
+								
+								localStorage.marchadizingBrandStringShow=marchadizingBrandStringShow
+								$("#selectBrand").html(localStorage.marchadizingBrandStringShow);	
+								
+								
+							//	===========dynamic modal form for new marchandizing end================
 								
 								var startTime=get_date()
 								localStorage.startTime=startTime
 								//alert (startTime);
 								$("#startTime").val(localStorage.startTime);
-								
-								
-								
-
 							}
-								//var url = "#outletexceptionPage";
-//								$(location).attr('href',url);	
 						}
 				      },
 				  error: function(result) {
@@ -1066,7 +1028,6 @@ function selectRouteException() {
 
 //=====================Toggle==========================
 function new_m() { 
-	
 	jQuery("#newMarchandizing").toggle();
 }
 
@@ -1076,19 +1037,29 @@ function new_m() {
 
 function mhskus_ready_data() { 
 	//===============MHSKUS data==================
-	//var mhskus_data="mhskus_data_start"
 	var mhskus_data=""
 	for (var i=0; i < localStorage.mhskusTotal-1; i++){
 		var itemskus=$( "#Itemmskus_"+i.toString()).val();
 		var itemQtyskus=$( "#ItemQtymskus_"+i.toString()).val();
+		var minQtymskus=$( "#minQtymskus_"+i.toString()).val();
 		
-		mhskus_data=mhskus_data+itemskus+'fdfd'+itemQtyskus+'rdrd';
+		
+		mhskus_data=mhskus_data+itemskus+'fdfd'+itemQtyskus+'fdfd'+minQtymskus+'rdrd';
+		//alert (minQtymskus);
 	}
-    localStorage.mhskus_data_ready=mhskus_data
-	//alert (localStorage.mhskus_data_ready);	
-
+	localStorage.mhskus_data_ready=mhskus_data;
+	mhskus_page_set();
+	//alert ('nadira');
 }
 
+function mhskus_page_set() { 
+	 var mhskus_array =  localStorage.mhskus_data_ready.split('rdrd');
+	 for (var i=0; i < mhskus_array.length-1; i++){
+		var mhskus_single_array = mhskus_array[i].split('fdfd');	
+		var itemQty=mhskus_single_array[1];
+		$("#ItemQtymskus_"+i.toString()).val(itemQty);
+	 }
+}
 
 function npd_ready_data() { 
 	//===============NPD data==================
@@ -1096,12 +1067,20 @@ function npd_ready_data() {
 	for (var i=0; i < localStorage.npdTotal-1; i++){
 		var ItemQtynpd=$( "#ItemQtynpd_"+i.toString()).val();
 		var Itemnpd=$( "#Itemnpd_"+i.toString()).val();
-		//alert (Itemnpd);
-		npd_data=npd_data+Itemnpd+'fdfd'+ItemQtynpd+'rdrd';
+		var minQty=$( "#minQty_npd_"+i.toString()).val(); 
+		npd_data=npd_data+Itemnpd+'fdfd'+ItemQtynpd+'fdfd'+minQty+'rdrd';
+		//alert (minQty);
 	}
 	 localStorage.npd_data_ready=npd_data
-	//alert (npd_data);
 
+}
+function npd_page_set() { 
+	 var npd_array =  localStorage.npd_data_ready.split('rdrd');
+	 for (var i=0; i < npd_array.length-1; i++){
+		var npd_single_array = npd_array[i].split('fdfd');	
+		var itemQty=npd_single_array[1];
+		$("#ItemQtynpd_"+i.toString()).val(itemQty);
+	 }
 }
 
 function fdisplay_ready_data() { 
@@ -1110,27 +1089,17 @@ function fdisplay_ready_data() {
 	var fdisplay_data_detail="";
 	var fdisplay_data_head="";
 	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
-		//alert (localStorage.fdisplaySlabTotal);
 		var fdisplayTotal='fdisplayTotal'+i.toString()
-		//var fdTotal=localStorage.fdisplayTotal
-		
 		
 		var fdTotal=$("#fdSL_total_hidden_"+i.toString()).val();
-		//var image_time=$.now();
-		//var image_name='';
-		//var fd_image_name=fd_image_name+i.toString();
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val(); 
 		var fdSLfdisplay_image_name=$("#fdSL_image_name_hidden_"+i.toString()).val(); 
 		var fdSLfdisplay=$("#fdSLfdisplay_"+i.toString()).val(); 
-		//alert ("#fdSLfdisplay_"+i.toString());
 			for (var d=0; d < fdTotal-1; d++){
 				var ItemQtyfdisplay=$("#ItemQtyfdisplay_"+d.toString()).val();
 				var Itemfdisplay=$("#Itemfdisplay_"+d.toString()).val();
 				var ItemFaceupfdisplay=$("#ItemFaceupfdisplay_"+d.toString()).val();
 				var slabfdisplay=$("#slabfdisplay_"+d.toString()).val();
-				//var fdSLfdisplay=$("#fdSLfdisplay_"+d.toString()).val(); 
-				
-				
 	
 				var ItemVisiblefdisplay_f="#ItemVisiblefdisplay_"+d.toString();
 				var ItemVisiblefdisplay_g= ($(ItemVisiblefdisplay_f).is(':checked') ? 1 : 0);
@@ -1143,42 +1112,81 @@ function fdisplay_ready_data() {
 					}	
 				
 					fdisplay_data_detail=fdisplay_data_detail+Itemfdisplay+'fdfd'+ItemQtyfdisplay+'fdfd'+ItemFaceupfdisplay+'fdfd'+ItemVisiblefdisplay+'fdfd'+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+'rdrd'
-					//alert (fdisplay_data);
 			}
-		//alert (fdSLfdisplay);
-		fdisplay_data_head=fdisplay_data_head+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+fdSLfdisplay_image_name+'rdrd'
+		fdisplay_data_head=fdisplay_data_head+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+fdSLfdisplay_image_name+'fdfd'+fdSLfdisplay_image_path+'rdrd'
 
 	}
 	 fdisplay_data='headstart'+fdisplay_data_head+'headend'+fdisplay_data_detail
 	 localStorage.fdisplay_data_ready=fdisplay_data
-	//alert (npd_data);
+	
+	 fdisplay_page_set()
+	// alert (localStorage.fdisplay_data_ready);
 
 }
 
-
+function fdisplay_page_set() { 
+	var fdisplay_array =  localStorage.fdisplay_data_ready.split('headend');
+	var fdisplay_head=fdisplay_array[0].replace("headstart","");
+	var fdisplay_detail=fdisplay_array[1];
+	
+	
+	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
+		var head_s_array=fdisplay_head.split('fdfd');
+		var slabfdisplay =head_s_array[0];
+		var fdisplayTotal=head_s_array[1];
+		var fdisplayImg=head_s_array[2];
+		var fdisplayImg_path=head_s_array[3].replace("rdrd","");
+		
+		//fdisplayImg_path='q343253456rdrd'
+		
+		$("#fdSL_image_name_hidden_"+i.toString()).val(fdisplayImg);
+		$("#fdSL_image_div_hidden_"+i.toString()).val(fdisplayImg_path);
+		
+		if ((fdisplayImg.length > 10) & (fdisplayImg_path.length > 10)){
+			$('#fddiv_'+i.toString()).find('input, textarea, button, select').attr('disabled','disabled');
+		}
+		
+		var fdisplay_detail_array =  fdisplay_detail.split('rdrd');
+		var fdTotal=fdisplay_detail_array.length
+		//alert (fdisplayImg_path.length);
+		
+		
+			
+			for (var d=0; d < fdTotal-1; d++){
+				
+				var fdisplay_detail_s_array =  fdisplay_detail_array[d].split('fdfd');
+				
+				var ItemQtyfdisplay= fdisplay_detail_s_array[1];
+				var ItemFaceupfdisplay= fdisplay_detail_s_array[2];
+				var ItemVisiblefdisplay= fdisplay_detail_s_array[3];
+				
+				
+				
+				$("#ItemQtyfdisplay_"+d.toString()).val(ItemQtyfdisplay);
+				$("#ItemFaceupfdisplay_"+d.toString()).val(ItemFaceupfdisplay);
+				if (ItemVisiblefdisplay=='YES'){
+					$("#ItemVisiblefdisplay_"+d.toString()).attr('checked',true);
+				}
+				
+			
+			}
+	}
+}
 
 function qpds_ready_data() { 
 	//===============QPDS data==================
 	var qpds_data=""
 	var qpds_data_detail="";
 	var qpds_data_head="";
-	
-	
-	
-	
-	//alert ('gggg');
-	
-	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
 		
+	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
 		var qpdsSL_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val(); 
 		var qpdsSL_image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val(); 
 		var qpdsSL=$("#qpdsSL_"+i.toString()).val();
-
-		
 		
 		var qpdsTotal='qpdsTotal'+i.toString()
 		var qpdsTotal_1=$("#qpdsSL_total_hidden_"+i.toString()).val();
-		//alert (qpdsTotal_1)
+		
 		
 		for (var d=0; d < qpdsTotal_1-1; d++){
 			var ItemQtyqpds= $("#ItemQtyqpds_"+d.toString()).val();  
@@ -1196,21 +1204,69 @@ function qpds_ready_data() {
 			if (ItemVisibleqpds_g==1){
 				ItemVisibleqpds='YES'
 			}
-			//alert (ItemFaceupqpds);
 			qpds_data_detail=qpds_data_detail+Itemqpds+'fdfd'+ItemQtyqpds+'fdfd'+ItemFaceupqpds+'fdfd'+ItemVisibleqpds+'fdfd'+schemeqpds+'fdfd'+qpdsSL+'rdrd'
 		}
-		qpds_data_head=qpds_data_head+schemeqpds+'fdfd'+qpdsSL+'fdfd'+qpdsSL_image_name+'rdrd'
+		qpds_data_head=qpds_data_head+schemeqpds+'fdfd'+qpdsSL+'fdfd'+qpdsSL_image_name+'fdfd'+qpdsSL_image_path+'rdrd'
 	
 	}
-	
-	
 	qpds_data='headstart'+qpds_data_head+'headend'+qpds_data_detail
-	//alert ('QPDSDETAIL:  '+qpds_data_detail);
-	localStorage.qpds_data_ready=qpds_data
-	
-
+	localStorage.qpds_data_ready=qpds_data;
+	qpds_page_set();
 }
 
+function qpds_page_set() { 
+	var qpds_array =  localStorage.qpds_data_ready.split('headend');
+	var qpds_head=qpds_array[0].replace("headstart","");
+	var qpds_detail=qpds_array[1];
+	
+	
+	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
+		var head_s_array=qpds_head.split('fdfd');
+		var slabqpds =head_s_array[0];
+		var qpdsTotal=head_s_array[1];
+		
+		
+		var qpdsImg=head_s_array[2];
+		var qpdsImg_path=head_s_array[3].replace("rdrd","");
+		
+		//qpdsImg_path='q343253456rdrd'
+		
+		$("#qpdsSL_image_name_hidden_"+i.toString()).val(qpdsImg);
+		$("#qpdsSL_image_div_hidden_"+i.toString()).val(qpdsImg_path);
+		
+		if ((qpdsImg.length > 10) & (qpdsImg_path.length > 10)){
+			$('#qpdsdiv_'+i.toString()).find('input, textarea, button, select').attr('disabled','disabled');
+		}
+		
+		var qpds_detail_array =  qpds_detail.split('rdrd');
+		var qpdsDTotal=qpds_detail_array.length
+		
+		//$("#fdSL_total_hidden_"+i.toString()).val();
+		
+		//var fdTotal=$("#fdSL_total_hidden_"+i.toString()).val();
+//		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val(); 
+//		var fdSLfdisplay_image_name=$("#fdSL_image_name_hidden_"+i.toString()).val(); 
+		//var fdSLfdisplay=$("#fdSLfdisplay_"+i.toString()).val(); 
+			
+			for (var d=0; d < qpdsDTotal-1; d++){
+				
+				var qpds_detail_s_array =  qpds_detail_array[d].split('fdfd');
+				
+				var ItemQtyqpds = qpds_detail_s_array[1];
+				var ItemFaceupqpds = qpds_detail_s_array[2];
+				var ItemVisibleqpds = qpds_detail_s_array[3];
+				
+				
+				
+				$("#ItemQtyqpds_"+d.toString()).val(ItemQtyqpds);
+				$("#ItemFaceupqpds_"+d.toString()).val(ItemFaceupqpds);
+				if (ItemVisibleqpds=='YES'){
+					$("#ItemVisibleqpds_"+d.toString()).attr('checked',true);
+				}
+
+			}
+	}
+}
 
 function gift_ready_data() { 
 	//===============Gift data==================
@@ -1225,19 +1281,58 @@ function gift_ready_data() {
 		var memogift_f="#memogift_"+i.toString();
 		var receivedgift_f="#receivedgift_"+i.toString();
 		
+		
+		var image_name=$("#gift_image_name_hidden").val();
+		var gift_image_path=$("#gift_image_div_hidden").val();
 	
 		var memogift= ($(memogift_f).is(':checked') ? 1 : 0);
 		var receivedgift= ($(receivedgift_f).is(':checked') ? 1 : 0);
-		
-		//alert (localStorage.giftTotal);
-		gift_data=gift_data+slabSchemeName_gift+'fdfd'+amount_gift+'fdfd'+receivedgift+'fdfd'+memogift+'fdfd'+gift_id+'rdrd';
+		gift_data=gift_data+slabSchemeName_gift+'fdfd'+amount_gift+'fdfd'+receivedgift+'fdfd'+memogift+'fdfd'+gift_id+'fdfd'+image_name+'fdfd'+gift_image_path+'rdrd';
 	}
 	localStorage.gift_data_ready=gift_data
-	//alert (qpds_data);
-	
-
+	gift_page_set();
 }
 
+function gift_page_set() { 
+	//===============Gift data==================
+	//alert ('nadira');
+	var gift_array =  localStorage.gift_data_ready.split('rdrd');
+	//var giftTotal=gift_array.length
+	
+	for (var i=0; i < localStorage.giftTotal-1; i++){
+		var gift_s_array =  gift_array[i].split('fdfd');
+		
+		var receivedgift = gift_s_array[2];
+		var memogift = gift_s_array[3];
+		
+		var giftImg = gift_s_array[5];
+		var giftPath = gift_s_array[6].replace("rdrd","");
+		//alert (giftImg)
+
+		//giftPath='q343253456rdrd'
+		
+		//alert (giftImg);
+		$("#gift_image_name_hidden").val(giftImg);
+		$("#gift_image_div_hidden").val(giftPath);
+		
+		//if ((giftImg.length > 10) & (giftPath.length > 10)){
+		//	$('#gift').find('input, textarea, button, select').attr('disabled','disabled');
+		//}
+		
+
+		
+	    if (receivedgift==1){
+			$("#receivedgift_"+i.toString()).attr('checked',true);
+		}
+		if (memogift==1){
+			$("#memogift_"+i.toString()).attr('checked',true);
+		}
+		//var memogift= ($(memogift_f).is(':checked') ? 1 : 0);
+//		var receivedgift= ($(receivedgift_f).is(':checked') ? 1 : 0);
+//		gift_data=gift_data+slabSchemeName_gift+'fdfd'+amount_gift+'fdfd'+receivedgift+'fdfd'+memogift+'fdfd'+gift_id+'rdrd';
+	}
+	//localStorage.gift_data_ready=gift_data
+}
 
 function mar_ready_data() { 
 //===============Marchadizing data==================
@@ -1254,75 +1349,83 @@ function mar_ready_data() {
 		var visible_mar=$( "#visible_mar_"+i.toString()).val();
 		var id_mar=$( "#id_mar_"+i.toString()).val();
 		
-		
-		
 		var dism_mar_f="#dism_mar_"+i.toString();
 		var dism_mar= ($(dism_mar_f).is(':checked') ? 1 : 0);
 
-
-		//alert (Itemnpd);
 		mar_data=mar_data+itemID_mar+'fdfd'+itemName_mar+'fdfd'+brandID_mar+'fdfd'+brand_mar+'fdfd'+qty_mar+'fdfd'+insDate_mar+'fdfd'+condition_mar+'fdfd'+visible_mar+'fdfd'+dism_mar+'fdfd'+id_mar+'rdrd';
 	}	
 	localStorage.mar_data_ready=mar_data
-	//alert (mar_data);
+	mar_page_set();
+
+}
+function mar_page_set() { 
+//===============Marchadizing data==================
+	var mar_array =  localStorage.mar_data_ready.split('rdrd');
+	for (var i=0; i < localStorage.marchadizingTotal-1; i++){
+		var mar_s_array =  mar_array[i].split('fdfd');
+		
+		var condition_mar = mar_s_array[6];
+		var visible_mar = mar_s_array[7];
+		var dism_mar= mar_s_array[8];
+		
+		
+		$( "#condition_mar_"+i.toString()).val(condition_mar);
+		$( "#visible_mar_"+i.toString()).val(visible_mar);
+		if (dism_mar==1){
+			$("#dism_mar_"+i.toString()).attr('checked',true);
+		}
+		
+		//alert (condition_mar);
+		
+		//var itemID_mar=$( "#itemID_mar_"+i.toString()).val();
+//		var itemName_mar=$( "#itemName_mar_"+i.toString()).val();
+//		var brandID_mar=$( "#brandID_mar_"+i.toString()).val();
+//		var brand_mar=$( "#brand_mar_"+i.toString()).val();
+//		var qty_mar=$( "#qty_mar_"+i.toString()).val();
+//		var insDate_mar=$( "#insDate_mar_"+i.toString()).val();
+//		var condition_mar=$( "#condition_mar_"+i.toString()).val();
+//		var visible_mar=$( "#visible_mar_"+i.toString()).val();
+//		var id_mar=$( "#id_mar_"+i.toString()).val();
+		
+		//var dism_mar_f="#dism_mar_"+i.toString();
+//		var dism_mar= ($(dism_mar_f).is(':checked') ? 1 : 0);
+//
+//		mar_data=mar_data+itemID_mar+'fdfd'+itemName_mar+'fdfd'+brandID_mar+'fdfd'+brand_mar+'fdfd'+qty_mar+'fdfd'+insDate_mar+'fdfd'+condition_mar+'fdfd'+visible_mar+'fdfd'+dism_mar+'fdfd'+id_mar+'rdrd';
+	}	
 	
 
 }
-
 function submit_data() { 
-	
-
-	//=========================AJAX Submit==========================
-
-	
-	
+	//=========================AJAX Submit==========================	
 	var lat=$( "#lat").val();
 	var long=$( "#long").val();
 	var visitDate=get_date().substring(0,10);
     var endTime=get_date();
 	var giftImage=$( "#gift_image_name_hidden").val();
 	var latlong=lat.toString()+","+long.toString()
-	
-	
-	
-	
-	
-	//alert (latlong);
-	
 	//$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);
 	$.ajax({
 				 type: 'POST',
 				 url: apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string,
 				 success: function(result) {	
+						
 						if (result==''){
 							alert ('Sorry Network not available');
 						}
 						else{
-							//alert (result)			
 							if (result=='FAILED'){
 								$("#submit_data").html('Unauthorized User');
 							}
 							
 							if (result=='SUCCESS'){
-								
-								//$("#submit_data").html('Submitted Succesfully');
-								
-//								uploadPhoto(imageURI, imageName)
-								
-								
-								
 								uploadAll();
 								
-								var url = "#menuPage";
-								$(location).attr('href',url);
-								location.reload
+								
 								
 								cancel_outlet();
 								
-								
-								
-								
 								localStorage.show_cancel=0;
+								
 								localStorage.m_new_string="";
 								localStorage.m_new="";
 								localStorage.selectedOutlet="";
@@ -1331,14 +1434,15 @@ function submit_data() {
 								localStorage.outletChanne="";
 								localStorage.outletNameID="";
 								localStorage.mhskusTotal="";
+								
 								localStorage.npdTotal="";
 								localStorage.fdisplaySlabTotal="";
 								localStorage.fdisplayTotal="";
 								localStorage.qpdsSlabTotal="";
+								
 								localStorage.qpdsTotal="";
 								localStorage.giftTotal="";
 								localStorage.marchadizingTotal="";
-								localstorage.m_new="";
 								localStorage.mhskus_data_ready="";
 								localStorage.npd_data_ready="";
 								localStorage.fdisplay_data_ready="";
@@ -1346,9 +1450,12 @@ function submit_data() {
 								localStorage.gift_data_ready="";
 								localStorage.mar_data_ready="";
 								
+								var url = "#menuPage";
+								$(location).attr('href',url);
+								location.reload
 								
 								
-								
+								localstorage.m_new="";
 							}
 									
 						}
@@ -1356,16 +1463,11 @@ function submit_data() {
 				      },
 				  error: function(result) {
 					 // alert (result);
-					  var url = "#login";
+					  var url = "#giftAckPage";
 					  $(location).attr('href',url);	
 				  }
 			  });//end ajax
 	
-	
-	
-	
-	
-
 
 }
 
@@ -1381,11 +1483,7 @@ function marchandizing_add() {
 	var select_mar_date=$( "#mar_date_add").val();
 	
 	var m_new_string=''
-	/*if (localStorage.m_new_string!='undefined'){
-		 m_new_string=localStorage.m_new_string
-	 }*/
-	
-	
+
 	var start_new_mar=0;
 	if  ((select_mar_item!=0) && (select_mar_brand!=0) &&  (select_mar_qty>0) && (select_mar_date.length>9)){
 		
@@ -1411,7 +1509,6 @@ function marchandizing_add() {
 							}
 							
 							if (resultArray[0]=='SUCCESS'){
-								//alert ('SUCCESS');
 							   	var newArray = resultArray[1].split('fdfd');
 								var item_name=newArray[0]
 								var brand_name=newArray[1]
@@ -1424,46 +1521,35 @@ function marchandizing_add() {
 								}
 								
 								 m_new=localStorage.m_new
-
-								 
-								 
 								 
 								 m_new=m_new+'</br><font color="#00007D">Item:&nbsp;&nbsp;  </font>'+item_name+'</br><font color="#00007D">   Brand: &nbsp;&nbsp;  </font>'+brand_name+'</br><font color="#00007D"> InsDate: &nbsp;&nbsp;  </font>'+m_date+'</br><font color="#00007D"> Qty:&nbsp;&nbsp;  </font>'+qty+'</br></br>'
 								 
 								 localStorage.m_new=m_new.replace("undefined","");
 								 $("#marchadizing_add_show").html(localStorage.m_new);
 								 
-
-								
-								
 							}
 									
 						}
 				      },
 				  error: function(result) {
-					 // alert (result);
 					  var url = "#login";
 					  $(location).attr('href',url);	
 				  }
 			  });//end ajax
 	}
 
-	
-
-
-
 }
 
-
-
 //=======================add marchandizing===================
-
-
 
 //====================================Camera==========
 
 //fixed display
 function get_pic_fdisplay(id) {
+	//alert ('#fddiv_'+id);
+	$('#fddiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
+	
+
 	var div_id="fdSL_image_div_"+id;
 	temp_image_div=div_id;
 	var hidden_name="fdSL_image_name_hidden_"+id;
@@ -1472,6 +1558,8 @@ function get_pic_fdisplay(id) {
 	$("#"+hidden_name).val(fd_image_name);
 	navigator.camera.getPicture(onSuccessFd, onFailFd, { quality: 20,
 		destinationType: Camera.DestinationType.FILE_URI });
+	
+	
 }
 
 function onSuccessFd(imageURI) {
@@ -1479,6 +1567,8 @@ function onSuccessFd(imageURI) {
     image.src = imageURI;
     var hidden_path=temp_image_div.replace("fdSL_image_div","fdSL_image_div_hidden");
 	$("#"+hidden_path).val(imageURI);
+
+	
 }
 
 function onFailFd(message) {
@@ -1486,11 +1576,9 @@ function onFailFd(message) {
     alert('Failed because: ' + message);
 }
 
-
-
-
 //QPDS
 function get_pic_qpds(id) {
+	$('#qpdsdiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
 	var div_id="qpdsSL_image_div_"+id;
 	temp_image_div=div_id;
 	var hidden_name="qpdsSL_image_name_hidden_"+id;
@@ -1517,18 +1605,17 @@ function onFailQpds(message) {
 //===========gift======
 //QPDS
 function get_pic_gift() {
+	$('#gift').find('input, textarea, button, select').attr('disabled','disabled');
 	var tempTime = $.now();
 	gift_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#gift_image_name_hidden").val(gift_image_name);
-	navigator.camera.getPicture(onSuccessGift, onFailGift, { quality: 20,
-		destinationType: Camera.DestinationType.FILE_URI });
+	//navigator.camera.getPicture(onSuccessGift, onFailGift, { quality: 20,
+	//	destinationType: Camera.DestinationType.FILE_URI });
 }
 
 function onSuccessGift(imageURI) {
-	//alert (temp_image_div);
 	var image = document.getElementById('gift_image_div');
     image.src = imageURI;
-    //alert (imageURI);
     var hidden_path="gift_image_div_hidden";
 	$("#"+hidden_path).val(imageURI);
 }
@@ -1545,11 +1632,7 @@ function uploadAll(){
 	
 	//fixed display
 	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
-		//alert (localStorage.fdisplaySlabTotal);
-		//var fdisplayTotal='fdisplayTotal'+i.toString()
-		//var fdTotal=localStorage.fdisplayTotal
 		var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
-		//$("#fdSLfdisplay_image_name_"+i.toString()).val();  
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
 		
 		if (fdSLfdisplay_image_path.length >10){
@@ -1619,12 +1702,12 @@ function fail(error) {
 
 function doTimer()
 {
-  setTimeout(setOutlet(),6000);
+  setTimeout(setOutlet(),60000);
  
 }
 function setOutlet(){
-	
+	//$("#outletButton").show();
 	localStorage.syncinfo=localStorage.outletNameID+'Sync Completed Successfully';
 	$('#outletSyncmsg').html(localStorage.syncinfo);
-	//$("#outletOk").show();
+	$("#outletOk").show();
 }

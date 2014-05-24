@@ -66,7 +66,7 @@
 				$("#outletString").html(localStorage.outletString);
 				
 				
-				//$("#outletExString").html(localStorage.outletExStringShow);
+				$("#outletExString").html(localStorage.outletExStringShow);
 				$("#outletInfo").html(localStorage.outletinfoString);
 				
 				
@@ -96,6 +96,8 @@
 				}
 				if (localStorage.show_cancel==1){
 				 div_change();
+				 $("#outletButton").show();
+				 
 				}
 				
 				
@@ -106,7 +108,39 @@
 				$('#outletSyncmsg').html(localStorage.syncinfo);
 				
 				
-  
+				$("#selectItem").html(localStorage.marchadizingItemStringShow);
+				
+				$("#selectBrand").html(localStorage.marchadizingBrandStringShow);
+				
+				
+				
+				//=======check sync date
+				var sync_date_get=get_date();
+				var sync_date=sync_date_get.substring(0,10);
+				if ((localStorage.synced=='YES') & (localStorage.sync_date!=sync_date)){
+					var url = "#routePage";
+					$(location).attr('href',url);
+					//location.reload()
+				}
+				//=====================
+				//alert (localStorage.mhskus_data_ready);
+				mhskus_page_set();
+				npd_page_set();
+				fdisplay_page_set();
+				qpds_page_set();
+				gift_page_set();
+				mar_page_set();
+				
+			  //====check div disable====
+			  //fdisplay
+		//	  for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
+//				  if (localStorage.fdsl)
+//				 
+//				  //$('#fddiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
+//			  }
+			  
+			  //================
+  				
 		});    
 		
 	</script>	
@@ -267,10 +301,14 @@
 
 
                 <div id="outletCancel" style="display:none"> 
-                Working progress on Outlet:
-                		<div id="outletName_show"></div>
-                		<a data-role="button" onClick="cancel_outlet()" >Cancel</a>
-                        <a data-role="button" onClick="outlet_next_page()" >OK</a>
+                Work in progress on Outlet:
+                		<div  style="background:#D9FAD8; color:#660000; font-size:18px;" id="outletName_show"></div>
+                		
+						<div id="outletButton" style="display:none" >
+						<a data-role="button" onClick="cancel_outlet()" >Cancel</a>
+                        <a data-role="button" onClick="outlet_next_page()" >Next</a>
+						</div>
+						
                 </div>	
 				<div id="outletInfo1"></div>	
                 <!--<br/><br/>
@@ -302,7 +340,7 @@
                 </br>
                 
                 Select Cause:
-              		<label><input type="radio" name="RadioOutletEx"    value="Outlet Closed on previous day" > Outlet Closed on previous day</label>
+              		<!--<label><input type="radio" name="RadioOutletEx"    value="Outlet Closed on previous day" > Outlet Closed on previous day</label>
                     <label><input type="radio" name="RadioOutletEx"    value="Proprietor was absent" > Proprietor was absent</label>
                     <label><input type="radio" name="RadioOutletEx"    value="Adequate product was not avai" > Adequate product was not avai</label>
                     <label><input type="radio" name="RadioOutletEx"    value="Bad weather" > Bad weather</label>
@@ -312,7 +350,7 @@
                     <label><input type="radio" name="RadioOutletEx"    value="Discontinue from Perfect Store Program" > Discontinue from Perfect Store Program</label>
                     <label><input type="radio" name="RadioOutletEx"    value="Addition visit frequency is required for the outlet channel" > Addition visit frequency is required for the outlet channel</label>
                     
-                    
+                    -->
                     
                     
                     
@@ -545,7 +583,7 @@
              </tr>
             </table>-->
 			
-			<a data-role="button" onClick="gift_ready_data();submit_data()" >Submit</a>
+			<a data-role="button" onClick="submit_data()" >Submit</a>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                
                <div id="submit_data"></div>
@@ -603,7 +641,7 @@
                     <td>
                     <div id="selectItem">
                     
-                    <select name="select_mar_item" id="select_mar_item" data-native-menu="false">
+                    <!--<select name="select_mar_item" id="select_mar_item" data-native-menu="false">
                             <option value="0" >Item </option>
                             <option value="101" >Backlit Shop Board </option>
                             <option value="102" >Perfect Store identifier </option>
@@ -622,7 +660,7 @@
                             <option value="115" >Food Corner </option>
                             <option value="116" >Glass Shelf Branding </option>
                             <option value="117" >Counter Top </option>
-                        </select>
+                        </select>-->
                         
                          </div>
                         
@@ -637,7 +675,7 @@
                     
                     <td>
                     <div id="selectBrand">
-                    <select name="select_mar_brand" id="select_mar_brand" data-native-menu="false">
+                   <!-- <select name="select_mar_brand" id="select_mar_brand" data-native-menu="false">
                             <option value="0" >Brand</option>
                             <option value="310205013" >KNORR</option>
                             <option value="320611387" >BB TAAZA </option>
@@ -661,7 +699,7 @@
 							<option value="473538036" >LIFEBUOY</option>
 							<option value="473538088" >LUX</option>
 							
-                        </select>
+                        </select>-->
                         </div>
                     </td>
                   </tr>
@@ -697,5 +735,8 @@
  <!--===========================dialog marchandizing end=============-->
  
  <script type="text/javascript" src="phonegap.js"></script>
+ 
+ 
+ 
     </body>
 </html>
