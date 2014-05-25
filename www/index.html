@@ -113,13 +113,16 @@
 				$("#selectBrand").html(localStorage.marchadizingBrandStringShow);
 				
 				
-				
+				//alert (localStorage.m_new);
 				//=======check sync date
 				var sync_date_get=get_date();
 				var sync_date=sync_date_get.substring(0,10);
+				
+				//localStorage.sync_date='2014-05-24';
 				if ((localStorage.synced=='YES') & (localStorage.sync_date!=sync_date)){
 					
 					cancel_outlet();
+					
 					localStorage.show_cancel=0;
 								
 					localStorage.m_new_string="";
@@ -148,7 +151,7 @@
 					
 					var url = "#routePage";
 					$(location).attr('href',url);
-					localstorage.m_new="";
+					
 					//location.reload()
 				}
 				//=====================
@@ -192,7 +195,9 @@
 				<br><br><br>
 				  <ul data-role="listview">
 							<li><a href="#login" >Sync Authorization</a></li>
+                    		<div style="background:#008A8A; height:1px"></div>
 							<li id="link_route"><a href="#routePage">Sync Route</a></li>
+                            <div style="background:#008A8A; height:1px"></div>
 							<li><a onClick="clear_autho()" href="#login">Clear Authorization</a></li>
 					</ul>
 					<br>
@@ -618,8 +623,8 @@
                 <a data-role="button" href="#" onClick="get_pic_gift()" >Take Picture </a></td>
              </tr>
             </table>-->
-			
-			<a data-role="button" onClick="submit_data()" >Submit</a>
+			</br></br></br>
+			<a id="sub_button" data-role="button" onClick="submit_data()" >Submit</a>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                
                <div id="submit_data"></div>
@@ -677,26 +682,7 @@
                     <td>
                     <div id="selectItem">
                     
-                    <!--<select name="select_mar_item" id="select_mar_item" data-native-menu="false">
-                            <option value="0" >Item </option>
-                            <option value="101" >Backlit Shop Board </option>
-                            <option value="102" >Perfect Store identifier </option>
-                            <option value="103" >Shelf Talker for Fixed Display </option>
-                            <option value="104" >Shelf Talker for QPDS </option>
-                            <option value="105" >Permanent Shelf Talker Holder for Grocer </option>
-                            <option value="106" >Permanent Shelf Talke </option>
-                            <option value="107" >Permanent Hair Care Units </option>
-                            <option value="108" >Permanent Skin Care Units (MINI Solomon ) </option>
-                            <option value="109" >Permanent Menz Zone Units </option>
-                            <option value="110" >Shelf in Shelf (SIS) </option>
-                            <option value="111" >Poster Box </option>
-                            <option value="112" >Shop Board with Pillar & Shutter Branding & Paint </option>
-                            <option value="113" >Hanger </option>
-                            <option value="114" >Plug in dispenser </option>
-                            <option value="115" >Food Corner </option>
-                            <option value="116" >Glass Shelf Branding </option>
-                            <option value="117" >Counter Top </option>
-                        </select>-->
+
                         
                          </div>
                         
@@ -711,31 +697,7 @@
                     
                     <td>
                     <div id="selectBrand">
-                   <!-- <select name="select_mar_brand" id="select_mar_brand" data-native-menu="false">
-                            <option value="0" >Brand</option>
-                            <option value="310205013" >KNORR</option>
-                            <option value="320611387" >BB TAAZA </option>
-                            <option value="322680A48" >PUREIT </option>
-                            <option value="431332090" >SURF</option>
-                            <option value="431332794" >RIN </option>
-                            <option value="431332803" >WHEEL (HPC)</option>
-                            <option value="431475960" >VIM</option>
-                            <option value="433083764" >UNILEVER OTHER NON-BRANDED</option>
-                            <option value="441741067" >DOVE</option>
-                            <option value="441741082" >SUNSILK</option>
-                            <option value="441741B84" >CLEAR</option>
-                            <option value="441845040" >PEPSODENT</option>
-                            <option value="441845093" >CLOSE UP</option>
-                            <option value="441846040" >PEPSODENT</option>
-                            <option value="441948070" >AXE</option>
-                            <option value="441948A79" >REXONA</option>
-                            <option value="473439022" >FAIR & LOVELY</option>
-                            <option value="473439041" >PONDS</option>
-							<option value="473440084" >VASELINE</option>
-							<option value="473538036" >LIFEBUOY</option>
-							<option value="473538088" >LUX</option>
-							
-                        </select>-->
+                 
                         </div>
                     </td>
                   </tr>

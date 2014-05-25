@@ -119,11 +119,12 @@ function clear_autho(){
 	localStorage.mar_data_ready="";
 	localStorage.synced="";
 	
+	localStorage.m_new="";
 	var url = "#login";
 	$(location).attr('href',url);
 	location.reload();
 	//alert ('ccc');
-	localStorage.m_new="";
+	
 }
 function div_change(){
 	//alert (localStorage.outletNameID);
@@ -148,8 +149,9 @@ function div_change(){
 }
 
 function cancel_outlet(){
-	localStorage.show_cancel=0
-	localStorage.outletNameID=''
+	localStorage.show_cancel=0;
+	localStorage.outletNameID='';
+	localStorage.m_new='';
 	
 	localStorage.outletException='undefined';
 	$("#outletCancel").hide();
@@ -384,7 +386,7 @@ function marketPJP() {
 								}
 								
 								
-								outletStringShow=outletStringShow+'<br/><br/> <a data-role="button" onClick="select_outlet();div_change();syncOutlet();" >Next</a>'
+								outletStringShow=outletStringShow+'<br/><br/> <a data-role="button" onClick="select_outlet();" >Next</a>'
 								
 								
 								
@@ -436,9 +438,12 @@ function marketPJP_check() {
 
 function select_outlet() { 
 		var selected_outletID=($("input:radio[name='RadioOutlet']:checked").val())			
-		if (selected_outletID!=undefined){
+		//alert (selected_outletID);
+		
+		if ((selected_outletID!=undefined) && (selected_outletID!='undefined')){
 				localStorage.selectedOutlet=selected_outletID;
-		}
+				//alert ('1234');
+		//}
 		//alert (selected_outletID);
 		//$("#outletInfo1").html(apipath+'sync_outlet_ex?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet);
 		
@@ -516,7 +521,8 @@ function select_outlet() {
 							
 							syncOutlet();
 							
-							
+							div_change();
+							//syncOutlet();
 							
 							}//end success if
 							
@@ -538,7 +544,8 @@ function select_outlet() {
 					  $(location).attr('href',url);	
 				  }
 			  });//end ajax*/
-		
+			  
+    }//end if
 }
 
 //=====================select Outlet end===============
@@ -1425,6 +1432,8 @@ function mar_page_set() {
 
 }
 function submit_data() { 
+	$("#sub_button").hide();
+	$("#submit_data").html("Data submit is in progrss.");
 	//=========================AJAX Submit==========================	
 	var lat=$( "#lat").val();
 	var long=$( "#long").val();
@@ -1479,6 +1488,7 @@ function submit_data() {
 								localStorage.gift_data_ready="";
 								localStorage.mar_data_ready="";
 								
+								
 								var url = "#menuPage";
 								$(location).attr('href',url);
 								location.reload
@@ -1492,6 +1502,7 @@ function submit_data() {
 				      },
 				  error: function(result) {
 					 // alert (result);
+					 $("#sub_button").hide();
 					 $("#submit_data").html("Connectivity Error.Please Check Your Network Connection and Try Again");
 					  var url = "#giftAckPage";
 					  $(location).attr('href',url);	
