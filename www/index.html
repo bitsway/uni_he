@@ -118,8 +118,37 @@
 				var sync_date_get=get_date();
 				var sync_date=sync_date_get.substring(0,10);
 				if ((localStorage.synced=='YES') & (localStorage.sync_date!=sync_date)){
+					
+					cancel_outlet();
+					localStorage.show_cancel=0;
+								
+					localStorage.m_new_string="";
+					localStorage.m_new="";
+					localStorage.selectedOutlet="";
+					localStorage.outletExStringShow="";
+					localStorage.outletException="";
+					localStorage.outletChanne="";
+					localStorage.outletNameID="";
+					localStorage.mhskusTotal="";
+					
+					localStorage.npdTotal="";
+					localStorage.fdisplaySlabTotal="";
+					localStorage.fdisplayTotal="";
+					localStorage.qpdsSlabTotal="";
+					
+					localStorage.qpdsTotal="";
+					localStorage.giftTotal="";
+					localStorage.marchadizingTotal="";
+					localStorage.mhskus_data_ready="";
+					localStorage.npd_data_ready="";
+					localStorage.fdisplay_data_ready="";
+					localStorage.qpds_data_ready="";
+					localStorage.gift_data_ready="";
+					localStorage.mar_data_ready="";
+					
 					var url = "#routePage";
 					$(location).attr('href',url);
+					localstorage.m_new="";
 					//location.reload()
 				}
 				//=====================
