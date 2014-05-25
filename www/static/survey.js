@@ -1492,7 +1492,7 @@ function submit_data() {
 				      },
 				  error: function(result) {
 					 // alert (result);
-					 $("#submit_data").html("Please Try Again");
+					 $("#submit_data").html("Connectivity Error.Please Check Your Network Connection and Try Again");
 					  var url = "#giftAckPage";
 					  $(location).attr('href',url);	
 				  }
