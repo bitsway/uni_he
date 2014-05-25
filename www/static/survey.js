@@ -1433,7 +1433,7 @@ function mar_page_set() {
 }
 function submit_data() { 
 	$("#sub_button").hide();
-	$("#submit_data").html("Data submit is in progrss.");
+	$("#submit_data").html("Sync in progress. Please Wait ..");
 	//=========================AJAX Submit==========================	
 	var lat=$( "#lat").val();
 	var long=$( "#long").val();
