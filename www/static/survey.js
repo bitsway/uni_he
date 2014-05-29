@@ -15,6 +15,7 @@ var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
 var temp_image_div='';
 localstorage.m_new="";
+localstorage.submitted_outlet="";
 
 
 
@@ -64,7 +65,8 @@ function first_page(){
 	if ((localStorage.synced!='YES')){
 		//alert ('nadira')
 		var url = "#login";
-		$(location).attr('href',url);
+		$.mobile.navigate(url);
+		//$(location).attr('href',url);
 		
 	}
 
@@ -76,12 +78,14 @@ function outlet_next_page(){
 	if ((localStorage.routeException_found == '1') && ((localStorage.outletException=='undefined') || (localStorage.outletException==undefined))){
 		//alert (localStorage.routeException_found);
 		var url = "#outletexceptionPage";
-		$(location).attr('href',url);
+		$.mobile.navigate(url);
+		//$(location).attr('href',url);
 		
 	}
 	else{
 		    var url = "#mhskusPage";
-			$(location).attr('href',url);
+			//$(location).attr('href',url);
+			$.mobile.navigate(url);
 			location.reload();	
 	}
 }
@@ -121,7 +125,8 @@ function clear_autho(){
 	
 	localStorage.m_new="";
 	var url = "#login";
-	$(location).attr('href',url);
+	$.mobile.navigate(url);
+	//$(location).attr('href',url);
 	location.reload();
 	//alert ('ccc');
 	
@@ -175,7 +180,7 @@ function check_user() {
 	//var synccode=''
 	if (cm_id=="" || cm_id==undefined || cm_pass=="" || cm_pass==undefined){
 		var url = "#login";      
-		$(location).attr('href',url);
+		$.mobile.navigate(url);
 	}else{
 		localStorage.cid='UNILEVER';
 		localStorage.cm_id=cm_id;
@@ -249,12 +254,12 @@ function check_user() {
 							if ((resultArray[0]=='SUCCESS') && (localStorage.route==undefined)){
 								
 								var url = "#routePage";
-								$(location).attr('href',url);
+								$.mobile.navigate(url);
 								location.reload();
 							}
 							if ((resultArray[0]=='SUCCESS') && (localStorage.route!=undefined)){
 								var url = "#menuPage";
-								$(location).attr('href',url);
+								$.mobile.navigate(url);
 								//location.reload();
 							}
 							
@@ -265,7 +270,7 @@ function check_user() {
 				  error: function(result) {
 					 // $("#error_login").html(apipath+'check_user?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode);
 					  var url = "#login";
-					  $(location).attr('href',url);	
+					  $.mobile.navigate(url);	
 				  }
 			  });//end ajax
 		  }//end else	
@@ -312,7 +317,7 @@ function selectRoute() {
 			localStorage.routeException_found='0';
 		
 			var url = "#menuPage";
-			$(location).attr('href',url);	
+			$.mobile.navigate(url);	
 		}
 		else {
 			localStorage.selectedRoute=selected_routeID;
@@ -320,7 +325,7 @@ function selectRoute() {
 			
 			
 			var url = "#routeexceptionPage";
-			$(location).attr('href',url);	
+			$.mobile.navigate(url);	
 		}
 	}
 }
@@ -332,7 +337,7 @@ function selectRouteException() {
 	if(selected_route_exception!=undefined){
 		localStorage.routeException=selected_route_exception;
 		var url = "#menuPage";
-		$(location).attr('href',url);	
+		$.mobile.navigate(url);	
 	}
 }
 //=====================Route Exception end=====================
@@ -340,7 +345,7 @@ function selectRouteException() {
 function marketPJP() { 
 	var selected_route_exception=($("input:radio[name='RadioRouteEx']:checked").val())
 	if(localStorage.selectedRoute!=undefined){
-	//	$("#dataerror").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
+		$("#dataerror").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
 	//======================================	
 		$.ajax({
 				 type: 'POST',
@@ -372,6 +377,12 @@ function marketPJP() {
 									total_visit_done=outletArray[3];
 									outlet_c=outletArray[4];
 									depot_id=outletArray[5];
+									schedule_date=outletArray[6];
+									
+									
+									
+									
+									
 									if (outlet_c=='g'){
 										outletColor='<img style="height:20px; width:20px" src="green.png">';
 									}
@@ -382,7 +393,8 @@ function marketPJP() {
 										outletColor='<img style="height:20px; width:20px" src="red.png">';
 									}
 									
-									outletStringShow=outletStringShow+'<label ><table width="100%" border="0"> <tr> <td width="5%"><input type="radio" name="RadioOutlet" value="'+outletID+'" id="RadioGroup1_0"></td><td width="60%">'+outletName +'('+outletID+')</td><td width="15%">'+ total_visit+'/'+total_visit_done+' </td>	<td>'+outletColor+'</td> </tr></table></label> '
+									outletStringShow=outletStringShow+'<label ><table width="100%" border="0"> <tr> <td width="5%">'+
+													'<input type="radio" name="RadioOutlet" value="'+outletID+'rdrd'+schedule_date+'" id="RadioGroup1_0"></td><td width="60%">'+outletName +'('+outletID+')</td><td width="15%">'+ total_visit+'/'+total_visit_done+' </td>	<td>'+outletColor+'</td> </tr></table></label> '
 								}
 								
 								
@@ -402,7 +414,7 @@ function marketPJP() {
 				  error: function(result) {
 
 					  var url = "#login";
-					  $(location).attr('href',url);
+					  $.mobile.navigate(url);
 				  }
 			  });//end ajax*/
 		
@@ -416,13 +428,13 @@ function marketPJP_check() {
 	
 				if (localStorage.route==''){
 					var url = "#routePage";
-					$(location).attr('href',url);	
+					$.mobile.navigate(url);	
 				}
 				if (localStorage.route!=''){
 					
 					//div_change()
 					var url = "#outletPage";
-					$(location).attr('href',url);
+					$.mobile.navigate(url);
 					//location.reload();	
 					
 				}
@@ -437,12 +449,19 @@ function marketPJP_check() {
 //=====================select Outlet start============
 
 function select_outlet() { 
-		var selected_outletID=($("input:radio[name='RadioOutlet']:checked").val())			
-		//alert (selected_outletID);
+		var selected_outletID_get=($("input:radio[name='RadioOutlet']:checked").val())		
+		var selected_outletID_list = selected_outletID_get.split('rdrd');
+		var selected_outletID=selected_outletID_list[0];	
+		var selected_date_get=selected_outletID_list[1];
+		
 		
 		if ((selected_outletID!=undefined) && (selected_outletID!='undefined')){
 				localStorage.selectedOutlet=selected_outletID;
-				//alert ('1234');
+				//selected_date=new Date(selected_date_get);
+				//selected_date=get_date(selected_date_get)
+				selected_date=selected_date_get;
+				localStorage.selected_date=selected_date.substr(0,10);
+				//alert (localStorage.selected_date);
 		//}
 		//alert (selected_outletID);
 		//$("#outletInfo1").html(apipath+'sync_outlet_ex?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet);
@@ -541,7 +560,7 @@ function select_outlet() {
 				  error: function(result) {
 					 // alert (result);
 					  var url = "#login";
-					  $(location).attr('href',url);	
+					  $.mobile.navigate(url);	
 				  }
 			  });//end ajax*/
 			  
@@ -551,7 +570,7 @@ function select_outlet() {
 //=====================select Outlet end===============
 function reloadPages() { 
 		   var url = "#mhskusPage";
-			$(location).attr('href',url);
+			$.mobile.navigate(url);
 			location.reload();
 }
 //=====================Outlet Exception start=====================
@@ -563,7 +582,7 @@ function selectOutletException() {
 		syncOutlet();
 		//localStorage.routeDone=''
 		var url = "#outletSyncingPage";
-		$(location).attr('href',url);
+		$.mobile.navigate(url);
 		doTimer();
 		
 		///	==Div hide after confirm outlet	
@@ -1041,7 +1060,7 @@ function syncOutlet() {
 				  error: function(result) {
 					 // alert (result);
 					  var url = "#login";
-					  $(location).attr('href',url);	
+					  $.mobile.navigate(url);	
 				  }
 			  });//end ajax*/
 			  
@@ -1055,7 +1074,7 @@ function selectRouteException() {
 	if(selected_route_exception!=undefined){
 		localStorage.routeException=selected_route_exception;
 		var url = "#menuPage";
-		$(location).attr('href',url);	
+		$.mobile.navigate(url);	
 	}
 }
 //=====================Route Exception end=====================
@@ -1185,8 +1204,6 @@ function fdisplay_page_set() {
 		var fdisplay_detail_array =  fdisplay_detail.split('rdrd');
 		var fdTotal=fdisplay_detail_array.length
 		//alert (fdisplayImg_path.length);
-		
-		
 			
 			for (var d=0; d < fdTotal-1; d++){
 				
@@ -1433,6 +1450,7 @@ function mar_page_set() {
 }
 function submit_data() { 
 	$("#sub_button").hide();
+	
 	$("#submit_data").html("Sync in progress. Please Wait ..");
 	//=========================AJAX Submit==========================	
 	var lat=$( "#lat").val();
@@ -1441,12 +1459,16 @@ function submit_data() {
     var endTime=get_date();
 	var giftImage=$( "#gift_image_name_hidden").val();
 	var latlong=lat.toString()+","+long.toString()
-	//$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);
+	
+	//$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);
+	
+	//alert (localStorage.selected_date);
 	$.ajax({
 				 type: 'POST',
-				 url: apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string,
+				// url: apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+localstorage.selected_date+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string,
+				url: apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string,
 				 success: function(result) {	
-						
+						//alert ('nadira');
 						if (result==''){
 							alert ('Sorry Network not available');
 						}
@@ -1456,10 +1478,10 @@ function submit_data() {
 							}
 							
 							if (result=='SUCCESS'){
+								
+								
+								
 								uploadAll();
-								
-								
-								
 								cancel_outlet();
 								
 								localStorage.show_cancel=0;
@@ -1488,9 +1510,12 @@ function submit_data() {
 								localStorage.gift_data_ready="";
 								localStorage.mar_data_ready="";
 								
-								
+								//$("#submit_data").html("Successfully Submitted");
+												
+								//doTimer();
 								var url = "#menuPage";
-								$(location).attr('href',url);
+								$.mobile.navigate(url);	
+								//$(location).attr('href',url);
 								location.reload
 								
 								
@@ -1505,7 +1530,7 @@ function submit_data() {
 					 $("#sub_button").hide();
 					 $("#submit_data").html("Connectivity Error.Please Check Your Network Connection and Try Again");
 					  var url = "#giftAckPage";
-					  $(location).attr('href',url);	
+					  $.mobile.navigate(url);	
 				  }
 			  });//end ajax
 	
@@ -1574,7 +1599,7 @@ function marchandizing_add() {
 				      },
 				  error: function(result) {
 					  var url = "#login";
-					  $(location).attr('href',url);	
+					  $.mobile.navigate(url);	
 				  }
 			  });//end ajax
 	}
@@ -1743,12 +1768,16 @@ function fail(error) {
 
 function doTimer()
 {
-  setTimeout(setOutlet(),60000);
+  setTimeout(setSubmitmsg(),60000);
  
 }
-function setOutlet(){
+function setSubmitmsg(){
+	$("#submit_data").html("Successfully Submitted");
+	
+}
+/*function setOutlet(){
 	//$("#outletButton").show();
 	localStorage.syncinfo='<div  style="color:#006A6A; font-size:18px;" id="outletName_show">'+localStorage.outletNameID +'</div>Sync Completed Successfully';
 	$('#outletSyncmsg').html(localStorage.syncinfo);
 	$("#outletOk").show();
-}
+}*/
