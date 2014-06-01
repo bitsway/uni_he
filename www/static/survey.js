@@ -650,8 +650,9 @@ function selectOutletException() {
 		localStorage.outletException=selected_outlet_exception;
 		syncOutlet();
 		//localStorage.routeDone=''
-		//var url = "#outletSyncingPage";
-		var url = "#mhskusPage";
+		setOutlet();
+		var url = "#outletSyncingPage";
+		//var url = "#mhskusPage";
 		$.mobile.navigate(url);
 		location.reload();
 		//doTimer();
@@ -1415,6 +1416,8 @@ function gift_ready_data() {
 	}
 	localStorage.gift_data_ready=gift_data
 	gift_page_set();
+	
+	$('#outlet_info_msg').html(localStorage.outletNameID);
 }
 
 function gift_page_set() { 
