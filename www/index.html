@@ -347,7 +347,7 @@
                         </div>
                         <div id="outletButton" style="display:none" >
 						<a data-role="button" onClick="cancel_outlet()" >Cancel</a>
-                        <a data-role="button" onClick="outlet_next_page()" >Next</a>
+                        <a data-role="button" onClick="outlet_next_page();" >Next</a>
 						</div>
 						
                 </div>	
@@ -480,7 +480,7 @@
    		  <div data-theme="c" data-role="header" data-position="fixed" >
 			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
                 <a data-role="button" href="#mhskusPage" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
-                <h3>Marchandizing</h3>
+                <h3>Merchandising</h3>
             </div>
 		    
 			<div  data-role="content" >   
@@ -624,10 +624,10 @@
              </tr>
             </table>-->
 			</br></br></br>
-			<a id="sub_button" data-role="button" onClick="submit_data()" >Submit</a>
+			<a id="sub_button" data-role="button" href="#submitPage" onClick="gift_ready_data();gift_page_set();" >Next</a>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                
-               <div id="submit_data"></div>
+               <!--<div id="submit_data"></div>-->
                <input name="lat" id="lat" placesholder="" value="" type="hidden">
 			   <input name="long" id="long" placeholder="" value="" type="hidden">
                
@@ -641,7 +641,7 @@
 		
      <!-- ============================wait page Start============================-->
     
-    <div data-theme="c" data-role="page" id="waitPage">
+    <div data-theme="c" data-role="page" id="submitPage">
 		    <div data-theme="c" data-role="header" data-position="fixed" >
 			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
                 <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
@@ -649,10 +649,13 @@
             </div>
 		    
 			<div  data-role="content" >
-        
-			<div id="submit_msg">
+        		<a id="sub_button" data-role="button" onClick="submit_data()" >Submit</a>
+			
+            
+            <div id="submit_data"></div>
+            <!--<div id="submit_msg">
 				Please Wait Submitting Data............
-			</div>
+			</div>-->
 			
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -671,7 +674,7 @@
 <div data-theme="c" data-role="page" data-dialog="true" id="dialogMarchandizing">
 
   <div data-role="header">
-    <h1>New Marchandizing</h1>
+    <h1>New Merchandising</h1>
   </div>
 
   <div data-role="main" class="ui-content">
@@ -692,7 +695,7 @@
  
                   
                   
-                  
+                 
                   <tr >
                     
                     <td>

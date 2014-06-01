@@ -94,7 +94,7 @@ function outlet_next_page(){
 function clear_autho(){
 	localStorage.cm_id='';
 	localStorage.cm_pass='';
-	localStorage.synccode='';
+	//localStorage.synccode='';
 	localStorage.routeString='';
 	localStorage.routeExStringShow='';
 	localStorage.show_cancel=0;
@@ -223,11 +223,80 @@ function check_user() {
 								var routeSingleArray = routeList.split('rdrd');	
 								var routeSingleTtotal = routeSingleArray.length;
 								var routeStringShow=''
+								
+								var d=new Date();
+								var weekday=new Array(7);
+								weekday[0]="Sunday";
+								weekday[1]="Monday";
+								weekday[2]="Tuesday";
+								weekday[3]="Wednesday";
+								weekday[4]="Thursday";
+								weekday[5]="Friday";
+								weekday[6]="Saturday";
+								
+								var today_get = weekday[d.getDay()];
+								var alowSl=''
+								for (var rs=0; rs < routeSingleTtotal-1; rs++){
+									routeSArray = routeSingleArray[rs].split('fdfd');
+									routeSID=routeSArray[0];
+										
+									
+									routeSArray = routeSID.split('_');
+									var r_sday=routeSArray[2];
+									var r_sdaySl=routeSArray[3];
+									
+									
+									if (r_sday==today_get){	
+											if (r_sdaySl==1){
+												alowSl=	'7,6,5'
+											}
+											if (r_sdaySl==2){
+												alowSl=	'1,7,6'
+											}
+											if (r_sdaySl==3){
+												alowSl=	'1,2,7'
+											}
+											if (r_sdaySl==4){
+												alowSl=	'3,2,1'
+											}
+											if (r_sdaySl==5){
+												alowSl=	'4,3,2'
+											}
+											if (r_sdaySl==6){
+												alowSl=	'5,4,3'
+											}
+									}
+									
+								}
+								//alert (alowSl);
 								for (var r=0; r < routeSingleTtotal-1; r++){
 									routeArray = routeSingleArray[r].split('fdfd');
 									routeID=routeArray[0];
-									routeName=routeArray[1];									
-									routeStringShow=routeStringShow+'<label><input type="radio" name="RadioRoute"  value="'+routeID+'" id="RadioGroup1_0"> '+routeName+'</label>'
+									routeName=routeArray[1];	
+									
+									routeSArray = routeID.split('_');
+									var r_day=routeSArray[2];
+									var r_daySl=routeSArray[3];
+									//alert (r_daySl);
+									
+									//alert (today_get);
+									
+									
+									//alert (r_daySl);
+									if (r_day==today_get){	
+																		
+									  routeStringShow=routeStringShow+'<label style="background:#81C0C0"><input type="radio" name="RadioRoute"  value="'+routeID+'" id="RadioGroup1_0"> '+routeName+'</label>'
+									}
+									else{
+									  //alert (alowSl)
+									 if ((alowSl.search( r_daySl )) != -1){
+										 routeStringShow=routeStringShow+'<label><input type="radio" name="RadioRoute"  value="'+routeID+'" id="RadioGroup1_0"> '+routeName+'</label>'
+									 }
+									 else{
+									  	routeStringShow=routeStringShow+'<label><input type="radio"  disabled name="RadioRoute"  value="'+routeID+'" id="RadioGroup1_0"> '+routeName+'</label>'
+									 }
+									}
+									
 								}
 								localStorage.routeString=routeStringShow
 								
@@ -345,7 +414,7 @@ function selectRouteException() {
 function marketPJP() { 
 	var selected_route_exception=($("input:radio[name='RadioRouteEx']:checked").val())
 	if(localStorage.selectedRoute!=undefined){
-		$("#dataerror").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
+		//$("#dataerror").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
 	//======================================	
 		$.ajax({
 				 type: 'POST',
@@ -581,9 +650,11 @@ function selectOutletException() {
 		localStorage.outletException=selected_outlet_exception;
 		syncOutlet();
 		//localStorage.routeDone=''
-		var url = "#outletSyncingPage";
+		//var url = "#outletSyncingPage";
+		var url = "#mhskusPage";
 		$.mobile.navigate(url);
-		doTimer();
+		location.reload();
+		//doTimer();
 		
 		///	==Div hide after confirm outlet	
 			
@@ -924,7 +995,7 @@ function syncOutlet() {
 								if (localStorage.giftTotal > 1){
 									//alert (localStorage.giftTotal);
 									giftStringShow=giftStringShow+'</br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>'+              
-												   '<a data-role="button" href="#" onClick="get_pic_gift();gift_ready_data();gift_page_set();" >Take Picture </a></td> </tr></table>'
+												   '<a data-role="button" href="#" onClick="get_pic_gift();" >Take Picture </a></td> </tr></table>'
 								}
 								
 								if (localStorage.giftTotal > 1){
@@ -1462,7 +1533,7 @@ function submit_data() {
 	
 	//$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);
 	
-	//alert (localStorage.selected_date);
+	//alert (localStorage.m_new_string);
 	$.ajax({
 				 type: 'POST',
 				// url: apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+localstorage.selected_date+'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string,
@@ -1510,7 +1581,7 @@ function submit_data() {
 								localStorage.gift_data_ready="";
 								localStorage.mar_data_ready="";
 								
-								//$("#submit_data").html("Successfully Submitted");
+								$("#submit_data").html("Successfully Submitted");
 												
 								//doTimer();
 								var url = "#menuPage";
@@ -1547,7 +1618,7 @@ function marchandizing_add() {
 	var select_mar_brand=$( "#select_mar_brand").val();
 	var select_mar_qty=$( "#mar_qty_add").val();
 	var select_mar_date=$( "#mar_date_add").val();
-	
+	//alert (select_mar_item);
 	var m_new_string=''
 
 	var start_new_mar=0;
@@ -1556,7 +1627,7 @@ function marchandizing_add() {
 		m_new_string=localStorage.m_new_string
 		m_new_string=m_new_string+select_mar_item+"fdfd"+select_mar_brand+"fdfd"+select_mar_qty+"fdfd"+select_mar_date+"rdrd"
 		localStorage.m_new_string=m_new_string.replace("undefined","");
-		
+		//alert (localStorage.m_new_string);
 	
 		
 		//$("#marchadizing_add_show").html(apipath+'marchandizing_add?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&m_item='+select_mar_item+'&m_brand='+select_mar_brand+'&m_qty='+select_mar_qty+'&m_date='+select_mar_date);
@@ -1775,9 +1846,9 @@ function setSubmitmsg(){
 	$("#submit_data").html("Successfully Submitted");
 	
 }
-/*function setOutlet(){
+function setOutlet(){
 	//$("#outletButton").show();
 	localStorage.syncinfo='<div  style="color:#006A6A; font-size:18px;" id="outletName_show">'+localStorage.outletNameID +'</div>Sync Completed Successfully';
 	$('#outletSyncmsg').html(localStorage.syncinfo);
 	$("#outletOk").show();
-}*/
+}
