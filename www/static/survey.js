@@ -523,6 +523,7 @@ function select_outlet() {
 		var selected_outletID=selected_outletID_list[0];	
 		var selected_date_get=selected_outletID_list[1];
 		
+		//localStorage.selected_outletID_get=selected_outletID_get;
 		
 		if ((selected_outletID!=undefined) && (selected_outletID!='undefined')){
 				localStorage.selectedOutlet=selected_outletID;
@@ -575,7 +576,9 @@ function select_outlet() {
 									 
 									outletStringShow=outletStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
 									outletStringShow=outletStringShow+'<tr> <td colspan="3" style="color:#006A6A; font-size:18px;">'+outlet+'</td></tr> '
-				 					/*outletStringShow=outletStringShow+'<tr style="background-color:#BCDBE0;"><td width="2%">&nbsp;</br></td><td width="60">Channel </td><td>&nbsp;&nbsp;:'+channel+'</td></tr>'
+				 					
+									
+									/*outletStringShow=outletStringShow+'<tr style="background-color:#BCDBE0;"><td width="2%">&nbsp;</br></td><td width="60">Channel </td><td>&nbsp;&nbsp;:'+channel+'</td></tr>'
 									//outletStringShow=outletStringShow+'<tr style="background-color:#BCDBE0;">'
 //                    				outletStringShow=outletStringShow+'<td width="1%"></td><td width="60">PS Slab</td><td>&nbsp;&nbsp;:'+ psSlab +'</td></tr>'
 									outletStringShow=outletStringShow+'<tr style="background-color:#BCDBE0;">'
@@ -650,9 +653,9 @@ function selectOutletException() {
 		localStorage.outletException=selected_outlet_exception;
 		syncOutlet();
 		//localStorage.routeDone=''
-		setOutlet();
-		var url = "#outletSyncingPage";
-		//var url = "#mhskusPage";
+		//setOutlet();
+		//var url = "#outletSyncingPage";
+		var url = "#mhskusPage";
 		$.mobile.navigate(url);
 		location.reload();
 		//doTimer();
@@ -854,7 +857,7 @@ function syncOutlet() {
 											
 											
 											fdisplayStringShow=fdisplayStringShow+'<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemfdisplay +'" id="'+ Itemfdisplay +'" value="'+itemID+'" min="0"> <input type="hidden" name="'+ slabfdisplay +'" id="'+ slabfdisplay +'" value="'+slab_fdisplay+'" min="0"></td>'+
-															  '<td><input type="number" name="'+ItemQtyfdisplay +'" id="'+ ItemQtyfdisplay +'" value="" min="0"></td><td></td><td><input type="number" name="'+ItemFaceupfdisplay +'" id="'+ ItemFaceupfdisplay +'" value="" min="0"></td>'+
+															  '<td><input  onClick="checkQtyFd('+i+')" onKeyUp="checkQtyFd('+i+')" type="number" name="'+ItemQtyfdisplay +'" id="'+ ItemQtyfdisplay +'" value="" min="0"></td><td></td><td><input onKeyUp="checkQtyFd('+i+')"  type="number" name="'+ItemFaceupfdisplay +'" id="'+ ItemFaceupfdisplay +'" value="" min="0"></td>'+
 															  '<td></td><td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ ItemVisiblefdisplay +'" id="'+ ItemVisiblefdisplay +'" value=""/></label></td></tr>'
 											fdisplayStringShow=fdisplayStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
 											
@@ -938,8 +941,8 @@ function syncOutlet() {
 											qpdsStringShow=qpdsStringShow+
 														   '<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemqpds +'" id="'+ Itemqpds +'" value="'+itemID+'" min="0">'+
 														   '<input type="hidden" name="'+ schemeqpds +'" id="'+ schemeqpds +'" value="'+scheme_qpds+'" min="0"> </td>'+
-														   '<td><input type="number" name="'+ItemQtyqpds +'" id="'+ ItemQtyqpds +'" value="" min="0"></td>'+
-														   '<td></td><td><input type="number" name="'+ItemFaceupqpds +'" id="'+ ItemFaceupqpds +'" value="" min="0"></td><td></td>'+
+														   '<td><input onClick="checkQtyQpds('+i+')" onKeyUp="checkQtyQpds('+i+')"  type="number" name="'+ItemQtyqpds +'" id="'+ ItemQtyqpds +'" value="" min="0"></td>'+
+														   '<td></td><td><input onKeyUp="checkQtyQpds('+i+')" type="number" name="'+ItemFaceupqpds +'" id="'+ ItemFaceupqpds +'" value="" min="0"></td><td></td>'+
 														   '<td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ ItemVisibleqpds +'" id="'+ ItemVisibleqpds +'" value=""/></label></td></tr>'
 											qpdsStringShow=qpdsStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
 										}
@@ -1603,7 +1606,7 @@ function submit_data() {
 					 // alert (result);
 					 $("#sub_button").show();
 					 $("#submit_data").html("Connectivity Error.Please Check Your Network Connection and Try Again");
-					  var url = "#giftAckPage";
+					  var url = "#submitPage";
 					  $.mobile.navigate(url);	
 				  }
 			  });//end ajax
@@ -1855,3 +1858,27 @@ function setOutlet(){
 	$('#outletSyncmsg').html(localStorage.syncinfo);
 	$("#outletOk").show();
 }
+
+
+//=============qty faceup check fdisplay====
+
+function checkQtyFd(i){
+	var qty=$("#ItemQtyfdisplay_"+i.toString()).val();
+	var faceup=$("#ItemFaceupfdisplay_"+i.toString()).val();
+	
+	
+	if (parseInt(faceup) > parseInt(qty)){
+		$("#ItemFaceupfdisplay_"+i.toString()).val("");
+	}
+}
+
+
+function checkQtyQpds(i){
+	var qty=$("#ItemQtyqpds_"+i.toString()).val();
+	var faceup=$("#ItemFaceupqpds_"+i.toString()).val();
+	
+	if (parseInt(faceup) > parseInt(qty)){
+		$("#ItemFaceupqpds_"+i.toString()).val("");
+	}
+}
+		
