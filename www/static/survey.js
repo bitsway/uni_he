@@ -162,6 +162,15 @@ function cancel_outlet(){
 	
 	
 	
+	localStorage.mhskus_data_ready="";
+	localStorage.npd_data_ready="";
+	localStorage.fdisplay_data_ready="";
+	localStorage.qpds_data_ready="";
+	localStorage.gift_data_ready="";
+	localStorage.mar_data_ready="";
+	
+	
+	
 	
 	localStorage.outletException='undefined';
 	$("#outletCancel").hide();
