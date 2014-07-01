@@ -226,6 +226,8 @@ function check_user() {
 								
 								result_string=resultArray[1];
 								localStorage.routeString_bak=result_string;
+								//alert (localStorage.routeString_bak);
+								
 								var routeArray = result_string.split('</routeList>');									
 								routeList = routeArray[0].replace("<routeList>","");
 								
@@ -254,6 +256,7 @@ function check_user() {
 								weekday[6]="Saturday";
 								
 								var today_get = weekday[d.getDay()];
+								
 								var alowSl=''
 								for (var rs=0; rs < routeSingleTtotal-1; rs++){
 									routeSArray = routeSingleArray[rs].split('fdfd');
@@ -368,16 +371,17 @@ function check_user() {
 
 //=========================Check user=====================
 function check_route() { 
-		//localStorage.routeList_bak
-		localStorage.routeString="";	
-		localStorage.routeExStringShow="";					
-		result_string=localStorage.routeList_bak;
+		//localStorage.routeList_bak=localStorage.routeString_bak;
+		//alert (localStorage.routeList_bak) 
+		//localStorage.routeString="";	
+		//localStorage.routeExStringShow="";					
+		result_string=localStorage.routeString_bak;
+		//alert (result_string);
+		
 		var routeArray = result_string.split('</routeList>');									
 		routeList = routeArray[0].replace("<routeList>","");
 		//alert (result_string)
-		routeException = routeArray[1];
-		var routeExArray = routeException.split('</routeexList>');									
-		routeExList = routeExArray[0].replace("<routeexList>","");
+		
 								
 								
   //==========Create route list
@@ -396,6 +400,7 @@ function check_route() {
 		weekday[6]="Saturday";
 								
 		var today_get = weekday[d.getDay()];
+		//alert (today_get);
 		var alowSl=''
 								
 		for (var rs=0; rs < routeSingleTtotal-1; rs++){
@@ -409,6 +414,7 @@ function check_route() {
 			
 			
 			if (r_sday==today_get){	
+					//r_sdaySl=5;
 					if (r_sdaySl==1){
 						alowSl=	'7,6,5'
 					}
@@ -461,23 +467,11 @@ function check_route() {
 		$("#routeString").html(localStorage.routeString);
 	
 	//=======end route list====================
-	//==========Create route exception list
-		var routeExStringShow=''
-		var routeExSingleArray = routeExList.split('rdrd');	
-		var routeExSingleTtotal = routeExSingleArray.length;
-		var routeExStringShow=''
-		for (var re=0; re < routeExSingleTtotal-1; re++){
-			routeExArray = routeExSingleArray[re].split('fdfd');
-			routeExID=routeExArray[0];
-			routeExName=routeExArray[1];
-			routeExStringShow=routeExStringShow+'<label><input type="radio" name="RadioRouteEx"    value="'+routeExName+'" > '+routeExName+'</label>'
-		}
-		localStorage.routeExStringShow=routeExStringShow
-		$("#routeExString").html(localStorage.routeExStringShow);
-		
-		//=======end route exception list====================								
+						
 								
-
+		var url = "#routePage";
+		$.mobile.navigate(url);	
+		location.reload();
 	}//function
 
 
@@ -589,7 +583,7 @@ function marketPJP() {
 									
 									
 									
-									
+									//alert (outletColor);
 									if (outlet_c=='g'){
 										outletColor='<img style="height:20px; width:20px" src="green.png">';
 									}

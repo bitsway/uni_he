@@ -149,7 +149,7 @@
 					localStorage.gift_data_ready="";
 					localStorage.mar_data_ready="";
 					
-					check_route()
+					//check_route()
 					var url = "#routePage";
 					$.mobile.navigate(url);
 					
@@ -197,7 +197,7 @@
 				  <ul data-role="listview">
 							<li><a href="#login" >Sync Authorization</a></li>
                     		<div style="background:#008A8A; height:1px"></div>
-							<li id="link_route"><a href="#routePage" onClick="check_route()">Sync Route</a></li>
+							<li id="link_route"><a onClick="check_route()">Sync Route</a></li>
                             <div style="background:#008A8A; height:1px"></div>
 							<li><a onClick="clear_autho()" href="#login">Clear Authorization</a></li>
 					</ul>
