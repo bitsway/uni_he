@@ -24,7 +24,7 @@ function getlocationand_askhelp() { //location
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
 	
 }
-	
+	 
 // onSuccess Geolocation
 function onSuccess(position) {
 		
@@ -156,7 +156,12 @@ function div_change(){
 function cancel_outlet(){
 	localStorage.show_cancel=0;
 	localStorage.outletNameID='';
+	localStorage.marchadizingTotal='';
+	localStorage.m_new_string='';
 	localStorage.m_new='';
+	
+	
+	
 	
 	localStorage.outletException='undefined';
 	$("#outletCancel").hide();
@@ -188,7 +193,7 @@ function check_user() {
    		//localStorage.synccode=synccode;
 		localStorage.synced='NO'
    		
-		//$("#error_login").html(apipath+'check_user?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode);	
+		$("#error_login").html(apipath+'check_user?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode);	
    		$.ajax({
 				 type: 'POST',
 				 url: apipath+'check_user?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode,
@@ -211,8 +216,13 @@ function check_user() {
 								
 								
 								result_string=resultArray[1];
+								localStorage.routeString_bak=result_string;
 								var routeArray = result_string.split('</routeList>');									
 								routeList = routeArray[0].replace("<routeList>","");
+								
+								
+								
+								
 								//alert (result_string)
 								routeException = routeArray[1];
 								var routeExArray = routeException.split('</routeexList>');									
@@ -345,6 +355,125 @@ function check_user() {
 		  }//end else	
 	}//function
 
+//=========================set route for new date==============
+
+//=========================Check user=====================
+function check_route() { 
+		//localStorage.routeList_bak
+		localStorage.routeString="";	
+		localStorage.routeExStringShow="";					
+		result_string=localStorage.routeList_bak;
+		var routeArray = result_string.split('</routeList>');									
+		routeList = routeArray[0].replace("<routeList>","");
+		//alert (result_string)
+		routeException = routeArray[1];
+		var routeExArray = routeException.split('</routeexList>');									
+		routeExList = routeExArray[0].replace("<routeexList>","");
+								
+								
+  //==========Create route list
+		var routeSingleArray = routeList.split('rdrd');	
+		var routeSingleTtotal = routeSingleArray.length;
+		var routeStringShow=''
+		
+		var d=new Date();
+		var weekday=new Array(7);
+		weekday[0]="Sunday";
+		weekday[1]="Monday";
+		weekday[2]="Tuesday";
+		weekday[3]="Wednesday";
+		weekday[4]="Thursday";
+		weekday[5]="Friday";
+		weekday[6]="Saturday";
+								
+		var today_get = weekday[d.getDay()];
+		var alowSl=''
+								
+		for (var rs=0; rs < routeSingleTtotal-1; rs++){
+			routeSArray = routeSingleArray[rs].split('fdfd');
+			routeSID=routeSArray[0];
+				
+		
+			routeSArray = routeSID.split('_');
+			var r_sday=routeSArray[2];
+			var r_sdaySl=routeSArray[3];
+			
+			
+			if (r_sday==today_get){	
+					if (r_sdaySl==1){
+						alowSl=	'7,6,5'
+					}
+					if (r_sdaySl==2){
+						alowSl=	'1,7,6'
+					}
+					if (r_sdaySl==3){
+						alowSl=	'1,2,7'
+					}
+					if (r_sdaySl==4){
+						alowSl=	'3,2,1'
+					}
+					if (r_sdaySl==5){
+						alowSl=	'4,3,2'
+					}
+					if (r_sdaySl==6){
+						alowSl=	'5,4,3'
+					}
+			}
+			
+		}
+		//alert (alowSl);
+		for (var r=0; r < routeSingleTtotal-1; r++){
+			routeArray = routeSingleArray[r].split('fdfd');
+			routeID=routeArray[0];
+			routeName=routeArray[1];	
+			
+			routeSArray = routeID.split('_');
+			var r_day=routeSArray[2];
+			var r_daySl=routeSArray[3];
+
+
+			if (r_day==today_get){	
+												
+			  routeStringShow=routeStringShow+'<label style="background:#81C0C0"><input type="radio" name="RadioRoute"  value="'+routeID+'" id="RadioGroup1_0"> '+routeName+'</label>'
+			}
+			else{
+			  //alert (alowSl)
+			 if ((alowSl.search( r_daySl )) != -1){
+				 routeStringShow=routeStringShow+'<label><input type="radio" name="RadioRoute"  value="'+routeID+'" id="RadioGroup1_0"> '+routeName+'</label>'
+			 }
+			 else{
+				routeStringShow=routeStringShow+'<label><input type="radio"  disabled name="RadioRoute"  value="'+routeID+'" id="RadioGroup1_0"> '+routeName+'</label>'
+			 }
+			}
+			
+		}
+		localStorage.routeString=routeStringShow
+		
+		$("#routeString").html(localStorage.routeString);
+	
+	//=======end route list====================
+	//==========Create route exception list
+		var routeExStringShow=''
+		var routeExSingleArray = routeExList.split('rdrd');	
+		var routeExSingleTtotal = routeExSingleArray.length;
+		var routeExStringShow=''
+		for (var re=0; re < routeExSingleTtotal-1; re++){
+			routeExArray = routeExSingleArray[re].split('fdfd');
+			routeExID=routeExArray[0];
+			routeExName=routeExArray[1];
+			routeExStringShow=routeExStringShow+'<label><input type="radio" name="RadioRouteEx"    value="'+routeExName+'" > '+routeExName+'</label>'
+		}
+		localStorage.routeExStringShow=routeExStringShow
+		$("#routeExString").html(localStorage.routeExStringShow);
+		
+		//=======end route exception list====================								
+								
+
+	}//function
+
+
+//==========================set route for new dateend=============
+
 //=====================Check user end========================
 //=====================Select Route Start====================
 
@@ -463,7 +592,7 @@ function marketPJP() {
 									}
 									
 									outletStringShow=outletStringShow+'<label ><table width="100%" border="0"> <tr> <td width="5%">'+
-													'<input type="radio" name="RadioOutlet" value="'+outletID+'rdrd'+schedule_date+'" id="RadioGroup1_0"></td><td width="60%">'+outletName +'('+outletID+')</td><td width="15%">'+ total_visit+'/'+total_visit_done+' </td>	<td>'+outletColor+'</td> </tr></table></label> '
+													'<input type="radio" name="RadioOutlet" value="'+outletID+'rdrd'+schedule_date+'"></td><td width="60%">'+outletName +'('+outletID+')</td><td width="15%">'+ total_visit+'/'+total_visit_done+' </td>	<td>'+outletColor+'</td> </tr></table></label>'
 								}
 								
 								
@@ -504,7 +633,7 @@ function marketPJP_check() {
 					//div_change()
 					var url = "#outletPage";
 					$.mobile.navigate(url);
-					//location.reload();	
+					location.reload();	
 					
 				}
 
@@ -527,6 +656,8 @@ function select_outlet() {
 		
 		if ((selected_outletID!=undefined) && (selected_outletID!='undefined')){
 				localStorage.selectedOutlet=selected_outletID;
+				
+				localStorage.selected_date_get=selected_date_get;
 				//selected_date=new Date(selected_date_get);
 				//selected_date=get_date(selected_date_get)
 				selected_date=selected_date_get;
@@ -1562,6 +1693,12 @@ function submit_data() {
 								cancel_outlet();
 								
 								localStorage.show_cancel=0;
+								//alert ('nadira')
+								//Disable outlet
+								var check_outlet= localStorage.outletString;
+								//alert ('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">')
+								localStorage.outletString=check_outlet.replace('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">','<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'" disabled="True">');
+								//alert ('nnn')
 								
 								localStorage.m_new_string="";
 								localStorage.m_new="";
