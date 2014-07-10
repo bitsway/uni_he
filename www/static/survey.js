@@ -217,6 +217,10 @@ function check_user() {
 								$("#error_login").html('Unauthorized User');
 							}
 							if (resultArray[0]=='SUCCESS'){
+								var sync_date_get=get_date();
+								var sync_date=sync_date_get.substring(0,10);
+								localStorage.sync_date=sync_date;
+								
 								
 								
 								localStorage.synced='YES';
