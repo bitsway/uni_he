@@ -118,9 +118,9 @@
 				var sync_date_get=get_date();
 				var sync_date=sync_date_get.substring(0,10);
 				
-				//localStorage.sync_date='2014-05-24';
+				//localStorage.sync_date='2014-07-11';
 				if ((localStorage.synced=='YES') & (localStorage.sync_date!=sync_date)){
-					
+					//alert (localStorage.sync_date);
 					cancel_outlet();
 					
 					localStorage.show_cancel=0;
@@ -149,7 +149,10 @@
 					localStorage.gift_data_ready="";
 					localStorage.mar_data_ready="";
 					
-					//check_route()
+					localStorage.sync_date=sync_date;
+					localStorage.synced=='YES';
+					//alert (localStorage.sync_date)
+					check_route();
 					var url = "#routePage";
 					$.mobile.navigate(url);
 					
@@ -265,7 +268,7 @@
 				<input type="text" name="cm_pass" id="cm_pass" placeholder="CM Pass" value="">
                 </font>                
 				</br></br>	
-				<a data-role="button"  onClick="check_user()" >Login</a>				
+				<a id="loginButton" data-role="button"  onClick="check_user()" >Login</a>				
 				<div id="error_login"></div>
 				
 					   

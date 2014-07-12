@@ -196,6 +196,7 @@ function check_user() {
 		var url = "#login";      
 		$.mobile.navigate(url);
 	}else{
+		$("#loginButton").hide();
 		localStorage.cid='UNILEVER';
 		localStorage.cm_id=cm_id;
    		localStorage.cm_pass=cm_pass;
@@ -209,14 +210,17 @@ function check_user() {
 				 success: function(result) {
 					 					
 						if (result==''){
+							$("#loginButton").show();
 							alert ('Sorry Network not available');
 						}
 						else{
 							var resultArray = result.split('<SYNCDATA>');			
 							if (resultArray[0]=='FAILED'){
+								$("#loginButton").show();
 								$("#error_login").html('Unauthorized User');
 							}
 							if (resultArray[0]=='SUCCESS'){
+								$("#loginButton").show();
 								var sync_date_get=get_date();
 								var sync_date=sync_date_get.substring(0,10);
 								localStorage.sync_date=sync_date;
@@ -475,7 +479,7 @@ function check_route() {
 								
 		var url = "#routePage";
 		$.mobile.navigate(url);	
-		location.reload();
+		//location.reload();
 	}//function
 
 
