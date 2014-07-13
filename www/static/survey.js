@@ -1869,7 +1869,7 @@ function get_pic_fdisplay(id) {
 	var tempTime = $.now();
 	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#"+hidden_name).val(fd_image_name);
-	navigator.camera.getPicture(onSuccessFd, onFailFd, { quality: 20,
+	navigator.camera.getPicture(onSuccessFd, onFailFd, { quality: 5,
 		destinationType: Camera.DestinationType.FILE_URI });
 	
 	
@@ -1898,7 +1898,7 @@ function get_pic_qpds(id) {
 	var tempTime = $.now();
 	qpds_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#"+hidden_name).val(qpds_image_name);
-	navigator.camera.getPicture(onSuccessQpds, onFailQpds, { quality: 20,
+	navigator.camera.getPicture(onSuccessQpds, onFailQpds, { quality: 5,
 		destinationType: Camera.DestinationType.FILE_URI });
 }
 
@@ -1922,7 +1922,7 @@ function get_pic_gift() {
 	var tempTime = $.now();
 	gift_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#gift_image_name_hidden").val(gift_image_name);
-	navigator.camera.getPicture(onSuccessGift, onFailGift, { quality: 20,
+	navigator.camera.getPicture(onSuccessGift, onFailGift, { quality: 5,
 		destinationType: Camera.DestinationType.FILE_URI });
 }
 
