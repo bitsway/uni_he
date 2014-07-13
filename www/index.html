@@ -63,8 +63,15 @@
     $(document).ready(function(){
 				$("#login_image").hide();
 				$("#routeS_image").hide();
+				//alert (localStorage.latlongSubmit);
 				
-				$("#sub_button").hide();
+				$("#lat").val(localStorage.latitude);
+				$("#long").val(localStorage.longitude);
+				//$("#sub_button").hide();
+				buttonCheck();
+				
+				
+				
 				$('#outlet_info_msg').html(localStorage.outletNameID);
 				
 				$("#routeString").html(localStorage.routeString);
@@ -258,7 +265,7 @@
                 
                 <div id="login_image" ><img height="40px" width="40px" src="loading.gif"></div>
                 <a id="loginButton" data-role="button"  onClick="check_user()" >Login</a>				
-				<div id="error_login" style="color:#660033"></div>
+				<div id="error_login" style="color:#006291"></div>
 				
 					   
             </div>
@@ -282,7 +289,7 @@
                 <div id="routeS_image" ><img height="40px" width="40px" src="loading.gif"></div>				
 				<a id="RSButton" data-role="button" onClick="selectRoute();marketPJP();" >Sync Route</a>
 				
-                <div id="dataerror" style="color:#660033" > </div>
+                <div id="dataerror" style="color:#006291" > </div>
                 <br/><br/>
 
                 <br/><br/><br/>
@@ -309,7 +316,7 @@
 
 				<a data-role="button"  onClick="selectRouteException()" >Confirm Route Exception</a>
 
-                <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
+                <div id="dataerrorRoute" style="color:#006291"> </div>
                 <br/><br/>
 
                 <br/><br/><br/>
@@ -350,7 +357,7 @@
                 <!--<br/><br/>
 				<a data-role="button" onClick="div_change();select_outlet();" >Next</a>-->
                 
-                <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
+                <div id="dataerrorOutlet" style="color:#006291"> </div>
                 <br/><br/>
 
                 <br/><br/><br/>
@@ -569,7 +576,7 @@
 			
 				</br></br>
 
-				<a data-role="button" href="#giftAckPage" onClick="qpds_ready_data();getlocationand_askhelp();" >Next</a>
+				<a data-role="button" href="#giftAckPage" onClick="qpds_ready_data();" >Next</a>
 				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
 				
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
@@ -601,7 +608,7 @@
 			
 
 			</br></br>
-			<a  data-role="button" href="#submitPage" onClick="gift_ready_data();gift_page_set();" >Next</a>
+			<a  data-role="button" onClick="gift_ready_data();gift_page_set();reloadSubmitPage();" >Next</a>
 			<br/><br/></br></br></br></br></br></br><br/><br/><br/>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                
@@ -629,18 +636,30 @@
                 <div id="outlet_info_msg"   style="color:#006A6A; font-size:18px;"> </div>
                 </br>
                 </br>
-				<input name="lat" id="lat" placesholder="" value="" type="text">
-			   <input name="long" id="long" placeholder="" value="" type="text">
+				Location:
+				<input name="lat" id="lat" placesholder="" value="" type="text" readonly="True">
+			   <input name="long" id="long" placeholder="" value="" type="text" readonly="True">
 				
-			<div id="sub_button">
-        	<a  data-role="button" onClick="submit_data()" >Submit </a>
+			<div id="location_button">
+			<a data-role="button" onClick="getlocationand_askhelp();">Confirm Location</a>
 			</div>
-			<a id="location_button" data-role="button" onClick="getlocationand_askhelp();">Confirm Location</a>
+			<div id="sub_button_div">
+        	<a  data-role="button" onClick="submit_data();" >Sync Data</a>
+			</div> 
 			
+			<div id="sub_fd_button">
 			
+        	<a  data-role="button" onClick="submit_data();" >Sync</a><a  data-role="button" onClick="upload_fd();" > FIxed Display Data</a>			</div>  
+			<div id="sub_qpds_button">
+        	<a  data-role="button" onClick="submit_data();" >Sync</a><a  data-role="button" onClick="upload_qpds();" > QPDS Data</a>			</div>
+			<div id="sub_gift_button">
+        	<a  data-role="button" onClick="submit_data();" >Sync</a><a  data-role="button" onClick="upload_gift_confirm();" > Gift Data</a>			</div>
+			<div id="NOutlet_button">
+        	<a  data-role="button" onClick="cancel_outlet();menupage();" >New Outlet</a>
+			</div>
 			  
             
-            <div id="submit_data"></div>
+            <div id="submit_data" style="color:#006291"></div>
             <!--<div id="submit_msg">
 				Please Wait Submitting Data............
 			</div>-->
