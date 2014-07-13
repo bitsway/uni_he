@@ -141,8 +141,6 @@ function div_change(){
 	$("#link_route").hide();
 	
 	
-	
-	
 	$("#outletName_show").html(localStorage.outletNameID);
 	$("#outletButton").delay(6000).show(0);
 	$("#outletWait").delay(6000).hide(0);
@@ -271,6 +269,7 @@ function check_user() {
 								
 								var today_get = weekday[d.getDay()];
 								
+								//alert (today_get);
 								var alowSl=''
 								for (var rs=0; rs < routeSingleTtotal-1; rs++){
 									routeSArray = routeSingleArray[rs].split('fdfd');
@@ -282,7 +281,7 @@ function check_user() {
 									var r_sdaySl=routeSArray[3];
 									
 									
-									if (r_sday==today_get){	
+									//if (r_sday==today_get){	
 											if (r_sdaySl==1){
 												alowSl=	'7,6,5'
 											}
@@ -301,7 +300,11 @@ function check_user() {
 											if (r_sdaySl==6){
 												alowSl=	'5,4,3'
 											}
-									}
+											if (r_sdaySl==7){
+												alowSl=	'6,5,4'
+											}
+											
+									//}
 									
 								}
 								//alert (alowSl);
@@ -429,7 +432,7 @@ function check_route() {
 			var r_sdaySl=routeSArray[3];
 			
 			
-			if (r_sday==today_get){	
+			//if (r_sday==today_get){	
 					//r_sdaySl=5;
 					if (r_sdaySl==1){
 						alowSl=	'7,6,5'
@@ -449,7 +452,10 @@ function check_route() {
 					if (r_sdaySl==6){
 						alowSl=	'5,4,3'
 					}
-			}
+					if (r_sdaySl==7){
+						alowSl=	'6,5,4'
+					}
+			//}
 			
 		}
 		//alert (alowSl);
@@ -1953,6 +1959,7 @@ function uploadAll(){
 		}
 		
 	}
+	
 	//QPDS
 	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
 		var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
