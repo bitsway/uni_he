@@ -1962,6 +1962,8 @@ function onFailGift(message) {
 function upload_fd(){
 	//fixed display
 	file_upload_error = 0;
+	localStorage.fddataSubmit=1;
+	buttonCheck();
 	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
 		var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
@@ -1971,18 +1973,14 @@ function upload_fd(){
 			//if upload is successfull then "file_upload_error" will be 0 , if error 1
 		}
 		
-		if (file_upload_error==0){
+		if (file_upload_error==1){
 			$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
-			
 			localStorage.fddataSubmit=0;
-			
+			buttonCheck();
 			//localStorage.fddataSubmit=1;
-			
-		}
-		
-		
+		}		
 	}
-	if (file_upload_error==1){
+	if (file_upload_error==0){
 		$("#submit_data").html("Fixed Display Data Successfully Submitted");
 	}
 	if (localStorage.fdisplaySlabTotal==1){
@@ -1995,6 +1993,9 @@ function upload_qpds(){
 	//QPDS
 	
 	file_upload_error = 0;
+	localStorage.qpdsdataSubmit=1;
+	buttonCheck();
+	
 	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
 		//alert ('nn');
 		var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
@@ -2006,16 +2007,16 @@ function upload_qpds(){
 		}
 		
 		//alert (file_upload_error);
-		if (file_upload_error==0){
+		if (file_upload_error==1){
 			$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 			localStorage.qpdsdataSubmit=0;
-			
+			buttonCheck();
 			//localStorage.qpdsdataSubmit=1;
 			//alert (ocalStorage.qpdsdataSubmit);
 			
 		}
 	}
-	if (file_upload_error==1){
+	if (file_upload_error==0){
 		$("#submit_data").html("QPDS Data Successfully Submitted");
 	}
 	if (localStorage.qpdsSlabTotal==1){
@@ -2026,15 +2027,18 @@ function upload_qpds(){
 function upload_gift_confirm(){
 	//Gift
 	file_upload_error = 0;
+	localStorage.giftdataSubmit=1;
+	buttonCheck();
 	var image_name=$("#gift_image_name_hidden").val();
 	var gift_image_path=$("#gift_image_div_hidden").val();
 	
 	if (gift_image_path.length >10){
 		uploadPhoto(gift_image_path, image_name);
 	}
-	if (file_upload_error==0){
+	if (file_upload_error==1){
 		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 		localStorage.giftdataSubmit=0;
+		buttonCheck();
 		//localStorage.giftdataSubmit=1;
 			
 	}
