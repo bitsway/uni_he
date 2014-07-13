@@ -14,8 +14,8 @@ var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
 
 var temp_image_div='';
-localStorage.m_new="";
-localStorage.submitted_outlet="";
+//localStorage.m_new="";
+//localStorage.submitted_outlet="";
 
 
 
@@ -704,6 +704,9 @@ function select_outlet() {
 		localStorage.fddataSubmit=0;
 		localStorage.qpdsdataSubmit=0;
 		localStorage.giftdataSubmit=0;
+		localStorage.m_new="";
+		localStorage.submitted_outlet="";
+		
 		var selected_outletID_get=($("input:radio[name='RadioOutlet']:checked").val())		
 		var selected_outletID_list = selected_outletID_get.split('rdrd');
 		var selected_outletID=selected_outletID_list[0];	
