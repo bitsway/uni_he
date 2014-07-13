@@ -64,6 +64,8 @@
 				$("#login_image").hide();
 				$("#routeS_image").hide();
 				
+				$("#sub_button").hide();
+				$('#outlet_info_msg').html(localStorage.outletNameID);
 				
 				$("#routeString").html(localStorage.routeString);
 				$("#routeExString").html(localStorage.routeExStringShow);
@@ -374,17 +376,7 @@
                 </br>
                 
                 Select Cause:
-              		<!--<label><input type="radio" name="RadioOutletEx"    value="Outlet Closed on previous day" > Outlet Closed on previous day</label>
-                    <label><input type="radio" name="RadioOutletEx"    value="Proprietor was absent" > Proprietor was absent</label>
-                    <label><input type="radio" name="RadioOutletEx"    value="Adequate product was not avai" > Adequate product was not avai</label>
-                    <label><input type="radio" name="RadioOutletEx"    value="Bad weather" > Bad weather</label>
-                    <label><input type="radio" name="RadioOutletEx"    value="Not enough time to work on scheduled day" > Not enough time to work on scheduled day</label>
-                    <label><input type="radio" name="RadioOutletEx"    value="Does not allow CM to work" > Does not allow CM to work</label>
-                    <label><input type="radio" name="RadioOutletEx"    value="To deploy new POSM on priority" > To deploy new POSM on priority</label>
-                    <label><input type="radio" name="RadioOutletEx"    value="Discontinue from Perfect Store Program" > Discontinue from Perfect Store Program</label>
-                    <label><input type="radio" name="RadioOutletEx"    value="Addition visit frequency is required for the outlet channel" > Addition visit frequency is required for the outlet channel</label>
-                    
-                    -->
+              		
                     
                     
                     
@@ -456,11 +448,12 @@
 				<div id="mhskus"></div>
                 <input name="startTime" id="startTime"  value="" type="hidden">
                 <!--<div id="mhskus1"></div>-->
-                </br></br></br></br></br></br></br></br>
+                </br></br>
 				<a data-role="button" href="#marchandizingPage" onClick="mhskus_ready_data()" >Next</a>
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
-                <br/><br/><br/>
+                
 	  </div>
 
 	</div>
@@ -484,14 +477,14 @@
               
             
            
-			</br></br></br></br></br></br></br></br>
-
+			
+				<br/><br/>
 				<a data-role="button" href="#npdPage" onClick="mar_ready_data()" >Next</a>
-
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
 
-                <br/><br/><br/>
+                
 								
 	  </div>
 
@@ -512,9 +505,9 @@
 			 
 				<div id="npd"></div>
 				
-				</br></br></br></br></br></br></br></br>
+				</br></br>
 				<a data-role="button" href="#fixedDisplay" onClick="npd_ready_data()" >Next</a>
-
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
 
@@ -547,9 +540,9 @@
                  <input name="fdisplay_test" id="fdisplay_test" placesholder="" value="" type="hidden">
 				 
 				 
-				 </br></br></br></br></br></br></br></br>
+				 </br></br>
 				<a data-role="button" href="#qpdsPage" onClick="fdisplay_ready_data();" >Next</a>
-
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
                 <br/><br/><br/>
@@ -574,10 +567,11 @@
             <div id="qpds"></div>
 
 			
-				</br></br></br></br></br></br></br></br>
+				</br></br>
 
 				<a data-role="button" href="#giftAckPage" onClick="qpds_ready_data();getlocationand_askhelp();" >Next</a>
-
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
 
@@ -605,29 +599,14 @@
             <div id="gift"></div>
       
 			
-            
-			
-            <!--<table width="100%" border="0" cellpadding="0" cellspacing="0">
-            <tr>
-              <td>&nbsp;</td>
-               <td>&nbsp;</td>
-               <td>&nbsp;</td>
-               <td>&nbsp;</td>
-               <td>&nbsp;</td>
-             </tr>
-             <tr >
-               <td colspan="5">
-               
-                <a data-role="button" href="#" onClick="get_pic_gift()" >Take Picture </a></td>
-             </tr>
-            </table>-->
-			</br></br></br></br></br></br></br></br>
+
+			</br></br>
 			<a  data-role="button" href="#submitPage" onClick="gift_ready_data();gift_page_set();" >Next</a>
+			<br/><br/></br></br></br></br></br></br><br/><br/><br/>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                
                <!--<div id="submit_data"></div>-->
-               <input name="lat" id="lat" placesholder="" value="" type="hidden">
-			   <input name="long" id="long" placeholder="" value="" type="hidden">
+               
                
                 <br/><br/>
                 <br/><br/><br/>
@@ -647,11 +626,19 @@
             </div>
 		    
 			<div  data-role="content" >
-                <div id="outlet_info_msg"   style="color:#006A6A; font-size:18px;" id="outletName_show"> </div>
+                <div id="outlet_info_msg"   style="color:#006A6A; font-size:18px;"> </div>
                 </br>
                 </br>
-        		<a id="sub_button" data-role="button" onClick="submit_data()" >Submit</a>
+				<input name="lat" id="lat" placesholder="" value="" type="text">
+			   <input name="long" id="long" placeholder="" value="" type="text">
+				
+			<div id="sub_button">
+        	<a  data-role="button" onClick="submit_data()" >Submit </a>
+			</div>
+			<a id="location_button" data-role="button" onClick="getlocationand_askhelp();">Confirm Location</a>
 			
+			
+			  
             
             <div id="submit_data"></div>
             <!--<div id="submit_msg">
