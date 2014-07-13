@@ -196,6 +196,8 @@ function check_user() {
 		var url = "#login";      
 		$.mobile.navigate(url);
 	}else{
+		
+		$("#login_image").show();
 		$("#loginButton").hide();
 		localStorage.cid='UNILEVER';
 		localStorage.cm_id=cm_id;
@@ -208,19 +210,23 @@ function check_user() {
 				 type: 'POST',
 				 url: apipath+'check_user?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode,
 				 success: function(result) {
-					 					
+					 	//$("#error_login").html('ajax');				
 						if (result==''){
 							$("#loginButton").show();
+							$("#login_image").hide();
 							alert ('Sorry Network not available');
 						}
 						else{
 							var resultArray = result.split('<SYNCDATA>');			
 							if (resultArray[0]=='FAILED'){
+								//$("#error_login").html('Failed');
 								$("#loginButton").show();
+								$("#login_image").hide();
 								$("#error_login").html('Unauthorized User');
 							}
 							if (resultArray[0]=='SUCCESS'){
 								$("#loginButton").show();
+								$("#login_image").hide();
 								var sync_date_get=get_date();
 								var sync_date=sync_date_get.substring(0,10);
 								localStorage.sync_date=sync_date;
@@ -313,8 +319,7 @@ function check_user() {
 									
 									
 									//alert (r_daySl);
-									if (r_day==today_get){	
-																		
+									if (r_day==today_get){																			
 									  routeStringShow=routeStringShow+'<label style="background:#81C0C0"><input type="radio" name="RadioRoute"  value="'+routeID+'" id="RadioGroup1_0"> '+routeName+'</label>'
 									}
 									else{
@@ -368,6 +373,9 @@ function check_user() {
 				      },
 				  error: function(result) {
 					 // $("#error_login").html(apipath+'check_user?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode);
+					 // $("#error_login").html('Ajax Error');
+					  $("#loginButton").show();
+					  $("#login_image").hide();
 					  var url = "#login";
 					  $.mobile.navigate(url);	
 				  }
@@ -479,7 +487,7 @@ function check_route() {
 								
 		var url = "#routePage";
 		$.mobile.navigate(url);	
-		//location.reload();
+		location.reload();
 	}//function
 
 
@@ -521,12 +529,16 @@ function selectRoute() {
 	//cancel_outlet();
 	
 	if(selected_route!=undefined){
+		$("#routeS_image").show();
+		$("#RSButton").hide();
+		//alert (selected_routeDay);
+		//alert (today_get);
 		if (selected_routeDay==today_get){
 			localStorage.selectedRoute=selected_routeID;
 			localStorage.routeException_found='0';
 		
 			var url = "#menuPage";
-			$.mobile.navigate(url);	
+		   $.mobile.navigate(url);	
 		}
 		else {
 			localStorage.selectedRoute=selected_routeID;
@@ -614,15 +626,24 @@ function marketPJP() {
 								
 								localStorage.outletString=outletStringShow
 								$("#outletString").html(localStorage.outletString);
-								location.reload();
+								
+								$("#routeS_image").hide();
+								$("#RSButton").show();
+								
+								
+								//var url = "#menuPage";
+//								$.mobile.navigate(url);	
+//								location.reload();
 							//=======end outlet list====================								
 							}
 
 						}
 				      },
 				  error: function(result) {
-
-					  var url = "#login";
+					  $("#routeS_image").hide();
+					  $("#RSButton").show();
+									
+					  var url = "#routePage";
 					  $.mobile.navigate(url);
 				  }
 			  });//end ajax*/
@@ -773,7 +794,7 @@ function select_outlet() {
 				      },
 				  error: function(result) {
 					 // alert (result);
-					  var url = "#login";
+					  var url = "#outletPage";
 					  $.mobile.navigate(url);	
 				  }
 			  });//end ajax*/
@@ -1670,7 +1691,7 @@ function mar_page_set() {
 function submit_data() { 
 	$("#sub_button").hide();
 	
-	$("#submit_data").html("Sync in progress. Please Wait ..");
+	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	//=========================AJAX Submit==========================	
 	var lat=$( "#lat").val();
 	var long=$( "#long").val();
@@ -1767,7 +1788,7 @@ function submit_data() {
 //===================add marchandizing======================
 
 function marchandizing_add() { 
-
+	
 	var select_mar_item=$( "#select_mar_item").val();
 	var select_mar_brand=$( "#select_mar_brand").val();
 	var select_mar_qty=$( "#mar_qty_add").val();
@@ -1785,7 +1806,7 @@ function marchandizing_add() {
 	
 		
 		//$("#marchadizing_add_show").html(apipath+'marchandizing_add?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&m_item='+select_mar_item+'&m_brand='+select_mar_brand+'&m_qty='+select_mar_qty+'&m_date='+select_mar_date);
-		start_new_mar=0;
+		/*start_new_mar=0;
 		$.ajax({
 				 type: 'POST',
 				 url: apipath+'marchandizing_add?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&m_item='+select_mar_item+'&m_brand='+select_mar_brand+'&m_qty='+select_mar_qty+'&m_date='+select_mar_date,
@@ -1805,20 +1826,21 @@ function marchandizing_add() {
 								var brand_name=newArray[1]
 								var qty=newArray[2]
 								var m_date=newArray[3]
-							    
-								if (start_new_mar==0){
+							    */
+								if (localStorage.m_new.length>10){
+									
 									start_new_mar=1;
 									var m_new = '<font color="#00007D">New Added: </font> </br>'
 								}
 								
 								 m_new=localStorage.m_new
-								 
-								 m_new=m_new+'</br><font color="#00007D">Item:&nbsp;&nbsp;  </font>'+item_name+'</br><font color="#00007D">   Brand: &nbsp;&nbsp;  </font>'+brand_name+'</br><font color="#00007D"> InsDate: &nbsp;&nbsp;  </font>'+m_date+'</br><font color="#00007D"> Qty:&nbsp;&nbsp;  </font>'+qty+'</br></br>'
-								 
+								
+								 m_new=m_new+'</br><font color="#00007D">Item:&nbsp;&nbsp;  </font>'+select_mar_item+'</br><font color="#00007D">   Brand: &nbsp;&nbsp;  </font>'+select_mar_brand+'</br><font color="#00007D"> InsDate: &nbsp;&nbsp;  </font>'+select_mar_date+'</br><font color="#00007D"> Qty:&nbsp;&nbsp;  </font>'+select_mar_qty+'</br></br>'
+								 //alert (m_new);
 								 localStorage.m_new=m_new.replace("undefined","");
 								 $("#marchadizing_add_show").html(localStorage.m_new);
 								 
-							}
+						/*	}
 									
 						}
 				      },
@@ -1826,7 +1848,7 @@ function marchandizing_add() {
 					  var url = "#login";
 					  $.mobile.navigate(url);	
 				  }
-			  });//end ajax
+			  });//end ajax*/
 	}
 
 }
