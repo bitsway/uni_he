@@ -1987,6 +1987,7 @@ function upload_fd(){
 	}
 	if (file_upload_error==0){
 		$("#submit_data").html("Fixed Display Synced Successfully");
+		localStorage.fddataSubmit=1;
 	}
 	if (localStorage.fdisplaySlabTotal==1){
 		localStorage.fddataSubmit=1;
@@ -2021,7 +2022,9 @@ function upload_qpds(){
 		}
 	}
 	if (file_upload_error==0){
+		localStorage.qpdsdataSubmit=1;
 		$("#submit_data").html("QPDS Synced Successfully");
+		
 	}
 	if (localStorage.qpdsSlabTotal==1){
 		localStorage.qpdsdataSubmit=1;
@@ -2047,6 +2050,7 @@ function upload_gift_confirm(){
 			
 	}
 	else{
+		localStorage.giftdataSubmit=1;
 		$("#submit_data").html("All Sync Completted");
 	}
 	localStorage.giftdataSubmit=1;
