@@ -9,7 +9,7 @@ var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 //var apipath='http://127.0.0.1:8000/unilever/syncmobile/';
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
 
-
+var step_flag=0; //1 fd , 2 qpds, 3 gift
 
 
 
@@ -1963,123 +1963,53 @@ function onFailGift(message) {
 
 		
 }*/
-
-//-----------------------------------------------------------------------
-function check_error()
-{
-	if (file_upload_error==2){
-		setTimeout(check_error(),5000);
-	}
-}
-
-
 //------------------------------------------------------------------------
 function upload_fd(){
 	//fixed display
+	step_flag=1; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
 	$( "#sub_fd_button").hide();
-	
-	
 	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
 		var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
 		
-		file_upload_error=2;
 		if (fdSLfdisplay_image_path.length >10){
 			uploadPhoto(fdSLfdisplay_image_path, image_name);
 			//if upload is successfull then "file_upload_error" will be 0 , if error 1
-		} else { 
-			file_upload_error=0;
-		}
-		check_error();
-		
-		if (file_upload_error==1){
-			$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
-			localStorage.fddataSubmit=0;
-			buttonCheck();
-			//localStorage.fddataSubmit=1;
 		}		
 	}
-	if (file_upload_error==0){
-		$("#submit_data").html("Fixed Display Synced Successfully");
-		localStorage.fddataSubmit=1;
-	}
-	if (localStorage.fdisplaySlabTotal==1){
-		localStorage.fddataSubmit=1;
-	}
-	buttonCheck();
 }
 
 function upload_qpds(){
 	//QPDS
-	
+	step_flag=2; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
 	$( "#sub_qpds_button").hide();
-	
 	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
 		//alert ('nn');
 		var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
 		var qpds_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val();
-		
-		file_upload_error=2;
 		if (qpds_image_path.length >10){
 			uploadPhoto(qpds_image_path, image_name);
 			//if upload is successfull then "file_upload_error" will be 0 , if error 1
-		} else { 
-			file_upload_error=0;
-		}
-		check_error();
-		
-		//alert (file_upload_error);
-		if (file_upload_error==1){
-			$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
-			localStorage.qpdsdataSubmit=0;
-			buttonCheck();
-			//localStorage.qpdsdataSubmit=1;
-			//alert (ocalStorage.qpdsdataSubmit);
-			
 		}
 	}
-	if (file_upload_error==0){
-		localStorage.qpdsdataSubmit=1;
-		$("#submit_data").html("QPDS Synced Successfully");
-		
-	}
-	if (localStorage.qpdsSlabTotal==1){
-		localStorage.qpdsdataSubmit=1;
-	}
-	buttonCheck();
 }
+
 function upload_gift_confirm(){
 	//Gift
+	step_flag=3; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
 	$( "#sub_gift_button").hide();
 	
 	var image_name=$("#gift_image_name_hidden").val();
 	var gift_image_path=$("#gift_image_div_hidden").val();
 	
-	file_upload_error=2;
 	if (gift_image_path.length >10){
 		uploadPhoto(gift_image_path, image_name);
-	} else { 
-		file_upload_error=0;
 	}
-	check_error();
-	
-	if (file_upload_error==1){
-		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
-		localStorage.giftdataSubmit=0;
-		buttonCheck();
-		//localStorage.giftdataSubmit=1;
-			
-	}
-	else{
-		localStorage.giftdataSubmit=1;
-		$("#submit_data").html("All Sync Completted");
-	}
-	localStorage.giftdataSubmit=1;
-	buttonCheck();
 }
+
 //-------------------------------------------------------------------------
 
 
@@ -2105,19 +2035,62 @@ function uploadPhoto(imageURI, imageName) {
 }
 
 function win(r) {
-//  console.log("Code = " + r.responseCode);
-//  console.log("Response = " + r.response);
-//  console.log("Sent = " + r.bytesSent);
+
 	file_upload_error = 0;
+	
+//	step_flag=0; //1 fd , 2 qpds, 3 gift
+	
+	if (step_flag==1){ //for fixed display
+		$("#submit_data").html("Fixed Display Synced Successfully");
+		localStorage.fddataSubmit=1;
+		if (localStorage.fdisplaySlabTotal==1){
+			localStorage.fddataSubmit=1;
+		}
+		buttonCheck();
+	}
+	
+	if (step_flag==2){ // QPDS
+		localStorage.qpdsdataSubmit=1;
+		$("#submit_data").html("QPDS Synced Successfully");
+		if (localStorage.qpdsSlabTotal==1){
+			localStorage.qpdsdataSubmit=1;
+		}
+		buttonCheck();
+	}
+	
+	if (step_flag==3){  // Gift
+		localStorage.giftdataSubmit=1;
+		$("#submit_data").html("All Sync Completted");
+		localStorage.giftdataSubmit=1;
+		buttonCheck();
+	}
+	
+	step_flag=0; //Reset step flag
 }
 
 function fail(error) {
 	file_upload_error = 1;
-//    alert("An error has occurred: Code = " + error.code);
 	
-  
-//  console.log("upload error source " + error.source);
-//  console.log("upload error target " + error.target);
+//	step_flag=0; //1 fd , 2 qpds, 3 gift
+	
+	if (step_flag==1){ //for fixed display
+		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
+		localStorage.fddataSubmit=0;
+		buttonCheck();
+	}
+	
+	if (step_flag==2){ // QPDS
+		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
+		localStorage.qpdsdataSubmit=0;
+		buttonCheck();
+	}
+	
+	if (step_flag==3){  // Gift
+		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
+		localStorage.giftdataSubmit=0;
+		buttonCheck();
+	}	
+	step_flag=0; //Reset step flag
 }
 
 //=====================Dialog==========================
