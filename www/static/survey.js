@@ -764,7 +764,7 @@ function select_outlet() {
 		//localStorage.selected_outletID_get=selected_outletID_get;
 		
 		if ((selected_outletID!=undefined) && (selected_outletID!='undefined')){
-				$("#selectOButton").hide();
+				//$("#selectOButton").hide();
 				localStorage.selectedOutlet=selected_outletID;
 				
 				localStorage.selected_date_get=selected_date_get;
@@ -777,6 +777,7 @@ function select_outlet() {
 		//alert (selected_outletID);
 		//$("#outletInfo1").html(apipath+'sync_outlet_ex?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet);
 		
+			div_change();
 			$.ajax({
 				 type: 'POST',
 				 url: apipath+'sync_outlet_ex?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet,
@@ -853,7 +854,9 @@ function select_outlet() {
 							
 							syncOutlet();
 							
-							div_change();
+							//div_change();
+							
+							
 							//syncOutlet();
 							
 							}//end success if
