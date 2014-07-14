@@ -1963,20 +1963,35 @@ function onFailGift(message) {
 
 		
 }*/
+
+//-----------------------------------------------------------------------
+function check_error()
+{
+	if (file_upload_error==2){
+		setTimeout(check_error(),5000);
+	}
+}
+
+
 //------------------------------------------------------------------------
 function upload_fd(){
 	//fixed display
 	file_upload_error = 0;
 	$( "#sub_fd_button").hide();
 	
+	
 	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
 		var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
 		
+		file_upload_error=2;
 		if (fdSLfdisplay_image_path.length >10){
 			uploadPhoto(fdSLfdisplay_image_path, image_name);
 			//if upload is successfull then "file_upload_error" will be 0 , if error 1
+		} else { 
+			file_upload_error=0;
 		}
+		check_error();
 		
 		if (file_upload_error==1){
 			$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
@@ -2006,10 +2021,14 @@ function upload_qpds(){
 		var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
 		var qpds_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val();
 		
+		file_upload_error=2;
 		if (qpds_image_path.length >10){
 			uploadPhoto(qpds_image_path, image_name);
 			//if upload is successfull then "file_upload_error" will be 0 , if error 1
+		} else { 
+			file_upload_error=0;
 		}
+		check_error();
 		
 		//alert (file_upload_error);
 		if (file_upload_error==1){
@@ -2039,9 +2058,14 @@ function upload_gift_confirm(){
 	var image_name=$("#gift_image_name_hidden").val();
 	var gift_image_path=$("#gift_image_div_hidden").val();
 	
+	file_upload_error=2;
 	if (gift_image_path.length >10){
 		uploadPhoto(gift_image_path, image_name);
+	} else { 
+		file_upload_error=0;
 	}
+	check_error();
+	
 	if (file_upload_error==1){
 		$("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 		localStorage.giftdataSubmit=0;
