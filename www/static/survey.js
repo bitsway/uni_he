@@ -290,7 +290,30 @@ function check_user() {
 									var r_sday=routeSArray[2];
 									var r_sdaySl=routeSArray[3];
 									
+									//alert (r_sday);
 									
+									if (today_get=='Saturday'){
+										r_sdaySl=1;
+									}
+									if (today_get=='Sunday'){
+										r_sdaySl=2;
+									}
+									if (today_get=='Monday'){
+										r_sdaySl=3;
+									}
+									if (today_get=='Tuesday'){
+										r_sdaySl=4;
+									}
+									if (today_get=='Wednesday'){
+										r_sdaySl=5;
+									}
+									if (today_get=='Thursday'){
+										r_sdaySl=6;
+									}
+									if (today_get=='Friday'){
+										r_sdaySl=7;
+									}
+									//alert (r_sdaySl);
 									//if (r_sday==today_get){	
 											if (r_sdaySl==1){
 												alowSl=	'7,6,5'
@@ -336,7 +359,8 @@ function check_user() {
 									  routeStringShow=routeStringShow+'<label style="background:#81C0C0"><input type="radio" name="RadioRoute"  value="'+routeID+'" id="RadioGroup1_0"> '+routeName+'</label>'
 									}
 									else{
-									  //alert (alowSl)
+									 r_daySl
+									
 									 if ((alowSl.search( r_daySl )) != -1){
 										 routeStringShow=routeStringShow+'<label><input type="radio" name="RadioRoute"  value="'+routeID+'" id="RadioGroup1_0"> '+routeName+'</label>'
 									 }
@@ -442,6 +466,28 @@ function check_route() {
 			var r_sdaySl=routeSArray[3];
 			
 			
+			
+			if (today_get=='Saturday'){
+				r_sdaySl=1;
+			}
+			if (today_get=='Sunday'){
+				r_sdaySl=2;
+			}
+			if (today_get=='Monday'){
+				r_sdaySl=3;
+			}
+			if (today_get=='Tuesday'){
+				r_sdaySl=4;
+			}
+			if (today_get=='Wednesday'){
+				r_sdaySl=5;
+			}
+			if (today_get=='Thursday'){
+				r_sdaySl=6;
+			}
+			if (today_get=='Friday'){
+				r_sdaySl=7;
+			}
 			//if (r_sday==today_get){	
 					//r_sdaySl=5;
 					if (r_sdaySl==1){
