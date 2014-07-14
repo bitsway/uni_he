@@ -1969,6 +1969,8 @@ function upload_fd(){
 	step_flag=1; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
 	$( "#sub_fd_button").hide();
+	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
+	
 	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
 		var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
@@ -1976,6 +1978,13 @@ function upload_fd(){
 		if (fdSLfdisplay_image_path.length >10){
 			uploadPhoto(fdSLfdisplay_image_path, image_name);
 			//if upload is successfull then "file_upload_error" will be 0 , if error 1
+		} else {
+			$("#submit_data").html("Fixed Display Synced Successfully");
+			localStorage.fddataSubmit=1;
+			if (localStorage.fdisplaySlabTotal==1){
+				localStorage.fddataSubmit=1;
+			}
+			buttonCheck();
 		}		
 	}
 }
@@ -1985,6 +1994,8 @@ function upload_qpds(){
 	step_flag=2; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
 	$( "#sub_qpds_button").hide();
+	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
+	
 	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
 		//alert ('nn');
 		var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
@@ -1992,6 +2003,13 @@ function upload_qpds(){
 		if (qpds_image_path.length >10){
 			uploadPhoto(qpds_image_path, image_name);
 			//if upload is successfull then "file_upload_error" will be 0 , if error 1
+		} else {
+			localStorage.qpdsdataSubmit=1;
+			$("#submit_data").html("QPDS Synced Successfully");
+			if (localStorage.qpdsSlabTotal==1){
+				localStorage.qpdsdataSubmit=1;
+			}
+			buttonCheck();
 		}
 	}
 }
@@ -2001,12 +2019,18 @@ function upload_gift_confirm(){
 	step_flag=3; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
 	$( "#sub_gift_button").hide();
+	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	
 	var image_name=$("#gift_image_name_hidden").val();
 	var gift_image_path=$("#gift_image_div_hidden").val();
 	
 	if (gift_image_path.length >10){
 		uploadPhoto(gift_image_path, image_name);
+	} else {
+		localStorage.giftdataSubmit=1;
+		$("#submit_data").html("All Sync Completted");
+		localStorage.giftdataSubmit=1;
+		buttonCheck();
 	}
 }
 
