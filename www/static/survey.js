@@ -754,6 +754,11 @@ function select_outlet() {
 		localStorage.m_new="";
 		localStorage.submitted_outlet="";
 		
+		localStorage.npdSkip=0;
+		localStorage.fdSkip=0;
+		localStorage.qpdsSkip=0;
+		localStorage.giftSkip=0;
+		
 		
 		
 		var selected_outletID_get=($("input:radio[name='RadioOutlet']:checked").val())		
@@ -858,6 +863,15 @@ function select_outlet() {
 							
 							
 							//syncOutlet();
+ 
+							
+							//alert ('npdTotal: '+localStorage.npdTotal);
+//							alert ('fdisplaySlabTotal: '+localStorage.fdisplaySlabTotal);
+//							alert ('qpdsSlabTotal: '+localStorage.qpdsSlabTotal);
+//							alert ('giftTotal: '+localStorage.giftTotal);
+							
+							
+							
 							
 							}//end success if
 							
@@ -1018,6 +1032,10 @@ function syncOutlet() {
 								
 								var npdSingleArray = npdList.split('rdrd');	
 								var npdSingleTotal = npdSingleArray.length;
+								
+								
+								
+								
 								//alert (mhskusList);
 								var npdStringShow=''
 								npdStringShow=npdStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
@@ -1027,6 +1045,12 @@ function syncOutlet() {
 								//i=6;
 //								alert (i.toString())
 								localStorage.npdTotal=npdSingleTotal
+								
+								
+								if (parseInt(localStorage.npdTotal)==1){
+									localStorage.npdSkip=1;
+								}
+								
 								for (var i=0; i < npdSingleTotal-1; i++){
 									npdArray = npdSingleArray[i].split('fdfd');
 									itemID=npdArray[0];
@@ -1054,11 +1078,20 @@ function syncOutlet() {
 						
 								var fdisplaySlabArray = fdisplayList.split('</slab>');
 								var fdisplaySlabTotal = fdisplaySlabArray.length;
-
+								
+								
+								
+								
+								
 								var fdisplayStringShow=''
 								fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
 								
 								localStorage.fdisplaySlabTotal=fdisplaySlabTotal
+								
+								if (parseInt(localStorage.fdisplaySlabTotal)==1){
+									localStorage.fdSkip=0;
+								}
+								
 								for (var slab=0; slab < fdisplaySlabTotal-1; slab++){
 										var fdisplaySlabList = fdisplaySlabArray[slab].replace("<slab>","");
 										var fdisplaySlab_1Array = fdisplayList.split('<slab>');
@@ -1140,10 +1173,19 @@ function syncOutlet() {
 								var qpdsSlabArray = qpdsList.split('</scheme>');
 								var qpdsSlabTotal = qpdsSlabArray.length;
 								
+								
+								
 								var qpdsStringShow=''
 								qpdsStringShow=qpdsStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
 								
 								localStorage.qpdsSlabTotal=qpdsSlabTotal
+								
+								//alert (parseInt(localStorage.qpdsSlabTotal));
+								if (parseInt(localStorage.qpdsSlabTotal)==1){	
+									//alert ('nadira');							
+									localStorage.qpdsSkip=1;	
+								}
+								
 								for (var slab=0; slab < qpdsSlabTotal-1; slab++){
 																				
 										
@@ -1224,12 +1266,21 @@ function syncOutlet() {
 								//==========Create Gift Ack list
 								var giftSingleArray = giftList.split('rdrd');	
 								var giftSingleTotal = giftSingleArray.length;
+								
+								
+								
 								var giftStringShow=''
 								giftStringShow=giftStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
 								giftStringShow=giftStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
                   				giftStringShow=giftStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td>Received</td><td></td><td>Memo</td></tr>'
 								
 								localStorage.giftTotal=giftSingleTotal
+								
+								if (parseInt(localStorage.giftTotal)==1){
+									localStorage.giftSkip=1;
+								}
+								
+								
 								for (var i=0; i < giftSingleTotal-1; i++){
 									giftArray = giftSingleArray[i].split('fdfd');
 									slabSchemeName_gift=giftArray[0];
@@ -1273,7 +1324,7 @@ function syncOutlet() {
 								var marchadizingSingleTotal = marchadizingSingleArray.length;
 								
 								var marchadizingStringShow=''
-								marchadizingStringShow=marchadizingStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td><td  colspan="2"><a data-role="button" href="#dialogMarchandizing" >+</a> </td></tr><tr > </table></br>'
+								marchadizingStringShow=marchadizingStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td><td  colspan="2"><a data-role="button" href="#dialogMarchandizing" > Add </a> </td></tr><tr > </table></br>'
 								marchadizingStringShow=marchadizingStringShow+'<table  width="100%" border="0" cellpadding="0" cellspacing="0">'
                   				marchadizingStringShow=marchadizingStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td> <td >Item / Brand</td><td>QTY </td><td> </td><td>Condition</td><td > </td><td>Visible</td><td> </td><td >Dismantled</td></tr>'
 								
@@ -1381,6 +1432,9 @@ function syncOutlet() {
 								localStorage.startTime=startTime
 								//alert (startTime);
 								$("#startTime").val(localStorage.startTime);
+								
+								
+								
 							}
 						}
 				      },
@@ -1455,6 +1509,30 @@ function npd_ready_data() {
 	}
 	 localStorage.npd_data_ready=npd_data
 
+//============================================
+	if (localStorage.fdSkip==0){
+		var url = "#fixedDisplay";
+		$.mobile.navigate(url);
+		
+	}
+	else if (localStorage.qpdsSkip==0){
+		var url = "#qpdsPage";
+		$.mobile.navigate(url);
+		
+	}
+	else if (localStorage.giftSkip==0){
+		var url = "#giftAckPage";
+		$.mobile.navigate(url);
+		
+	}
+	else{
+		var url = "#submitPage";
+		$.mobile.navigate(url);
+	}
+
+
+//=====================================
+
 }
 function npd_page_set() { 
 	 var npd_array =  localStorage.npd_data_ready.split('rdrd');
@@ -1503,6 +1581,30 @@ function fdisplay_ready_data() {
 	
 	 fdisplay_page_set()
 	// alert (localStorage.fdisplay_data_ready);
+	
+	
+	//==============
+	//alert (localStorage.qpdsSkip);
+	if (localStorage.qpdsSkip==0){
+		var url = "#qpdsPage";
+		$.mobile.navigate(url);
+		
+	}
+	else if (localStorage.giftSkip==0){
+		var url = "#giftAckPage";
+		$.mobile.navigate(url);
+		
+	}
+	else{
+		var url = "#submitPage";
+		$.mobile.navigate(url);
+	}
+	//==================
+	
+	
+	
+	
+	
 
 }
 
@@ -1551,6 +1653,11 @@ function fdisplay_page_set() {
 			
 			}
 	}
+	
+	
+	
+	
+	
 }
 
 function qpds_ready_data() { 
@@ -1592,6 +1699,19 @@ function qpds_ready_data() {
 	qpds_data='headstart'+qpds_data_head+'headend'+qpds_data_detail
 	localStorage.qpds_data_ready=qpds_data;
 	qpds_page_set();
+	
+	//==============
+	if (localStorage.giftSkip==0){
+		var url = "#giftAckPage";
+		$.mobile.navigate(url);
+		
+	}
+	else{
+		var url = "#submitPage";
+		$.mobile.navigate(url);
+	}
+	//==================
+	
 }
 
 function qpds_page_set() { 
@@ -1735,6 +1855,40 @@ function mar_ready_data() {
 	}	
 	localStorage.mar_data_ready=mar_data
 	mar_page_set();
+	
+	
+	
+	if (localStorage.npdSkip==0){
+		var url = "#npdPage";
+		$.mobile.navigate(url);
+	}
+	else if (localStorage.fdSkip==0){
+		var url = "#fixedDisplay";
+		$.mobile.navigate(url);
+		
+	}
+	else if (localStorage.qpdsSkip==0){
+		var url = "#qpdsPage";
+		$.mobile.navigate(url);
+		
+	}
+	else if (localStorage.giftSkip==0){
+		var url = "#giftAckPage";
+		$.mobile.navigate(url);
+		
+	}
+	else{
+		var url = "#submitPage";
+		$.mobile.navigate(url);
+	}
+					 
+								
+								
+		
+	
+	
+	
+	
 
 }
 function mar_page_set() { 
@@ -1840,6 +1994,12 @@ function submit_data() {
 								
 								
 								//localstorage.m_new="";
+								
+								upload_fd();
+								//alert ('nadira');
+								
+								
+								
 							}
 									
 						}
@@ -2017,6 +2177,7 @@ function upload_fd(){
 	//fixed display
 	step_flag=1; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
+	
 	$( "#sub_fd_button").hide();
 	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	
@@ -2028,13 +2189,18 @@ function upload_fd(){
 			uploadPhoto(fdSLfdisplay_image_path, image_name);
 			//if upload is successfull then "file_upload_error" will be 0 , if error 1
 		} else {
-			$("#submit_data").html("Fixed Display Synced Successfully");
+			$("#submit_data").html("Fixed Display Image Not Available");
 			localStorage.fddataSubmit=1;
 			if (localStorage.fdisplaySlabTotal==1){
 				localStorage.fddataSubmit=1;
 			}
 			buttonCheck();
 		}		
+	}
+	//localStorage.fddataSubmit=0;
+	if (localStorage.fddataSubmit==1){
+		upload_qpds();
+		buttonCheck();
 	}
 }
 
@@ -2054,12 +2220,17 @@ function upload_qpds(){
 			//if upload is successfull then "file_upload_error" will be 0 , if error 1
 		} else {
 			localStorage.qpdsdataSubmit=1;
-			$("#submit_data").html("QPDS Synced Successfully");
+			$("#submit_data").html("QPDS Image Not Available");
 			if (localStorage.qpdsSlabTotal==1){
 				localStorage.qpdsdataSubmit=1;
 			}
 			buttonCheck();
 		}
+	}
+	//localStorage.qpdsdataSubmit=0;
+	if (localStorage.qpdsdataSubmit==1){
+		upload_gift_confirm();
+		buttonCheck();
 	}
 }
 
@@ -2077,8 +2248,13 @@ function upload_gift_confirm(){
 		uploadPhoto(gift_image_path, image_name);
 	} else {
 		localStorage.giftdataSubmit=1;
-		$("#submit_data").html("All Sync Completted");
+		$("#submit_data").html("Gift Image Not Available");
 		localStorage.giftdataSubmit=1;
+		buttonCheck();
+	}
+	//localStorage.giftdataSubmit=1;
+	if (localStorage.giftdataSubmit==1){
+		//upload_gift_confirm();
 		buttonCheck();
 	}
 }

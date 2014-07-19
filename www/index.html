@@ -61,6 +61,7 @@
         
    <script>     
     $(document).ready(function(){
+				buttonCheck();
 				$("#login_image").hide();
 				$("#routeS_image").hide();
 				//alert (localStorage.latlongSubmit);
@@ -486,7 +487,8 @@
            
 			
 				<br/><br/>
-				<a data-role="button" href="#npdPage" onClick="mar_ready_data()" >Next</a>
+				<!--<a data-role="button" href="#npdPage" onClick="mar_ready_data()" >Next</a>-->
+				<a data-role="button" onClick="mar_ready_data()" >Next</a>
 				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -513,7 +515,9 @@
 				<div id="npd"></div>
 				
 				</br></br>
-				<a data-role="button" href="#fixedDisplay" onClick="npd_ready_data()" >Next</a>
+				<!--<a data-role="button" href="#fixedDisplay" onClick="npd_ready_data()" >Next</a>-->
+                
+                <a data-role="button" onClick="npd_ready_data()" >Next</a>
 				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -548,7 +552,8 @@
 				 
 				 
 				 </br></br>
-				<a data-role="button" href="#qpdsPage" onClick="fdisplay_ready_data();" >Next</a>
+				<!--<a data-role="button" href="#qpdsPage" onClick="fdisplay_ready_data();" >Next</a>-->
+                <a data-role="button" onClick="fdisplay_ready_data();" >Next</a>
 				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                 <br/><br/>
@@ -576,7 +581,8 @@
 			
 				</br></br>
 
-				<a data-role="button" href="#giftAckPage" onClick="qpds_ready_data();" >Next</a>
+				<!--<a data-role="button" href="#giftAckPage" onClick="qpds_ready_data();" >Next</a>-->
+                <a data-role="button" onClick="qpds_ready_data();" >Next</a>
 				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
 				
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
@@ -637,8 +643,8 @@
                 </br>
                 </br>
 				Location:
-				<input name="lat" id="lat" placesholder="" value="" type="text" readonly="True">
-			   <input name="long" id="long" placeholder="" value="" type="text" readonly="True">
+				<input name="lat" id="lat" placesholder="" value="" type="text" readonly>
+			   <input name="long" id="long" placeholder="" value="" type="text" readonly>
 				
 			<div id="location_button">
 			<a data-role="button" onClick="getlocationand_askhelp();">Confirm Location</a>
