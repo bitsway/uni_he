@@ -1927,7 +1927,7 @@ function submit_data() {
 	
 	$( "#sub_button_div").hide();
 	
-	//$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);
+	$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);
 	
 	//alert (localStorage.m_new_string);
 	$.ajax({
@@ -2008,7 +2008,7 @@ function submit_data() {
 				  error: function(result) {
 					 // alert (result);
 					 $("#sub_button").show();
-					 $("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
+					// $("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 					 localStorage.dataSubmit=0;
 					 buttonCheck();
 					 var url = "#submitPage";
@@ -2197,7 +2197,7 @@ function upload_fd(){
 			buttonCheck();
 		}		
 	}
-	//localStorage.fddataSubmit=0;
+	//localStorage.fddataSubmit=1;
 	if (localStorage.fddataSubmit==1){
 		upload_qpds();
 		buttonCheck();
@@ -2227,7 +2227,7 @@ function upload_qpds(){
 			buttonCheck();
 		}
 	}
-	//localStorage.qpdsdataSubmit=0;
+	//localStorage.qpdsdataSubmit=1;
 	if (localStorage.qpdsdataSubmit==1){
 		upload_gift_confirm();
 		buttonCheck();
@@ -2254,7 +2254,6 @@ function upload_gift_confirm(){
 	}
 	//localStorage.giftdataSubmit=1;
 	if (localStorage.giftdataSubmit==1){
-		//upload_gift_confirm();
 		buttonCheck();
 	}
 }
