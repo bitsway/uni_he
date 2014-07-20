@@ -2217,29 +2217,18 @@ function upload_fd(){
 			uploadPhoto(fdSLfdisplay_image_path, image_name);
 			//if upload is successfull then "file_upload_error" will be 0 , if error 1
 		} else {
+			localStorage.fddataSubmit=1;
 			if (localStorage.fdisplaySlabTotal > 1){
 				$("#submit_data").html("Fixed Display Image Not Available");
 			}
 			else{
-				$("#submit_data").html("");
+				$("#submit_data").html("");				
 			}
-			
-			//localStorage.fddataSubmit=1;
-			//if (localStorage.fdisplaySlabTotal==1){
-				localStorage.fddataSubmit=1;
-			//}
 			buttonCheck();
-		}		
+		}
+				
 	}
-	//localStorage.fddataSubmit=1;
-	if (localStorage.fddataSubmit==1){
-		upload_qpds();
-		
-		//$("#fd_button").click();
-		
-		
-		buttonCheck();
-	}
+
 }
 
 function upload_qpds(){
@@ -2250,31 +2239,24 @@ function upload_qpds(){
 	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	
 	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
-		//alert ('nn');
 		var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
 		var qpds_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val();
 		if (qpds_image_path.length >10){
 			uploadPhoto(qpds_image_path, image_name);
 			//if upload is successfull then "file_upload_error" will be 0 , if error 1
 		} else {
-			//localStorage.qpdsdataSubmit=1;
+			localStorage.qpdsdataSubmit=1;
 			if (localStorage.qpdsSlabTotal > 1){
 				$("#submit_data").html("QPDS Image Not Available");
 			}
 			else{
-				$("#submit_data").html("");
+				$("#submit_data").html("");				
 			}
-			//if (localStorage.qpdsSlabTotal==1){
-				localStorage.qpdsdataSubmit=1;
-			//}
+
 			buttonCheck();
 		}
 	}
-	//localStorage.qpdsdataSubmit=1;
-	if (localStorage.qpdsdataSubmit==1){
-		upload_gift_confirm();
-		buttonCheck();
-	}
+
 }
 
 function upload_gift_confirm(){
@@ -2289,21 +2271,19 @@ function upload_gift_confirm(){
 	
 	if (gift_image_path.length >10){
 		uploadPhoto(gift_image_path, image_name);
+
 	} else {
+		localStorage.giftdataSubmit=1;
 		if (localStorage.giftSkip== 0){
 			$("#submit_data").html("Gift Image Not Available");
 		}
 		else{
 			$("#submit_data").html("");
-		}
-		localStorage.giftdataSubmit=1;
+			cancel_outlet();
+		}		
 		buttonCheck();
 	}
-	//localStorage.giftdataSubmit=1;
-	if (localStorage.giftdataSubmit==1){
-		buttonCheck();
-		cancel_outlet()
-	}
+	
 	
 }
 
@@ -2340,13 +2320,14 @@ function win(r) {
 	if (step_flag==1){ //for fixed display
 		$("#submit_data").html("Fixed Display Synced Successfully");
 		localStorage.fddataSubmit=1;
+		upload_qpds();
 		buttonCheck();
 	}
 	
 	if (step_flag==2){ // QPDS
 		$("#submit_data").html("QPDS Synced Successfully");
 		localStorage.qpdsdataSubmit=1;
-		
+		upload_gift_confirm();
 		buttonCheck();
 	}
 	
@@ -2354,6 +2335,7 @@ function win(r) {
 		
 		$("#submit_data").html("All Sync Completted");
 		localStorage.giftdataSubmit=1;
+		cancel_outlet()
 		buttonCheck();
 	}
 	
