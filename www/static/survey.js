@@ -1963,10 +1963,12 @@ function submit_data() {
 							alert ('Sorry Network not available');
 						}
 						else{
-							if (result=='FAILED'){
-								$("#submit_data").html('Unauthorized User');
+//                          if (result=='FAILED'){
+//								$("#submit_data").html('Unauthorized User');
+//							}
+							if (result!='SUCCESS'){
+								$("#submit_data").html(result);
 							}
-							
 							if (result=='SUCCESS'){
 								
 								localStorage.dataSubmit=1;
