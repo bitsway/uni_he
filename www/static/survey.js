@@ -2209,12 +2209,12 @@ function upload_fd(){
 	
 	$( "#sub_fd_button").hide();
 	//$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
-	$("#submit_data").html('localStorage.fdisplay_data_ready:' + localStorage.fdisplay_data_ready);
+	//$("#submit_data").html('localStorage.fdisplay_data_ready:' + localStorage.fdisplay_data_ready);
 	
 	
 	//if ((localStorage.fdisplay_data_ready.length > 10 ) && (localStorage.fdisplay_data_ready != 'undefined') && (localStorage.fdisplay_data_ready != undefined)){	
-	if (localStorage.fdisplay_data_ready === undefined ){
-		localStorage.fdisplay_data_ready = "";
+	if (typeof localStorage.fdisplay_data_ready === "undefined") {
+		localStorage.fdisplay_data_ready = "_";
 	}
 	
 	if (localStorage.fdisplay_data_ready.length > 10){
@@ -2253,11 +2253,11 @@ function upload_qpds(){
 	file_upload_error = 0;
 	$( "#sub_qpds_button").hide();
 	//$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
-	$("#submit_data").html('localStorage.qpds_data_ready.length:'+localStorage.qpds_data_ready.length);
+	//$("#submit_data").html('localStorage.qpds_data_ready.length:'+localStorage.qpds_data_ready.length);
 	
 	
-	if (localStorage.qpds_data_ready === undefined ){
-		localStorage.qpds_data_ready ="";
+	if (typeof localStorage.qpds_data_ready === "undefined") {
+		localStorage.qpds_data_ready ="_";
 	}
 	
 	//if ((localStorage.qpds_data_ready.length > 10 ) && (localStorage.qpds_data_ready != 'undefined') && (localStorage.qpds_data_ready != undefined)){
