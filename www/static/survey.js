@@ -2213,8 +2213,8 @@ function upload_fd(){
 	
 	
 	//if ((localStorage.fdisplay_data_ready.length > 10 ) && (localStorage.fdisplay_data_ready != 'undefined') && (localStorage.fdisplay_data_ready != undefined)){	
-	if (localStorage.fdisplay_data_ready.length === undefined ){
-		localStorage.fdisplay_data_ready.length ="";
+	if (localStorage.fdisplay_data_ready === undefined ){
+		localStorage.fdisplay_data_ready = "";
 	}
 	
 	if (localStorage.fdisplay_data_ready.length > 10){
@@ -2256,8 +2256,8 @@ function upload_qpds(){
 	$("#submit_data").html('localStorage.qpds_data_ready.length:'+localStorage.qpds_data_ready.length);
 	
 	
-	if (localStorage.qpds_data_ready.length === undefined ){
-		localStorage.qpds_data_ready.length ="";
+	if (localStorage.qpds_data_ready === undefined ){
+		localStorage.qpds_data_ready ="";
 	}
 	
 	//if ((localStorage.qpds_data_ready.length > 10 ) && (localStorage.qpds_data_ready != 'undefined') && (localStorage.qpds_data_ready != undefined)){
