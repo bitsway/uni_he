@@ -2209,11 +2209,15 @@ function upload_fd(){
 	
 	$( "#sub_fd_button").hide();
 	//$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
-	$("#submit_data").html('localStorage.fdisplay_data_ready:' + localStorage.fdisplay_data_ready.length);
+	$("#submit_data").html('localStorage.fdisplay_data_ready:' + localStorage.fdisplay_data_ready);
 	
 	
-	if (localStorage.fdisplay_data_ready.length > 10 ){	
-	    $("#submit_data").html('fd1');
+	//if ((localStorage.fdisplay_data_ready.length > 10 ) && (localStorage.fdisplay_data_ready != 'undefined') && (localStorage.fdisplay_data_ready != undefined)){	
+	if (localStorage.fdisplay_data_ready.length === undefined ){
+		localStorage.fdisplay_data_ready.length ="";
+	}
+	
+	if (localStorage.fdisplay_data_ready.length > 10){
 		for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
 			var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
 			var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
@@ -2236,7 +2240,6 @@ function upload_fd(){
 	
 	}//end if
 	else{
-		$("#submit_data").html('fd2');
 		localStorage.fddataSubmit=1;
 		upload_qpds();
 		buttonCheck();
@@ -2252,8 +2255,13 @@ function upload_qpds(){
 	//$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	$("#submit_data").html('localStorage.qpds_data_ready.length:'+localStorage.qpds_data_ready.length);
 	
-	if (localStorage.qpds_data_ready.length > 10 ){	
-	    $("#submit_data").html('qpds1');
+	
+	if (localStorage.qpds_data_ready.length === undefined ){
+		localStorage.qpds_data_ready.length ="";
+	}
+	
+	//if ((localStorage.qpds_data_ready.length > 10 ) && (localStorage.qpds_data_ready != 'undefined') && (localStorage.qpds_data_ready != undefined)){
+	if (localStorage.qpds_data_ready.length > 10){	
 		for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
 			var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
 			var qpds_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val();
@@ -2274,7 +2282,6 @@ function upload_qpds(){
 		}//end for
 	}//end if
 	else{
-		 $("#submit_data").html('qpds2');
 		 localStorage.qpdsdataSubmit=1;
 		 upload_gift_confirm();
 		 buttonCheck();
