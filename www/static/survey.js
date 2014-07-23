@@ -2235,6 +2235,7 @@ function upload_fd(){
 	else{
 		localStorage.fddataSubmit=1;
 		upload_qpds();
+		buttonCheck();
 	}
 
 }
@@ -2269,6 +2270,7 @@ function upload_qpds(){
 	else{
 		 localStorage.qpdsdataSubmit=1;
 		 upload_gift_confirm();
+		 buttonCheck();
 	}
 }
 
