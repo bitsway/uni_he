@@ -2210,7 +2210,7 @@ function upload_fd(){
 	$( "#sub_fd_button").hide();
 	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	
-	if (parseInt(localStorage.fdisplaySlabTotal.length) > 1 ){	
+	if (parseInt(localStorage.fdisplaySlabTotal.length) > 0 ){	
 		for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
 			var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
 			var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
