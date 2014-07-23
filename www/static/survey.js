@@ -2210,24 +2210,31 @@ function upload_fd(){
 	$( "#sub_fd_button").hide();
 	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	
-	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
-		var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
-		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
-		
-		if (fdSLfdisplay_image_path.length >10){
-			uploadPhoto(fdSLfdisplay_image_path, image_name);
-			//if upload is successfull then "file_upload_error" will be 0 , if error 1
-		} else {
-			localStorage.fddataSubmit=1;
-			if (localStorage.fdisplaySlabTotal > 1){
-				$("#submit_data").html("Fixed Display Image Not Available");
+	if (localStorage.fdisplaySlabTotal.length > 5 ){	
+		for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
+			var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
+			var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
+			
+			if (fdSLfdisplay_image_path.length >10){
+				uploadPhoto(fdSLfdisplay_image_path, image_name);
+				//if upload is successfull then "file_upload_error" will be 0 , if error 1
+			} else {
+				localStorage.fddataSubmit=1;
+				if (localStorage.fdisplaySlabTotal > 1){
+					$("#submit_data").html("Fixed Display Image Not Available");
+				}
+				else{
+					$("#submit_data").html("");				
+				}
+				buttonCheck();
 			}
-			else{
-				$("#submit_data").html("");				
-			}
-			buttonCheck();
-		}
-				
+					
+		}//end for
+	
+	}//end if
+	else{
+		localStorage.fddataSubmit=1;
+		upload_qpds();
 	}
 
 }
@@ -2239,25 +2246,30 @@ function upload_qpds(){
 	$( "#sub_qpds_button").hide();
 	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	
-	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
-		var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
-		var qpds_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val();
-		if (qpds_image_path.length >10){
-			uploadPhoto(qpds_image_path, image_name);
-			//if upload is successfull then "file_upload_error" will be 0 , if error 1
-		} else {
-			localStorage.qpdsdataSubmit=1;
-			if (localStorage.qpdsSlabTotal > 1){
-				$("#submit_data").html("QPDS Image Not Available");
+	if (localStorage.qpdsSlabTotal.length > 5 ){	
+		for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
+			var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
+			var qpds_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val();
+			if (qpds_image_path.length >10){
+				uploadPhoto(qpds_image_path, image_name);
+				//if upload is successfull then "file_upload_error" will be 0 , if error 1
+			} else {
+				localStorage.qpdsdataSubmit=1;
+				if (localStorage.qpdsSlabTotal > 1){
+					$("#submit_data").html("QPDS Image Not Available");
+				}
+				else{
+					$("#submit_data").html("");				
+				}
+	
+				buttonCheck();
 			}
-			else{
-				$("#submit_data").html("");				
-			}
-
-			buttonCheck();
-		}
+		}//end for
+	}//end if
+	else{
+		 localStorage.qpdsdataSubmit=1;
+		 upload_gift_confirm();
 	}
-
 }
 
 function upload_gift_confirm(){
@@ -2490,8 +2502,11 @@ function menupage(){
 	var check_outlet= localStorage.outletString;
 								//alert ('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">')
 	localStorage.outletString=check_outlet.replace('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">','<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'" disabled="True">');
-	 cancel_outlet();
-	 var url = "#menuPage";
-	$.mobile.navigate(url);	
+	cancel_outlet();
+	var url = "#outletPage";
+	$.mobile.navigate(url);
+	location.reload();
+	// var url = "#menuPage";
+	//$.mobile.navigate(url);	
 }
 
