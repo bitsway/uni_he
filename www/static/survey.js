@@ -2210,7 +2210,7 @@ function upload_fd(){
 	$( "#sub_fd_button").hide();
 	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	
-	if (localStorage.fdisplaySlabTotal.length > 5 ){	
+	if (parseInt(localStorage.fdisplaySlabTotal.length) > 1 ){	
 		for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
 			var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
 			var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
@@ -2247,7 +2247,7 @@ function upload_qpds(){
 	$( "#sub_qpds_button").hide();
 	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
 	
-	if (localStorage.qpdsSlabTotal.length > 5 ){	
+	if (parseInt(localStorage.qpdsSlabTotal) > 1 ){	
 		for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
 			var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
 			var qpds_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val();
