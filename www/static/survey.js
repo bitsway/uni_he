@@ -1951,7 +1951,7 @@ function submit_data() {
 	
 	$( "#sub_button_div").hide();
 	
-	$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);	
+	//$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);	
 	//alert (localStorage.m_new_string);
 	$.ajax({
 				 type: 'POST',
@@ -2208,7 +2208,8 @@ function upload_fd(){
 	file_upload_error = 0;
 	
 	$( "#sub_fd_button").hide();
-	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
+	//$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
+	$("#submit_data").html('localStorage.fdisplay_data_ready:' + localStorage.fdisplay_data_ready);
 	
 	
 	if (localStorage.fdisplay_data_ready.length > 10 ){	
@@ -2246,7 +2247,8 @@ function upload_qpds(){
 	step_flag=2; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
 	$( "#sub_qpds_button").hide();
-	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
+	//$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
+	$("#submit_data").html('localStorage.qpds_data_ready.length:'+localStorage.qpds_data_ready.length);
 	
 	if (localStorage.qpds_data_ready.length > 10 ){	
 		for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
@@ -2280,7 +2282,8 @@ function upload_gift_confirm(){
 	step_flag=3; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
 	$( "#sub_gift_button").hide();
-	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
+	//$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
+	$("#submit_data").html('Gift');
 	
 	var image_name=$("#gift_image_name_hidden").val();
 	var gift_image_path=$("#gift_image_div_hidden").val();
