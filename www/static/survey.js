@@ -1113,7 +1113,7 @@ function syncOutlet() {
 								localStorage.fdisplaySlabTotal=fdisplaySlabTotal
 								
 								if (parseInt(localStorage.fdisplaySlabTotal)==1){
-									localStorage.fdSkip=0;
+									localStorage.fdSkip=1;
 								}
 								
 								for (var slab=0; slab < fdisplaySlabTotal-1; slab++){
