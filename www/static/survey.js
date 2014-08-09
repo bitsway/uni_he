@@ -623,16 +623,16 @@ function selectRoute() {
 			localStorage.selectedRoute=selected_routeID;
 			localStorage.routeException_found='0';
 		
-			var url = "#menuPage";
-		   $.mobile.navigate(url);	
+			//var url = "#menuPage";
+		   //$.mobile.navigate(url);	
 		}
 		else {
 			localStorage.selectedRoute=selected_routeID;
 			localStorage.routeException_found='1';
 			
 			
-			var url = "#routeexceptionPage";
-			$.mobile.navigate(url);	
+			//var url = "#routeexceptionPage";
+			//$.mobile.navigate(url);	
 		}
 	}
 }
@@ -651,6 +651,69 @@ function selectRouteException() {
 //=====================outlet start=====================
 function marketPJP() { 
 	var selected_route_exception=($("input:radio[name='RadioRouteEx']:checked").val())
+	var selected_route=($("input:radio[name='RadioRoute']:checked").val())
+	
+	
+	$("#routeS_image").show();
+	$("#RSButton").hide();
+	
+	
+	
+	var d=new Date();
+	var weekday=new Array(7);
+	weekday[0]="Sunday";
+	weekday[1]="Monday";
+	weekday[2]="Tuesday";
+	weekday[3]="Wednesday";
+	weekday[4]="Thursday";
+	weekday[5]="Friday";
+	weekday[6]="Saturday";
+	
+	var today_get = weekday[d.getDay()];
+	
+	var sync_date_get=get_date();
+	var sync_date=sync_date_get.substring(0,10);
+	
+	//sync_date.substring(1,10)
+	//alert (sync_date);
+	localStorage.sync_date=sync_date;
+	
+	
+	var selected_routeArray = selected_route.split('_');	
+	var selected_routeID=selected_routeArray[0];
+	var selected_routeName=selected_routeArray[1];
+	var selected_routeDay=selected_routeArray[2];
+	
+	localStorage.routeIDName=selected_routeName+"( "+selected_routeID+" )"
+	
+	//cancel_outlet();
+	
+	//if(selected_route!=undefined){
+//		$("#routeS_image").show();
+//		$("#RSButton").hide();
+		//alert (selected_routeDay);
+		//alert (today_get);
+		if (selected_routeDay==today_get){
+			localStorage.selectedRoute=selected_routeID;
+			localStorage.routeException_found='0';
+		
+			//var url = "#menuPage";
+		   //$.mobile.navigate(url);	
+		}
+		else {
+			localStorage.selectedRoute=selected_routeID;
+			localStorage.routeException_found='1';
+			
+			
+			//var url = "#routeexceptionPage";
+			//$.mobile.navigate(url);	
+		}
+	//}
+	
+	
+	
+	
+	
 	if(localStorage.selectedRoute!=undefined){
 		//$("#dataerror").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
 	//======================================	
@@ -716,9 +779,23 @@ function marketPJP() {
 								$("#routeS_image").hide();
 								$("#RSButton").show();
 								
+								if (selected_routeDay==today_get){
+									localStorage.selectedRoute=selected_routeID;
+									localStorage.routeException_found='0';
 								
+									var url = "#menuPage";
+								   $.mobile.navigate(url);	
+								}
+								else {
+									localStorage.selectedRoute=selected_routeID;
+									localStorage.routeException_found='1';
+									
+									
+									var url = "#routeexceptionPage";
+									$.mobile.navigate(url);	
+								}
 								//var url = "#menuPage";
-//								$.mobile.navigate(url);	
+								//$.mobile.navigate(url);	
 //								location.reload();
 							//=======end outlet list====================								
 							}
@@ -726,6 +803,10 @@ function marketPJP() {
 						}
 				      },
 				  error: function(result) {
+					  
+					  
+					  
+					  $("#dataerror").html('Network timeout. Please ensure you have good network signal and working Internet.');
 					  $("#routeS_image").hide();
 					  $("#RSButton").show();
 					 
