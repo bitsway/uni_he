@@ -1,13 +1,15 @@
 // Put your custom code here
-//var apipath='http://127.0.0.1:8000/em/default/';
-//var apipath='http://e.businesssolutionapps.com/em/default/';
-//var apipath='http://127.0.0.1:8000/em/default/';
 
-var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
-var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
+
+//var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
+//var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
 //var apipath='http://127.0.0.1:8000/unilever/syncmobile/';
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
+
+
+var apipath='http://e.businesssolutionapps.com/unilever/syncmobile/';
+var apipath_image = 'http://e.businesssolutionapps.com/unilever/';
 
 var step_flag=0; //1 fd , 2 qpds, 3 gift
 
@@ -73,7 +75,6 @@ navigator.app.exitApp();
 function first_page(){
 	//alert (localStorage.synced);
 	if ((localStorage.synced!='YES')){
-		//alert ('nadira')
 		var url = "#login";
 		$.mobile.navigate(url);
 		//$(location).attr('href',url);
@@ -89,6 +90,7 @@ function outlet_next_page(){
 		//alert (localStorage.routeException_found);
 		var url = "#outletexceptionPage";
 		$.mobile.navigate(url);
+		location.reload();
 		//$(location).attr('href',url);
 		
 	}
@@ -147,13 +149,15 @@ function div_change(){
 	$("#outletCancel").show();
 	$("#outletString").hide();
 	$("#menujpj").hide();
+	
 	$("#backjpj").hide();
 	$("#link_route").hide();
 	
 	
 	$("#outletName_show").html(localStorage.outletNameID);
-	$("#outletButton").delay(6000).show(0);
-	$("#outletWait").delay(6000).hide(0);
+	
+	//$("#outletButton").delay(6000).show(0);
+	//$("#outletWait").delay(6000).hide(0);
 	
 	//$("#outletWait").hide();
 	//doTimer();
@@ -164,18 +168,6 @@ function div_change(){
 function cancel_outlet(){
 	localStorage.show_cancel=0;
 	localStorage.outletNameID='';
-//	localStorage.marchadizingTotal='';
-//	localStorage.m_new_string='';
-//	localStorage.m_new='';
-	
-	
-	
-//	localStorage.mhskus_data_ready="";
-//	localStorage.npd_data_ready="";
-//	localStorage.fdisplay_data_ready="";
-//	localStorage.qpds_data_ready="";
-//	localStorage.gift_data_ready="";
-//	localStorage.mar_data_ready="";
 	
 	
 	localStorage.m_new_string="";
@@ -202,7 +194,8 @@ function cancel_outlet(){
 	localStorage.gift_data_ready="";
 	localStorage.mar_data_ready="";
 	
-	
+	localStorage.latitude=0;
+	localStorage.longitude=0;
 	
 	localStorage.outletException='undefined';
 	$("#outletCancel").hide();
@@ -580,63 +573,7 @@ function check_route() {
 //==========================set route for new dateend=============
 
 //=====================Check user end========================
-//=====================Select Route Start====================
 
-function selectRoute() { 
-	var selected_route=($("input:radio[name='RadioRoute']:checked").val())
-	
-	var d=new Date();
-	var weekday=new Array(7);
-	weekday[0]="Sunday";
-	weekday[1]="Monday";
-	weekday[2]="Tuesday";
-	weekday[3]="Wednesday";
-	weekday[4]="Thursday";
-	weekday[5]="Friday";
-	weekday[6]="Saturday";
-	
-	var today_get = weekday[d.getDay()];
-	
-	var sync_date_get=get_date();
-	var sync_date=sync_date_get.substring(0,10);
-	
-	//sync_date.substring(1,10)
-	//alert (sync_date);
-	localStorage.sync_date=sync_date;
-	
-	
-	var selected_routeArray = selected_route.split('_');	
-	var selected_routeID=selected_routeArray[0];
-	var selected_routeName=selected_routeArray[1];
-	var selected_routeDay=selected_routeArray[2];
-	
-	localStorage.routeIDName=selected_routeName+"( "+selected_routeID+" )"
-	
-	//cancel_outlet();
-	
-	if(selected_route!=undefined){
-		$("#routeS_image").show();
-		$("#RSButton").hide();
-		//alert (selected_routeDay);
-		//alert (today_get);
-		if (selected_routeDay==today_get){
-			localStorage.selectedRoute=selected_routeID;
-			localStorage.routeException_found='0';
-		
-			//var url = "#menuPage";
-		   //$.mobile.navigate(url);	
-		}
-		else {
-			localStorage.selectedRoute=selected_routeID;
-			localStorage.routeException_found='1';
-			
-			
-			//var url = "#routeexceptionPage";
-			//$.mobile.navigate(url);	
-		}
-	}
-}
-//=====================Select Route End=========================
 //=====================Route Exception start=====================
 function selectRouteException() { 
 	var selected_route_exception=($("input:radio[name='RadioRouteEx']:checked").val())
@@ -710,13 +647,10 @@ function marketPJP() {
 		}
 	//}
 	
-	
-	
-	
-	
 	if(localStorage.selectedRoute!=undefined){
 		//$("#dataerror").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
 	//======================================	
+		localStorage.routeException='';
 		$.ajax({
 				 type: 'POST',
 				 url: apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute,
@@ -739,6 +673,7 @@ function marketPJP() {
 								var outletStringShow=''
 								
 								outletStringShow=outletStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr style="color:#006A6A; font-size:18px;"><td>'+localStorage.routeIDName+'</td></tr></table>'
+								
 								for (var o=0; o < outletSingleTtotal-1; o++){
 									outletArray = outletSingleArray[o].split('fdfd');
 									outletID=outletArray[0];
@@ -766,15 +701,26 @@ function marketPJP() {
 									outletStringShow=outletStringShow+'<label ><table width="100%" border="0"> <tr> <td width="5%">'+
 													'<input type="radio" name="RadioOutlet" value="'+outletID+'rdrd'+schedule_date+'"></td><td width="60%">'+outletName +'('+outletID+')</td><td width="15%">'+ total_visit+'/'+total_visit_done+' </td>	<td>'+outletColor+'</td> </tr></table></label>'
 								}
-								
-								
+								// If schedule not available
+								//alert (outletSingleArray.length);
+								if (outletSingleArray.length==1){
+									outletStringShow=outletStringShow+'<label style="color:#800000; font-size:18px" ><table width="100%" border="0"> <tr> <td >Schedule Not Available </td>	</tr></table></label>'
+									
+								}
 								outletStringShow=outletStringShow+'<br/><br/> <a id="selectOButton" data-role="button" onClick="select_outlet();" >Next</a>'
+								
+								//outletStringShow=outletStringShow+'<div id="outletWait" style="display:none"><img height="40px" width="40px" src="loading.gif"></div>'
 								
 								
 								
 								
 								localStorage.outletString=outletStringShow
 								$("#outletString").html(localStorage.outletString);
+								
+								
+								
+								
+								
 								
 								$("#routeS_image").hide();
 								$("#RSButton").show();
@@ -807,6 +753,8 @@ function marketPJP() {
 					  
 					  
 					  $("#dataerror").html('Network timeout. Please ensure you have good network signal and working Internet.');
+					  
+					  $("#outletCancel").hide();
 					  $("#routeS_image").hide();
 					  $("#RSButton").show();
 					 
@@ -874,12 +822,11 @@ function select_outlet() {
 		//localStorage.selected_outletID_get=selected_outletID_get;
 		
 		if ((selected_outletID!=undefined) && (selected_outletID!='undefined')){
-				//$("#selectOButton").hide();
+
 				localStorage.selectedOutlet=selected_outletID;
 				
 				localStorage.selected_date_get=selected_date_get;
-				//selected_date=new Date(selected_date_get);
-				//selected_date=get_date(selected_date_get)
+
 				selected_date=selected_date_get;
 				localStorage.selected_date=selected_date.substr(0,10);
 				//alert (localStorage.selected_date);
@@ -888,6 +835,11 @@ function select_outlet() {
 		//$("#outletInfo1").html(apipath+'sync_outlet_ex?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet);
 		
 			div_change();
+			
+			$("#dataerrorOutlet").html('');
+			$("#outletWait").show();
+			
+			// $("#selectOButton").hide();
 			$.ajax({
 				 type: 'POST',
 				 url: apipath+'sync_outlet_ex?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet,
@@ -963,26 +915,8 @@ function select_outlet() {
 							//=======end outlet exception list====================	
 							
 							syncOutlet();
-							
-							//div_change();
-							
-							
-							//syncOutlet();
- 
-							
-							//alert ('npdTotal: '+localStorage.npdTotal);
-//							alert ('fdisplaySlabTotal: '+localStorage.fdisplaySlabTotal);
-//							alert ('qpdsSlabTotal: '+localStorage.qpdsSlabTotal);
-//							alert ('giftTotal: '+localStorage.giftTotal);
-							
-							
-							
-							
 							}//end success if
 							
-							
-							
-									
 						}//end else
 						
 						
@@ -993,12 +927,19 @@ function select_outlet() {
 						
 				      },
 				  error: function(result) {
+					  
+					  localStorage.show_cancel=0;
+					  
+					  
 					  $("#selectOButton").show();
 					  
-					  
-					  $("#dataerrorRoute").html('Network timeout. Please ensure you have good network signal and working Internet.');
+					  //cancel_outlet();
+					  $("#outletCancel").hide();
 					  var url = "#outletPage";
 					  $.mobile.navigate(url);	
+					  //location.reload();
+					  $("#dataerrorOutlet").html('Network timeout. Please ensure you have good network signal and working Internet.');
+					  
 				  }
 			  });//end ajax*/
 			  
@@ -1022,7 +963,7 @@ function selectOutletException() {
     // alert (selected_route_exception);
 	if(selected_outlet_exception!=undefined){
 		localStorage.outletException=selected_outlet_exception;
-		syncOutlet();
+		//syncOutlet();
 		//localStorage.routeDone=''
 		//setOutlet();
 		//var url = "#outletSyncingPage";
@@ -1041,7 +982,6 @@ function selectOutletException() {
 //=====================Select Outlet Start====================
 
 function syncOutlet() { 
-	
 	//$("#outletInfo1").html(apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel);
 	$.ajax({
 				 type: 'POST',
@@ -1538,13 +1478,23 @@ function syncOutlet() {
 								//alert (startTime);
 								$("#startTime").val(localStorage.startTime);
 								
-								
+								$("#outletButton").show();
+								$("#outletWait").hide();
 								
 							}
-						}
+							
+							
+							outlet_next_page();
+							
+						}//end if success
+						
+						
 				      },
 				  error: function(result) {
-					 $("#dataerrorRoute").html('Network timeout. Please ensure you have good network signal and working Internet.');
+					  localStorage.show_cancel==0;
+					  $("#dataerrorOutlet").html('Network timeout. Please ensure you have good network signal and working Internet.');
+					  
+					  
 					  var url = "#outletPage";
 					  $.mobile.navigate(url);	
 				  }
@@ -1565,15 +1515,10 @@ function selectRouteException() {
 }
 //=====================Route Exception end=====================
 
-
-
 //=====================Toggle==========================
 function new_m() { 
 	jQuery("#newMarchandizing").toggle();
 }
-
-
-
 //======================Submit Data Start======================
 
 function mhskus_ready_data() { 
@@ -2064,50 +2009,14 @@ function submit_data() {
 								var check_outlet= localStorage.outletString;
 								//alert ('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">')
 								localStorage.outletString=check_outlet.replace('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">','<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'" disabled="True">');
-								//alert ('nnn')
 								
-								/*localStorage.m_new_string="";
-								localStorage.m_new="";
-								localStorage.selectedOutlet="";
-								localStorage.outletExStringShow="";
-								localStorage.outletException="";
-								localStorage.outletChanne="";
-								localStorage.outletNameID="";
-								localStorage.mhskusTotal="";
-								
-								localStorage.npdTotal="";
-								localStorage.fdisplaySlabTotal="";
-								localStorage.fdisplayTotal="";
-								localStorage.qpdsSlabTotal="";
-								
-								localStorage.qpdsTotal="";
-								localStorage.giftTotal="";
-								localStorage.marchadizingTotal="";
-								localStorage.mhskus_data_ready="";
-								localStorage.npd_data_ready="";
-								localStorage.fdisplay_data_ready="";
-								localStorage.qpds_data_ready="";
-								localStorage.gift_data_ready="";
-								localStorage.mar_data_ready="";*/
+							
 								
 								$("#submit_data").html("Data Synced Successfully");
-												
-								//doTimer();
-								//var url = "#menuPage";
-								//$.mobile.navigate(url);	
-								//$(location).attr('href',url);
-								//location.reload();
 								
-								
-								//localstorage.m_new="";
 								
 								
 								upload_fd();
-								
-								
-								//$("#fd_button").click();
-								//alert ('nadira');
-								
 								
 								
 							}
