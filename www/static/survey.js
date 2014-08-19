@@ -1,15 +1,14 @@
 // Put your custom code here
 
-
-//var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
-//var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
+var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
+var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
 //var apipath='http://127.0.0.1:8000/unilever/syncmobile/';
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
 
 
-var apipath='http://e.businesssolutionapps.com/unilever/syncmobile/';
-var apipath_image = 'http://e.businesssolutionapps.com/unilever/';
+//var apipath='http://e.businesssolutionapps.com/unilever/syncmobile/';
+//var apipath_image = 'http://e.businesssolutionapps.com/unilever/';
 
 var step_flag=0; //1 fd , 2 qpds, 3 gift
 
@@ -49,6 +48,9 @@ function onError(error) {
 	$("#location_button").show();
 	$("#lat").val(0);
 	$("#long").val(0);
+	localStorage.latlongSubmit=0;
+	buttonCheck();
+	
 	}
 //-------GET GEO LOCATION End----------------------------
 //=============get time start===================
@@ -812,6 +814,9 @@ function select_outlet() {
 		localStorage.qpdsSkip=0;
 		localStorage.giftSkip=0;
 		
+		localStorage.latitude=0;
+		localStorage.longitude=0;
+		
 		
 		
 		var selected_outletID_get=($("input:radio[name='RadioOutlet']:checked").val())		
@@ -1484,7 +1489,7 @@ function syncOutlet() {
 							}
 							
 							
-							outlet_next_page();
+							//outlet_next_page();
 							
 						}//end if success
 						
