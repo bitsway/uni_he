@@ -1,11 +1,14 @@
 // Put your custom code here
 
-var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile/';
+var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile1/';
 var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
 //var apipath='http://127.0.0.1:8000/unilever/syncmobile/';
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
 
+
+//var apipath='http://127.0.0.1:8000/unilever/syncmobile1/';
+//var apipath_image = 'http://127.0.0.1:8000/unilever/';
 
 //var apipath='http://e.businesssolutionapps.com/unilever/syncmobile/';
 //var apipath_image = 'http://e.businesssolutionapps.com/unilever/';
@@ -89,18 +92,22 @@ function first_page(){
 function outlet_next_page(){
 	
 	if ((localStorage.routeException_found == '1') && ((localStorage.outletException=='undefined') || (localStorage.outletException==undefined))){
-		//alert (localStorage.routeException_found);
+		
+		
 		var url = "#outletexceptionPage";
 		$.mobile.navigate(url);
-		location.reload();
-		//$(location).attr('href',url);
+		
+		$(url).trigger('create');
+		
+
 		
 	}
 	else{
 		    var url = "#mhskusPage";
-			//$(location).attr('href',url);
+
 			$.mobile.navigate(url);
-			location.reload();	
+			$(url).trigger('create');
+
 	}
 }
 
@@ -108,7 +115,6 @@ function outlet_next_page(){
 function clear_autho(){
 	localStorage.cm_id='';
 	localStorage.cm_pass='';
-	//localStorage.synccode='';
 	localStorage.routeString='';
 	localStorage.routeExStringShow='';
 	localStorage.show_cancel=0;
@@ -127,7 +133,6 @@ function clear_autho(){
 	localStorage.giftTotal="";
 	
 	localStorage.marchadizingTotal="";
-	//localstorage.m_new="";
 	localStorage.mhskus_data_ready="";
 	localStorage.npd_data_ready="";
 	localStorage.fdisplay_data_ready="";
@@ -140,13 +145,10 @@ function clear_autho(){
 	localStorage.m_new="";
 	var url = "#login";
 	$.mobile.navigate(url);
-	//$(location).attr('href',url);
-	location.reload();
-	//alert ('ccc');
+	$(url).trigger('create');
 	
 }
 function div_change(){
-	//alert (localStorage.outletNameID);
 	localStorage.show_cancel=1
 	$("#outletCancel").show();
 	$("#outletString").hide();
@@ -158,11 +160,7 @@ function div_change(){
 	
 	$("#outletName_show").html(localStorage.outletNameID);
 	
-	//$("#outletButton").delay(6000).show(0);
-	//$("#outletWait").delay(6000).hide(0);
-	
-	//$("#outletWait").hide();
-	//doTimer();
+
 	
 	
 }
@@ -175,8 +173,8 @@ function cancel_outlet(){
 	localStorage.m_new_string="";
 	localStorage.m_new="";
 	localStorage.selectedOutlet="";
-	localStorage.outletExStringShow="";
-	localStorage.outletException="";
+	//localStorage.outletExStringShow="";
+	//localStorage.outletException="";
 	localStorage.outletChanne="";
 	localStorage.outletNameID="";
 	localStorage.mhskusTotal="";
@@ -210,15 +208,12 @@ function cancel_outlet(){
 	$("#outletButton").hide();
 	
 	$("#outletName_show").html(localStorage.outletNameID);
-	//alert ('abcd');
 }
 //=============================================
 //=========================Check user=====================
 function check_user() { 
-	//alert ('nadira');
 	var cm_id=$("#cm_id").val();
 	var cm_pass=$("#cm_pass").val();
-	//var synccode=''
 	if (cm_id=="" || cm_id==undefined || cm_pass=="" || cm_pass==undefined){
 		var url = "#login";      
 		$.mobile.navigate(url);
@@ -229,7 +224,6 @@ function check_user() {
 		localStorage.cid='UNILEVER';
 		localStorage.cm_id=cm_id;
    		localStorage.cm_pass=cm_pass;
-   		//localStorage.synccode=synccode;
 		localStorage.synced='NO'
    		
 		//$("#error_login").html(apipath+'check_user?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode);	
@@ -237,7 +231,6 @@ function check_user() {
 				 type: 'POST',
 				 url: apipath+'check_user?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode,
 				 success: function(result) {
-					 	//$("#error_login").html('ajax');				
 						if (result==''){
 							$("#loginButton").show();
 							$("#login_image").hide();
@@ -262,12 +255,10 @@ function check_user() {
 								
 								localStorage.synced='YES';
 								localStorage.synccode=resultArray[2];
-								//alert (localStorage.synccode);
 								
 								
 								result_string=resultArray[1];
 								localStorage.routeString_bak=result_string;
-								//alert (localStorage.routeString_bak);
 								
 								var routeArray = result_string.split('</routeList>');									
 								routeList = routeArray[0].replace("<routeList>","");
@@ -275,7 +266,6 @@ function check_user() {
 								
 								
 								
-								//alert (result_string)
 								routeException = routeArray[1];
 								var routeExArray = routeException.split('</routeexList>');									
 								routeExList = routeExArray[0].replace("<routeexList>","");
@@ -360,6 +350,8 @@ function check_user() {
 									
 								}
 								//alert (alowSl);
+								
+                
 								for (var r=0; r < routeSingleTtotal-1; r++){
 									routeArray = routeSingleArray[r].split('fdfd');
 									routeID=routeArray[0];
@@ -415,12 +407,13 @@ function check_user() {
 								
 								var url = "#routePage";
 								$.mobile.navigate(url);
-								location.reload();
+								
+								$('#routePage').trigger('create');
 							}
 							if ((resultArray[0]=='SUCCESS') && (localStorage.route!=undefined)){
 								var url = "#menuPage";
 								$.mobile.navigate(url);
-								//location.reload();
+								
 							}
 							
 							
@@ -434,6 +427,7 @@ function check_user() {
 					  $("#login_image").hide();
 					  var url = "#login";
 					  $.mobile.navigate(url);	
+					  
 				  }
 			  });//end ajax
 		  }//end else	
@@ -543,7 +537,7 @@ function check_route() {
 			var r_day=routeSArray[2];
 			var r_daySl=routeSArray[3];
 
-
+			
 			if (r_day==today_get){	
 												
 			  routeStringShow=routeStringShow+'<label style="background:#81C0C0"><input type="radio" name="RadioRoute"  value="'+routeID+'" id="RadioGroup1_0"> '+routeName+'</label>'
@@ -568,7 +562,7 @@ function check_route() {
 								
 		var url = "#routePage";
 		$.mobile.navigate(url);	
-		location.reload();
+		$(url).trigger('create');
 	}//function
 
 
@@ -668,7 +662,47 @@ function marketPJP() {
 							if (resultArray[0]=='SUCCESS'){
 								result_string=resultArray[1];
 								var outletArray = result_string.split('</outletList>');									
-								outletList = outletArray[0].replace("<outletList>","");
+								
+								var outletSArray = result_string.split('<outletexList>');	
+								
+								
+								outletList = outletSArray[0].replace("<outletList>","");
+								
+								
+								var outletAllArray = outletSArray[1].split('</outletexList>');	
+								
+								
+								
+								
+								
+								outletExList = outletAllArray[0];
+								allOutletString = outletAllArray[1];
+								
+								//alert (alloutletList);
+								
+								
+								
+								localStorage.allOutletString=allOutletString;
+								
+								
+						//	============Create exception list============	
+														
+								var outletExStringShow=''
+								var outletExSingleArray = outletExList.split('rdrd');	
+								var outletExSingleTtotal = outletExSingleArray.length;
+								var outletExStringShow=''
+								for (var oe=0; oe < outletExSingleTtotal-1; oe++){
+									outletExArray = outletExSingleArray[oe].split('fdfd');
+									outletExID=outletExArray[0];
+									outletExName=outletExArray[1];
+									outletExStringShow=outletExStringShow+'<label><input type="radio" name="RadioOutletEx"    value="'+outletExName+'" > '+outletExName+'</label>'
+								}
+								localStorage.outletExStringShow=outletExStringShow;
+								$("#outletExString").html(localStorage.outletExStringShow);
+								
+								//alert (localStorage.outletExStringShow);
+								
+								
 						  //==========Create outlet list
 								var outletSingleArray = outletList.split('rdrd');	
 								var outletSingleTtotal = outletSingleArray.length;
@@ -676,6 +710,7 @@ function marketPJP() {
 								
 								outletStringShow=outletStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr style="color:#006A6A; font-size:18px;"><td>'+localStorage.routeIDName+'</td></tr></table>'
 								
+								//alert (outletSingleTtotal);
 								for (var o=0; o < outletSingleTtotal-1; o++){
 									outletArray = outletSingleArray[o].split('fdfd');
 									outletID=outletArray[0];
@@ -688,6 +723,7 @@ function marketPJP() {
 									
 									
 									
+
 									
 									//alert (outletColor);
 									if (outlet_c=='g'){
@@ -716,6 +752,7 @@ function marketPJP() {
 								
 								
 								
+								
 								localStorage.outletString=outletStringShow
 								$("#outletString").html(localStorage.outletString);
 								
@@ -726,6 +763,7 @@ function marketPJP() {
 								
 								$("#routeS_image").hide();
 								$("#RSButton").show();
+								
 								
 								if (selected_routeDay==today_get){
 									localStorage.selectedRoute=selected_routeID;
@@ -741,10 +779,9 @@ function marketPJP() {
 									
 									var url = "#routeexceptionPage";
 									$.mobile.navigate(url);	
+									$('#routeexceptionPage').trigger('create');
 								}
-								//var url = "#menuPage";
-								//$.mobile.navigate(url);	
-//								location.reload();
+
 							//=======end outlet list====================								
 							}
 
@@ -786,7 +823,8 @@ function marketPJP_check() {
 					//div_change()
 					var url = "#outletPage";
 					$.mobile.navigate(url);
-					location.reload();	
+					$(url).trigger('create');
+					
 					
 				}
 
@@ -818,7 +856,7 @@ function select_outlet() {
 		localStorage.longitude=0;
 		
 		
-		
+			
 		var selected_outletID_get=($("input:radio[name='RadioOutlet']:checked").val())		
 		var selected_outletID_list = selected_outletID_get.split('rdrd');
 		var selected_outletID=selected_outletID_list[0];	
@@ -827,6 +865,9 @@ function select_outlet() {
 		//localStorage.selected_outletID_get=selected_outletID_get;
 		
 		if ((selected_outletID!=undefined) && (selected_outletID!='undefined')){
+			
+			   // alert (localStorage.outletExStringShow)
+				$("#outletExString").html(localStorage.outletExStringShow);
 
 				localStorage.selectedOutlet=selected_outletID;
 				
@@ -834,10 +875,6 @@ function select_outlet() {
 
 				selected_date=selected_date_get;
 				localStorage.selected_date=selected_date.substr(0,10);
-				//alert (localStorage.selected_date);
-		//}
-		//alert (selected_outletID);
-		//$("#outletInfo1").html(apipath+'sync_outlet_ex?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet);
 		
 			div_change();
 			
@@ -845,141 +882,106 @@ function select_outlet() {
 			$("#outletWait").show();
 			
 			// $("#selectOButton").hide();
-			$.ajax({
-				 type: 'POST',
-				 url: apipath+'sync_outlet_ex?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet,
-				 success: function(result) {	
-						if (result==''){
-							alert ('Sorry Network not available');
-						}
-						else{
-							var resultArray = result.split('<SYNCDATA>');			
-							if (resultArray[0]=='FAILED'){
-								$("#error_login").html('Unauthorized User');
-							}
-							
-							if (resultArray[0]=='SUCCESS'){
-								
-								result_string=resultArray[1];
-								var outletArray = result_string.split('</outletList>');									
-								outletList = outletArray[0].replace("<outletList>","");
-								outletException = outletArray[1];
-								var outletExArray = outletException.split('</outletexList>');									
-								outletExList = outletExArray[0].replace("<outletexList>","");
-								
-								
-								//==========Create route list
-								var outletSingleArray = outletList.split('rdrd');	
-								var outletSingleTtotal = outletSingleArray.length;
-								var outletStringShow=''
-								
-								
-								
-								for (var o=0; o < outletSingleTtotal-1; o++){
-									outletArray = outletSingleArray[o].split('fdfd');
-								
-									outlet=outletArray[0];
-									channel=outletArray[1];
-									visit=outletArray[2];
-									psSlab=outletArray[3];
-									 
-									outletStringShow=outletStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
-									outletStringShow=outletStringShow+'<tr> <td colspan="3" style="color:#006A6A; font-size:18px;">'+outlet+'</td></tr> '
-				 					
-									
-									/*outletStringShow=outletStringShow+'<tr style="background-color:#BCDBE0;"><td width="2%">&nbsp;</br></td><td width="60">Channel </td><td>&nbsp;&nbsp;:'+channel+'</td></tr>'
-									//outletStringShow=outletStringShow+'<tr style="background-color:#BCDBE0;">'
-//                    				outletStringShow=outletStringShow+'<td width="1%"></td><td width="60">PS Slab</td><td>&nbsp;&nbsp;:'+ psSlab +'</td></tr>'
-									outletStringShow=outletStringShow+'<tr style="background-color:#BCDBE0;">'
-                    				outletStringShow=outletStringShow+'<td width="1%"></td><td width="60">Freq/Visit</td><td>&nbsp;&nbsp;:'+visit+'</td>'
-                  					outletStringShow=outletStringShow+'</tr>'*/
-									outletStringShow=outletStringShow+'</table>'
-								}
-								
-								localStorage.outletinfoString=outletStringShow
-								localStorage.outletChannel=channel
-								localStorage.outletNameID=outlet
-							
-								
-								$("#outletName_show").html(localStorage.outletNameID);
-								$("#outletInfo").html(localStorage.outletinfoString);
-						  //	==========Create outlet exception list
-								var outletExStringShow=''
-								var outletExSingleArray = outletExList.split('rdrd');	
-								var outletExSingleTtotal = outletExSingleArray.length;
-								var outletExStringShow=''
-								for (var oe=0; oe < outletExSingleTtotal-1; oe++){
-									outletExArray = outletExSingleArray[oe].split('fdfd');
-									outletExID=outletExArray[0];
-									outletExName=outletExArray[1];
-									outletExStringShow=outletExStringShow+'<label><input type="radio" name="RadioOutletEx"    value="'+outletExName+'" > '+outletExName+'</label>'
-								}
-								localStorage.outletExStringShow=outletExStringShow;
-								$("#outletExString").html(localStorage.outletExStringShow);
-								
-							//=======end outlet exception list====================	
-							
-							syncOutlet();
-							}//end success if
-							
-						}//end else
-						
-						
+			
+			var all_outlet=localStorage.allOutletString;
+			var outlet_s="<"+localStorage.selectedOutlet+">"
+			var outlet_end="</"+localStorage.selectedOutlet+">"
+			
+	
+			
+			
+			var selected_outletinfo_list = all_outlet.split(outlet_s);
+			
+			
+			
+			
+			
+			
+			
+			var selected_outletinfo=selected_outletinfo_list[1];
+			
+			
+			var selected_outletinfo_list_end = selected_outletinfo.split(outlet_end);
+			
+			var selected_outletinfo_all=selected_outletinfo_list_end[0];
+			
+
+			
+			
+			if (selected_outletinfo.length > 20){
+			
+				var selected_outletinfo_show_list =  selected_outletinfo.split('<mhskusList>');
+				var outlet_show=selected_outletinfo_show_list[0]
+				var outlet_show_list =  outlet_show.split(',');
+				var outlet=outlet_show_list[2] +" ("+outlet_show_list[1]+") "
+				var channel=outlet_show_list[0];
 				
-						
-						//============End set page=============
-						
-						
-				      },
-				  error: function(result) {
-					  
-					  localStorage.show_cancel=0;
-					  
-					  
-					  $("#selectOButton").show();
-					  
-					  //cancel_outlet();
-					  $("#outletCancel").hide();
-					  var url = "#outletPage";
-					  $.mobile.navigate(url);	
-					  //location.reload();
-					  $("#dataerrorOutlet").html('Network timeout. Please ensure you have good network signal and working Internet.');
-					  
-				  }
-			  });//end ajax*/
-			  
-    }//end if
+				
+				var replace_str=outlet_show_list[0] + "," + outlet_show_list[1] + "," + outlet_show_list[2] 
+				var selected_outletinfo_all_final=selected_outletinfo_all.replace(replace_str,"");
+				
+				localStorage.selected_outletinfo_all_final=selected_outletinfo_all_final;
+				
+				
+				
+				//alert (selected_outletinfo_all_final);
+				var outletStringShow='';
+				outletStringShow=outletStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
+									outletStringShow=outletStringShow+'<tr> <td colspan="3" style="color:#006A6A; font-size:18px;">'+outlet+'</td></tr> '
+									outletStringShow=outletStringShow+'</table>'
+				
+				
+				localStorage.outletinfoString=outletStringShow
+				localStorage.outletChannel=channel
+				localStorage.outletNameID=outlet
+				
+				
+				$("#outletName_show").html(localStorage.outletNameID);
+				$("#outletInfo").html(localStorage.outletinfoString);
+						  
+				//alert (localStorage.outletNameID);		
+				syncOutlet();
+				}//endif
+				
+			}//end if
+			
+	 else{
+		  
+		  localStorage.show_cancel=0;
+		  
+		  
+		  $("#selectOButton").show();
+		  
+		  //cancel_outlet();
+		  $("#outletCancel").hide();
+		  var url = "#outletPage";
+		  $.mobile.navigate(url);	
+		  $(url).trigger('create');
+		  
+	  }
+
+
 }
 
 //=====================select Outlet end===============
 function reloadPages() { 
 		   var url = "#mhskusPage";
 			$.mobile.navigate(url);
-			location.reload();
+			$(url).trigger('create');
 }
 function reloadSubmitPage() { 
 		   var url = "#submitPage";
 			$.mobile.navigate(url);
-			location.reload();
+			$(url).trigger('create');
 }
 //=====================Outlet Exception start=====================
 function selectOutletException() { 
 	var selected_outlet_exception=($("input:radio[name='RadioOutletEx']:checked").val())
-    // alert (selected_route_exception);
 	if(selected_outlet_exception!=undefined){
 		localStorage.outletException=selected_outlet_exception;
-		//syncOutlet();
-		//localStorage.routeDone=''
-		//setOutlet();
-		//var url = "#outletSyncingPage";
 		var url = "#mhskusPage";
 		$.mobile.navigate(url);
-		location.reload();
-		//doTimer();
-		
-		///	==Div hide after confirm outlet	
-			
-		
+		$(url).trigger('create');
 	}
 }
 //=====================Outlet Exception end=====================
@@ -987,523 +989,504 @@ function selectOutletException() {
 //=====================Select Outlet Start====================
 
 function syncOutlet() { 
-	//$("#outletInfo1").html(apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel);
-	$.ajax({
-				 type: 'POST',
-				 url: apipath+'sync_outlet?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&outlet='+localStorage.selectedOutlet+'&channel='+localStorage.outletChannel,
-				 success: function(result) {
-						if (result==''){
-							alert ('Sorry Network not available');
-						}
-						else{
-							var resultArray = result.split('<SYNCDATA>');			
-							if (resultArray[0]=='FAILED'){
-								$("#error_login").html('Unauthorized User');
-							}
-							
-							
-							if (resultArray[0]=='SUCCESS'){
-								//alert (resultArray[1]);
-								result_string=resultArray[1];
-								var mhskusArray = result_string.split('</mhskusList>');									
-								mhskusList = mhskusArray[0].replace("<mhskusList>","");
-								npd = mhskusArray[1];
-								var npdArray = npd.split('</npdList>');									
-								npdList = npdArray[0].replace("<npdList>","");
+	result_string=localStorage.selected_outletinfo_all_final;
+	//alert (result_string.length);
+	if (result_string.length > 50){
+			
+			var mhskusArray = result_string.split('</mhskusList>');									
+			mhskusList = mhskusArray[0].replace("<mhskusList>","");
+			npd = mhskusArray[1];
+			var npdArray = npd.split('</npdList>');									
+			npdList = npdArray[0].replace("<npdList>","");
 								
 								
-								fdisplay = npdArray[1];
-								var fdisplayArray = fdisplay.split('</fdisplayList>');									
-								fdisplayList = fdisplayArray[0].replace("<fdisplayList>","");
+			fdisplay = npdArray[1];
+			var fdisplayArray = fdisplay.split('</fdisplayList>');									
+			fdisplayList = fdisplayArray[0].replace("<fdisplayList>","");
 								
-								qpds = fdisplayArray[1];
-								var qpdsArray = qpds.split('</qpdsList>');									
-								qpdsList = qpdsArray[0].replace("<qpdsList>","");
+			qpds = fdisplayArray[1];
+			var qpdsArray = qpds.split('</qpdsList>');									
+			qpdsList = qpdsArray[0].replace("<qpdsList>","");
 								
-								//alert (qpdsArray[1]);
-								gift = qpdsArray[1];
-								var giftArray = gift.split('</giftList>');									
-								giftList = giftArray[0].replace("<giftList>","");
+			//alert (qpdsArray[1]);
+			gift = qpdsArray[1];
+			var giftArray = gift.split('</giftList>');									
+			giftList = giftArray[0].replace("<giftList>","");
+			
+			marchadizing = giftArray[1];
+			var marchadizingArray = marchadizing.split('</marList>');									
+			marchadizingList = marchadizingArray[0].replace("<marList>","");
 								
-								marchadizing = giftArray[1];
-								var marchadizingArray = marchadizing.split('</marList>');									
-								marchadizingList = marchadizingArray[0].replace("<marList>","");
-								
-								
-								//=====marchandizing Item=======
-								marchadizingItem = marchadizingArray[1];
-								var marchadizingItemArray = marchadizingItem.split('</marItemList>');									
-								marchadizingItemList = marchadizingItemArray[0].replace("<marItemList>","");
-								
-								//=====marchandizing Brand=======
-								marchadizingBrand = marchadizingItemArray[1];
-								var marchadizingBrandArray = marchadizingBrand.split('</marBrandList>');									
-								marchadizingBrandList = marchadizingBrandArray[0].replace("<marBrandList>","");
-								
-								//==========Create MHSKUS list
-								
-								var mhskusSingleArray = mhskusList.split('rdrd');	
-								var mhskusSingleTotal = mhskusSingleArray.length;
-								//alert (mhskusList);
-								var mhskusStringShow=''
-								mhskusStringShow=mhskusStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
-								mhskusStringShow=mhskusStringShow+'<table  width="100%" border="0" cellpadding="0" cellspacing="0">'
-                  				mhskusStringShow=mhskusStringShow+'<tr bgcolor="#9FCED7"  ><td></td><td>Item</td><td> QTY</td><td ></td></tr><tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td> </td><td ></td></tr>'
-								
-								//i=6;
+			
+			//=====marchandizing Item=======
+			marchadizingItem = marchadizingArray[1];
+			var marchadizingItemArray = marchadizingItem.split('</marItemList>');									
+			marchadizingItemList = marchadizingItemArray[0].replace("<marItemList>","");
+			
+			//=====marchandizing Brand=======
+			marchadizingBrand = marchadizingItemArray[1];
+			//alert (marchadizingBrand);
+			var marchadizingBrandArray = marchadizingBrand.split('</marBrandList>');									
+			marchadizingBrandList = marchadizingBrandArray[0].replace("<marBrandList>","");
+			
+			//==========Create MHSKUS list
+			//alert ('nadira');
+			var mhskusSingleArray = mhskusList.split('rdrd');	
+			var mhskusSingleTotal = mhskusSingleArray.length;
+			//alert (mhskusList);
+			var mhskusStringShow=''
+			mhskusStringShow=mhskusStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
+			mhskusStringShow=mhskusStringShow+'<table  width="100%" border="0" cellpadding="0" cellspacing="0">'
+			mhskusStringShow=mhskusStringShow+'<tr bgcolor="#9FCED7"  ><td></td><td>Item</td><td> QTY</td><td ></td></tr><tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td> </td><td ></td></tr>'
+			
+			//i=6;
 //								alert (i.toString())
-								localStorage.mhskusTotal=mhskusSingleTotal
-								
-								for (var i=0; i < mhskusSingleTotal-1; i++){
-									mhskusArray = mhskusSingleArray[i].split('fdfd');
-									itemID=mhskusArray[0];
-									itemName=mhskusArray[1];
-									minQty=mhskusArray[2];
-									var i_text=i.toString()
-									var ItemQtymskus='ItemQtymskus_'+i_text
-									var Itemmskus='Itemmskus_'+i_text
-									var minQtymskus='minQtymskus_'+i_text
-									
-									
-									mhskusStringShow=mhskusStringShow+'<tr ><td>&nbsp;</td><td>'+itemName+
-									'<input type="hidden" name="'+ Itemmskus +'" id="'+ Itemmskus +'" value="'+itemID+'" min="0">'+
-									'<input type="hidden" name="'+ minQtymskus +'" id="'+ minQtymskus +'" value="'+minQty+'" min="0">'+
-									'</td><td width="60"><input type="number" name="'+ItemQtymskus +'" id="'+ ItemQtymskus +'" value="" min="0"></td><td width="5px">&nbsp;</td></tr>'
-									mhskusStringShow=mhskusStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td> </td><td ></td></tr>'
-									
-								}
-								mhskusStringShow=mhskusStringShow+'</table>'
-								
-								localStorage.mhskusStringShow=mhskusStringShow
-								$("#mhskus").html(localStorage.mhskusStringShow);
-								
-								
-								//==========Create NPD list
-								
-								var npdSingleArray = npdList.split('rdrd');	
-								var npdSingleTotal = npdSingleArray.length;
+			localStorage.mhskusTotal=mhskusSingleTotal
+			
+			for (var i=0; i < mhskusSingleTotal-1; i++){
+				mhskusArray = mhskusSingleArray[i].split('fdfd');
+				itemID=mhskusArray[0];
+				itemName=mhskusArray[1];
+				minQty=mhskusArray[2];
+				var i_text=i.toString()
+				var ItemQtymskus='ItemQtymskus_'+i_text
+				var Itemmskus='Itemmskus_'+i_text
+				var minQtymskus='minQtymskus_'+i_text
+				
+				
+				mhskusStringShow=mhskusStringShow+'<tr ><td>&nbsp;</td><td>'+itemName+
+				'<input type="hidden" name="'+ Itemmskus +'" id="'+ Itemmskus +'" value="'+itemID+'" min="0">'+
+				'<input type="hidden" name="'+ minQtymskus +'" id="'+ minQtymskus +'" value="'+minQty+'" min="0">'+
+				'</td><td width="60"><input type="number" name="'+ItemQtymskus +'" id="'+ ItemQtymskus +'" value="" min="0"></td><td width="5px">&nbsp;</td></tr>'
+				mhskusStringShow=mhskusStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td> </td><td ></td></tr>'
+				
+			}
+			mhskusStringShow=mhskusStringShow+'</table>'
+			
+			localStorage.mhskusStringShow=mhskusStringShow
+			$("#mhskus").html(localStorage.mhskusStringShow);
 								
 								
-								
-								
-								//alert (mhskusList);
-								var npdStringShow=''
-								npdStringShow=npdStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
-								npdStringShow=npdStringShow+'<table  width="100%" border="0" cellpadding="0" cellspacing="0">'
-                  				npdStringShow=npdStringShow+'<tr bgcolor="#9FCED7"  ><td></td><td>Item</td><td> QTY</td><td ></td></tr><tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td> </td><td ></td></tr>'
-								
-								//i=6;
+			//==========Create NPD list
+			
+			var npdSingleArray = npdList.split('rdrd');	
+			var npdSingleTotal = npdSingleArray.length;
+			
+			
+			
+			
+			//alert (mhskusList);
+			var npdStringShow=''
+			npdStringShow=npdStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
+			npdStringShow=npdStringShow+'<table  width="100%" border="0" cellpadding="0" cellspacing="0">'
+			npdStringShow=npdStringShow+'<tr bgcolor="#9FCED7"  ><td></td><td>Item</td><td> QTY</td><td ></td></tr><tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td> </td><td ></td></tr>'
+			
+			//i=6;
 //								alert (i.toString())
-								localStorage.npdTotal=npdSingleTotal
+			localStorage.npdTotal=npdSingleTotal
+			
+			
+			if (parseInt(localStorage.npdTotal)==1){
+				localStorage.npdSkip=1;
+			}
+			
+			for (var i=0; i < npdSingleTotal-1; i++){
+				npdArray = npdSingleArray[i].split('fdfd');
+				itemID=npdArray[0];
+				itemName=npdArray[1];
+				minQty_npd=npdArray[2];
+				var i_text=i.toString()
+				var ItemQtynpd='ItemQtynpd_'+i_text
+				var Itemnpd='Itemnpd_'+i_text
+				var minQty='minQty_npd_'+i_text
+				
+				
+				npdStringShow=npdStringShow+'<tr ><td>&nbsp;</td><td>'+itemName+
+				'<input type="hidden" name="'+ Itemnpd +'" id="'+ Itemnpd +'" value="'+itemID+'" min="0">'+
+				'<input type="hidden" name="'+ minQty +'" id="'+ minQty +'" value="'+minQty_npd+'" min="0">'+
+				'</td>'+
+				'<td width="60"><input type="number" name="'+ItemQtynpd +'" id="'+ ItemQtynpd +'" value="" min="0"></td><td width="5px">&nbsp;</td></tr>'
+				npdStringShow=npdStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td> </td><td ></td></tr>'
+				
+			}
+			npdStringShow=npdStringShow+'</table>'
+			localStorage.npdStringShow=npdStringShow
+			$("#npd").html(localStorage.npdStringShow);
 								
-								
-								if (parseInt(localStorage.npdTotal)==1){
-									localStorage.npdSkip=1;
-								}
-								
-								for (var i=0; i < npdSingleTotal-1; i++){
-									npdArray = npdSingleArray[i].split('fdfd');
-									itemID=npdArray[0];
-									itemName=npdArray[1];
-									minQty_npd=npdArray[2];
-									var i_text=i.toString()
-									var ItemQtynpd='ItemQtynpd_'+i_text
-									var Itemnpd='Itemnpd_'+i_text
-									var minQty='minQty_npd_'+i_text
-									
-									
-									npdStringShow=npdStringShow+'<tr ><td>&nbsp;</td><td>'+itemName+
-									'<input type="hidden" name="'+ Itemnpd +'" id="'+ Itemnpd +'" value="'+itemID+'" min="0">'+
-									'<input type="hidden" name="'+ minQty +'" id="'+ minQty +'" value="'+minQty_npd+'" min="0">'+
-									'</td>'+
-									'<td width="60"><input type="number" name="'+ItemQtynpd +'" id="'+ ItemQtynpd +'" value="" min="0"></td><td width="5px">&nbsp;</td></tr>'
-									npdStringShow=npdStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td> </td><td ></td></tr>'
-									
-								}
-								npdStringShow=npdStringShow+'</table>'
-								localStorage.npdStringShow=npdStringShow
-								$("#npd").html(localStorage.npdStringShow);
-								
-						//=====================Create Fixed Display list
-						
-								var fdisplaySlabArray = fdisplayList.split('</slab>');
-								var fdisplaySlabTotal = fdisplaySlabArray.length;
-								
-								
-								
-								
-								
-								var fdisplayStringShow=''
-								fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
-								
-								localStorage.fdisplaySlabTotal=fdisplaySlabTotal
-								
-								if (parseInt(localStorage.fdisplaySlabTotal)==1){
-									localStorage.fdSkip=1;
-								}
-								
-								for (var slab=0; slab < fdisplaySlabTotal-1; slab++){
-										var fdisplaySlabList = fdisplaySlabArray[slab].replace("<slab>","");
-										var fdisplaySlab_1Array = fdisplayList.split('<slab>');
-										var fdisplaySlab_image = fdisplaySlab_1Array[0];
-										//var fdisplaySlabList = fdisplaySlab_1Array[1];
-										
-										
-										var slab_text=slab.toString()
-										var fdSL_image_div='fdSL_image_div_'+slab_text
-										var fdSL_image_div_hidden='fdSL_image_div_hidden_'+slab_text
-										var fdSL_image_name_hidden='fdSL_image_name_hidden_'+slab_text
-										
-										var fdSL_image='fdSL_image_'+slab_text
-									    var fdSL_image_div='fdSL_image_div_'+slab_text
-										var fdSLfdisplay='fdSLfdisplay_'+slab_text
-										
-										
-										fdisplayStringShow=fdisplayStringShow+'<div id="fddiv_'+slab.toString()+'">'
-										fdisplayStringShow=fdisplayStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/display/'+fdisplaySlab_image+'" alt="FixedDisplay" />';
-										fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
-										fdisplayStringShow=fdisplayStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">Face Up</td><td></td><td width="100px">Visible</td></tr>'
-										
-										var fdisplaySingleArray = fdisplaySlabList.split('rdrd');	
-										var fdisplaySingleTotal = fdisplaySingleArray.length;
-										
-										var fdisplayTotal='fdisplayTotal'+slab.toString()
-										
-										var fdSL_total_hidden='fdSL_total_hidden_'+slab.toString()
-										
-										//alert (fdSL_image_name_hidden);
-										
-										localStorage.fdisplayTotal=fdisplaySingleTotal
-										
-										for (var i=0; i < fdisplaySingleTotal-1; i++){
-											fdisplayArray = fdisplaySingleArray[i].split('fdfd');
-											slab_fdisplay=fdisplayArray[0]
-											itemID=fdisplayArray[1];
-											itemName=fdisplayArray[2];
-											fdSL_fdisplay=fdisplayArray[3];
-											var i_text=i.toString()
-											var ItemQtyfdisplay='ItemQtyfdisplay_'+i_text
-											var Itemfdisplay='Itemfdisplay_'+i_text
-											var ItemFaceupfdisplay='ItemFaceupfdisplay_'+i_text
-											var ItemVisiblefdisplay='ItemVisiblefdisplay_'+i_text
-											var slabfdisplay='slabfdisplay_'+i_text
-											//var fdSLfdisplay='fdSLfdisplay_'+i_text
-											
-											
-											
-											fdisplayStringShow=fdisplayStringShow+'<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemfdisplay +'" id="'+ Itemfdisplay +'" value="'+itemID+'" min="0"> <input type="hidden" name="'+ slabfdisplay +'" id="'+ slabfdisplay +'" value="'+slab_fdisplay+'" min="0"></td>'+
-															  '<td><input  onClick="checkQtyFd('+i+')" onKeyUp="checkQtyFd('+i+')" type="number" name="'+ItemQtyfdisplay +'" id="'+ ItemQtyfdisplay +'" value="" min="0"></td><td></td><td><input onKeyUp="checkQtyFd('+i+')"  type="number" name="'+ItemFaceupfdisplay +'" id="'+ ItemFaceupfdisplay +'" value="" min="0"></td>'+
-															  '<td></td><td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ ItemVisiblefdisplay +'" id="'+ ItemVisiblefdisplay +'" value=""/></label></td></tr>'
-											fdisplayStringShow=fdisplayStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
-											
-										}
-										fdisplayStringShow=fdisplayStringShow+'</table>'
-										fdisplayStringShow=fdisplayStringShow+'</div>'	
-										
-										
-										fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
-												'<input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  '+
-												'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture </a></td></tr></table>'+ 
-											    '<img id="'+fdSL_image_div+'" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
-												'<input type="hidden" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
-												'<input type="hidden" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
-												'<input type="hidden" name="'+ fdSL_total_hidden +'" id="'+ fdSL_total_hidden +'" value="'+fdisplaySingleTotal+'" >'
-										
-										
-										
-									
-										
-								}
-								localStorage.fdisplayStringShow=fdisplayStringShow
-								$("#fdisplay").html(localStorage.fdisplayStringShow);
-
-								//==========Create QPDS Display list
-								
-								
-								var qpdsSlabArray = qpdsList.split('</scheme>');
-								var qpdsSlabTotal = qpdsSlabArray.length;
-								
-								
-								
-								var qpdsStringShow=''
-								qpdsStringShow=qpdsStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
-								
-								localStorage.qpdsSlabTotal=qpdsSlabTotal
-								
-								//alert (parseInt(localStorage.qpdsSlabTotal));
-								if (parseInt(localStorage.qpdsSlabTotal)==1){	
-									//alert ('nadira');							
-									localStorage.qpdsSkip=1;	
-								}
-								
-								for (var slab=0; slab < qpdsSlabTotal-1; slab++){
-																				
-										
-										var qpdsSlab_1Array = qpdsSlabArray[slab].split('<scheme>');
-										var qpdsSlab_image = qpdsSlab_1Array[0];
-										
-										var qpdsSlabList = qpdsSlab_1Array[1].replace("<scheme>","");
-										
-										
-										qpdsStringShow=qpdsStringShow+'<div id="qpdsdiv_'+slab.toString()+'">'
-										
-										qpdsStringShow=qpdsStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/scheme/'+qpdsSlab_image+'" alt="QPDS" />';
-										qpdsStringShow=qpdsStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
-										qpdsStringShow=qpdsStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">Face Up</td><td></td><td>Visible</td></tr>'
-										
-										
-										
-										
-										
-										var qpdsSingleArray = qpdsSlabList.split('rdrd');	
-										var qpdsSingleTotal = qpdsSingleArray.length;
-																				
-										var qpdsSL_image_div='qpdsSL_image_div_'+slab.toString()
-										var qpdsSL_image_div_hidden='qpdsSL_image_div_hidden_'+slab.toString()
-										var qpdsSL_image_name_hidden='qpdsSL_image_name_hidden_'+slab.toString()
-										
-										
-										var qpdsSL_total_hidden='qpdsSL_total_hidden_'+slab.toString()
-										
-										var qpdsSL_f='qpdsSL_'+slab.toString()
-										
-										localStorage.qpdsTotal=qpdsSingleTotal
-
-										for (var i=0; i < qpdsSingleTotal-1; i++){
-											qpdsArray = qpdsSingleArray[i].split('fdfd');
-											scheme_qpds=qpdsArray[0]
-											itemID=qpdsArray[1];
-											itemName=qpdsArray[2];
-											qpdsSL=qpdsArray[3];
-											
-											var i_text=i.toString()
-											var ItemQtyqpds='ItemQtyqpds_'+i_text
-											var Itemqpds='Itemqpds_'+i_text
-											var ItemFaceupqpds='ItemFaceupqpds_'+i_text
-											var ItemVisibleqpds='ItemVisibleqpds_'+i_text
-											var schemeqpds='schemeqpds_'+i_text											
-											qpdsStringShow=qpdsStringShow+
-														   '<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemqpds +'" id="'+ Itemqpds +'" value="'+itemID+'" min="0">'+
-														   '<input type="hidden" name="'+ schemeqpds +'" id="'+ schemeqpds +'" value="'+scheme_qpds+'" min="0"> </td>'+
-														   '<td><input onClick="checkQtyQpds('+i+')" onKeyUp="checkQtyQpds('+i+')"  type="number" name="'+ItemQtyqpds +'" id="'+ ItemQtyqpds +'" value="" min="0"></td>'+
-														   '<td></td><td><input onKeyUp="checkQtyQpds('+i+')" type="number" name="'+ItemFaceupqpds +'" id="'+ ItemFaceupqpds +'" value="" min="0"></td><td></td>'+
-														   '<td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ ItemVisibleqpds +'" id="'+ ItemVisibleqpds +'" value=""/></label></td></tr>'
-											qpdsStringShow=qpdsStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
-										}
-										qpdsStringShow=qpdsStringShow+'</table>'
-										qpdsStringShow=qpdsStringShow+'</div>'
-										
-										qpdsStringShow=qpdsStringShow+
-													  '<table width="100%" border="0"><tr><td>'+
-													  ' <input type="hidden" name="'+ qpdsSL_f +'" id="'+ qpdsSL_f +'" value="'+qpdsSL+'" min="0">  '+
-													  ' <a data-role="button" href="#" onClick="get_pic_qpds('+slab+')" >Take Picture </a></td></tr></table>'
-										
-										//alert (qpdsSL);
-										
-										 qpdsStringShow=qpdsStringShow+
-										 		'<img id="'+qpdsSL_image_div+'" height="100px" width="100px"  src="" alt="QPDS" />'+
-												'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
-												'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
-												'<input type="hidden" name="'+ qpdsSL_total_hidden +'" id="'+ qpdsSL_total_hidden +'" value="'+qpdsSingleTotal+'" >'
-								
-								 
-								}
-								localStorage.qpdsStringShow=qpdsStringShow
-								$("#qpds").html(localStorage.qpdsStringShow);
-								
-								
-								
-								//==========Create Gift Ack list
-								var giftSingleArray = giftList.split('rdrd');	
-								var giftSingleTotal = giftSingleArray.length;
-								
-								
-								
-								var giftStringShow=''
-								giftStringShow=giftStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
-								giftStringShow=giftStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
-                  				giftStringShow=giftStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td>Received</td><td></td><td>Memo</td></tr>'
-								
-								localStorage.giftTotal=giftSingleTotal
-								
-								if (parseInt(localStorage.giftTotal)==1){
-									localStorage.giftSkip=1;
-								}
-								
-								
-								for (var i=0; i < giftSingleTotal-1; i++){
-									giftArray = giftSingleArray[i].split('fdfd');
-									slabSchemeName_gift=giftArray[0];
-									amount_gift=giftArray[1];
-									gift_id=giftArray[2];
-									var i_text=i.toString()
-									var slabSchemeName_gift_f='slabSchemeNamegift_'+i_text
-									var amount_gift_f='amount_gift_'+i_text
-									var receivedgift_f='receivedgift_'+i_text
-									var memogift_f='memogift_'+i_text
-									var gift_id_f='gift_id_'+i_text
-									
-									giftStringShow=giftStringShow+'<tr ><td width="1%" >&nbsp;</td><td>'+slabSchemeName_gift+' BDT  '+amount_gift+'<input type="hidden" name="'+ slabSchemeName_gift_f +'" id="'+ slabSchemeName_gift_f +'" value="'+slabSchemeName_gift+'" ><input type="hidden" name="'+ amount_gift_f +'" id="'+ amount_gift_f +'" value="'+amount_gift+'" > <input type="hidden" name="'+ gift_id_f +'" id="'+ gift_id_f +'" value="'+gift_id+'" ></td><td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ receivedgift_f +'" id="'+ receivedgift_f +'" value=""/></label></td> <td></td><td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ memogift_f +'" id="'+ memogift_f +'" value=""/></label></td></tr>'
-									giftStringShow=giftStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
-									
-								}
-								
-								giftStringShow=giftStringShow+'</table>'
-								if (localStorage.giftTotal > 1){
-									//alert (localStorage.giftTotal);
-									giftStringShow=giftStringShow+'</br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>'+              
-												   '<a data-role="button" href="#" onClick="get_pic_gift();" >Take Picture </a></td> </tr></table>'
-								}
-								
-								if (localStorage.giftTotal > 1){
-								   giftStringShow=giftStringShow+'<img id="gift_image_div"  height="100px" width="100px"  src="" alt="Gift" />'
-								}
-								else{
-									giftStringShow=giftStringShow+'<img id="gift_image_div" style="display:none" height="100px" width="100px"  src="" alt="Gift" />'
-								}
-								giftStringShow=giftStringShow+
-												'<input type="hidden" name="gift_image_div_hidden" id="gift_image_div_hidden" value="" >'+
-												'<input type="hidden" name="gift_image_name_hidden" id="gift_image_name_hidden" value="" >'
-												
-								
-								localStorage.giftStringShow=giftStringShow
-								$("#gift").html(localStorage.giftStringShow);
-								
-								//==========Create Marchandizing list
-								var marchadizingSingleArray = marchadizingList.split('rdrd');	
-								var marchadizingSingleTotal = marchadizingSingleArray.length;
-								
-								var marchadizingStringShow=''
-								marchadizingStringShow=marchadizingStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td><td  colspan="2"><a data-role="button" href="#dialogMarchandizing" > Add </a> </td></tr><tr > </table></br>'
-								marchadizingStringShow=marchadizingStringShow+'<table  width="100%" border="0" cellpadding="0" cellspacing="0">'
-                  				marchadizingStringShow=marchadizingStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td> <td >Item / Brand</td><td>QTY </td><td> </td><td>Condition</td><td > </td><td>Visible</td><td> </td><td >Dismantled</td></tr>'
-								
-								
-								localStorage.marchadizingTotal=marchadizingSingleTotal
-								for (var i=0; i < marchadizingSingleTotal-1; i++){
-									marchadizingArray = marchadizingSingleArray[i].split('fdfd');
-									
-									
-									itemID_mar=marchadizingArray[0];
-									itemName_mar=marchadizingArray[1];
-									brandID_mar=marchadizingArray[2];
-									brand_mar=marchadizingArray[3];
-									qty_mar=marchadizingArray[4];
-									insDate_mar=marchadizingArray[5];
-									id_mar=marchadizingArray[6];
-									
-									var i_text=i.toString()
-									var itemID_mar_f='itemID_mar_'+i_text
-									var itemName_mar_f='itemName_mar_'+i_text									
-									var brandID_mar_f='brandID_mar_'+i_text
-									//var brand_mar_f='brandID_mar_'+i_text									
-									var brand_mar_f='brand_mar_'+i_text
-									var qty_mar_f='qty_mar_'+i_text
-									var insDate_mar_f='insDate_mar_'+i_text
-									var condition_mar_f='condition_mar_'+i_text
-									var visible_mar_f='visible_mar_'+i_text
-									var dism_mar_f='dism_mar_'+i_text
-									
-									var id_mar_f='id_mar_'+i_text
-									
-									
-
-									var condition_combo='<option value="0" >&nbsp; </option><option value="Good/Sound" >Good/Sound</option><option value="Damaged/ Torn" >Damaged/Torn</option><option value="Need repair" >Need repair</option>'
-									
-									var visible_combo='<option value="0" >&nbsp; </option><option value="Yes" >Yes</option><option value="No" >No</option>'
-									
-									
-									
-									
-									marchadizingStringShow=marchadizingStringShow+'<tr ><td  >&nbsp;</td><td>'+itemName_mar+ '</br>'+brand_mar+'</br><font face="Verdana, Geneva, sans-serif" size="-10">'+insDate_mar+'</font>'+'<input type="hidden" name="'+ itemID_mar_f +'" id="'+ itemID_mar_f +'" value="'+itemID_mar +'" >'+'<input type="hidden" name="'+ id_mar_f +'" id="'+ id_mar_f +'" value="'+id_mar +'" >'+'<input type="hidden" name="'+ itemName_mar_f +'" id="'+ itemName_mar_f +'" value="'+itemName_mar +'" >'+'<input type="hidden" name="'+ brandID_mar_f +'" id="'+ brandID_mar_f +'" value="'+brandID_mar +'" >'+'<input type="hidden" name="'+ brand_mar_f +'" id="'+ brand_mar_f +'" value="'+brand_mar +'" >'+'<input type="hidden" name="'+ qty_mar_f +'" id="'+ qty_mar_f +'" value="'+qty_mar +'" >'+'<input type="hidden" name="'+ insDate_mar_f +'" id="'+ insDate_mar_f +'" value="'+insDate_mar +'" >'+'</td><td width="3%" align="center">'+qty_mar+'</td><td width="1%"> </td>'
-                    				marchadizingStringShow=marchadizingStringShow+'<td width="20%"  ><select style="height:20px" name="'+condition_mar_f+'" id="'+condition_mar_f+'" data-native-menu="false">'+condition_combo+ '</select></td><td width="1%"> </td>'
-									marchadizingStringShow=marchadizingStringShow+'<td><select style="height:20px" name="'+visible_mar_f+'" id="'+visible_mar_f+'" data-native-menu="false">'+visible_combo+ '</select></td><td width="1%"> </td>'
-                    				marchadizingStringShow=marchadizingStringShow+'<td width="5%"> <label  style="width:5px; height:20px"><input type="checkbox" name="'+dism_mar_f+'" id="'+dism_mar_f+'" value=""/></label> </td></tr>'
-									
-																		
-									marchadizingStringShow=marchadizingStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td  ></td><td ></td><td></td><td ></td><td></td><td></td><td></td><td></td></tr>'
-									
-								}
-								marchadizingStringShow=marchadizingStringShow+'</table>'
-								
-								localStorage.marchadizingStringShow=marchadizingStringShow
-								$("#marchadizing").html(localStorage.marchadizingStringShow);
-								
-					//========dynamic modal form for new marchandizing start=========
-							// Item	
-								var marchadizingItemSingleArray = marchadizingItemList.split('rdrd');	
-								var marchadizingItemSingleTotal = marchadizingItemSingleArray.length;
-								
-								var marchadizingItemStringShow=''
-								marchadizingItemStringShow=marchadizingItemStringShow+'<select name="select_mar_item" id="select_mar_item" data-native-menu="false"><option value="0" >Item </option>'
-								
-								localStorage.marchadizingItemTotal=marchadizingItemSingleTotal
-								for (var i=0; i < marchadizingItemSingleTotal-1; i++){
-									marchadizingItemArray = marchadizingItemSingleArray[i].split('fdfd');
-									
-									
-									marItemID=marchadizingItemArray[0];
-									marItemName=marchadizingItemArray[1];
-									
-									marchadizingItemStringShow=marchadizingItemStringShow+'<option value="'+marItemID+'" >'+marItemName+'</option>'
-								}
-								marchadizingItemStringShow=marchadizingItemStringShow+'</select>'
-								
-								localStorage.marchadizingItemStringShow=marchadizingItemStringShow
-								$("#selectItem").html(localStorage.marchadizingItemStringShow);
-								
-							//Brand
-							   
-							    var marchadizingBrandSingleArray = marchadizingBrandList.split('rdrd');	
-								var marchadizingBrandSingleTotal = marchadizingBrandSingleArray.length;
-								
-								var marchadizingBrandStringShow=''
-								marchadizingBrandStringShow=marchadizingBrandStringShow+'<select name="select_mar_brand" id="select_mar_brand" data-native-menu="false"><option value="0" >Brand</option>'
-								
-								localStorage.marchadizingBrandTotal=marchadizingBrandSingleTotal
-								for (var i=0; i < marchadizingBrandSingleTotal-1; i++){
-									marchadizingBrandArray = marchadizingBrandSingleArray[i].split('fdfd');
-									
-									
-									marBrandID=marchadizingBrandArray[0];
-									marBrandName=marchadizingBrandArray[1];
-									
-									marchadizingBrandStringShow=marchadizingBrandStringShow+'<option value="'+marBrandID+'" >'+marBrandName+'</option>'
-								}
-								marchadizingBrandStringShow=marchadizingBrandStringShow+'</select>'
-								
-								localStorage.marchadizingBrandStringShow=marchadizingBrandStringShow
-								$("#selectBrand").html(localStorage.marchadizingBrandStringShow);	
-								
-								
-							//	===========dynamic modal form for new marchandizing end================
-								
-								var startTime=get_date()
-								localStorage.startTime=startTime
-								//alert (startTime);
-								$("#startTime").val(localStorage.startTime);
-								
-								$("#outletButton").show();
-								$("#outletWait").hide();
-								
-							}
-							
-							
-							//outlet_next_page();
-							
-						}//end if success
+	//=====================Create Fixed Display list
+	
+			var fdisplaySlabArray = fdisplayList.split('</slab>');
+			var fdisplaySlabTotal = fdisplaySlabArray.length;
+			
+			
+			
+			
+			
+			var fdisplayStringShow=''
+			fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
+			
+			localStorage.fdisplaySlabTotal=fdisplaySlabTotal
+			
+			if (parseInt(localStorage.fdisplaySlabTotal)==1){
+				localStorage.fdSkip=1;
+			}
+			
+			for (var slab=0; slab < fdisplaySlabTotal-1; slab++){
+					var fdisplaySlabList = fdisplaySlabArray[slab].replace("<slab>","");
+					var fdisplaySlab_1Array = fdisplayList.split('<slab>');
+					var fdisplaySlab_image = fdisplaySlab_1Array[0];
+					//var fdisplaySlabList = fdisplaySlab_1Array[1];
+					
+					
+					var slab_text=slab.toString()
+					var fdSL_image_div='fdSL_image_div_'+slab_text
+					var fdSL_image_div_hidden='fdSL_image_div_hidden_'+slab_text
+					var fdSL_image_name_hidden='fdSL_image_name_hidden_'+slab_text
+					
+					var fdSL_image='fdSL_image_'+slab_text
+					var fdSL_image_div='fdSL_image_div_'+slab_text
+					var fdSLfdisplay='fdSLfdisplay_'+slab_text
+					
+					
+					fdisplayStringShow=fdisplayStringShow+'<div id="fddiv_'+slab.toString()+'">'
+					fdisplayStringShow=fdisplayStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/display/'+fdisplaySlab_image+'" alt="FixedDisplay" />';
+					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
+					fdisplayStringShow=fdisplayStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">Face Up</td><td></td><td width="100px">Visible</td></tr>'
+					
+					var fdisplaySingleArray = fdisplaySlabList.split('rdrd');	
+					var fdisplaySingleTotal = fdisplaySingleArray.length;
+					
+					var fdisplayTotal='fdisplayTotal'+slab.toString()
+					
+					var fdSL_total_hidden='fdSL_total_hidden_'+slab.toString()
+					
+					//alert (fdSL_image_name_hidden);
+					
+					localStorage.fdisplayTotal=fdisplaySingleTotal
+					
+					for (var i=0; i < fdisplaySingleTotal-1; i++){
+						fdisplayArray = fdisplaySingleArray[i].split('fdfd');
+						slab_fdisplay=fdisplayArray[0]
+						itemID=fdisplayArray[1];
+						itemName=fdisplayArray[2];
+						fdSL_fdisplay=fdisplayArray[3];
+						var i_text=i.toString()
+						var ItemQtyfdisplay='ItemQtyfdisplay_'+i_text
+						var Itemfdisplay='Itemfdisplay_'+i_text
+						var ItemFaceupfdisplay='ItemFaceupfdisplay_'+i_text
+						var ItemVisiblefdisplay='ItemVisiblefdisplay_'+i_text
+						var slabfdisplay='slabfdisplay_'+i_text
+						//var fdSLfdisplay='fdSLfdisplay_'+i_text
 						
 						
-				      },
-				  error: function(result) {
-					  localStorage.show_cancel==0;
-					  $("#dataerrorOutlet").html('Network timeout. Please ensure you have good network signal and working Internet.');
-					  
-					  
-					  var url = "#outletPage";
-					  $.mobile.navigate(url);	
-				  }
-			  });//end ajax*/
+						
+						fdisplayStringShow=fdisplayStringShow+'<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemfdisplay +'" id="'+ Itemfdisplay +'" value="'+itemID+'" min="0"> <input type="hidden" name="'+ slabfdisplay +'" id="'+ slabfdisplay +'" value="'+slab_fdisplay+'" min="0"></td>'+
+										  '<td><input  onClick="checkQtyFd('+i+')" onKeyUp="checkQtyFd('+i+')" type="number" name="'+ItemQtyfdisplay +'" id="'+ ItemQtyfdisplay +'" value="" min="0"></td><td></td><td><input onKeyUp="checkQtyFd('+i+')"  type="number" name="'+ItemFaceupfdisplay +'" id="'+ ItemFaceupfdisplay +'" value="" min="0"></td>'+
+										  '<td></td><td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ ItemVisiblefdisplay +'" id="'+ ItemVisiblefdisplay +'" value=""/></label></td></tr>'
+						fdisplayStringShow=fdisplayStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
+						
+					}
+					fdisplayStringShow=fdisplayStringShow+'</table>'
+					fdisplayStringShow=fdisplayStringShow+'</div>'	
+					
+					
+					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
+							'<input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  '+
+							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture </a></td></tr></table>'+ 
+							'<img id="'+fdSL_image_div+'" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
+							'<input type="hidden" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
+							'<input type="hidden" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
+							'<input type="hidden" name="'+ fdSL_total_hidden +'" id="'+ fdSL_total_hidden +'" value="'+fdisplaySingleTotal+'" >'
+					
+					
+					
+				
+					
+			}
+			localStorage.fdisplayStringShow=fdisplayStringShow
+			$("#fdisplay").html(localStorage.fdisplayStringShow);
+
+			//==========Create QPDS Display list
+			
+			
+			var qpdsSlabArray = qpdsList.split('</scheme>');
+			var qpdsSlabTotal = qpdsSlabArray.length;
+			
+			
+			
+			var qpdsStringShow=''
+			qpdsStringShow=qpdsStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
+			
+			localStorage.qpdsSlabTotal=qpdsSlabTotal
+			
+			//alert (parseInt(localStorage.qpdsSlabTotal));
+			if (parseInt(localStorage.qpdsSlabTotal)==1){	
+				//alert ('nadira');							
+				localStorage.qpdsSkip=1;	
+			}
+			
+			for (var slab=0; slab < qpdsSlabTotal-1; slab++){
+															
+					
+					var qpdsSlab_1Array = qpdsSlabArray[slab].split('<scheme>');
+					var qpdsSlab_image = qpdsSlab_1Array[0];
+					
+					var qpdsSlabList = qpdsSlab_1Array[1].replace("<scheme>","");
+					
+					
+					qpdsStringShow=qpdsStringShow+'<div id="qpdsdiv_'+slab.toString()+'">'
+					
+					qpdsStringShow=qpdsStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/scheme/'+qpdsSlab_image+'" alt="QPDS" />';
+					qpdsStringShow=qpdsStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
+					qpdsStringShow=qpdsStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">Face Up</td><td></td><td>Visible</td></tr>'
+					
+					
+					
+					
+					
+					var qpdsSingleArray = qpdsSlabList.split('rdrd');	
+					var qpdsSingleTotal = qpdsSingleArray.length;
+															
+					var qpdsSL_image_div='qpdsSL_image_div_'+slab.toString()
+					var qpdsSL_image_div_hidden='qpdsSL_image_div_hidden_'+slab.toString()
+					var qpdsSL_image_name_hidden='qpdsSL_image_name_hidden_'+slab.toString()
+					
+					
+					var qpdsSL_total_hidden='qpdsSL_total_hidden_'+slab.toString()
+					
+					var qpdsSL_f='qpdsSL_'+slab.toString()
+					
+					localStorage.qpdsTotal=qpdsSingleTotal
+
+					for (var i=0; i < qpdsSingleTotal-1; i++){
+						qpdsArray = qpdsSingleArray[i].split('fdfd');
+						scheme_qpds=qpdsArray[0]
+						itemID=qpdsArray[1];
+						itemName=qpdsArray[2];
+						qpdsSL=qpdsArray[3];
+						
+						var i_text=i.toString()
+						var ItemQtyqpds='ItemQtyqpds_'+i_text
+						var Itemqpds='Itemqpds_'+i_text
+						var ItemFaceupqpds='ItemFaceupqpds_'+i_text
+						var ItemVisibleqpds='ItemVisibleqpds_'+i_text
+						var schemeqpds='schemeqpds_'+i_text											
+						qpdsStringShow=qpdsStringShow+
+									   '<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemqpds +'" id="'+ Itemqpds +'" value="'+itemID+'" min="0">'+
+									   '<input type="hidden" name="'+ schemeqpds +'" id="'+ schemeqpds +'" value="'+scheme_qpds+'" min="0"> </td>'+
+									   '<td><input onClick="checkQtyQpds('+i+')" onKeyUp="checkQtyQpds('+i+')"  type="number" name="'+ItemQtyqpds +'" id="'+ ItemQtyqpds +'" value="" min="0"></td>'+
+									   '<td></td><td><input onKeyUp="checkQtyQpds('+i+')" type="number" name="'+ItemFaceupqpds +'" id="'+ ItemFaceupqpds +'" value="" min="0"></td><td></td>'+
+									   '<td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ ItemVisibleqpds +'" id="'+ ItemVisibleqpds +'" value=""/></label></td></tr>'
+						qpdsStringShow=qpdsStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
+					}
+					qpdsStringShow=qpdsStringShow+'</table>'
+					qpdsStringShow=qpdsStringShow+'</div>'
+					
+					qpdsStringShow=qpdsStringShow+
+								  '<table width="100%" border="0"><tr><td>'+
+								  ' <input type="hidden" name="'+ qpdsSL_f +'" id="'+ qpdsSL_f +'" value="'+qpdsSL+'" min="0">  '+
+								  ' <a data-role="button" href="#" onClick="get_pic_qpds('+slab+')" >Take Picture </a></td></tr></table>'
+					
+					//alert (qpdsSL);
+					
+					 qpdsStringShow=qpdsStringShow+
+							'<img id="'+qpdsSL_image_div+'" height="100px" width="100px"  src="" alt="QPDS" />'+
+							'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
+							'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
+							'<input type="hidden" name="'+ qpdsSL_total_hidden +'" id="'+ qpdsSL_total_hidden +'" value="'+qpdsSingleTotal+'" >'
+			
+			 
+			}
+			localStorage.qpdsStringShow=qpdsStringShow
+			$("#qpds").html(localStorage.qpdsStringShow);
+								
+								
+								
+			//==========Create Gift Ack list
+			var giftSingleArray = giftList.split('rdrd');	
+			var giftSingleTotal = giftSingleArray.length;
+			
+			
+			
+			var giftStringShow=''
+			giftStringShow=giftStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
+			giftStringShow=giftStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
+			giftStringShow=giftStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td>Received</td><td></td><td>Memo</td></tr>'
+			
+			localStorage.giftTotal=giftSingleTotal
+			
+			if (parseInt(localStorage.giftTotal)==1){
+				localStorage.giftSkip=1;
+			}
+			
+			
+			for (var i=0; i < giftSingleTotal-1; i++){
+				giftArray = giftSingleArray[i].split('fdfd');
+				slabSchemeName_gift=giftArray[0];
+				amount_gift=giftArray[1];
+				gift_id=giftArray[2];
+				var i_text=i.toString()
+				var slabSchemeName_gift_f='slabSchemeNamegift_'+i_text
+				var amount_gift_f='amount_gift_'+i_text
+				var receivedgift_f='receivedgift_'+i_text
+				var memogift_f='memogift_'+i_text
+				var gift_id_f='gift_id_'+i_text
+				
+				giftStringShow=giftStringShow+'<tr ><td width="1%" >&nbsp;</td><td>'+slabSchemeName_gift+' BDT  '+amount_gift+'<input type="hidden" name="'+ slabSchemeName_gift_f +'" id="'+ slabSchemeName_gift_f +'" value="'+slabSchemeName_gift+'" ><input type="hidden" name="'+ amount_gift_f +'" id="'+ amount_gift_f +'" value="'+amount_gift+'" > <input type="hidden" name="'+ gift_id_f +'" id="'+ gift_id_f +'" value="'+gift_id+'" ></td><td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ receivedgift_f +'" id="'+ receivedgift_f +'" value=""/></label></td> <td></td><td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ memogift_f +'" id="'+ memogift_f +'" value=""/></label></td></tr>'
+				giftStringShow=giftStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
+				
+			}
+			
+			giftStringShow=giftStringShow+'</table>'
+			if (localStorage.giftTotal > 1){
+				//alert (localStorage.giftTotal);
+				giftStringShow=giftStringShow+'</br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>'+              
+							   '<a data-role="button" href="#" onClick="get_pic_gift();" >Take Picture </a></td> </tr></table>'
+			}
+			
+			if (localStorage.giftTotal > 1){
+			   giftStringShow=giftStringShow+'<img id="gift_image_div"  height="100px" width="100px"  src="" alt="Gift" />'
+			}
+			else{
+				giftStringShow=giftStringShow+'<img id="gift_image_div" style="display:none" height="100px" width="100px"  src="" alt="Gift" />'
+			}
+			giftStringShow=giftStringShow+
+							'<input type="hidden" name="gift_image_div_hidden" id="gift_image_div_hidden" value="" >'+
+							'<input type="hidden" name="gift_image_name_hidden" id="gift_image_name_hidden" value="" >'
+							
+			
+			localStorage.giftStringShow=giftStringShow
+			$("#gift").html(localStorage.giftStringShow);
+			
+			//==========Create Marchandizing list
+			var marchadizingSingleArray = marchadizingList.split('rdrd');	
+			var marchadizingSingleTotal = marchadizingSingleArray.length;
+			
+			var marchadizingStringShow=''
+			marchadizingStringShow=marchadizingStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td><td  colspan="2"><a data-role="button" href="#dialogMarchandizing" > Add </a> </td></tr><tr > </table></br>'
+			marchadizingStringShow=marchadizingStringShow+'<table  width="100%" border="0" cellpadding="0" cellspacing="0">'
+			marchadizingStringShow=marchadizingStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td> <td >Item / Brand</td><td>QTY </td><td> </td><td>Condition</td><td > </td><td>Visible</td><td> </td><td >Dismantled</td></tr>'
+			
+			
+			localStorage.marchadizingTotal=marchadizingSingleTotal
+			for (var i=0; i < marchadizingSingleTotal-1; i++){
+				marchadizingArray = marchadizingSingleArray[i].split('fdfd');
+				
+				
+				itemID_mar=marchadizingArray[0];
+				itemName_mar=marchadizingArray[1];
+				brandID_mar=marchadizingArray[2];
+				brand_mar=marchadizingArray[3];
+				qty_mar=marchadizingArray[4];
+				insDate_mar=marchadizingArray[5];
+				id_mar=marchadizingArray[6];
+				
+				var i_text=i.toString()
+				var itemID_mar_f='itemID_mar_'+i_text
+				var itemName_mar_f='itemName_mar_'+i_text									
+				var brandID_mar_f='brandID_mar_'+i_text
+				//var brand_mar_f='brandID_mar_'+i_text									
+				var brand_mar_f='brand_mar_'+i_text
+				var qty_mar_f='qty_mar_'+i_text
+				var insDate_mar_f='insDate_mar_'+i_text
+				var condition_mar_f='condition_mar_'+i_text
+				var visible_mar_f='visible_mar_'+i_text
+				var dism_mar_f='dism_mar_'+i_text
+				
+				var id_mar_f='id_mar_'+i_text
+				
+				
+
+				var condition_combo='<option value="0" >&nbsp; </option><option value="Good/Sound" >Good/Sound</option><option value="Damaged/ Torn" >Damaged/Torn</option><option value="Need repair" >Need repair</option>'
+				
+				var visible_combo='<option value="0" >&nbsp; </option><option value="Yes" >Yes</option><option value="No" >No</option>'
+				
+				
+				
+				
+				marchadizingStringShow=marchadizingStringShow+'<tr ><td  >&nbsp;</td><td>'+itemName_mar+ '</br>'+brand_mar+'</br><font face="Verdana, Geneva, sans-serif" size="-10">'+insDate_mar+'</font>'+'<input type="hidden" name="'+ itemID_mar_f +'" id="'+ itemID_mar_f +'" value="'+itemID_mar +'" >'+'<input type="hidden" name="'+ id_mar_f +'" id="'+ id_mar_f +'" value="'+id_mar +'" >'+'<input type="hidden" name="'+ itemName_mar_f +'" id="'+ itemName_mar_f +'" value="'+itemName_mar +'" >'+'<input type="hidden" name="'+ brandID_mar_f +'" id="'+ brandID_mar_f +'" value="'+brandID_mar +'" >'+'<input type="hidden" name="'+ brand_mar_f +'" id="'+ brand_mar_f +'" value="'+brand_mar +'" >'+'<input type="hidden" name="'+ qty_mar_f +'" id="'+ qty_mar_f +'" value="'+qty_mar +'" >'+'<input type="hidden" name="'+ insDate_mar_f +'" id="'+ insDate_mar_f +'" value="'+insDate_mar +'" >'+'</td><td width="3%" align="center">'+qty_mar+'</td><td width="1%"> </td>'
+				marchadizingStringShow=marchadizingStringShow+'<td width="20%"  ><select style="height:20px" name="'+condition_mar_f+'" id="'+condition_mar_f+'" data-native-menu="false">'+condition_combo+ '</select></td><td width="1%"> </td>'
+				marchadizingStringShow=marchadizingStringShow+'<td><select style="height:20px" name="'+visible_mar_f+'" id="'+visible_mar_f+'" data-native-menu="false">'+visible_combo+ '</select></td><td width="1%"> </td>'
+				marchadizingStringShow=marchadizingStringShow+'<td width="5%"> <label  style="width:5px; height:20px"><input type="checkbox" name="'+dism_mar_f+'" id="'+dism_mar_f+'" value=""/></label> </td></tr>'
+				
+													
+				marchadizingStringShow=marchadizingStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td  ></td><td ></td><td></td><td ></td><td></td><td></td><td></td><td></td></tr>'
+				
+			}
+			marchadizingStringShow=marchadizingStringShow+'</table>'
+			
+			localStorage.marchadizingStringShow=marchadizingStringShow
+			$("#marchadizing").html(localStorage.marchadizingStringShow);
+			
+//========dynamic modal form for new marchandizing start=========
+		// Item	
+			var marchadizingItemSingleArray = marchadizingItemList.split('rdrd');	
+			var marchadizingItemSingleTotal = marchadizingItemSingleArray.length;
+			
+			var marchadizingItemStringShow=''
+			marchadizingItemStringShow=marchadizingItemStringShow+'<select name="select_mar_item" id="select_mar_item" data-native-menu="false"><option value="0" >Item </option>'
+			
+			localStorage.marchadizingItemTotal=marchadizingItemSingleTotal
+			for (var i=0; i < marchadizingItemSingleTotal-1; i++){
+				marchadizingItemArray = marchadizingItemSingleArray[i].split('fdfd');
+				
+				
+				marItemID=marchadizingItemArray[0];
+				marItemName=marchadizingItemArray[1];
+				
+				marchadizingItemStringShow=marchadizingItemStringShow+'<option value="'+marItemID+'" >'+marItemName+'</option>'
+			}
+			marchadizingItemStringShow=marchadizingItemStringShow+'</select>'
+			
+			localStorage.marchadizingItemStringShow=marchadizingItemStringShow
+			$("#selectItem").html(localStorage.marchadizingItemStringShow);
+			
+		//Brand
+		   
+			var marchadizingBrandSingleArray = marchadizingBrandList.split('rdrd');	
+			var marchadizingBrandSingleTotal = marchadizingBrandSingleArray.length;
+			
+			var marchadizingBrandStringShow=''
+			marchadizingBrandStringShow=marchadizingBrandStringShow+'<select name="select_mar_brand" id="select_mar_brand" data-native-menu="false"><option value="0" >Brand</option>'
+			
+			localStorage.marchadizingBrandTotal=marchadizingBrandSingleTotal
+			for (var i=0; i < marchadizingBrandSingleTotal-1; i++){
+				marchadizingBrandArray = marchadizingBrandSingleArray[i].split('fdfd');
+				
+				
+				marBrandID=marchadizingBrandArray[0];
+				marBrandName=marchadizingBrandArray[1];
+				
+				marchadizingBrandStringShow=marchadizingBrandStringShow+'<option value="'+marBrandID+'" >'+marBrandName+'</option>'
+			}
+			marchadizingBrandStringShow=marchadizingBrandStringShow+'</select>'
+			
+			localStorage.marchadizingBrandStringShow=marchadizingBrandStringShow
+			$("#selectBrand").html(localStorage.marchadizingBrandStringShow);	
+			
+			
+		//	===========dynamic modal form for new marchandizing end================
+								
+			var startTime=get_date()
+			localStorage.startTime=startTime
+			//alert (startTime);
+			$("#startTime").val(localStorage.startTime);
+			
+			$("#outletButton").show();
+			$("#outletWait").hide();
+								
+		}
+							
+
+		//		  error: function(result) {
+//					  localStorage.show_cancel==0;
+//					  $("#dataerrorOutlet").html('Network timeout. Please ensure you have good network signal and working Internet.');
+//					  
+//					  
+//					  var url = "#outletPage";
+//					  $.mobile.navigate(url);	
+//				  }
+//			  });//end ajax*/
 			  
 }
 //=====================Select Outlet End=========================
@@ -2046,6 +2029,7 @@ function submit_data() {
 
 //======================Submit Data End======================
 //===================add marchandizing======================
+//===================add marchandizing======================
 
 function marchandizing_add() { 
 	
@@ -2057,6 +2041,7 @@ function marchandizing_add() {
 	var m_new_string=''
 
 	var start_new_mar=0;
+	//var add_mar_num=0
 	if  ((select_mar_item!=0) && (select_mar_brand!=0) &&  (select_mar_qty>0) && (select_mar_date.length>9)){
 		
 		m_new_string=localStorage.m_new_string
@@ -2066,17 +2051,65 @@ function marchandizing_add() {
 		
 		 m_new=localStorage.m_new
 		
-		 m_new=m_new+'</br><font color="#00007D">Item:&nbsp;&nbsp;  </font>'+select_mar_item+'</br><font color="#00007D">   Brand: &nbsp;&nbsp;  </font>'+select_mar_brand+'</br><font color="#00007D"> InsDate: &nbsp;&nbsp;  </font>'+select_mar_date+'</br><font color="#00007D"> Qty:&nbsp;&nbsp;  </font>'+select_mar_qty+'</br></br>'
+		
+		add_mar_num=parseInt(localStorage.add_mar_num) +1;
+		localStorage.add_mar_num=add_mar_num
+		//alert (localStorage.add_mar_num);
+		
+		var mar_value='mar_value'+ add_mar_num
+		var text_value=select_mar_item+'fdfd'+select_mar_brand+'fdfd'+select_mar_qty+'fdfd'+select_mar_date+'rdrd';
+		
+		//alert (text_value)
+		 m_new=m_new+'</br><font color="#00007D">Item:&nbsp;&nbsp;  </font>'+select_mar_item+'</br><font color="#00007D">   Brand: &nbsp;&nbsp;  </font>'+select_mar_brand+'</br><font color="#00007D"> InsDate: &nbsp;&nbsp;  </font>'+select_mar_date+'</br><font color="#00007D"> Qty:&nbsp;&nbsp;  </font>'+select_mar_qty+'     <input type="hidden" name="'+ mar_value +'" id="'+ mar_value+'" value="'+text_value+'" >' +'<input width="50px" type="button" value=" X " onClick="delete_marchandizing('+ add_mar_num +')"> '+'</br></br>'
 		 //alert (m_new);
+		 
+		 
+		 
 		 localStorage.m_new=m_new.replace("undefined","");
 		 $("#marchadizing_add_show").html(localStorage.m_new);
-								 
+		 
+		 var url = "#marchandizingPage";
+		 $.mobile.navigate(url);
+		 $(url).trigger('create');
 						
 	}
 
 }
 
 //=======================add marchandizing===================
+//=======================delete marchandizing===================
+function delete_marchandizing(mar_value) { 
+	var mar_value_text='mar_value'+ mar_value
+	var new_mar_value=$("#"+mar_value_text).val();
+	var m_new_string_replace=new_mar_value;
+	var m_new_string=localStorage.m_new_string;
+	
+	
+	$("#marchadizing_html").val(m_new_string);
+	
+	
+	m_new_string= m_new_string.replace(m_new_string_replace,"");
+	localStorage.m_new_string=m_new_string;
+	$("#marchadizing_LS").val(localStorage.m_new_string);
+	
+	
+	var m_Array = m_new_string_replace.split('fdfd');			
+	var select_mar_item = m_Array[0];
+	var select_mar_brand = m_Array[1];
+	var select_mar_qty = m_Array[2];
+	var select_mar_date = m_Array[3].replace("rdrd","");
+	var m_new_replace='</br><font color="#00007D">Item:&nbsp;&nbsp;  </font>'+select_mar_item+'</br><font color="#00007D">   Brand: &nbsp;&nbsp;  </font>'+select_mar_brand+'</br><font color="#00007D"> InsDate: &nbsp;&nbsp;  </font>'+select_mar_date+'</br><font color="#00007D"> Qty:&nbsp;&nbsp;  </font>'+select_mar_qty+'     <input type="hidden" name="'+ mar_value_text +'" id="'+ mar_value_text+'" value="'+new_mar_value+'" >' +'<input width="50px" type="button" value=" X " onClick="delete_marchandizing('+ mar_value +')"> '+'</br></br>'
+	
+	m_new=localStorage.m_new;
+	localStorage.m_new=m_new.replace(m_new_replace,"");
+	
+	
+	
+	$("#marchandizingPage").trigger('create');
+	location.reload();
+	
+	
+}
 
 //====================================Camera==========
 
@@ -2162,40 +2195,7 @@ function onFailGift(message) {
 
 
 //==================upload image===============
-//------------------------------------------------------------------------------
-/*function uploadAll(){
-	//fixed display
-	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
-		var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
-		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
-		
-		if (fdSLfdisplay_image_path.length >10){
-			uploadPhoto(fdSLfdisplay_image_path, image_name);
-		}
-		
-	}
-	
-	//QPDS
-	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
-		var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
-		var qpds_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val();
-		
-		if (qpds_image_path.length >10){
-			uploadPhoto(qpds_image_path, image_name);
-		}
-		
-	}
-	
-	//Gift
-		var image_name=$("#gift_image_name_hidden").val();
-		var gift_image_path=$("#gift_image_div_hidden").val();
-		
-		if (gift_image_path.length >10){
-			uploadPhoto(gift_image_path, image_name);
-		}
 
-		
-}*/
 //------------------------------------------------------------------------
 function upload_fd(){
 	//fixed display
@@ -2518,7 +2518,6 @@ function menupage(){
 	var url = "#outletPage";
 	$.mobile.navigate(url);
 	location.reload();
-	// var url = "#menuPage";
-	//$.mobile.navigate(url);	
+	
 }
 

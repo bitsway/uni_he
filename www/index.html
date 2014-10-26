@@ -210,36 +210,38 @@
         
            <div data-role="panel" id="routePanel" data-display="overlay" style="width:60%;">
 				<!-- panel content goes here -->
-				<img style="width:100%;"  src="unilogo1.jpg" alt="UNILEVER" /><br>
+				<img style="width:100%;"  src="unilogo1.png" alt="UNILEVER" /><br>
 				<font style="color:#007D7D; font-size:25px;">HAWK'S EYE</font>
 				<br><br><br>
 				  <ul data-role="listview">
 							
                     		<div style="background:#008A8A; height:1px"></div>
-							<li id="link_route"><a onClick="check_route()">Sync Route</a></li>
+							<li id="link_route"><a onClick="check_route()"><img src="visit_plan.png"></a></li>
                             <div style="background:#008A8A; height:1px"></div>
                             </br></br></br>
                             <div style="background:#008A8A; height:1px"></div>
-                            <li><a href="#login" >Sync Authorization</a></li>
+                            <li><a href="#login" ><img src="sync.png"></a></li>
                             <div style="background:#008A8A; height:1px"></div>
-							<li><a onClick="clear_autho()" href="#login">Clear Authorization</a></li>
-                            <div style="background:#008A8A; height:1px"></div>
+							<!--<li><a onClick="clear_autho()" href="#login">Clear Authorization</a></li>
+                            <div style="background:#008A8A; height:1px"></div>-->
 					</ul>
 					<br>
 				<div style="margin:100%;"></div>
-				<img src="logo_gp_p.png" alt="Grameen Phone" />
+				<img src="logo_gp_p_1.png" alt="Grameen Phone" />
 				
 			</div><!-- /panel -->
             
              <div data-theme="c" data-role="header" data-position="fixed" >
 			
-			    <a  data-role="button" href="#routePanel" class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a data-role="button" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right ui-icon-power ui-btn-icon-notext " onClick="exit()" >Exit </a>
+			    <a style="height:18px"  href="#routePanel" ><img src="unilogo13.png"></a>
+                <a style="height:18px" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right " onClick="exit()" ><img src="exit.png"> </a>
+                <!--<a data-role="button" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right ui-icon-power ui-btn-icon-notext " onClick="exit()" ><img src="exit.png"> </a>-->
                 <h3>Home</h3>
             </div>
 			
 			<div data-role="content" align="center">
-				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">         
+            	<br><br>
+				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">       
 				<a data-role="button" onClick="marketPJP_check()" >Market PJP</a>
                 <a data-role="button" href="#menuPage" >Information</a>
                 </font>
@@ -255,14 +257,16 @@
         <div data-theme="c" data-role="page" id="login"   >
             <div data-theme="c" data-role="header" data-position="fixed" >
 			
-			   <a   href="#" ><img src="unilogo13.jpg"></a>
+			   <a style=" height:18px"   href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                <a data-role="button" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right ui-icon-power ui-btn-icon-notext " onClick="exit()" >Exit </a>
                 <h3>Login</h3>
             </div>
 			
 			<div data-role="content" >    
                
-				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">                         
+				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1"> 
+                </br></br>
+                             
 				<input type="text" name="cm_id" id="cm_id" placeholder="CM ID" value="">
 				<input type="text" name="cm_pass" id="cm_pass" placeholder="CM Pass" value="">
                 </font>                
@@ -270,7 +274,11 @@
 				
                 
                 <div id="login_image" ><img height="40px" width="40px" src="loading.gif"></div>
-                <a id="loginButton" data-role="button"  onClick="check_user()" >Login</a>				
+                <a id="loginButton" data-role="button"  onClick="check_user()" >Login</a>		
+                
+                </br></br></br></br>
+                
+                 <a id="loginButton" data-role="button"  onClick="clear_autho()" >Clear Authorization</a>			
 				<div id="error_login" style="color:#006291"></div>
 				
 					   
@@ -283,11 +291,12 @@
      <!--  ====================== routePage ======================  -->
 		<div data-theme="c" data-role="page" id="routePage">
 			<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+			    <a style=" height:18px"   href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Select Route</h3>
             </div>
-			<div  data-role="content" >						
+			<div  data-role="content" >		
+             <span style=" font-size:5"> <br/><br/></span>				
 						<div id="routeString"> </div>
 			
 				<br/><br/>	
@@ -309,12 +318,13 @@
     <!--====================Route Exception==================-->
     <div data-theme="c" data-role="page" id="routeexceptionPage">
 		    <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Route Exception</h3>
             </div>
 		    
-			<div  data-role="content" >					
+			<div  data-role="content" >	
+             <span style=" font-size:5"> <br/><br/></span>				
 			Select Cause:
               		<div id="routeExString"> </div>		
 			
@@ -337,12 +347,15 @@
 		<div data-theme="c" data-role="page" id="outletPage">
 			
 			<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a id="menujpj"  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a id="backjpj" data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+			    <a id="menujpj" style="height:18px"   href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a id="backjpj" style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+               <!-- <a id="backjpj" data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>-->
                 <h3>Select Outlet</h3>
             </div>
 		    
-			<div  data-role="content"  >                
+			<div  data-role="content"  >  
+            <span style=" font-size:5"> <br/><br/></span>
+                          
                 <div id="outletString"> </div>	
 
 
@@ -378,8 +391,8 @@
      
     <div data-theme="c" data-role="page" id="outletexceptionPage">	
 		   <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Outlet Exception</h3>
             </div>
 		    
@@ -412,8 +425,8 @@
      
     <div data-theme="c" data-role="page" id="outletSyncingPage">	
 		   <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+			    <a style=" height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Outlet Info</h3>
             </div>
 		    
@@ -451,8 +464,8 @@
     
     <div data-theme="c" data-role="page" id="mhskusPage">	
 		  <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Must Have SKUS</h3>
             </div>
 			<div  data-role="content" >
@@ -477,13 +490,14 @@
     
     <div data-theme="c" data-role="page" id="marchandizingPage">
    		  <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a data-role="button" href="#mhskusPage" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+			    <a style=" height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" href="#mhskusPage" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <!--<a data-role="button" href="#mhskusPage" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>-->
                 <h3>Merchandising</h3>
             </div>
 		    
 			<div  data-role="content" >   
-            
+             <span style=" font-size:5"> <br/><br/></span>
             <div id="marchadizing"></div>
 			<div id="marchadizing_add_show"></div>
           
@@ -509,8 +523,8 @@
     
     <div data-theme="c" data-role="page" id="npdPage">
 		   <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>NPD</h3>
             </div>
 		    
@@ -539,8 +553,8 @@
     
     <div data-theme="c" data-role="page" id="fixedDisplay">
 		   <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Fixed Display Audit</h3>
             </div>
 		    
@@ -573,8 +587,8 @@
     
     <div data-theme="c" data-role="page" id="qpdsPage">
 		<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>QPDS (Scheme)</h3>
             </div>
 		    
@@ -605,8 +619,8 @@
     
     <div data-theme="c" data-role="page" id="giftAckPage">
 		    <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Gift Acknowledgement</h3>
             </div>
 		    
@@ -638,8 +652,8 @@
     
     <div data-theme="c" data-role="page" id="submitPage">
 		    <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a  data-role="button" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.jpg"></a>
-                <a data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>
+			    <a style="height:18px"   href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Submit</h3>
             </div>
 		    
