@@ -177,7 +177,7 @@ function cancel_outlet(){
 	localStorage.m_new="";
 	localStorage.selectedOutlet="";
 	//localStorage.outletExStringShow="";
-	//localStorage.outletException="";
+	localStorage.outletException="";
 	localStorage.outletChanne="";
 	localStorage.outletNameID="";
 	localStorage.mhskusTotal="";
@@ -1527,6 +1527,9 @@ function mhskus_ready_data() {
 	localStorage.mhskus_data_ready=mhskus_data;
 	mhskus_page_set();
 	//alert ('nadira');
+	var url = "#marchandizingPage";
+	$.mobile.navigate(url);
+	location.reload();
 }
 
 function mhskus_page_set() { 
@@ -2009,6 +2012,8 @@ function submit_data() {
 								
 								upload_fd();
 								
+								location.reload();
+								
 								
 							}
 									
@@ -2073,6 +2078,7 @@ function marchandizing_add() {
 		 
 		 var url = "#marchandizingPage";
 		 $.mobile.navigate(url);
+		 
 		 $(url).trigger('create');
 						
 	}
@@ -2508,6 +2514,10 @@ function buttonCheck(){
 		$("#sub_qpds_button").hide();
 		$("#sub_gift_button").hide();
 		$("#NOutlet_button").show();
+		
+		
+		
+		//reload.location();
 	}
 	
 }
