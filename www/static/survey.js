@@ -1971,7 +1971,7 @@ function submit_data() {
 	
 	$( "#sub_button_div").hide();
 	
-	//$("#submit_data").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);	
+	//$("#submit_data_check").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&mar_data='+localStorage.mar_data_ready+'&mar_data_new='+localStorage.m_new_string);	
 	//alert (localStorage.m_new_string);
 	$.ajax({
 				 type: 'POST',
@@ -1987,7 +1987,7 @@ function submit_data() {
 //								$("#submit_data").html('Unauthorized User');
 //							}
 							if (result!='SUCCESS'){
-								$("#submit_data").html(result);
+								$("#submit_data_check").html(result);
 							}
 							if (result=='SUCCESS'){
 								
@@ -2006,16 +2006,18 @@ function submit_data() {
 								
 							
 								
-								$("#submit_data").html("Data Synced Successfully");
+								$("#submit_data_check").html("Data Synced Successfully");
 								
 								
 								
 								upload_fd();
 								
-								location.reload();
+								
+								//location.reload();
 								
 								
 							}
+							
 									
 						}
 						
@@ -2023,6 +2025,7 @@ function submit_data() {
 				  error: function(result) {
 					 // alert (result);
 					 $("#sub_button").show();
+					 
 					// $("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 					 localStorage.dataSubmit=0;
 					 buttonCheck();
