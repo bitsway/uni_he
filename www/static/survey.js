@@ -1144,9 +1144,8 @@ function syncOutlet() {
 					fdisplayStringShow=fdisplayStringShow+'</div>'	
 					
 					
-//====================	After
+//====================	before
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
-							'<input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  '+
 							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture Before </a></td></tr></table>'+ 
 							'<img id="'+fdSL_image_div+'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
 							'<input type="text" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
@@ -1235,7 +1234,7 @@ function syncOutlet() {
 				
 				qpdsStringShow=qpdsStringShow+
 							  '<table width="100%" border="0"><tr><td>'+
-							  ' <input type="hidden" name="'+ qpdsSL_f +'" id="'+ qpdsSL_f +'" value="'+qpdsSL+'" min="0">  '+
+							  
 							  ' <a data-role="button" href="#" onClick="get_pic_qpds_before('+slab+')" >Take Picture Before </a></td></tr></table>'
 				
 				 qpdsStringShow=qpdsStringShow+
@@ -2312,7 +2311,7 @@ function get_pic_fdisplay_before(id) {
 function onSuccessFd_before(imageURI) {
 	var image = document.getElementById(temp_image_div);
     image.src = imageURI;
-    var hidden_path=temp_image_div.replace("fdSL_image_div_before","fdSL_image_div_hidden_before");
+    var hidden_path=temp_image_div.replace("fdSL_image_div","fdSL_image_div_hidden");
 	$("#"+hidden_path_before).val(imageURI);
 	
 }
@@ -2359,7 +2358,7 @@ function onFailFd(message) {
 //QPDS before
 function get_pic_qpds_before(id) {
 	$('#qpdsdiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
-	var div_id="qpdsSL_image_div_"+id;
+	var div_id="qpdsSL_image_div_"+id+"_before";
 	temp_image_div=div_id;
 	var hidden_name="qpdsSL_image_name_hidden_"+id;
 	var tempTime = $.now();
@@ -2373,7 +2372,7 @@ function get_pic_qpds_before(id) {
 function onSuccessQpds_before(imageURI) {
 	var image = document.getElementById(temp_image_div);
     image.src = imageURI;
-    var hidden_path_before=temp_image_div.replace("qpdsSL_image_div_before","qpdsSL_image_div_hidden_before");
+    var hidden_path_before=temp_image_div.replace("qpdsSL_image_div","qpdsSL_image_div_hidden");
 	$("#"+hidden_path_before).val(imageURI);
 }
 
