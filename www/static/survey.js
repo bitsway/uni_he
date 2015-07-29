@@ -1144,12 +1144,22 @@ function syncOutlet() {
 					fdisplayStringShow=fdisplayStringShow+'</div>'	
 					
 					
+//====================	After
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
 							'<input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  '+
-							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture </a></td></tr></table>'+ 
+							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture Before </a></td></tr></table>'+ 
+							'<img id="'+fdSL_image_div+'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
+							'<input type="text" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
+							'<input type="text" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
+					
+					
+//====================	After
+					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
+							'<input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  '+
+							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture After </a></td></tr></table>'+ 
 							'<img id="'+fdSL_image_div+'" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
-							'<input type="hidden" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
-							'<input type="hidden" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
+							'<input type="text" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
+							'<input type="text" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
 							'<input type="hidden" name="'+ fdSL_total_hidden +'" id="'+ fdSL_total_hidden +'" value="'+fdisplaySingleTotal+'" >'
 										
 			}
@@ -1165,7 +1175,7 @@ function syncOutlet() {
 			qpdsStringShow=qpdsStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
 			
 			localStorage.qpdsSlabTotal=qpdsSlabTotal
-			
+			//alert (qpdsSlabArray);
 			//alert (parseInt(localStorage.qpdsSlabTotal));
 			if (parseInt(localStorage.qpdsSlabTotal)==1){	
 				//alert ('nadira');							
@@ -1222,17 +1232,31 @@ function syncOutlet() {
 				qpdsStringShow=qpdsStringShow+'</table>'
 				qpdsStringShow=qpdsStringShow+'</div>'
 				
+				
 				qpdsStringShow=qpdsStringShow+
 							  '<table width="100%" border="0"><tr><td>'+
 							  ' <input type="hidden" name="'+ qpdsSL_f +'" id="'+ qpdsSL_f +'" value="'+qpdsSL+'" min="0">  '+
-							  ' <a data-role="button" href="#" onClick="get_pic_qpds('+slab+')" >Take Picture </a></td></tr></table>'
+							  ' <a data-role="button" href="#" onClick="get_pic_qpds_before('+slab+')" >Take Picture Before </a></td></tr></table>'
+				
+				 qpdsStringShow=qpdsStringShow+
+						'<img id="'+qpdsSL_image_div+'_before" height="100px" width="100px"  src="" alt="QPDS" />'+
+						'<input type="text" name="'+ qpdsSL_image_div_hidden +'_before" id="'+ qpdsSL_image_div_hidden +'_before" value="" >'+
+						'<input type="text" name="'+ qpdsSL_image_name_hidden +'_before" id="'+ qpdsSL_image_name_hidden +'_before" value="" >'
+				
+				
+				//After================
+				
+				qpdsStringShow=qpdsStringShow+
+							  '<table width="100%" border="0"><tr><td>'+
+							  ' <input type="hidden" name="'+ qpdsSL_f +'" id="'+ qpdsSL_f +'" value="'+qpdsSL+'" min="0">  '+
+							  ' <a data-role="button" href="#" onClick="get_pic_qpds('+slab+')" >Take Picture After </a></td></tr></table>'
 				
 				//alert (qpdsSL);
 				
 				 qpdsStringShow=qpdsStringShow+
 						'<img id="'+qpdsSL_image_div+'" height="100px" width="100px"  src="" alt="QPDS" />'+
-						'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
-						'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
+						'<input type="text" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
+						'<input type="text" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
 						'<input type="hidden" name="'+ qpdsSL_total_hidden +'" id="'+ qpdsSL_total_hidden +'" value="'+qpdsSingleTotal+'" >'
 		
 		 
@@ -1634,6 +1658,11 @@ function fdisplay_ready_data() {
 		var fdTotal=$("#fdSL_total_hidden_"+i.toString()).val();
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val(); 
 		var fdSLfdisplay_image_name=$("#fdSL_image_name_hidden_"+i.toString()).val(); 
+		
+		var fdSLfdisplay_image_path_before=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(); 
+		var fdSLfdisplay_image_name_before=$("#fdSL_image_name_hidden_"+i.toString()+"_before").val();
+		
+		
 		var fdSLfdisplay=$("#fdSLfdisplay_"+i.toString()).val(); 
 			for (var d=0; d < fdTotal-1; d++){
 				var ItemQtyfdisplay=$("#ItemQtyfdisplay_"+d.toString()).val();
@@ -1653,14 +1682,14 @@ function fdisplay_ready_data() {
 				
 					fdisplay_data_detail=fdisplay_data_detail+Itemfdisplay+'fdfd'+ItemQtyfdisplay+'fdfd'+ItemFaceupfdisplay+'fdfd'+ItemVisiblefdisplay+'fdfd'+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+'rdrd'
 			}
-		fdisplay_data_head=fdisplay_data_head+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+fdSLfdisplay_image_name+'fdfd'+fdSLfdisplay_image_path+'rdrd'
+		fdisplay_data_head=fdisplay_data_head+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+fdSLfdisplay_image_name+'fdfd'+fdSLfdisplay_image_path+'fdfd'+fdSLfdisplay_image_name_before+'fdfd'+fdSLfdisplay_image_path_before+'rdrd'
 
 	}
 	 fdisplay_data='headstart'+fdisplay_data_head+'headend'+fdisplay_data_detail
 	 localStorage.fdisplay_data_ready=fdisplay_data
 	
 	 fdisplay_page_set()
-	// alert (localStorage.fdisplay_data_ready);
+	 //alert (localStorage.fdisplay_data_ready);
 	
 	
 	//==============
@@ -1681,10 +1710,6 @@ function fdisplay_ready_data() {
 	}
 	//==================
 	
-	
-	
-	
-	
 
 }
 
@@ -1699,12 +1724,20 @@ function fdisplay_page_set() {
 		var slabfdisplay =head_s_array[0];
 		var fdisplayTotal=head_s_array[1];
 		var fdisplayImg=head_s_array[2];
-		var fdisplayImg_path=head_s_array[3].replace("rdrd","");
+		var fdisplayImg_path=head_s_array[3];
 		
+		var fdisplayImg_before=head_s_array[4];
+		var fdisplayImg_path_before=head_s_array[5].replace("rdrd","");
+		
+		
+		//alert (fdisplayImg_path_before);
 		//fdisplayImg_path='q343253456rdrd'
 		
 		$("#fdSL_image_name_hidden_"+i.toString()).val(fdisplayImg);
 		$("#fdSL_image_div_hidden_"+i.toString()).val(fdisplayImg_path);
+		
+		$("#fdSL_image_name_hidden_"+i.toString()+"_before").val(fdisplayImg_before);
+		$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(fdisplayImg_path_before);
 		
 		if ((fdisplayImg.length > 10) & (fdisplayImg_path.length > 10)){
 			$('#fddiv_'+i.toString()).find('input, textarea, button, select').attr('disabled','disabled');
@@ -1727,14 +1760,10 @@ function fdisplay_page_set() {
 				if (ItemVisiblefdisplay=='YES'){
 					$("#ItemVisiblefdisplay_"+d.toString()).attr('checked',true);
 				}
-				
+
 			
 			}
 	}
-	
-	
-	
-	
 	
 }
 
@@ -1747,6 +1776,12 @@ function qpds_ready_data() {
 	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
 		var qpdsSL_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val(); 
 		var qpdsSL_image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val(); 
+		
+		var qpdsSL_image_path_before=$("#qpdsSL_image_div_hidden_"+i.toString()+"_before").val(); 
+		var qpdsSL_image_name_before=$("#qpdsSL_image_name_hidden_"+i.toString()+"_before").val(); 
+		
+		//alert ("fdsgfdfg");
+		//alert (qpdsSL_image_name_before);
 		var qpdsSL=$("#qpdsSL_"+i.toString()).val();
 		
 		var qpdsTotal='qpdsTotal'+i.toString()
@@ -1771,7 +1806,7 @@ function qpds_ready_data() {
 			}
 			qpds_data_detail=qpds_data_detail+Itemqpds+'fdfd'+ItemQtyqpds+'fdfd'+ItemFaceupqpds+'fdfd'+ItemVisibleqpds+'fdfd'+schemeqpds+'fdfd'+qpdsSL+'rdrd'
 		}
-		qpds_data_head=qpds_data_head+schemeqpds+'fdfd'+qpdsSL+'fdfd'+qpdsSL_image_name+'fdfd'+qpdsSL_image_path+'rdrd'
+		qpds_data_head=qpds_data_head+schemeqpds+'fdfd'+qpdsSL+'fdfd'+qpdsSL_image_name+'fdfd'+qpdsSL_image_path+'fdfd'+qpdsSL_image_name_before+'fdfd'+qpdsSL_image_path_before+'rdrd'
 	
 	}
 	qpds_data='headstart'+qpds_data_head+'headend'+qpds_data_detail
@@ -1793,6 +1828,7 @@ function qpds_ready_data() {
 }
 
 function qpds_page_set() { 
+	//alert (localStorage.qpds_data_ready);
 	var qpds_array =  localStorage.qpds_data_ready.split('headend');
 	var qpds_head=qpds_array[0].replace("headstart","");
 	var qpds_detail=qpds_array[1];
@@ -1803,14 +1839,19 @@ function qpds_page_set() {
 		var slabqpds =head_s_array[0];
 		var qpdsTotal=head_s_array[1];
 		
-		
 		var qpdsImg=head_s_array[2];
-		var qpdsImg_path=head_s_array[3].replace("rdrd","");
+		var qpdsImg_path=head_s_array[3];
+		
+		var qpdsImg_before=head_s_array[4];
+		var qpdsImg_path_before=head_s_array[5].replace("rdrd","");
 		
 		//qpdsImg_path='q343253456rdrd'
 		
 		$("#qpdsSL_image_name_hidden_"+i.toString()).val(qpdsImg);
 		$("#qpdsSL_image_div_hidden_"+i.toString()).val(qpdsImg_path);
+		
+		$("#qpdsSL_image_name_hidden_"+i.toString()+"_before").val(qpdsImg_before);
+		$("#qpdsSL_image_div_hidden_"+i.toString()+"_before").val(qpdsImg_path_before);
 		
 		if ((qpdsImg.length > 10) & (qpdsImg_path.length > 10)){
 			$('#qpdsdiv_'+i.toString()).find('input, textarea, button, select').attr('disabled','disabled');
@@ -2246,10 +2287,44 @@ function delete_marchandizing(mar_value) {
 	
 	
 }
+//====================================Camera==========
+
+//fixed display Before
+function get_pic_fdisplay_before(id) {
+	//alert ('#fddiv_'+id);
+	$('#fddiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
+	
+	 
+	var div_id="fdSL_image_div"+id+"_before";
+	temp_image_div=div_id;
+	var hidden_name="fdSL_image_name_hidden_"+id+"_before";
+	var tempTime = $.now();
+	fd_image_name_before=tempTime.toString()+"_"+localStorage.selectedOutlet+"_before.jpg";
+	//alert (fd_image_name_before);
+	$("#"+hidden_name).val(fd_image_name_before);
+	//alert ("#"+hidden_name+"_before");
+	navigator.camera.getPicture(onSuccessFd_before, onFailFd_before, { quality: 5,
+		destinationType: Camera.DestinationType.FILE_URI });
+	
+	
+}
+
+function onSuccessFd_before(imageURI) {
+	var image = document.getElementById(temp_image_div);
+    image.src = imageURI;
+    var hidden_path=temp_image_div.replace("fdSL_image_div_before","fdSL_image_div_hidden_before");
+	$("#"+hidden_path_before).val(imageURI);
+	
+}
+
+function onFailFd(message) {
+	imagePathA="";
+    alert('Failed because: ' + message);
+}
 
 //====================================Camera==========
 
-//fixed display
+//fixed display  After
 function get_pic_fdisplay(id) {
 	//alert ('#fddiv_'+id);
 	$('#fddiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
@@ -2280,7 +2355,35 @@ function onFailFd(message) {
     alert('Failed because: ' + message);
 }
 
-//QPDS
+
+//QPDS before
+function get_pic_qpds_before(id) {
+	$('#qpdsdiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
+	var div_id="qpdsSL_image_div_"+id;
+	temp_image_div=div_id;
+	var hidden_name="qpdsSL_image_name_hidden_"+id;
+	var tempTime = $.now();
+	
+	var qpds_image_name_before=tempTime.toString()+"_before"+localStorage.selectedOutlet+".jpg";
+	$("#"+hidden_name+"_before").val(qpds_image_name_before);
+	navigator.camera.getPicture(onSuccessQpds_before, onFailQpds_before, { quality: 5,
+		destinationType: Camera.DestinationType.FILE_URI });
+}
+
+function onSuccessQpds_before(imageURI) {
+	var image = document.getElementById(temp_image_div);
+    image.src = imageURI;
+    var hidden_path_before=temp_image_div.replace("qpdsSL_image_div_before","qpdsSL_image_div_hidden_before");
+	$("#"+hidden_path_before).val(imageURI);
+}
+
+function onFailQpds_before(message) {
+	imagePathA="";
+    alert('Failed because: ' + message);
+}
+
+
+//QPDS  After
 function get_pic_qpds(id) {
 	$('#qpdsdiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
 	var div_id="qpdsSL_image_div_"+id;
