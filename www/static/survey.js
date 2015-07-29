@@ -2316,10 +2316,12 @@ function onSuccessFd_before(imageURI) {
 	
 }
 
-function onFailFd(message) {
+function onFailFd_before(message) {
 	imagePathA="";
     alert('Failed because: ' + message);
 }
+
+
 
 //====================================Camera==========
 
