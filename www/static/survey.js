@@ -2288,6 +2288,7 @@ function delete_marchandizing(mar_value) {
 }
 //====================================Camera==========
 
+
 //fixed display Before
 function get_pic_fdisplay_before(id) {
 	//alert ('#fddiv_'+id);
@@ -2296,7 +2297,7 @@ function get_pic_fdisplay_before(id) {
 	 
 	var div_id="fdSL_image_div"+id+"_before";
 	temp_image_div=div_id;
-	var hidden_name="fdSL_image_name_hidden_"+id+"_before";
+	var hidden_name="fdSL_image_name_hidden_"+id;
 	var tempTime = $.now();
 	var fd_image_name_before=tempTime.toString()+"_"+localStorage.selectedOutlet+"_before.jpg";
 	
@@ -2316,6 +2317,8 @@ function onSuccessFd_before(imageURI) {
 	$("#"+hidden_path_before).val(imageURI);
 	
 }
+
+
 
 function onFailFd_before(message) {
 	imagePathA="";
