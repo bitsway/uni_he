@@ -1146,7 +1146,7 @@ function syncOutlet() {
 					
 //====================	before
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
-							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture Before </a></td></tr></table>'+ 
+							//'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture Before </a></td></tr></table>'+ 
 							'<img id="'+fdSL_image_div+'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
 							'<input type="hidden" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
 							'<input type="hidden" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
