@@ -9,7 +9,7 @@ var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 //var apipath='http://127.0.0.1:8000/unilever/syncmobile2/';
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
 
- 
+
 var step_flag=0; //1 fd , 2 qpds, 3 gift
 
 var temp_image_div='';
@@ -2288,7 +2288,6 @@ function delete_marchandizing(mar_value) {
 }
 //====================================Camera==========
 
-
 //fixed display Before
 function get_pic_fdisplay_before(id) {
 	//alert ('#fddiv_'+id);
@@ -2299,10 +2298,10 @@ function get_pic_fdisplay_before(id) {
 	temp_image_div=div_id;
 	var hidden_name="fdSL_image_name_hidden_"+id;
 	var tempTime = $.now();
-	var fd_image_name_before=tempTime.toString()+"_"+localStorage.selectedOutlet+"_before.jpg";
+	var fd_image_name_before=tempTime.toString()+"_before"+localStorage.selectedOutlet+".jpg";
 	
 	//alert (fd_image_name_before);
-	$("#"+hidden_name).val(fd_image_name_before);
+	$("#"+hidden_name+"_before").val(fd_image_name_before);
 	//alert ("#"+hidden_name+"_before");
 	navigator.camera.getPicture(onSuccessFd_before, onFailFd_before, { quality: 5,
 		destinationType: Camera.DestinationType.FILE_URI });
