@@ -8,7 +8,7 @@ var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
 //var apipath='http://127.0.0.1:8000/unilever/syncmobile2/';
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
-
+ 
 
 var step_flag=0; //1 fd , 2 qpds, 3 gift
 
