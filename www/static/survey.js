@@ -2298,7 +2298,8 @@ function get_pic_fdisplay_before(id) {
 	temp_image_div=div_id;
 	var hidden_name="fdSL_image_name_hidden_"+id+"_before";
 	var tempTime = $.now();
-	fd_image_name_before=tempTime.toString()+"_"+localStorage.selectedOutlet+"_before.jpg";
+	var fd_image_name_before=tempTime.toString()+"_"+localStorage.selectedOutlet+"_before.jpg";
+	
 	//alert (fd_image_name_before);
 	$("#"+hidden_name).val(fd_image_name_before);
 	//alert ("#"+hidden_name+"_before");
