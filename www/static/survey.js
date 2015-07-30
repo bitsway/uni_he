@@ -8,7 +8,7 @@ var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
 //var apipath='http://127.0.0.1:8000/unilever/syncmobile2/';
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
- 
+
 
 var step_flag=0; //1 fd , 2 qpds, 3 gift
 
@@ -1148,8 +1148,13 @@ function syncOutlet() {
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
 							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture Before </a></td></tr></table>'+ 
 							'<img id="'+fdSL_image_div+'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
-							'<input type="text" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
-							'<input type="text" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
+							'<input type="hidden" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
+							'<input type="hidden" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
+					
+					
+					
+					
+					
 					
 					
 //====================	After
@@ -1157,8 +1162,8 @@ function syncOutlet() {
 							'<input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  '+
 							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture After </a></td></tr></table>'+ 
 							'<img id="'+fdSL_image_div+'" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
-							'<input type="text" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
-							'<input type="text" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
+							'<input type="hidden" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
+							'<input type="hidden" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
 							'<input type="hidden" name="'+ fdSL_total_hidden +'" id="'+ fdSL_total_hidden +'" value="'+fdisplaySingleTotal+'" >'
 										
 			}
@@ -1239,8 +1244,8 @@ function syncOutlet() {
 				
 				 qpdsStringShow=qpdsStringShow+
 						'<img id="'+qpdsSL_image_div+'_before" height="100px" width="100px"  src="" alt="QPDS" />'+
-						'<input type="text" name="'+ qpdsSL_image_div_hidden +'_before" id="'+ qpdsSL_image_div_hidden +'_before" value="" >'+
-						'<input type="text" name="'+ qpdsSL_image_name_hidden +'_before" id="'+ qpdsSL_image_name_hidden +'_before" value="" >'
+						'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'_before" id="'+ qpdsSL_image_div_hidden +'_before" value="" >'+
+						'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'_before" id="'+ qpdsSL_image_name_hidden +'_before" value="" >'
 				
 				
 				//After================
@@ -1254,8 +1259,8 @@ function syncOutlet() {
 				
 				 qpdsStringShow=qpdsStringShow+
 						'<img id="'+qpdsSL_image_div+'" height="100px" width="100px"  src="" alt="QPDS" />'+
-						'<input type="text" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
-						'<input type="text" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
+						'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
+						'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
 						'<input type="hidden" name="'+ qpdsSL_total_hidden +'" id="'+ qpdsSL_total_hidden +'" value="'+qpdsSingleTotal+'" >'
 		
 		 
@@ -2289,6 +2294,7 @@ function delete_marchandizing(mar_value) {
 //====================================Camera==========
 
 //fixed display Before
+
 function get_pic_fdisplay_before(id) {
 	//alert ('#fddiv_'+id);
 	$('#fddiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
@@ -2298,9 +2304,8 @@ function get_pic_fdisplay_before(id) {
 	temp_image_div=div_id;
 	var hidden_name="fdSL_image_name_hidden_"+id;
 	var tempTime = $.now();
-	var fd_image_name_before=tempTime.toString()+"_before"+localStorage.selectedOutlet+".jpg";
+	fd_image_name_before=tempTime.toString()+"_before"+localStorage.selectedOutlet+".jpg";
 	
-	//alert (fd_image_name_before);
 	$("#"+hidden_name+"_before").val(fd_image_name_before);
 	//alert ("#"+hidden_name+"_before");
 	navigator.camera.getPicture(onSuccessFd_before, onFailFd_before, { quality: 5,
@@ -2316,8 +2321,6 @@ function onSuccessFd_before(imageURI) {
 	$("#"+hidden_path_before).val(imageURI);
 	
 }
-
-
 
 function onFailFd_before(message) {
 	imagePathA="";
