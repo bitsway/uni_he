@@ -1,10 +1,10 @@
 // Put your custom code here
 
-//var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile1/';
-//var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
-
-var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile2/';
+var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile1/';
 var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
+
+//var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile2/';
+//var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
 //var apipath='http://127.0.0.1:8000/unilever/syncmobile2/';
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
@@ -1146,10 +1146,10 @@ function syncOutlet() {
 					
 //====================	before
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
-							//'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture Before </a></td></tr></table>'+ 
-							//'<img id="'+fdSL_image_div+'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
-							'<input type="hidden" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
-							'<input type="hidden" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
+							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture 1 </a></td></tr></table>'+ 
+							'<img id="'+fdSL_image_div+'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
+							'<input type="text" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
+							'<input type="text" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
 					
 					
 					
@@ -1160,10 +1160,10 @@ function syncOutlet() {
 //====================	After
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
 							'<input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  '+
-							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture </a></td></tr></table>'+ 
+							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture 2 </a></td></tr></table>'+ 
 							'<img id="'+fdSL_image_div+'" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
-							'<input type="hidden" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
-							'<input type="hidden" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
+							'<input type="text" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
+							'<input type="text" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
 							'<input type="hidden" name="'+ fdSL_total_hidden +'" id="'+ fdSL_total_hidden +'" value="'+fdisplaySingleTotal+'" >'
 										
 			}
@@ -1240,12 +1240,12 @@ function syncOutlet() {
 				qpdsStringShow=qpdsStringShow+
 							  '<table width="100%" border="0"><tr><td>'+
 							  
-							  ' <a data-role="button" href="#" onClick="get_pic_qpds_before('+slab+')" >Take Picture Before </a></td></tr></table>'
+							  ' <a data-role="button" href="#" onClick="get_pic_qpds_before('+slab+')" >Take Picture 1 </a></td></tr></table>'
 				
 				 qpdsStringShow=qpdsStringShow+
-						'<img id="'+qpdsSL_image_div+'_before" height="100px" width="100px"  src="" alt="QPDS" />'+
-						'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'_before" id="'+ qpdsSL_image_div_hidden +'_before" value="" >'+
-						'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'_before" id="'+ qpdsSL_image_name_hidden +'_before" value="" >'
+						'<img id="'+qpdsSL_image_div+'_before" height="100px" width="100px"  src="" alt="Promotion" />'+
+						'<input type="text" name="'+ qpdsSL_image_div_hidden +'_before" id="'+ qpdsSL_image_div_hidden +'_before" value="" >'+
+						'<input type="text" name="'+ qpdsSL_image_name_hidden +'_before" id="'+ qpdsSL_image_name_hidden +'_before" value="" >'
 				
 				
 				//After================
@@ -1253,14 +1253,14 @@ function syncOutlet() {
 				qpdsStringShow=qpdsStringShow+
 							  '<table width="100%" border="0"><tr><td>'+
 							  ' <input type="hidden" name="'+ qpdsSL_f +'" id="'+ qpdsSL_f +'" value="'+qpdsSL+'" min="0">  '+
-							  ' <a data-role="button" href="#" onClick="get_pic_qpds('+slab+')" >Take Picture After </a></td></tr></table>'
+							  ' <a data-role="button" href="#" onClick="get_pic_qpds('+slab+')" >Take Picture 2 </a></td></tr></table>'
 				
 				//alert (qpdsSL);
 				
 				 qpdsStringShow=qpdsStringShow+
-						'<img id="'+qpdsSL_image_div+'" height="100px" width="100px"  src="" alt="QPDS" />'+
-						'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
-						'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
+						'<img id="'+qpdsSL_image_div+'" height="100px" width="100px"  src="" alt="Promotion" />'+
+						'<input type="text" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
+						'<input type="text" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
 						'<input type="hidden" name="'+ qpdsSL_total_hidden +'" id="'+ qpdsSL_total_hidden +'" value="'+qpdsSingleTotal+'" >'
 		
 		 
@@ -1591,7 +1591,9 @@ function mhskus_ready_data() {
 	localStorage.mar_distrib_data="";
 	
 	
-	var url = "#marchandizingPage";
+	//var url = "#marchandizingPage";
+	var url = "#npdPage";
+	
 	$.mobile.navigate(url);
 	location.reload();
 }
@@ -2373,7 +2375,7 @@ function get_pic_qpds_before(id) {
 	
 	var qpds_image_name_before=tempTime.toString()+"_before"+localStorage.selectedOutlet+".jpg";
 	$("#"+hidden_name+"_before").val(qpds_image_name_before);
-	navigator.camera.getPicture(onSuccessQpds_before, onFailQpds_before, { quality: 5,
+	navigator.camera.getPicture(onSuccessQpds_before, onFailQpds_before, {quality: 5,
 		destinationType: Camera.DestinationType.FILE_URI });
 }
 
