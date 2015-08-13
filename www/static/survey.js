@@ -1150,7 +1150,7 @@ function syncOutlet() {
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
 							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture 1 </a></td></tr></table>'+ 
 							//alert (fdSL_image_div);
-							'<img id="'+fdSL_image_div+'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
+							'<img id="'+ fdSL_image_div +'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
 							'<input type="text" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
 							'<input type="text" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
 					
@@ -2300,19 +2300,20 @@ function delete_marchandizing(mar_value) {
 
 //fixed display Before
 
+
 function get_pic_fdisplay_before(id) {
 	//alert ('#fddiv_'+id);
 	$('#fddiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
 	
 	 
 	var div_id="fdSL_image_div"+id+"_before";
-	alert (div_id)
+	//alert (div_id)
 	temp_image_div=div_id;
-	var hidden_name="fdSL_image_name_hidden_" + id + "_before";
+	var hidden_name="fdSL_image_name_hidden_" + id ;
 	var tempTime = $.now();
 	fd_image_name_before=tempTime.toString()+"_before"+localStorage.selectedOutlet+".jpg";
 	
-	$("#"+hidden_name).val(fd_image_name_before);
+	$("#"+hidden_name+ "_before").val(fd_image_name_before);
 	//alert ("#"+hidden_name+"_before");
 	navigator.camera.getPicture(onSuccessFd_before, onFailFd_before, { quality: 5,
 		destinationType: Camera.DestinationType.FILE_URI });
@@ -2320,11 +2321,17 @@ function get_pic_fdisplay_before(id) {
 	
 }
 
+
 function onSuccessFd_before(imageURI) {
+	alert ('1')
 	var image = document.getElementById(temp_image_div);
+	alert ('2')
     image.src = imageURI;
+	alert ('3')
     var hidden_path=temp_image_div.replace("fdSL_image_div","fdSL_image_div_hidden");
+	alert ('4')
 	$("#"+hidden_path_before).val(imageURI);
+	alert ('5')
 	
 }
 
