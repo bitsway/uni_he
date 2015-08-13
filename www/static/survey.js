@@ -2315,15 +2315,15 @@ function get_pic_fdisplay_before(id) {
 	
 	$("#"+hidden_name+ "_before").val(fd_image_name_before);
 	//alert ("#"+hidden_name+"_before");
+	
 	navigator.camera.getPicture(onSuccessFd_before, onFailFd_before, { quality: 5,
 		destinationType: Camera.DestinationType.FILE_URI });
-	
 	
 }
 
 
 function onSuccessFd_before(imageURI) {
-	alert ('1')
+	alert (imageURI)
 	var image = document.getElementById(temp_image_div);
 	alert ('2')
     image.src = imageURI;
