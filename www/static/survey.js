@@ -2325,7 +2325,7 @@ function get_pic_fdisplay_before(id) {
 function onSuccessFd_before(imageURI) {
 	alert (imageURI)
 	var image = document.getElementById(temp_image_div);
-	alert ('2')
+	alert (image)
     image.src = imageURI;
 	alert ('3')
     var hidden_path=temp_image_div.replace("fdSL_image_div","fdSL_image_div_hidden");
