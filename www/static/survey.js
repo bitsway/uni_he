@@ -2304,8 +2304,7 @@ function delete_marchandizing(mar_value) {
 function get_pic_fdisplay_before(id) {
 	//alert ('#fddiv_'+id);
 	$('#fddiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
-	
-	 
+		 
 	var div_id="fdSL_image_div_"+id+"_before";
 	//alert (div_id)
 	
