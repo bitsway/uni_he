@@ -2306,9 +2306,15 @@ function get_pic_fdisplay_before(id) {
 	$('#fddiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
 	
 	 
-	var div_id="fdSL_image_div"+id+"_before";
+	var div_id="fdSL_image_div_"+id+"_before";
+	//alert (div_id)
+	
 	//alert (div_id)
 	temp_image_div=div_id;
+	//var image = document.getElementById(temp_image_div);
+	//alert (image)
+	
+	
 	var hidden_name="fdSL_image_name_hidden_" + id ;
 	var tempTime = $.now();
 	fd_image_name_before=tempTime.toString()+"_before"+localStorage.selectedOutlet+".jpg";
@@ -2323,16 +2329,10 @@ function get_pic_fdisplay_before(id) {
 
 
 function onSuccessFd_before(imageURI) {
-	alert (imageURI)
 	var image = document.getElementById(temp_image_div);
-	alert (image)
     image.src = imageURI;
-	alert ('3')
     var hidden_path=temp_image_div.replace("fdSL_image_div","fdSL_image_div_hidden");
-	alert ('4')
 	$("#"+hidden_path_before).val(imageURI);
-	alert ('5')
-	
 }
 
 function onFailFd_before(message) {
