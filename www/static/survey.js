@@ -1104,7 +1104,9 @@ function syncOutlet() {
 					
 					fdisplayStringShow=fdisplayStringShow+'<div id="fddiv_'+slab.toString()+'">'
 					fdisplayStringShow=fdisplayStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/display/'+fdisplaySlab_image+'" alt="FixedDisplay" />';
+					
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
+					
 					fdisplayStringShow=fdisplayStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">Face Up</td><td></td><td width="100px">Visible</td></tr>'
 					
 					var fdisplaySingleArray = fdisplaySlabList.split('rdrd');	
@@ -1147,6 +1149,7 @@ function syncOutlet() {
 //====================	before
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
 							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture 1 </a></td></tr></table>'+ 
+							//alert (fdSL_image_div);
 							'<img id="'+fdSL_image_div+'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
 							'<input type="text" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
 							'<input type="text" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
@@ -2303,12 +2306,13 @@ function get_pic_fdisplay_before(id) {
 	
 	 
 	var div_id="fdSL_image_div"+id+"_before";
+	alert (div_id)
 	temp_image_div=div_id;
-	var hidden_name="fdSL_image_name_hidden_"+id;
+	var hidden_name="fdSL_image_name_hidden_" + id + "_before";
 	var tempTime = $.now();
 	fd_image_name_before=tempTime.toString()+"_before"+localStorage.selectedOutlet+".jpg";
 	
-	$("#"+hidden_name+"_before").val(fd_image_name_before);
+	$("#"+hidden_name).val(fd_image_name_before);
 	//alert ("#"+hidden_name+"_before");
 	navigator.camera.getPicture(onSuccessFd_before, onFailFd_before, { quality: 5,
 		destinationType: Camera.DestinationType.FILE_URI });
