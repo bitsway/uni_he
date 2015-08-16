@@ -1151,7 +1151,10 @@ function syncOutlet() {
 							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture 1 </a></td></tr></table>'+ 
 							//alert (fdSL_image_div);
 							'<img id="'+ fdSL_image_div +'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
-							'<input type="hidden" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
+							
+							alert (fdSL_image_div_hidden +'_before');
+							
+							'<input type="text" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
 							'<input type="hidden" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
 					
 					
@@ -2483,7 +2486,6 @@ function upload_fd(){
 			
 			alert (image_name_before);
 			alert (fdSLfdisplay_image_path_before);
-			
 			
 			if (fdSLfdisplay_image_path.length >10){
 				uploadPhoto(fdSLfdisplay_image_path, image_name);
