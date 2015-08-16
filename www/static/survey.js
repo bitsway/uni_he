@@ -2480,6 +2480,11 @@ function upload_fd(){
 			var image_name_before=$("#fdSL_image_name_hidden_"+i.toString() + "_before").val();
 			var fdSLfdisplay_image_path_before=$("#fdSL_image_div_hidden_"+i.toString()+ "_before").val();
 			
+			
+			alert (image_name_before);
+			alert (fdSLfdisplay_image_path_before);
+			
+			
 			if (fdSLfdisplay_image_path.length >10){
 				uploadPhoto(fdSLfdisplay_image_path, image_name);
 				uploadPhoto(fdSLfdisplay_image_path_before, image_name_before);
