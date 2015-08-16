@@ -2304,7 +2304,8 @@ function delete_marchandizing(mar_value) {
 function get_pic_fdisplay_before(id) {
 	//alert ('#fddiv_'+id);
 	$('#fddiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
-		 
+	
+	 
 	var div_id="fdSL_image_div_"+id+"_before";
 	//alert (div_id)
 	
@@ -2475,8 +2476,13 @@ function upload_fd(){
 			var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
 			var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
 			
+			
+			var image_name_before=$("#fdSL_image_name_hidden_"+i.toString() + "_before").val();
+			var fdSLfdisplay_image_path_before=$("#fdSL_image_div_hidden_"+i.toString()+ "_before").val();
+			
 			if (fdSLfdisplay_image_path.length >10){
 				uploadPhoto(fdSLfdisplay_image_path, image_name);
+				uploadPhoto(fdSLfdisplay_image_path_before, image_name_before);
 				//if upload is successfull then "file_upload_error" will be 0 , if error 1
 			} else {
 				localStorage.fddataSubmit=1;
@@ -2517,8 +2523,14 @@ function upload_qpds(){
 		for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
 			var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
 			var qpds_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val();
+			
+			var image_name_before=$("#qpdsSL_image_name_hidden_"+i.toString()+"_before").val();
+			var qpds_image_path_before=$("#qpdsSL_image_div_hidden_"+i.toString()+"_before").val();
+			
 			if (qpds_image_path.length >10){
 				uploadPhoto(qpds_image_path, image_name);
+				
+				uploadPhoto(qpds_image_path_before, image_name_before);
 				//if upload is successfull then "file_upload_error" will be 0 , if error 1
 			} else {
 				localStorage.qpdsdataSubmit=1;
