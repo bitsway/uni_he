@@ -1155,6 +1155,7 @@ function syncOutlet() {
 							//alert (fdSL_image_div);
 							'<img id="'+ fdSL_image_div +'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
 							
+<<<<<<< HEAD
 							
 							'<input type="text" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
 							'<input type="text" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
@@ -1162,6 +1163,12 @@ function syncOutlet() {
 							
 							alert (fdSL_image_div_hidden +'_before');
 							
+=======
+							alert (fdSL_image_div_hidden +'_before');
+							
+							'<input type="text" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
+							'<input type="hidden" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
+>>>>>>> origin/master
 					
 					
 					
