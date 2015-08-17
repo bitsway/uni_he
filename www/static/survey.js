@@ -1,3 +1,5 @@
+
+
 // Put your custom code here
 
 //var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile1/';
@@ -1104,7 +1106,9 @@ function syncOutlet() {
 					
 					fdisplayStringShow=fdisplayStringShow+'<div id="fddiv_'+slab.toString()+'">'
 					fdisplayStringShow=fdisplayStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/display/'+fdisplaySlab_image+'" alt="FixedDisplay" />';
+					
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
+					
 					fdisplayStringShow=fdisplayStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">Face Up</td><td></td><td width="100px">Visible</td></tr>'
 					
 					var fdisplaySingleArray = fdisplaySlabList.split('rdrd');	
@@ -1145,11 +1149,19 @@ function syncOutlet() {
 					
 					
 //====================	before
+					
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
-							//'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture Before </a></td></tr></table>'+ 
-							//'<img id="'+fdSL_image_div+'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
-							'<input type="hidden" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
-							'<input type="hidden" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
+							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture 1 </a></td></tr></table>'+ 
+							//alert (fdSL_image_div);
+							'<img id="'+ fdSL_image_div +'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
+							
+							
+							'<input type="text" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
+							'<input type="text" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
+							
+							
+							alert (fdSL_image_div_hidden +'_before');
+							
 					
 					
 					
@@ -1160,10 +1172,10 @@ function syncOutlet() {
 //====================	After
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
 							'<input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  '+
-							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture </a></td></tr></table>'+ 
+							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture 2 </a></td></tr></table>'+ 
 							'<img id="'+fdSL_image_div+'" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
-							'<input type="hidden" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
-							'<input type="hidden" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
+							'<input type="text" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
+							'<input type="text" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
 							'<input type="hidden" name="'+ fdSL_total_hidden +'" id="'+ fdSL_total_hidden +'" value="'+fdisplaySingleTotal+'" >'
 										
 			}
@@ -1240,10 +1252,10 @@ function syncOutlet() {
 				qpdsStringShow=qpdsStringShow+
 							  '<table width="100%" border="0"><tr><td>'+
 							  
-							  ' <a data-role="button" href="#" onClick="get_pic_qpds_before('+slab+')" >Take Picture Before </a></td></tr></table>'
+							  ' <a data-role="button" href="#" onClick="get_pic_qpds_before('+slab+')" >Take Picture 1 </a></td></tr></table>'
 				
 				 qpdsStringShow=qpdsStringShow+
-						'<img id="'+qpdsSL_image_div+'_before" height="100px" width="100px"  src="" alt="QPDS" />'+
+						'<img id="'+qpdsSL_image_div+'_before" height="100px" width="100px"  src="" alt="Promotion" />'+
 						'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'_before" id="'+ qpdsSL_image_div_hidden +'_before" value="" >'+
 						'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'_before" id="'+ qpdsSL_image_name_hidden +'_before" value="" >'
 				
@@ -1253,12 +1265,12 @@ function syncOutlet() {
 				qpdsStringShow=qpdsStringShow+
 							  '<table width="100%" border="0"><tr><td>'+
 							  ' <input type="hidden" name="'+ qpdsSL_f +'" id="'+ qpdsSL_f +'" value="'+qpdsSL+'" min="0">  '+
-							  ' <a data-role="button" href="#" onClick="get_pic_qpds('+slab+')" >Take Picture After </a></td></tr></table>'
+							  ' <a data-role="button" href="#" onClick="get_pic_qpds('+slab+')" >Take Picture 2 </a></td></tr></table>'
 				
 				//alert (qpdsSL);
 				
 				 qpdsStringShow=qpdsStringShow+
-						'<img id="'+qpdsSL_image_div+'" height="100px" width="100px"  src="" alt="QPDS" />'+
+						'<img id="'+qpdsSL_image_div+'" height="100px" width="100px"  src="" alt="Promotion" />'+
 						'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
 						'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
 						'<input type="hidden" name="'+ qpdsSL_total_hidden +'" id="'+ qpdsSL_total_hidden +'" value="'+qpdsSingleTotal+'" >'
@@ -1591,7 +1603,9 @@ function mhskus_ready_data() {
 	localStorage.mar_distrib_data="";
 	
 	
-	var url = "#marchandizingPage";
+	//var url = "#marchandizingPage";
+	var url = "#npdPage";
+	
 	$.mobile.navigate(url);
 	location.reload();
 }
@@ -2295,31 +2309,39 @@ function delete_marchandizing(mar_value) {
 
 //fixed display Before
 
+
 function get_pic_fdisplay_before(id) {
 	//alert ('#fddiv_'+id);
 	$('#fddiv_'+id).find('input, textarea, button, select').attr('disabled','disabled');
 	
 	 
-	var div_id="fdSL_image_div"+id+"_before";
+	var div_id="fdSL_image_div_"+id+"_before";
+	//alert (div_id)
+	
+	//alert (div_id)
 	temp_image_div=div_id;
-	var hidden_name="fdSL_image_name_hidden_"+id;
+	//var image = document.getElementById(temp_image_div);
+	//alert (image)
+	
+	
+	var hidden_name="fdSL_image_name_hidden_" + id ;
 	var tempTime = $.now();
 	fd_image_name_before=tempTime.toString()+"_before"+localStorage.selectedOutlet+".jpg";
 	
-	$("#"+hidden_name+"_before").val(fd_image_name_before);
+	$("#"+hidden_name+ "_before").val(fd_image_name_before);
 	//alert ("#"+hidden_name+"_before");
+	
 	navigator.camera.getPicture(onSuccessFd_before, onFailFd_before, { quality: 5,
 		destinationType: Camera.DestinationType.FILE_URI });
 	
-	
 }
+
 
 function onSuccessFd_before(imageURI) {
 	var image = document.getElementById(temp_image_div);
     image.src = imageURI;
     var hidden_path=temp_image_div.replace("fdSL_image_div","fdSL_image_div_hidden");
 	$("#"+hidden_path_before).val(imageURI);
-	
 }
 
 function onFailFd_before(message) {
@@ -2373,7 +2395,7 @@ function get_pic_qpds_before(id) {
 	
 	var qpds_image_name_before=tempTime.toString()+"_before"+localStorage.selectedOutlet+".jpg";
 	$("#"+hidden_name+"_before").val(qpds_image_name_before);
-	navigator.camera.getPicture(onSuccessQpds_before, onFailQpds_before, { quality: 5,
+	navigator.camera.getPicture(onSuccessQpds_before, onFailQpds_before, {quality: 5,
 		destinationType: Camera.DestinationType.FILE_URI });
 }
 
@@ -2463,8 +2485,17 @@ function upload_fd(){
 			var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
 			var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
 			
+			
+			var image_name_before=$("#fdSL_image_name_hidden_"+i.toString() + "_before").val();
+			var fdSLfdisplay_image_path_before=$("#fdSL_image_div_hidden_"+i.toString()+ "_before").val();
+			
+			
+			alert (image_name_before);
+			alert (fdSLfdisplay_image_path_before);
+			
 			if (fdSLfdisplay_image_path.length >10){
 				uploadPhoto(fdSLfdisplay_image_path, image_name);
+				uploadPhoto(fdSLfdisplay_image_path_before, image_name_before);
 				//if upload is successfull then "file_upload_error" will be 0 , if error 1
 			} else {
 				localStorage.fddataSubmit=1;
@@ -2505,8 +2536,14 @@ function upload_qpds(){
 		for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
 			var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
 			var qpds_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val();
+			
+			var image_name_before=$("#qpdsSL_image_name_hidden_"+i.toString()+"_before").val();
+			var qpds_image_path_before=$("#qpdsSL_image_div_hidden_"+i.toString()+"_before").val();
+			
 			if (qpds_image_path.length >10){
 				uploadPhoto(qpds_image_path, image_name);
+				
+				uploadPhoto(qpds_image_path_before, image_name_before);
 				//if upload is successfull then "file_upload_error" will be 0 , if error 1
 			} else {
 				localStorage.qpdsdataSubmit=1;
@@ -2769,4 +2806,6 @@ function menupage(){
 	location.reload();
 	
 }
+
+
 
