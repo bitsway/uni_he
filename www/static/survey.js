@@ -1160,7 +1160,7 @@ function syncOutlet() {
 							'<input type="text" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
 							
 							
-							alert (fdSL_image_div_hidden +'_before');
+							
 							
 					
 					
@@ -2340,7 +2340,7 @@ function get_pic_fdisplay_before(id) {
 function onSuccessFd_before(imageURI) {
 	var image = document.getElementById(temp_image_div);
     image.src = imageURI;
-    var hidden_path=temp_image_div.replace("fdSL_image_div","fdSL_image_div_hidden");
+    var hidden_path_before=temp_image_div.replace("fdSL_image_div","fdSL_image_div_hidden");
 	$("#"+hidden_path_before).val(imageURI);
 }
 
