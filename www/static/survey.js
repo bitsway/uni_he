@@ -1253,15 +1253,15 @@ function syncOutlet() {
 				qpdsStringShow=qpdsStringShow+'</div>'
 				
 				
-				qpdsStringShow=qpdsStringShow+
-							  '<table width="100%" border="0"><tr><td>'+
-							  
-							  ' <a data-role="button" href="#" onClick="get_pic_qpds_before('+slab+')" >Take Picture 1 </a></td></tr></table>'
-				
-				 qpdsStringShow=qpdsStringShow+
-						'<img id="'+qpdsSL_image_div+'_before" height="100px" width="100px"  src="" alt="Promotion" />'+
-						'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'_before" id="'+ qpdsSL_image_div_hidden +'_before" value="" >'+
-						'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'_before" id="'+ qpdsSL_image_name_hidden +'_before" value="" >'
+				//qpdsStringShow=qpdsStringShow+
+//							  '<table width="100%" border="0"><tr><td>'+
+//							  
+//							  ' <a data-role="button" href="#" onClick="get_pic_qpds_before('+slab+')" >Take Picture 1 </a></td></tr></table>'
+//				
+//				 qpdsStringShow=qpdsStringShow+
+//						'<img id="'+qpdsSL_image_div+'_before" height="100px" width="100px"  src="" alt="Promotion" />'+
+//						'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'_before" id="'+ qpdsSL_image_div_hidden +'_before" value="" >'+
+//						'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'_before" id="'+ qpdsSL_image_name_hidden +'_before" value="" >'
 				
 				
 				//After================
