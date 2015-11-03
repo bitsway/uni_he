@@ -5,11 +5,15 @@
 //var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile1/';
 //var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
-var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile2/';
-var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
+//var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile2/';
+//var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
 //var apipath='http://127.0.0.1:8000/unilever/syncmobile2/';
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
+
+
+var apipath='http://eapps001.cloudapp.net/unilever/syncmobile2/';
+var apipath_image = 'http://eapps001.cloudapp.net/unilever/';
 
 
 var step_flag=0; //1 fd , 2 qpds, 3 gift
@@ -2614,8 +2618,10 @@ function uploadPhoto(imageURI, imageName) {
 
   var ft = new FileTransfer();
 //  ft.upload(imageURI, encodeURI("http://m.businesssolutionapps.com/welcome/wab_sync/fileUploader/"),win,fail,options);
-  ft.upload(imageURI, encodeURI("http://e2.businesssolutionapps.com/unilever/syncmobile/fileUploader/"),win,fail,options);
+ // ft.upload(imageURI, encodeURI("http://e2.businesssolutionapps.com/unilever/syncmobile/fileUploader/"),win,fail,options);
 //ft.upload(imageURI, encodeURI("http://127.0.0.1:8000/welcome/wab_sync/fileUploader/"),win,fail,options);
+
+ ft.upload(imageURI, encodeURI("http://eapps001.cloudapp.net/unilever/syncmobile/fileUploader/"),win,fail,options);
 }
 
 function win(r) {
