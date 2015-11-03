@@ -1269,7 +1269,7 @@ function syncOutlet() {
 				qpdsStringShow=qpdsStringShow+
 							  '<table width="100%" border="0"><tr><td>'+
 							  ' <input type="hidden" name="'+ qpdsSL_f +'" id="'+ qpdsSL_f +'" value="'+qpdsSL+'" min="0">  '+
-							  ' <a data-role="button" href="#" onClick="get_pic_qpds('+slab+')" >Take Picture 2 </a></td></tr></table>'
+							  ' <a data-role="button" href="#" onClick="get_pic_qpds('+slab+')" >Take Picture </a></td></tr></table>'
 				
 				//alert (qpdsSL);
 				
@@ -2336,7 +2336,7 @@ function get_pic_fdisplay_before(id) {
 	//alert ("#"+hidden_name+"_before");
 	
 	navigator.camera.getPicture(onSuccessFd_before, onFailFd_before, { quality: 5,
-		destinationType: Camera.DestinationType.FILE_URI });
+		destinationType: Camera.DestinationType.FILE_URI,correctOrientation: true });
 	
 }
 
@@ -2370,7 +2370,7 @@ function get_pic_fdisplay(id) {
 	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#"+hidden_name).val(fd_image_name);
 	navigator.camera.getPicture(onSuccessFd, onFailFd, { quality: 5,
-		destinationType: Camera.DestinationType.FILE_URI });
+		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true });
 	
 	
 }
@@ -2400,7 +2400,7 @@ function get_pic_qpds_before(id) {
 	var qpds_image_name_before=tempTime.toString()+"_before"+localStorage.selectedOutlet+".jpg";
 	$("#"+hidden_name+"_before").val(qpds_image_name_before);
 	navigator.camera.getPicture(onSuccessQpds_before, onFailQpds_before, {quality: 5,
-		destinationType: Camera.DestinationType.FILE_URI });
+		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true });
 }
 
 function onSuccessQpds_before(imageURI) {
@@ -2426,7 +2426,7 @@ function get_pic_qpds(id) {
 	qpds_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#"+hidden_name).val(qpds_image_name);
 	navigator.camera.getPicture(onSuccessQpds, onFailQpds, { quality: 5,
-		destinationType: Camera.DestinationType.FILE_URI });
+		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true});
 }
 
 function onSuccessQpds(imageURI) {
@@ -2450,7 +2450,7 @@ function get_pic_gift() {
 	gift_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#gift_image_name_hidden").val(gift_image_name);
 	navigator.camera.getPicture(onSuccessGift, onFailGift, { quality: 5,
-		destinationType: Camera.DestinationType.FILE_URI });
+		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true });
 }
 
 function onSuccessGift(imageURI) {
