@@ -171,11 +171,15 @@
 					
 					//alert (localStorage.sync_date)
 					check_route();
-					var url = "#routePage";
+					var url = "#login";
 					$.mobile.navigate(url);
 					
-					location.reload()
+				//	location.reload()
 				}
+				//else{
+//					var url = "#index.html";
+//					$.mobile.navigate(url);
+//				}
 				//=====================
 				//alert (localStorage.mhskus_data_ready);
 				mhskus_page_set();
@@ -247,7 +251,7 @@
             	<br><br>
 				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">       
 				<a data-role="button" onClick="marketPJP_check()" ><img src="market_pjp.png"></a>
-                <a data-role="button" href="#menuPage" ><img src="notice_icon.png"></a>
+                <a data-role="button" href="#noticePage" ><img src="notice_icon.png"></a>
                 </font>
             </div>
         </div>
@@ -272,7 +276,7 @@
                 </br></br>
                              
 				<input type="text" name="cm_id" id="cm_id" placeholder="CM ID" value="">
-				<input type="text" name="cm_pass" id="cm_pass" placeholder="CM Pass" value="">
+				<input type="number" name="cm_pass" id="cm_pass" placeholder="CM Pass" value="">
                 </font>                
 				</br></br>	
 				
@@ -768,6 +772,42 @@
 
 </div> 
  <!--===========================dialog marchandizing end=============-->
+ 
+ 
+ 
+   <!-- ============================notice page Start============================-->
+    
+    <div data-theme="c" data-role="page" id="noticePage">
+		    <div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Notice</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+            
+            
+            
+           <!-- <div id="notice">Notice</div>-->
+      
+			
+
+		
+               
+               <!--<div id="submit_data"></div>-->
+               
+               
+                <br/><br/>
+                <br/><br/><br/>
+	  </div>
+
+	</div>
+        
+    <!--=====================notice page end=========================-->
+		
+ 
+ 
+ 
  
  <script type="text/javascript" src="phonegap.js"></script>
  
