@@ -12,7 +12,7 @@
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
 
 
-var apipath='http://eapps001.cloudapp.net/unilever/syncmobile2/';
+var apipath='http://eapps001.cloudapp.net/unilever/syncmobile3/';
 var apipath_image = 'http://eapps001.cloudapp.net/unilever/';
 
 
