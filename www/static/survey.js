@@ -12,7 +12,7 @@
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
 
 
-var apipath='http://eapps001.cloudapp.net/unilever/syncmobile3/';
+var apipath='http://eapps001.cloudapp.net/unilever/syncmobile2/';
 var apipath_image = 'http://eapps001.cloudapp.net/unilever/';
 
 
@@ -1814,11 +1814,15 @@ function fdisplay_page_set() {
 		$("#fdSL_image_name_hidden_"+i.toString()+"_before").val(fdisplayImg_before);
 		$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(fdisplayImg_path_before);
 		
-		
+		//Image Load
 		$("fdSL_image_div_"+i.toString()).val(fdisplayImg_path);
+		var image = document.getElementById('fdSL_image_div_'+i.toString());
+   		image.src = fdisplayImg_path;
+		
 		$("fdSL_image_div_"+i.toString()+"_before").val(fdisplayImg_path_before);
-		
-		
+		var image_before = document.getElementById('fdSL_image_div_'+i.toString()+"_before");
+   		image_before.src = fdisplayImg_path_before;
+		//==============
 		
 		if ((fdisplayImg.length > 10) & (fdisplayImg_path.length > 10)){
 			$('#fddiv_'+i.toString()).find('input, textarea, button, select').attr('disabled','disabled');
