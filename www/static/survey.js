@@ -1826,13 +1826,9 @@ function fdisplay_page_set() {
 //   		//fdisplayImg_path='C:\Users\Nadira.nuri\Desktop\20141224\DSCN3480.jpg'
 //		image.src = fdisplayImg_path;
 		
-		
-		
-		
-		
-		 var image = document.getElementById('fdSL_image_div_'+i.toString()+'_before');
-    	image.src = fdisplayImg_before;
-    	alert ('fdSL_image_div_'+i.toString()+'_before');
+		var image = document.getElementById('fdSL_image_div_'+i.toString()+'_before');
+    	image.src = fdisplayImg_path_before;
+    	alert (fdisplayImg_path_before);
 		
 		
 		
