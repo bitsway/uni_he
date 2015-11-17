@@ -1213,7 +1213,7 @@ function syncOutlet() {
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
 							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture 1 </a></td></tr></table>'+ 
 							//alert (fdSL_image_div);
-							'<img id="'+ fdSL_image_div +'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
+							'<img id="'+ fdSL_image_div +'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+ fdSL_image_div +'_before'+
 							
 							
 							'<input type="hidden" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
@@ -1814,15 +1814,28 @@ function fdisplay_page_set() {
 		$("#fdSL_image_name_hidden_"+i.toString()+"_before").val(fdisplayImg_before);
 		$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(fdisplayImg_path_before);
 		
+		
 		//Image Load
-		alert (fdisplayImg_path)
-		$("fdSL_image_div_"+i.toString()).html('<img src="'+fdisplayImg_path+'" />');
+		//alert ("fdSL_image_div_"+i.toString())
+//		fdisplayImg_path='G:\picture\1\WP_20141231_21_32_09_Pro.jpg'
+//		alert (fdisplayImg_path)
+//		$("#fdSL_image_div_"+i.toString()).html('gfghfgh');
+		
+		//$("fdSL_image_div_"+i.toString()).html('<img src="'+fdisplayImg_path+'" />');
 		//var image = document.getElementById('fdSL_image_div_'+i.toString());
 //   		//fdisplayImg_path='C:\Users\Nadira.nuri\Desktop\20141224\DSCN3480.jpg'
 //		image.src = fdisplayImg_path;
 		
-		alert (fdisplayImg_path_before)
-		$("fdSL_image_div_"+i.toString()+"_before").html('<img src="'+fdisplayImg_path_before+'" />');
+		
+		
+		
+		
+		 var image = document.getElementById('fdSL_image_div_'+i.toString()+'_before');
+    	image.src = fdisplayImg_before;
+    	alert ('fdSL_image_div_'+i.toString()+'_before');
+		
+		
+		
 	//	$("fdSL_image_div_"+i.toString()+"_before").val(fdisplayImg_path_before);
 		//var image = document.getElementById('fdSL_image_div_'+i.toString()+"_before");
 //   		image.src = fdisplayImg_path_before;
