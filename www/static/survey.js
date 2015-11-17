@@ -1805,7 +1805,8 @@ function fdisplay_page_set() {
 		var fdisplayImg_path_before=head_s_array[5].replace("rdrd","");
 		
 		
-		//alert (fdisplayImg_path_before);
+		alert (fdisplayImg_before);
+		alert (fdisplayImg_path_before);
 		//fdisplayImg_path='q343253456rdrd'
 		
 		$("#fdSL_image_name_hidden_"+i.toString()).val(fdisplayImg);
@@ -1815,7 +1816,7 @@ function fdisplay_page_set() {
 		$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(fdisplayImg_path_before);
 		
 		
-		alert (fdisplayImg_path_before)
+		
 		var fdisplayImg_path_before_show=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val()
 		//Image Load
 		//alert ("fdSL_image_div_"+i.toString())
@@ -1825,10 +1826,10 @@ function fdisplay_page_set() {
 		
 
 		
-		alert (fdisplayImg_path_before_show)
+		alert (fdisplayImg_path_before)
 		
 		 var image = document.getElementById('fdSL_image_div_'+i.toString()+'_before');
-    	image.src = fdisplayImg_path_before_show;
+    	image.src = fdisplayImg_path_before;
     	
 		
 		
