@@ -1814,6 +1814,8 @@ function fdisplay_page_set() {
 		$("#fdSL_image_name_hidden_"+i.toString()+"_before").val(fdisplayImg_before);
 		$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(fdisplayImg_path_before);
 		
+		
+		alert (fdisplayImg_path_before)
 		var fdisplayImg_path_before_show=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val()
 		//Image Load
 		//alert ("fdSL_image_div_"+i.toString())
@@ -1821,12 +1823,7 @@ function fdisplay_page_set() {
 //		alert (fdisplayImg_path)
 //		$("#fdSL_image_div_"+i.toString()).html('gfghfgh');
 		
-		//$("fdSL_image_div_"+i.toString()).html('<img src="'+fdisplayImg_path+'" />');
-		//var image = document.getElementById('fdSL_image_div_'+i.toString());
-//   		//fdisplayImg_path='C:\Users\Nadira.nuri\Desktop\20141224\DSCN3480.jpg'
-//		image.src = fdisplayImg_path;
-		
-		
+
 		
 		alert (fdisplayImg_path_before_show)
 		
