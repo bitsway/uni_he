@@ -67,7 +67,7 @@
 				//$("#sub_button").hide();
 				buttonCheck();
 				
-				
+				alert ('1');
 				
 				$('#outlet_info_msg').html(localStorage.outletNameID);
 				
@@ -94,7 +94,7 @@
 				
 				$("#marchadizing_add_show").html(localStorage.m_new);
 				
-				
+				alert ('2');
 				
 				$("#outletName_show").html(localStorage.outletNameID);
    				first_page();
@@ -128,6 +128,7 @@
 				var sync_date_get=get_date();
 				var sync_date=sync_date_get.substring(0,10);
 				
+				alert ('3');
 				//localStorage.sync_date='2014-07-11';
 				if ((localStorage.synced=='YES') & (localStorage.sync_date!=sync_date)){
 					//alert (localStorage.sync_date);
@@ -176,22 +177,20 @@
 					
 				//	location.reload()
 				}
-				//else{
-//					var url = "#index.html";
-//					$.mobile.navigate(url);
-//				}
+
+				alert ('4');
 				//=====================
 				//alert (localStorage.mhskus_data_ready);
 				mhskus_page_set();
 				mar_page_set();
 				npd_page_set();
-				alert ('sdasd')
+				
 				fdisplay_page_set();
-				alert (bbb)
+				
 				qpds_page_set();
 				gift_page_set();
 				
-				
+				alert ('4');
 				
 				
 			  //====check div disable====
