@@ -1814,7 +1814,7 @@ function fdisplay_page_set() {
 		$("#fdSL_image_name_hidden_"+i.toString()+"_before").val(fdisplayImg_before);
 		$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(fdisplayImg_path_before);
 		
-		var fdisplayImg_path_before=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val()
+		var fdisplayImg_path_before_show=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val()
 		//Image Load
 		//alert ("fdSL_image_div_"+i.toString())
 //		fdisplayImg_path='G:\picture\1\WP_20141231_21_32_09_Pro.jpg'
@@ -1828,10 +1828,10 @@ function fdisplay_page_set() {
 		
 		
 		
-		alert (fdisplayImg_path_before)
+		alert (fdisplayImg_path_before_show)
 		
 		 var image = document.getElementById('fdSL_image_div_'+i.toString()+'_before');
-    	image.src = fdisplayImg_path_before;
+    	image.src = fdisplayImg_path_before_show;
     	
 		
 		
