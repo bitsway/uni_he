@@ -1815,13 +1815,18 @@ function fdisplay_page_set() {
 		$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(fdisplayImg_path_before);
 		
 		//Image Load
-		$("fdSL_image_div_"+i.toString()).val(fdisplayImg_path);
-		var image = document.getElementById('fdSL_image_div_'+i.toString());
-   		image.src = fdisplayImg_path;
+		alert (fdisplayImg_path)
+		$("fdSL_image_div_"+i.toString()).html('<img src="'+fdisplayImg_path+'" />');
+		//var image = document.getElementById('fdSL_image_div_'+i.toString());
+//   		//fdisplayImg_path='C:\Users\Nadira.nuri\Desktop\20141224\DSCN3480.jpg'
+//		image.src = fdisplayImg_path;
 		
-		$("fdSL_image_div_"+i.toString()+"_before").val(fdisplayImg_path_before);
-		var image_before = document.getElementById('fdSL_image_div_'+i.toString()+"_before");
-   		image_before.src = fdisplayImg_path_before;
+		alert (fdisplayImg_path_before)
+		$("fdSL_image_div_"+i.toString()+"_before").html('<img src="'+fdisplayImg_path_before+'" />');
+	//	$("fdSL_image_div_"+i.toString()+"_before").val(fdisplayImg_path_before);
+		//var image = document.getElementById('fdSL_image_div_'+i.toString()+"_before");
+//   		image.src = fdisplayImg_path_before;
+	//	alert (fdisplayImg_path_before)
 		//==============
 		
 		if ((fdisplayImg.length > 10) & (fdisplayImg_path.length > 10)){
