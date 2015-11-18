@@ -67,7 +67,7 @@
 				//$("#sub_button").hide();
 				buttonCheck();
 				
-				alert ('1');
+				
 				
 				$('#outlet_info_msg').html(localStorage.outletNameID);
 				
@@ -94,7 +94,7 @@
 				
 				$("#marchadizing_add_show").html(localStorage.m_new);
 				
-				alert ('2');
+				
 				
 				$("#outletName_show").html(localStorage.outletNameID);
    				first_page();
@@ -128,7 +128,6 @@
 				var sync_date_get=get_date();
 				var sync_date=sync_date_get.substring(0,10);
 				
-				alert ('3');
 				//localStorage.sync_date='2014-07-11';
 				if ((localStorage.synced=='YES') & (localStorage.sync_date!=sync_date)){
 					//alert (localStorage.sync_date);
@@ -177,20 +176,20 @@
 					
 				//	location.reload()
 				}
-
-				alert ('4');
+				//else{
+//					var url = "#index.html";
+//					$.mobile.navigate(url);
+//				}
 				//=====================
 				//alert (localStorage.mhskus_data_ready);
 				mhskus_page_set();
 				mar_page_set();
 				npd_page_set();
-				
 				fdisplay_page_set();
-				
 				qpds_page_set();
 				gift_page_set();
 				
-				alert ('4');
+				
 				
 				
 			  //====check div disable====
@@ -216,12 +215,13 @@
     
      <!--======================Menu page start==================-->        
         <div data-theme="c" data-role="page" id="menuPage"   >
-        
+       
            <div data-role="panel" id="routePanel" data-display="overlay" style="width:60%;">
 				<!-- panel content goes here -->
 				<img style="width:100%;"  src="unilogo1.png" alt="UNILEVER" /><br>
 				<font style="color:#007D7D; font-size:25px;">HAWK'S EYE</font>
 				<br><br><br>
+				
 				  <ul data-role="listview">
 							
                     		<div style="background:#008A8A; height:1px"></div>
@@ -250,6 +250,7 @@
 			
 			<div data-role="content" align="center" style="height:90%" >
             	<br><br>
+				
 				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">       
 				<a data-role="button" onClick="marketPJP_check()" ><img src="market_pjp.png"></a>
                 <a data-role="button" href="#noticePage" ><img src="notice_icon.png"></a>

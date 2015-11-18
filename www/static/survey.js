@@ -1213,11 +1213,11 @@ function syncOutlet() {
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
 							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture 1 </a></td></tr></table>'+ 
 							//alert (fdSL_image_div);
-							'<img id="'+ fdSL_image_div +'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+ fdSL_image_div +'_before'+
+							'<img id="'+ fdSL_image_div +'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+ 
 							
 							
-							'<input type="text" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
-							'<input type="text" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
+							'<input type="hidden" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
+							'<input type="hidden" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
 							
 							
 					
@@ -1817,13 +1817,14 @@ function fdisplay_page_set() {
 		var fdisplayImg_path_before_show=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val()
 		//Image Load
 	
-
+		alert (fdisplayImg_path)
 		var image = document.getElementById('fdSL_image_div_'+i.toString());
     	image.src = fdisplayImg_path;
 		//alert (fdisplayImg_path_before)
 		
-		 var image = document.getElementById('fdSL_image_div_'+i.toString()+'_before');
-    	image.src = fdisplayImg_path_before;
+		alert (fdisplayImg_path)
+		var image1 = document.getElementById('fdSL_image_div_'+i.toString()+'_before');
+    	image1.src = fdisplayImg_path_before;
     	
 		
 		
@@ -1913,6 +1914,7 @@ function qpds_ready_data() {
 	}
 	qpds_data='headstart'+qpds_data_head+'headend'+qpds_data_detail
 	localStorage.qpds_data_ready=qpds_data;
+	
 	qpds_page_set();
 	
 	//==============
@@ -1956,8 +1958,8 @@ function qpds_page_set() {
 		$("#qpdsSL_image_div_hidden_"+i.toString()+"_before").val(qpdsImg_path_before);
 		
 		
-		var image = document.getElementById('qpdsSL_image_div'+i.toString());
-    	image.src = qpdsImg_path;
+		//var image = document.getElementById('qpdsSL_image_div'+i.toString());
+		//image.src = qpdsImg_path;
 		
 		
 		
