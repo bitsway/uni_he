@@ -1817,12 +1817,12 @@ function fdisplay_page_set() {
 		var fdisplayImg_path_before_show=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val()
 		//Image Load
 	
-		alert (fdisplayImg_path)
+	//	alert (fdisplayImg_path)
 		var image = document.getElementById('fdSL_image_div_'+i.toString());
     	image.src = fdisplayImg_path;
 		//alert (fdisplayImg_path_before)
 		
-		alert (fdisplayImg_path)
+	//	alert (fdisplayImg_path)
 		var image1 = document.getElementById('fdSL_image_div_'+i.toString()+'_before');
     	image1.src = fdisplayImg_path_before;
     	
