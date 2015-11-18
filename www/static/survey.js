@@ -1804,10 +1804,7 @@ function fdisplay_page_set() {
 		var fdisplayImg_before=head_s_array[4];
 		var fdisplayImg_path_before=head_s_array[5].replace("rdrd","");
 		
-		
-		alert (fdisplayImg_before);
-		alert (fdisplayImg_path_before);
-		//fdisplayImg_path='q343253456rdrd'
+
 		
 		$("#fdSL_image_name_hidden_"+i.toString()).val(fdisplayImg);
 		$("#fdSL_image_div_hidden_"+i.toString()).val(fdisplayImg_path);
@@ -1819,14 +1816,11 @@ function fdisplay_page_set() {
 		
 		var fdisplayImg_path_before_show=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val()
 		//Image Load
-		//alert ("fdSL_image_div_"+i.toString())
-//		fdisplayImg_path='G:\picture\1\WP_20141231_21_32_09_Pro.jpg'
-//		alert (fdisplayImg_path)
-//		$("#fdSL_image_div_"+i.toString()).html('gfghfgh');
-		
+	
 
-		
-		alert (fdisplayImg_path_before)
+		var image = document.getElementById('fdSL_image_div_'+i.toString());
+    	image.src = fdisplayImg_path;
+		//alert (fdisplayImg_path_before)
 		
 		 var image = document.getElementById('fdSL_image_div_'+i.toString()+'_before');
     	image.src = fdisplayImg_path_before;
@@ -1960,6 +1954,12 @@ function qpds_page_set() {
 		
 		$("#qpdsSL_image_name_hidden_"+i.toString()+"_before").val(qpdsImg_before);
 		$("#qpdsSL_image_div_hidden_"+i.toString()+"_before").val(qpdsImg_path_before);
+		
+		
+		var image = document.getElementById('qpdsSL_image_div'+i.toString());
+    	image.src = qpdsImg_path;
+		
+		
 		
 		if ((qpdsImg.length > 10) & (qpdsImg_path.length > 10)){
 			$('#qpdsdiv_'+i.toString()).find('input, textarea, button, select').attr('disabled','disabled');
