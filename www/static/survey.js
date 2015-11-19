@@ -2418,7 +2418,7 @@ function get_pic_fdisplay_before(id) {
 	
 	var hidden_name="fdSL_image_name_hidden_" + id ;
 	var tempTime = $.now();
-	fd_image_name_before=tempTime.toString()+"_before"+localStorage.selectedOutlet+i.toString()+".jpg";
+	fd_image_name_before=tempTime.toString()+"_before"+localStorage.selectedOutlet+".jpg";
 	
 	$("#"+hidden_name+ "_before").val(fd_image_name_before);
 	//alert ("#"+hidden_name+"_before");
@@ -2455,7 +2455,7 @@ function get_pic_fdisplay(id) {
 	temp_image_div=div_id;
 	var hidden_name="fdSL_image_name_hidden_"+id;
 	var tempTime = $.now();
-	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+i.toString()+".jpg";
+	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#"+hidden_name).val(fd_image_name);
 	navigator.camera.getPicture(onSuccessFd, onFailFd, { quality: 5,
 		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true });
