@@ -1806,15 +1806,15 @@ function fdisplay_page_set() {
 		
 
 		
-		$("#fdSL_image_name_hidden_"+i.toString()).val(fdisplayImg);
-		$("#fdSL_image_div_hidden_"+i.toString()).val(fdisplayImg_path);
-		
-		$("#fdSL_image_name_hidden_"+i.toString()+"_before").val(fdisplayImg_before);
-		$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(fdisplayImg_path_before);
-		
-		
-		
-		var fdisplayImg_path_before_show=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val()
+		//$("#fdSL_image_name_hidden_"+i.toString()).val(fdisplayImg);
+//		$("#fdSL_image_div_hidden_"+i.toString()).val(fdisplayImg_path);
+//		
+//		$("#fdSL_image_name_hidden_"+i.toString()+"_before").val(fdisplayImg_before);
+//		$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(fdisplayImg_path_before);
+//		
+//		
+//		
+//		var fdisplayImg_path_before_show=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val()
 		//Image Load
 	
 		//alert (fdisplayImg_path)
