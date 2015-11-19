@@ -1817,12 +1817,12 @@ function fdisplay_page_set() {
 		var fdisplayImg_path_before_show=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val()
 		//Image Load
 	
-	//	alert (fdisplayImg_path)
+		//alert (fdisplayImg_path)
 		var image = document.getElementById('fdSL_image_div_'+i.toString());
     	image.src = fdisplayImg_path;
 		//alert (fdisplayImg_path_before)
 		
-	//	alert (fdisplayImg_path)
+		//alert (fdisplayImg_path)
 		var image1 = document.getElementById('fdSL_image_div_'+i.toString()+'_before');
     	image1.src = fdisplayImg_path_before;
     	
@@ -2571,7 +2571,7 @@ function upload_fd(){
 	if (typeof localStorage.fdisplay_data_ready === "undefined") {
 		localStorage.fdisplay_data_ready = "_";
 	}
-	
+	//alert (localStorage.fdisplay_data_ready)
 	if (localStorage.fdisplay_data_ready.length > 10){
 		for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
 			var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
@@ -2582,8 +2582,8 @@ function upload_fd(){
 			var fdSLfdisplay_image_path_before=$("#fdSL_image_div_hidden_"+i.toString()+ "_before").val();
 			
 			
-			//alert (image_name_before);
-			//alert (fdSLfdisplay_image_path_before);
+			alert (image_name_before);
+			alert (fdSLfdisplay_image_path_before);
 			
 			if (fdSLfdisplay_image_path.length >10){
 				uploadPhoto(fdSLfdisplay_image_path, image_name);
