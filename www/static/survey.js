@@ -1025,6 +1025,9 @@ function syncOutlet() {
 			fdisplay = npdArray[1];
 			var fdisplayArray = fdisplay.split('</fdisplayList>');									
 			fdisplayList = fdisplayArray[0].replace("<fdisplayList>","");
+			
+			//$("#show_result").text(fdisplayList);
+			//alert (fdisplayList);
 								
 			qpds = fdisplayArray[1];
 			var qpdsArray = qpds.split('</qpdsList>');									
@@ -1148,9 +1151,11 @@ function syncOutlet() {
 			}
 			
 			for (var slab=0; slab < fdisplaySlabTotal-1; slab++){
+					//alert (fdisplaySlabArray[slab]);
 					var fdisplaySlabList = fdisplaySlabArray[slab].replace("<slab>","");
 					var fdisplaySlab_1Array = fdisplayList.split('<slab>');
-					var fdisplaySlab_image = fdisplaySlab_1Array[0];
+					
+					var fdisplaySlab_image = fdisplaySlabArray[slab].split('<slab>')[0];
 					//var fdisplaySlabList = fdisplaySlab_1Array[1];
 					
 					
@@ -1163,8 +1168,9 @@ function syncOutlet() {
 					var fdSL_image_div='fdSL_image_div_'+slab_text
 					var fdSLfdisplay='fdSLfdisplay_'+slab_text
 					
-					
+				//	alert (apipath_image+'static/uni_images/display/'+fdisplaySlab_image)
 					fdisplayStringShow=fdisplayStringShow+'<div id="fddiv_'+slab.toString()+'">'
+					//fdisplayStringShow=apipath_image+fdisplayStringShow+apipath_image+'static/uni_images/display/'+fdisplaySlab_image;
 					fdisplayStringShow=fdisplayStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/display/'+fdisplaySlab_image+'" alt="FixedDisplay" />';
 					
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
@@ -1189,17 +1195,19 @@ function syncOutlet() {
 						itemName=fdisplayArray[2];
 						fdSL_fdisplay=fdisplayArray[3];
 						var i_text=i.toString()
-						var ItemQtyfdisplay='ItemQtyfdisplay_'+i_text
-						var Itemfdisplay='Itemfdisplay_'+i_text
-						var ItemFaceupfdisplay='ItemFaceupfdisplay_'+i_text
-						var ItemVisiblefdisplay='ItemVisiblefdisplay_'+i_text
-						var slabfdisplay='slabfdisplay_'+i_text
+						var ItemQtyfdisplay='ItemQtyfdisplay_'+slab_text+'_'+i_text
+						var Itemfdisplay='Itemfdisplay_'+slab_text+'_'+i_text
+						
+						var ItemFaceupfdisplay='ItemFaceupfdisplay_'+slab_text+'_'+i_text
+						var ItemVisiblefdisplay='ItemVisiblefdisplay_'+slab_text+'_'+i_text
+						var slabfdisplay='slabfdisplay_'+slab_text+'_'+i_text
 						//var fdSLfdisplay='fdSLfdisplay_'+i_text
 						
 						
-						
+						//alert (Itemfdisplay)
 						fdisplayStringShow=fdisplayStringShow+'<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemfdisplay +'" id="'+ Itemfdisplay +'" value="'+itemID+'" min="0"> <input type="hidden" name="'+ slabfdisplay +'" id="'+ slabfdisplay +'" value="'+slab_fdisplay+'" min="0"></td>'+
-										  '<td><input  onClick="checkQtyFd('+i+')" onKeyUp="checkQtyFd('+i+')" type="number" name="'+ItemQtyfdisplay +'" id="'+ ItemQtyfdisplay +'" value="" min="0"></td><td></td><td><input onKeyUp="checkQtyFd('+i+')"  type="number" name="'+ItemFaceupfdisplay +'" id="'+ ItemFaceupfdisplay +'" value="" min="0"></td>'+
+										  '<td><input  onClick="checkQtyFd(/'+slab_text+'_'+i_text+'/)" onKeyUp="checkQtyFd(/'+slab_text+'_'+i_text+'/)" type="number" name="'+ItemQtyfdisplay +'" id="'+ ItemQtyfdisplay +'" value="" min="0"></td><td></td>'+
+										  '<td><input onKeyUp="checkQtyFd(/'+slab_text+'_'+i_text+'/)" type="number" name="'+ItemFaceupfdisplay +'" id="'+ ItemFaceupfdisplay +'" value="" min="0"></td>'+
 										  '<td></td><td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ ItemVisiblefdisplay +'" id="'+ ItemVisiblefdisplay +'" value=""/></label></td></tr>'
 						fdisplayStringShow=fdisplayStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
 						
@@ -1210,15 +1218,15 @@ function syncOutlet() {
 					
 //====================	before
 					
-					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
-							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture 1 </a></td></tr></table>'+ 
-							//alert (fdSL_image_div);
-							'<img id="'+ fdSL_image_div +'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+ 
-							
-							
-							'<input type="hidden" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
-							'<input type="hidden" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
-							
+				//	fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr>'+
+//							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay_before('+slab+')" >Take Picture 1 </a></td></tr></table>'+ 
+//							//alert (fdSL_image_div);
+//							'<img id="'+ fdSL_image_div +'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+ 
+//							
+//							
+//							'<input type="hidden" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
+//							'<input type="hidden" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
+//							
 							
 					
 					
@@ -1285,16 +1293,17 @@ function syncOutlet() {
 					qpdsSL=qpdsArray[3];
 					
 					var i_text=i.toString()
-					var ItemQtyqpds='ItemQtyqpds_'+i_text
-					var Itemqpds='Itemqpds_'+i_text
-					var ItemFaceupqpds='ItemFaceupqpds_'+i_text
-					var ItemVisibleqpds='ItemVisibleqpds_'+i_text
-					var schemeqpds='schemeqpds_'+i_text											
+					var slab_text=slab.toString()
+					var ItemQtyqpds='ItemQtyqpds_'+slab.toString()+'_'+i_text
+					var Itemqpds='Itemqpds_'+slab.toString()+'_'+i_text
+					var ItemFaceupqpds='ItemFaceupqpds_'+slab.toString()+'_'+i_text
+					var ItemVisibleqpds='ItemVisibleqpds_'+slab.toString()+'_'+i_text
+					var schemeqpds='schemeqpds_'+slab.toString()+'_'+i_text											
 					qpdsStringShow=qpdsStringShow+
 								   '<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemqpds +'" id="'+ Itemqpds +'" value="'+itemID+'" min="0">'+
 								   '<input type="hidden" name="'+ schemeqpds +'" id="'+ schemeqpds +'" value="'+scheme_qpds+'" min="0"> </td>'+
-								   '<td><input onClick="checkQtyQpds('+i+')" onKeyUp="checkQtyQpds('+i+')"  type="number" name="'+ItemQtyqpds +'" id="'+ ItemQtyqpds +'" value="" min="0"></td>'+
-								   '<td></td><td><input onKeyUp="checkQtyQpds('+i+')" type="number" name="'+ItemFaceupqpds +'" id="'+ ItemFaceupqpds +'" value="" min="0"></td><td></td>'+
+								   '<td><input onClick="checkQtyQpds('+i+')" onKeyUp="checkQtyQpds(/'+slab_text+'_'+i_text+'/)"  type="number" name="'+ItemQtyqpds +'" id="'+ ItemQtyqpds +'" value="" min="0"></td>'+
+								   '<td></td><td><input onKeyUp="checkQtyQpds(/'+slab_text+'_'+i_text+'/)" type="number" name="'+ItemFaceupqpds +'" id="'+ ItemFaceupqpds +'" value="" min="0"></td><td></td>'+
 								   '<td><label  style="width:5px; height:8px"><input type="checkbox" name="'+ ItemVisibleqpds +'" id="'+ ItemVisibleqpds +'" value=""/></label></td></tr>'
 					qpdsStringShow=qpdsStringShow+'<tr height="1px" bgcolor="#CCCCCC" ><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>'
 				}
@@ -1717,7 +1726,7 @@ function npd_page_set() {
 		$("#ItemQtynpd_"+i.toString()).val(itemQty);
 	 }
 }
-
+//=========================20151121=================
 function fdisplay_ready_data() { 
 	//===============fixeddisplay data==================
 	var fdisplay_data=""
@@ -1736,16 +1745,16 @@ function fdisplay_ready_data() {
 		
 		var fdSLfdisplay=$("#fdSLfdisplay_"+i.toString()).val(); 
 			for (var d=0; d < fdTotal-1; d++){
-				var ItemQtyfdisplay=$("#ItemQtyfdisplay_"+d.toString()).val();
-				var Itemfdisplay=$("#Itemfdisplay_"+d.toString()).val();
-				var ItemFaceupfdisplay=$("#ItemFaceupfdisplay_"+d.toString()).val();
-				var slabfdisplay=$("#slabfdisplay_"+d.toString()).val();
+				var ItemQtyfdisplay=$("#ItemQtyfdisplay_"+i.toString()+"_"+d.toString()).val();
+				var Itemfdisplay=$("#Itemfdisplay_"+i.toString()+"_"+d.toString()).val();
+				var ItemFaceupfdisplay=$("#ItemFaceupfdisplay_"+i.toString()+"_"+d.toString()).val();
+				var slabfdisplay=$("#slabfdisplay_"+i.toString()+"_"+d.toString()).val();
 				
 				
 				
 				
 	
-				var ItemVisiblefdisplay_f="#ItemVisiblefdisplay_"+d.toString();
+				var ItemVisiblefdisplay_f="#ItemVisiblefdisplay_"+i.toString()+"_"+d.toString();
 				var ItemVisiblefdisplay_g= ($(ItemVisiblefdisplay_f).is(':checked') ? 1 : 0);
 				
 					if (ItemVisiblefdisplay_g==0){
@@ -1756,6 +1765,7 @@ function fdisplay_ready_data() {
 					}	
 				
 					fdisplay_data_detail=fdisplay_data_detail+Itemfdisplay+'fdfd'+ItemQtyfdisplay+'fdfd'+ItemFaceupfdisplay+'fdfd'+ItemVisiblefdisplay+'fdfd'+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+'rdrd'
+				//	$("#fdisplay_show").text(fdisplay_data_detail);
 			}
 		fdisplay_data_head=fdisplay_data_head+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+fdSLfdisplay_image_name+'fdfd'+fdSLfdisplay_image_path+'fdfd'+fdSLfdisplay_image_name_before+'fdfd'+fdSLfdisplay_image_path_before+'rdrd'
 
@@ -1823,8 +1833,8 @@ function fdisplay_page_set() {
 		//alert (fdisplayImg_path_before)
 		
 		//alert (fdisplayImg_path)
-		var image1 = document.getElementById('fdSL_image_div_'+i.toString()+'_before');
-    	image1.src = fdisplayImg_path_before;
+		//var image1 = document.getElementById('fdSL_image_div_'+i.toString()+'_before');
+//    	image1.src = fdisplayImg_path_before;
     	
 		
 		
@@ -1852,10 +1862,10 @@ function fdisplay_page_set() {
 				var ItemFaceupfdisplay= fdisplay_detail_s_array[2];
 				var ItemVisiblefdisplay= fdisplay_detail_s_array[3];
 				
-				$("#ItemQtyfdisplay_"+d.toString()).val(ItemQtyfdisplay);
-				$("#ItemFaceupfdisplay_"+d.toString()).val(ItemFaceupfdisplay);
+				$("#ItemQtyfdisplay_"+i.toString()+"_"+d.toString()).val(ItemQtyfdisplay);
+				$("#ItemFaceupfdisplay_"+i.toString()+"_"+d.toString()).val(ItemFaceupfdisplay);
 				if (ItemVisiblefdisplay=='YES'){
-					$("#ItemVisiblefdisplay_"+d.toString()).attr('checked',true);
+					$("#ItemVisiblefdisplay_"+i.toString()+"_"+d.toString()).attr('checked',true);
 				}
 
 			
@@ -1892,13 +1902,13 @@ function qpds_ready_data() {
 		
 		
 		for (var d=0; d < qpdsTotal_1-1; d++){
-			var ItemQtyqpds= $("#ItemQtyqpds_"+d.toString()).val();  
-			var Itemqpds= $("#Itemqpds_"+d.toString()).val();  
-			var ItemFaceupqpds=$("#ItemFaceupqpds_"+d.toString()).val();   
-			var schemeqpds=$("#schemeqpds_"+d.toString()).val(); 
+			var ItemQtyqpds= $("#ItemQtyqpds_"+i.toString()+"_"+d.toString()).val();  
+			var Itemqpds= $("#Itemqpds_"+i.toString()+"_"+d.toString()).val();  
+			var ItemFaceupqpds=$("#ItemFaceupqpds_"+i.toString()+"_"+d.toString()).val();   
+			var schemeqpds=$("#schemeqpds_"+i.toString()+"_"+d.toString()).val(); 
 
  
-			var ItemVisibleqpds_f="#ItemVisibleqpds_"+d.toString();
+			var ItemVisibleqpds_f="#ItemVisibleqpds_"+i.toString()+"_"+d.toString();
      		var ItemVisibleqpds_g= ($(ItemVisibleqpds_f).is(':checked') ? 1 : 0);
 			
 			if (ItemVisibleqpds_g==0){
@@ -1982,10 +1992,10 @@ function qpds_page_set() {
 				
 				
 				
-				$("#ItemQtyqpds_"+d.toString()).val(ItemQtyqpds);
-				$("#ItemFaceupqpds_"+d.toString()).val(ItemFaceupqpds);
+				$("#ItemQtyqpds_"+i.toString()+"_"+d.toString()).val(ItemQtyqpds);
+				$("#ItemFaceupqpds_"+i.toString()+"_"+d.toString()).val(ItemFaceupqpds);
 				if (ItemVisibleqpds=='YES'){
-					$("#ItemVisibleqpds_"+d.toString()).attr('checked',true);
+					$("#ItemVisibleqpds_"+i.toString()+"_"+d.toString()).attr('checked',true);
 				}
 
 			}
@@ -2578,8 +2588,8 @@ function upload_fd(){
 			var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
 			
 			
-			var image_name_before=$("#fdSL_image_name_hidden_"+i.toString() + "_before").val();
-			var fdSLfdisplay_image_path_before=$("#fdSL_image_div_hidden_"+i.toString()+ "_before").val();
+			//var image_name_before=$("#fdSL_image_name_hidden_"+i.toString() + "_before").val();
+			//var fdSLfdisplay_image_path_before=$("#fdSL_image_div_hidden_"+i.toString()+ "_before").val();
 			
 			
 		//	alert (image_name);
@@ -2587,7 +2597,7 @@ function upload_fd(){
 			
 			if (fdSLfdisplay_image_path.length >10){
 				uploadPhoto(fdSLfdisplay_image_path, image_name);
-				uploadPhoto(fdSLfdisplay_image_path_before, image_name_before);
+				//uploadPhoto(fdSLfdisplay_image_path_before, image_name_before);
 				//if upload is successfull then "file_upload_error" will be 0 , if error 1
 			} else {
 				localStorage.fddataSubmit=1;
@@ -2792,10 +2802,20 @@ function setOutlet(){
 //=============qty faceup check fdisplay====
 
 function checkQtyFd(i){
-	var qty=$("#ItemQtyfdisplay_"+i.toString()).val();
-	var faceup=$("#ItemFaceupfdisplay_"+i.toString()).val();
+	var get_i= i.toString();
+	var get_i_list=get_i.split("_")
 	
 	
+	
+	var slab=get_i_list[0].replace("/","")
+	var id=get_i_list[1].replace("/","")
+	//alert (slab)
+	//alert (id)
+	var qty=$("#ItemQtyfdisplay_"+slab.toString()+"_"+id.toString()).val();
+	var faceup=$("#ItemFaceupfdisplay_"+slab.toString()+"_"+id.toString()).val();
+	
+	//alert (qty)
+	//alert (faceup)
 	if (parseInt(faceup) > parseInt(qty)){
 		$("#ItemFaceupfdisplay_"+i.toString()).val("");
 	}
@@ -2803,8 +2823,16 @@ function checkQtyFd(i){
 
 
 function checkQtyQpds(i){
-	var qty=$("#ItemQtyqpds_"+i.toString()).val();
-	var faceup=$("#ItemFaceupqpds_"+i.toString()).val();
+	var get_i= i.toString();
+	var get_i_list=get_i.split("_")
+	
+	
+	
+	var slab=get_i_list[0].replace("/","")
+	var id=get_i_list[1].replace("/","")
+	
+	var qty=$("#ItemQtyqpds_"+slab.toString()+"_"+id.toString()).val();
+	var faceup=$("#ItemFaceupqpds_"+slab.toString()+"_"+id.toString()).val();
 	
 	if (parseInt(faceup) > parseInt(qty)){
 		$("#ItemFaceupqpds_"+i.toString()).val("");
