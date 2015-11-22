@@ -1201,7 +1201,12 @@ function syncOutlet() {
 					localStorage.fdisplayTotal=fdisplaySingleTotal
 					
 					for (var i=0; i < fdisplaySingleTotal-1; i++){
-						fdisplayArray = fdisplaySingleArray[i].split('fdfd');
+						var test=fdisplaySingleArray[i].replace(fdisplaySlabArray[slab].split('<slab>')[0],"");
+						fdisplayArray = test.split('fdfd');
+						
+						
+						
+						//alert (test);
 						slab_fdisplay=fdisplayArray[0]
 						itemID=fdisplayArray[1];
 						itemName=fdisplayArray[2];
@@ -1216,7 +1221,7 @@ function syncOutlet() {
 						//var fdSLfdisplay='fdSLfdisplay_'+i_text
 						
 						
-						//alert (Itemfdisplay)
+						//alert (fdisplaySingleArray[i])
 						
 						fdisplayStringShow=fdisplayStringShow+'<tr ><td width="1%" >&nbsp;</td><td>'+itemName+'<input type="hidden" name="'+ Itemfdisplay +'" id="'+ Itemfdisplay +'" value="'+itemID+'" min="0"> <input type="hidden" name="'+ slabfdisplay +'" id="'+ slabfdisplay +'" value="'+slab_fdisplay+'" min="0"></td>'+
 										  '<td><input  onClick="checkQtyFd(/'+slab_text+'_'+i_text+'/)" onKeyUp="checkQtyFd(/'+slab_text+'_'+i_text+'/)" type="number" name="'+ItemQtyfdisplay +'" id="'+ ItemQtyfdisplay +'" value="" min="0"></td><td></td>'+
