@@ -2487,7 +2487,7 @@ function get_pic_fdisplay(id) {
 	var tempTime = $.now();
 	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+id.toString()+".jpg";
 	$("#"+hidden_name).val(fd_image_name);
-	navigator.camera.getPicture(onSuccessFd, onFailFd, { quality: 50,
+	navigator.camera.getPicture(onSuccessFd, onFailFd, { quality: 100,
 		targetWidth: 300,
 		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true });
 	
