@@ -663,7 +663,7 @@ function marketPJP() {
 	if(localStorage.selectedRoute!=undefined){
 		//$("#dataerror").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
 	//======================================	
-		alert(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
+		//alert(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
 		localStorage.routeException='';
 		$.ajax({
 				 type: 'POST',
@@ -1367,7 +1367,7 @@ function syncOutlet() {
 			var giftSingleArray = giftList.split('rdrd');	
 			var giftSingleTotal = giftSingleArray.length;
 			
-			alert (giftList);
+		//	alert (giftList);
 			
 			var giftStringShow=''
 			giftStringShow=giftStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.routeIDName+'<br>'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
@@ -1830,31 +1830,19 @@ function fdisplay_page_set() {
 		var fdisplayImg=head_s_array[2];
 		var fdisplayImg_path=head_s_array[3];
 		
-		var fdisplayImg_before=head_s_array[4];
-		var fdisplayImg_path_before=head_s_array[5].replace("rdrd","");
+		//var fdisplayImg_before=head_s_array[4];
+		//var fdisplayImg_path_before=head_s_array[5].replace("rdrd","");
 		
 
-		
-		//$("#fdSL_image_name_hidden_"+i.toString()).val(fdisplayImg);
-//		$("#fdSL_image_div_hidden_"+i.toString()).val(fdisplayImg_path);
-//		
-//		$("#fdSL_image_name_hidden_"+i.toString()+"_before").val(fdisplayImg_before);
-//		$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(fdisplayImg_path_before);
-//		
-//		
-//		
-//		var fdisplayImg_path_before_show=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val()
-		//Image Load
+		alert (fdisplayImg_path)
+		alert ('fdSL_image_div_'+i.toString())
 	
 		//alert (fdisplayImg_path)
 		var image = document.getElementById('fdSL_image_div_'+i.toString());
     	image.src = fdisplayImg_path;
 		//alert (fdisplayImg_path_before)
 		
-		//alert (fdisplayImg_path)
-		//var image1 = document.getElementById('fdSL_image_div_'+i.toString()+'_before');
-//    	image1.src = fdisplayImg_path_before;
-    	
+		
 		
 		
 		
@@ -2487,7 +2475,7 @@ function get_pic_fdisplay(id) {
 	var tempTime = $.now();
 	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+id.toString()+".jpg";
 	$("#"+hidden_name).val(fd_image_name);
-	navigator.camera.getPicture(onSuccessFd, onFailFd, { quality: 100,
+	navigator.camera.getPicture(onSuccessFd, onFailFd, { quality: 70,
 		targetWidth: 300,
 		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true });
 	
@@ -2543,7 +2531,8 @@ function get_pic_qpds(id) {
 	var tempTime = $.now();
 	qpds_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#"+hidden_name).val(qpds_image_name);
-	navigator.camera.getPicture(onSuccessQpds, onFailQpds, { quality: 5,
+	navigator.camera.getPicture(onSuccessQpds, onFailQpds, { quality: 70,
+		targetWidth: 300,
 		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true});
 }
 
