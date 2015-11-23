@@ -668,7 +668,7 @@ function marketPJP() {
 	}
 	
 	if(localStorage.selectedRoute!=undefined){
-		//$("#dataerror").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
+		$("#dataerror").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
 	//======================================	
 		//alert(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
 		localStorage.routeException='';
@@ -2325,6 +2325,14 @@ function submit_data() {
 								//alert ('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">')
 								localStorage.outletString=check_outlet.replace('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">','<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'" disabled="True">');
 								
+								//localStorage.outletString=outletStringShow
+								//$("#outletString").html(localStorage.outletString);
+								
+								
+								$("#outletString").empty();
+			 					$("#outletString").append(localStorage.outletString).trigger('create');
+								
+								
 								
 								$("#submit_data_check").html("Data Synced Successfully");
 								
@@ -2502,7 +2510,7 @@ function get_pic_fdisplay(id) {
 	fd_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+id.toString()+".jpg";
 	$("#"+hidden_name).val(fd_image_name);
 	navigator.camera.getPicture(onSuccessFd, onFailFd, { quality: 70,
-		targetWidth: 300,
+		targetWidth: 450,
 		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true });
 	
 }
@@ -2967,3 +2975,33 @@ function menupage(){
 
 
 
+//======================================
+function test() { 
+
+   		$.ajax({
+				 type: 'POST',
+				 url: 'https://e2.businesssolutionapps.com/',
+				 success: function(result) {
+						alert (result);
+				      },
+				  error: function(result) {
+					
+				  }
+			  });//end ajax
+		  }//end else	
+	}//function
+	
+function test_1() { 
+
+   		$.ajax({
+				 type: 'POST',
+				 url: 'https://e2.businesssolutionapps.com/',
+				 success: function(result) {
+						alert (result);
+				      },
+				  error: function(result) {
+					
+				  }
+			  });//end ajax
+		  }//end else	
+	}//function
