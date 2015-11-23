@@ -2975,33 +2975,3 @@ function menupage(){
 
 
 
-//======================================
-function test() { 
-
-   		$.ajax({
-				 type: 'POST',
-				 url: 'https://e2.businesssolutionapps.com/',
-				 success: function(result) {
-						alert (result);
-				      },
-				  error: function(result) {
-					
-				  }
-			  });//end ajax
-		  }//end else	
-	}//function
-	
-function test_1() { 
-
-   		$.ajax({
-				 type: 'POST',
-				 url: 'https://e2.businesssolutionapps.com/',
-				 success: function(result) {
-						alert (result);
-				      },
-				  error: function(result) {
-					
-				  }
-			  });//end ajax
-		  }//end else	
-	}//function
