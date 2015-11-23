@@ -164,6 +164,11 @@ function cancel_outlet(){
 	localStorage.outletNameID='';
 	
 	
+	localStorage.selectedOutlet="";
+	localStorage.selected_date="";
+	localStorage.outletException="";
+	localStorage.outletChannel="";
+
 	localStorage.m_new_string="";
 	localStorage.m_new="";
 	localStorage.selectedOutlet="";
@@ -203,6 +208,8 @@ function cancel_outlet(){
 	$("#outletButton").hide();
 	
 	$("#outletName_show").html(localStorage.outletNameID);
+	
+	//location.reload();
 }
 //=============================================
 //=========================Check user=====================
@@ -1182,12 +1189,12 @@ function syncOutlet() {
 					
 				//	alert (apipath_image+'static/uni_images/display/'+fdisplaySlab_image)
 					//fdisplayStringShow=fdisplayStringShow+'<div id="fddiv_'+slab.toString()+'">'
-					fdisplayStringShow=fdisplayStringShow+'</br></br>'+fdisplaySlab_name+'</br>';
+					fdisplayStringShow=fdisplayStringShow+'</br></br><table width="100%" border="0"> <tr><td style=" font-weight:bold; font-size:28px color:#006A6A; background:#FFECFF">'+fdisplaySlab_name+'</td> </tr></table>';
 					fdisplayStringShow=fdisplayStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/display/'+fdisplaySlab_image+'" alt="FixedDisplay" />';
 					
 					fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
 					
-					fdisplayStringShow=fdisplayStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">Face Up</td><td></td><td width="100px">Visible</td></tr>'
+					fdisplayStringShow=fdisplayStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">Face Up</td><td></td><td width="100px">Order</td></tr>'
 					
 					var fdisplaySingleArray = fdisplaySlabList.split('rdrd');	
 					var fdisplaySingleTotal = fdisplaySingleArray.length;
@@ -1751,6 +1758,7 @@ function fdisplay_ready_data() {
 	var fdisplay_data=""
 	var fdisplay_data_detail="";
 	var fdisplay_data_head="";
+	var image_flag=0;
 	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
 		var fdisplayTotal='fdisplayTotal'+i.toString()
 		
@@ -1758,11 +1766,16 @@ function fdisplay_ready_data() {
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val(); 
 		var fdSLfdisplay_image_name=$("#fdSL_image_name_hidden_"+i.toString()).val(); 
 		
-		var fdSLfdisplay_image_path_before=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(); 
-		var fdSLfdisplay_image_name_before=$("#fdSL_image_name_hidden_"+i.toString()+"_before").val();
+		//alert (fdSLfdisplay_image_name.length);
+		if (fdSLfdisplay_image_name.length<10){
+			image_flag=1
+		}
 		
-		
-		var fdSLfdisplay=$("#fdSLfdisplay_"+i.toString()).val(); 
+			var fdSLfdisplay_image_path_before=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(); 
+			var fdSLfdisplay_image_name_before=$("#fdSL_image_name_hidden_"+i.toString()+"_before").val();
+			
+			
+			var fdSLfdisplay=$("#fdSLfdisplay_"+i.toString()).val(); 
 			for (var d=0; d < fdTotal-1; d++){
 				var ItemQtyfdisplay=$("#ItemQtyfdisplay_"+i.toString()+"_"+d.toString()).val();
 				var Itemfdisplay=$("#Itemfdisplay_"+i.toString()+"_"+d.toString()).val();
@@ -1784,8 +1797,12 @@ function fdisplay_ready_data() {
 					}	
 				
 					fdisplay_data_detail=fdisplay_data_detail+Itemfdisplay+'fdfd'+ItemQtyfdisplay+'fdfd'+ItemFaceupfdisplay+'fdfd'+ItemVisiblefdisplay+'fdfd'+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+'rdrd'
-				//	$("#fdisplay_show").text(fdisplay_data_detail);
-			}
+			
+			//	$("#fdisplay_show").text(fdisplay_data_detail);
+		}
+		//alert (fdSLfdisplay_image_path)
+		//alert (fdSLfdisplay_image_name);
+		
 		fdisplay_data_head=fdisplay_data_head+slabfdisplay+'fdfd'+fdSLfdisplay+'fdfd'+fdSLfdisplay_image_name+'fdfd'+fdSLfdisplay_image_path+'fdfd'+fdSLfdisplay_image_name_before+'fdfd'+fdSLfdisplay_image_path_before+'rdrd'
 
 	}
@@ -1798,7 +1815,13 @@ function fdisplay_ready_data() {
 	
 	//==============
 	//alert (localStorage.qpdsSkip);
-	if (localStorage.qpdsSkip==0){
+	if (image_flag==1){
+		var url = "#fixedDisplay";
+		$.mobile.navigate(url);
+		
+	}
+	
+	else if (localStorage.qpdsSkip==0){
 		var url = "#qpdsPage";
 		$.mobile.navigate(url);
 		
@@ -1822,9 +1845,12 @@ function fdisplay_page_set() {
 	var fdisplay_head=fdisplay_array[0].replace("headstart","");
 	var fdisplay_detail=fdisplay_array[1];
 	
+	//alert (fdisplay_head);
+	var fdisplay_head_array =  fdisplay_head.split('rdrd');
 	
 	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
-		var head_s_array=fdisplay_head.split('fdfd');
+		var head_s_array=fdisplay_head_array[i].split('fdfd');
+		//alert (head_s_array);
 		var slabfdisplay =head_s_array[0];
 		var fdisplayTotal=head_s_array[1];
 		var fdisplayImg=head_s_array[2];
@@ -1834,16 +1860,15 @@ function fdisplay_page_set() {
 		//var fdisplayImg_path_before=head_s_array[5].replace("rdrd","");
 		
 
-		alert (fdisplayImg_path)
-		alert ('fdSL_image_div_'+i.toString())
+		
 	
 		//alert (fdisplayImg_path)
-		var image = document.getElementById('fdSL_image_div_'+i.toString());
-    	image.src = fdisplayImg_path;
+		
 		//alert (fdisplayImg_path_before)
 		
 		
-		
+		//alert (fdisplayImg_path)
+		//alert ('fdSL_image_div_'+i.toString())
 		
 		
 		
@@ -1880,7 +1905,8 @@ function fdisplay_page_set() {
 			
 		//	image in local db
 		
-		
+		var image = document.getElementById('fdSL_image_div_'+i.toString());
+    	image.src = fdisplayImg_path;
 		
 		
 	}
