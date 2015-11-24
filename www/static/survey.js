@@ -2695,20 +2695,20 @@ function upload_qpds(){
 			var image_name_before=$("#qpdsSL_image_name_hidden_"+i.toString()+"_before").val();
 			var qpds_image_path_before=$("#qpdsSL_image_div_hidden_"+i.toString()+"_before").val();
 			
-			if (qpds_image_path.length >10){
+			//if (qpds_image_path.length >10){
 				uploadPhoto(qpds_image_path, image_name);
 				
-				uploadPhoto(qpds_image_path_before, image_name_before);
+				//uploadPhoto(qpds_image_path_before, image_name_before);
 				//if upload is successfull then "file_upload_error" will be 0 , if error 1
-			} else {
-				localStorage.qpdsdataSubmit=1;
-				if (localStorage.qpdsSlabTotal > 1){
-					$("#submit_data").html("Promotion Image Not Available");
-				}
-				else{
-					$("#submit_data").html("");				
-				}
-	
+			//} else {
+//				localStorage.qpdsdataSubmit=1;
+//				if (localStorage.qpdsSlabTotal > 1){
+//					$("#submit_data").html("Promotion Image Not Available");
+//				}
+			//	else{
+//					$("#submit_data").html("");				
+//				}
+			
 				buttonCheck();
 			}
 		}//end for
