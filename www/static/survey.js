@@ -8,11 +8,17 @@
 //var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile2/';
 //var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
+
+//var apipath='http://eapps001.cloudapp.net/unilever/syncmobile3/';
+//var apipath_image = 'http://eapps001.cloudapp.net/unilever/';
+
+
+
 //var apipath='http://127.0.0.1:8000/unilever/syncmobile3/';
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
 
 
-var apipath='http://eapps001.cloudapp.net/unilever/syncmobile3/';
+var apipath='http://e3.businesssolutionapps.com/unilever/syncmobile3/';
 var apipath_image = 'http://eapps001.cloudapp.net/unilever/';
 
 
@@ -668,7 +674,7 @@ function marketPJP() {
 	}
 	
 	if(localStorage.selectedRoute!=undefined){
-		$("#dataerror").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
+		//$("#dataerror").html(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
 	//======================================	
 		//alert(apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute);
 		localStorage.routeException='';
@@ -1271,6 +1277,8 @@ function syncOutlet() {
 
 			//==========Create QPDS Display list
 			
+			
+		//	alert (qpdsList);
 			var qpdsSlabArray = qpdsList.split('</scheme>');
 			var qpdsSlabTotal = qpdsSlabArray.length;
 			
@@ -1859,17 +1867,12 @@ function fdisplay_page_set() {
 		//var fdisplayImg_before=head_s_array[4];
 		//var fdisplayImg_path_before=head_s_array[5].replace("rdrd","");
 		
-
+	//	image in local db
+		
+		var image = document.getElementById('fdSL_image_div_'+i.toString());
+    	image.src = fdisplayImg_path;
 		
 	
-		//alert (fdisplayImg_path)
-		
-		//alert (fdisplayImg_path_before)
-		
-		
-		//alert (fdisplayImg_path)
-		//alert ('fdSL_image_div_'+i.toString())
-		
 		
 		
 	//	$("fdSL_image_div_"+i.toString()+"_before").val(fdisplayImg_path_before);
@@ -1903,10 +1906,7 @@ function fdisplay_page_set() {
 			
 			}
 			
-		//	image in local db
-		
-		var image = document.getElementById('fdSL_image_div_'+i.toString());
-    	image.src = fdisplayImg_path;
+	
 		
 		
 	}
@@ -1926,8 +1926,10 @@ function qpds_ready_data() {
 		var qpdsSL_image_path_before=$("#qpdsSL_image_div_hidden_"+i.toString()+"_before").val(); 
 		var qpdsSL_image_name_before=$("#qpdsSL_image_name_hidden_"+i.toString()+"_before").val(); 
 		
-		//alert ("fdsgfdfg");
-		//alert (qpdsSL_image_name_before);
+		//alert (qpdsSL_image_path);
+		//alert ("#qpdsSL_image_name_hidden_"+i.toString());
+		
+		
 		var qpdsSL=$("#qpdsSL_"+i.toString()).val();
 		
 		var qpdsTotal='qpdsTotal'+i.toString()
@@ -1981,28 +1983,36 @@ function qpds_page_set() {
 	var qpds_detail=qpds_array[1];
 	
 	
+	
+	var qpds_head_array =  qpds_head.split('rdrd');
+	
+	
+	//alert (localStorage.qpdsSlabTotal)
 	for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
-		var head_s_array=qpds_head.split('fdfd');
+		//alert (qpds_head_array[i]);
+		var head_s_array=qpds_head_array[i].split('fdfd');
 		var slabqpds =head_s_array[0];
 		var qpdsTotal=head_s_array[1];
 		
 		var qpdsImg=head_s_array[2];
 		var qpdsImg_path=head_s_array[3];
 		
-		var qpdsImg_before=head_s_array[4];
-		var qpdsImg_path_before=head_s_array[5].replace("rdrd","");
+	//	alert (qpdsImg_path)
+		
+		//var qpdsImg_before=head_s_array[4];
+		//var qpdsImg_path_before=head_s_array[5].replace("rdrd","");
 		
 		//qpdsImg_path='q343253456rdrd'
 		
 		$("#qpdsSL_image_name_hidden_"+i.toString()).val(qpdsImg);
 		$("#qpdsSL_image_div_hidden_"+i.toString()).val(qpdsImg_path);
 		
-		$("#qpdsSL_image_name_hidden_"+i.toString()+"_before").val(qpdsImg_before);
-		$("#qpdsSL_image_div_hidden_"+i.toString()+"_before").val(qpdsImg_path_before);
+		//$("#qpdsSL_image_name_hidden_"+i.toString()+"_before").val(qpdsImg_before);
+		//$("#qpdsSL_image_div_hidden_"+i.toString()+"_before").val(qpdsImg_path_before);
 		
 		
-		//var image = document.getElementById('qpdsSL_image_div'+i.toString());
-		//image.src = qpdsImg_path;
+		var image = document.getElementById('qpdsSL_image_div_'+i.toString());
+		image.src = qpdsImg_path;
 		
 		
 		
