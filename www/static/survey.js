@@ -2772,7 +2772,7 @@ function uploadPhoto(imageURI, imageName) {
  // ft.upload(imageURI, encodeURI("http://e2.businesssolutionapps.com/unilever/syncmobile/fileUploader/"),win,fail,options);
 //ft.upload(imageURI, encodeURI("http://127.0.0.1:8000/welcome/wab_sync/fileUploader/"),win,fail,options);
 
- ft.upload(imageURI, encodeURI("http://eapps002.cloudapp.net/mrepimage/syncmobile/fileUploader/"),win,fail,options);
+ ft.upload(imageURI, encodeURI("http://e4.businesssolutionapps.com/mrepimage/syncmobile/fileUploader/"),win,fail,options);
 }
 
 function win(r) {
