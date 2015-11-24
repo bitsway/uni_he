@@ -2710,7 +2710,7 @@ function upload_qpds(){
 //				}
 			
 				buttonCheck();
-			}
+			//}
 		}//end for
 	}//end if
 	else{
