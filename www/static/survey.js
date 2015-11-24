@@ -19,9 +19,9 @@
 
 
 var apipath='http://e3.businesssolutionapps.com/unilever/syncmobile3/';
-var apipath_image = 'http://eapps001.cloudapp.net/unilever/';
+var apipath_image = 'http://e3.businesssolutionapps.com/unilever/';
 
-
+ 
 var step_flag=0; //1 fd , 2 qpds, 3 gift
 
 var temp_image_div='';
