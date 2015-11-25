@@ -45,7 +45,7 @@ function onSuccess(position) {
 	//alert (localStorage.latitude);
 	$("#lat").val(localStorage.latitude);
 	$("#long").val(localStorage.longitude);
-
+	$("#submit_data").html("Location Confirmed");
 	localStorage.latlongSubmit=1;
 	buttonCheck();
 	
@@ -1978,6 +1978,13 @@ function qpds_ready_data() {
 	localStorage.qpds_data_ready=qpds_data;
 	
 	qpds_page_set();
+	
+	
+	
+	if (localStorage.latlongSubmit==1){
+		$("#submit_data").html("Location Confirmed");
+	}
+	
 	
 	//==============
 	if (qpds_image_flag==1){
