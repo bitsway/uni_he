@@ -1867,6 +1867,12 @@ function fdisplay_page_set() {
 		//var fdisplayImg_before=head_s_array[4];
 		//var fdisplayImg_path_before=head_s_array[5].replace("rdrd","");
 		
+		
+		$("#fdSL_image_div_hidden_"+i.toString()).val(fdisplayImg_path);
+		$("#fdSL_image_name_hidden_"+i.toString()).val(fdisplayImg);
+		
+		alert (fdisplayImg_path);
+		
 	//	image in local db
 		
 		var image = document.getElementById('fdSL_image_div_'+i.toString());
