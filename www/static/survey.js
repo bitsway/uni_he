@@ -107,6 +107,7 @@ function outlet_next_page(){
 			$.mobile.navigate(url);
 			$(url).trigger('create');
 	}
+	getlocationand_askhelp();
 }
 
 //=================after select an outlet
@@ -1303,7 +1304,7 @@ function syncOutlet() {
 				
 				qpdsStringShow=qpdsStringShow+'<div id="qpdsdiv_'+slab.toString()+'">'
 				
-				qpdsStringShow=qpdsStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/scheme/'+qpdsSlab_image+'" alt="QPDS" />';
+				qpdsStringShow=qpdsStringShow+'<img height="100px" width="100%" width="100%" src="'+apipath_image+'static/uni_images/scheme/'+qpdsSlab_image+'" alt="QPDS" />';
 				qpdsStringShow=qpdsStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
 				qpdsStringShow=qpdsStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">Face Up</td><td></td><td>Visible</td></tr>'
 				
@@ -2578,7 +2579,8 @@ function get_pic_qpds_before(id) {
 	
 	var qpds_image_name_before=tempTime.toString()+"_before"+localStorage.selectedOutlet+".jpg";
 	$("#"+hidden_name+"_before").val(qpds_image_name_before);
-	navigator.camera.getPicture(onSuccessQpds_before, onFailQpds_before, {quality: 5,
+	navigator.camera.getPicture(onSuccessQpds_before, onFailQpds_before, { quality: 70,
+		targetWidth: 450,
 		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true });
 }
 
@@ -2604,8 +2606,8 @@ function get_pic_qpds(id) {
 	var tempTime = $.now();
 	qpds_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#"+hidden_name).val(qpds_image_name);
-	navigator.camera.getPicture(onSuccessQpds, onFailQpds, { quality: 70,
-		targetWidth: 300,
+	navigator.camera.getPicture(onSuccessQpds, onFailQpds, {  quality: 70,
+		targetWidth: 450,
 		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true});
 }
 
