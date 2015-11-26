@@ -35,7 +35,8 @@ function getlocationand_askhelp() { //location
 	$("#long").val(0);
 	var options = { enableHighAccuracy: false};
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
-	
+	$("#location_button").hide();
+	$("#submit_data").html("Please Wait.");
 }
 	 
 // onSuccess Geolocation
@@ -107,7 +108,7 @@ function outlet_next_page(){
 			$.mobile.navigate(url);
 			$(url).trigger('create');
 	}
-	getlocationand_askhelp();
+	//getlocationand_askhelp();
 }
 
 //=================after select an outlet
