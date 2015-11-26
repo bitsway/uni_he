@@ -36,7 +36,7 @@ function getlocationand_askhelp() { //location
 	var options = { enableHighAccuracy: false};
 	navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 	$("#location_button").hide();
-	$("#submit_data").html("Please Wait.");
+	$("#submit_data").html("Confirming Location. Please Wait...");
 }
 	 
 // onSuccess Geolocation
