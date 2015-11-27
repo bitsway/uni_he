@@ -33,7 +33,7 @@ var temp_image_div='';
 function getlocationand_askhelp() { //location
     $("#lat").val(0);
 	$("#long").val(0);
-	var options = { enableHighAccuracy: false};
+	var options = { enableHighAccuracy: true};
 	navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 	$("#location_button").hide();
 	$("#submit_data").html("Confirming Location. Please Wait...");
