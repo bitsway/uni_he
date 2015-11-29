@@ -55,8 +55,9 @@
 		</style>
         
         
-   <script>     
-    $(document).ready(function(){
+   <script>
+<!--
+$(document).ready(function(){
 				buttonCheck();
 				$("#login_image").hide();
 				$("#routeS_image").hide();
@@ -83,6 +84,9 @@
 				$("#mhskus").html(localStorage.mhskusStringShow);
 				$("#npd").html(localStorage.npdStringShow);
 				$("#fdisplay").html(localStorage.fdisplayStringShow);
+				
+				$("#fdisplayStringShowBefore").html(localStorage.fdisplayStringShowBefore);
+				
 				$("#qpds").html(localStorage.qpdsStringShow);
 				$("#gift").html(localStorage.giftStringShow);
 				
@@ -109,7 +113,14 @@
 				 $("#outletButton").show();
 				 
 				}
-				
+				if (localStorage.cancel_page==0){
+					$("#next_option").hide();
+					$("#cancel_option").show()
+				}
+				if (localStorage.cancel_page==1){
+					$("#next_option").show();
+					$("#cancel_option").hide()
+				}
 				
 				
 				
@@ -188,6 +199,7 @@
 				fdisplay_page_set();
 				qpds_page_set();
 				gift_page_set();
+				place_page_set();
 				
 				
 				
@@ -202,9 +214,14 @@
 			  
 			  //================
   				
-		});    
-		
-	</script>	
+		});
+
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+//-->
+</script>	
   
     </head>
     
@@ -296,7 +313,7 @@
             </div>
 			
 		
-			<div align="right"  style="color:#A4C5D9; width:100%; ">Version:00010;20151127.1</div>
+			<div align="right"  style="color:#A4C5D9; width:100%; ">Version:00010;20151125.2</div>
         </div><!--/login page-->
    
      <!--  ====================== routePage ======================  -->
@@ -378,8 +395,8 @@
                         <img height="40px" width="40px" src="loading.gif">
                         </div>
                         <div id="outletButton" style="display:none" >
-						<a data-role="button" onClick="cancel_outlet()" >Cancel</a>
-                        <a data-role="button" onClick="outlet_next_page();" >Next</a>
+						<a data-role="button" onClick="cancel_outlet_next()" >Cancel</a>
+                        <a data-role="button" onClick="cancel_outlet_next_next();" >Next</a>
 						</div>
 						
                 </div>	
@@ -619,6 +636,10 @@
 	</div>
         
     <!--=====================QPDS  page end=========================-->
+	
+	
+	   
+  
 
      <!-- ============================Gift Acknowledgement page Start============================-->
     
@@ -633,12 +654,15 @@
             
             
             
-            <div id="gift"></div>
+            <div id="gift">
+			  	
+			
+			</div>
       
 			
 
 			</br></br>
-			<a  data-role="button" onClick="gift_ready_data();gift_page_set();reloadSubmitPage();" >Next</a>
+			<a  data-role="button" onClick="gift_ready_data();" >Next</a>
 			<br/><br/></br></br></br></br></br></br><br/><br/><br/>
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
                
@@ -675,14 +699,14 @@
 			</div>
             
 			<div id="sub_button_div">
-        	<a  data-role="button" onClick="submit_data();" >Sync Data</a>
+        	<a  data-role="button" onClick="submit_data();" >Submit Data</a>
 			</div> 
 			
 			<div id="sub_fd_button">
-        	<a id="fd_button"  data-role="button" onClick="upload_fd();" >Sync FIxed Display</a>			
+        	<a id="fd_button"  data-role="button" onClick="upload_fd();" >Submit FIxed Display</a>			
 			</div>  
 			<div id="sub_qpds_button">
-        	<a  id="qpds_button" data-role="button" onClick="upload_qpds();" >Sync Promotion</a>			
+        	<a  id="qpds_button" data-role="button" onClick="upload_qpds();" >Submit Promotion</a>			
 			</div>
 			<div id="sub_gift_button">
         	<a  id="gift_button" data-role="button" onClick="upload_gift_confirm();" >Complete Submission</a>			
@@ -807,8 +831,134 @@
 	</div>
         
     <!--=====================notice page end=========================-->
-		
- 
+ <!-- ============================cancel  page Start============================-->
+    
+    <div data-theme="c" data-role="page" id="cancelPage">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Cancel</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+            
+          
+           
+		   
+		  <table width="100%" border="0"><tr>
+			  <tr>
+				<td><a data-role="button" href="#" onClick="get_pic_shop()" >Take Picture </a></td></tr>
+			</table>
+			<img id="place_image_div" height="100px" width="100px"  src="" alt="Place" />
+				<input type="text" name="shop_image_div_hidden" id="shop_image_div_hidden" value="" >
+				<input type="text" name="shop_image_name_hidden" id="shop_image_name_hidden" value="" >
+			  
+
+				
+							
+			
+				</br></br>
+				<div id="cancel_option">
+				<div id="c_reason"></div>
+				Cancel Reason:
+				  <select name="cancel_cause" id="cancel_cause" >
+                    <option value=""></option>
+					<option value="Will try later">Will try later</option>
+					<option value="2">Cause 1</option>
+					<option value="3">Cause 2</option>
+                  </select>
+              	</br>
+                <a data-role="button" onClick="cancel_outlet_Back();getlocationand_askhelp();" >End</a>				</div>
+				
+				<div id="next_option">
+				<a data-role="button" onClick="outlet_next_page();getlocationand_askhelp();" >Next</a>
+				</div>
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
+                <br/><br/>
+
+                <br/><br/><br/>
+								
+	  </div>
+
+	</div>
+        
+    <!--=====================cancel  page end=========================-->	
+	 <!-- ============================fd before pic  page Start============================-->
+    
+    <div data-theme="c" data-role="page" id="fdbeforePage">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Fixed Display Before Image</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+            
+          
+           </br>
+		   
+		 	<div id="fdisplayStringShowBefore"></div>
+			
+				</br></br>
+
+				<!--<a data-role="button" href="#giftAckPage" onClick="qpds_ready_data();" >Next</a>-->
+                <a data-role="button" onClick="fdisplay_before_page_next()" >Next</a>
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
+                <br/><br/>
+
+                <br/><br/><br/>
+								
+	  </div>
+
+	</div>
+        
+    <!--=====================fd before pic  page end=========================-->		
+   <!-- ============================Place  page Start============================-->
+    
+    <div data-theme="c" data-role="page" id="placePage">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>Place</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+            
+          
+           
+		   
+		  <table width="100%" border="0"><tr>
+			  <tr>
+				<td><a data-role="button" href="#" onClick="get_pic_place()" >Take Picture </a></td></tr>
+			</table>
+			<img id="place_image_div" height="100px" width="100px"  src="" alt="Place" />
+				<input type="text" name="place_image_div_hidden" id="place_image_div_hidden" value="" >
+				<input type="text" name="place_image_name_hidden" id="place_image_name_hidden" value="" >
+			  
+
+				
+							
+			
+				</br></br>
+
+				<!--<a data-role="button" href="#giftAckPage" onClick="qpds_ready_data();" >Next</a>-->
+                <a data-role="button" onClick="place_ready_data();" >Next</a>
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
+                <br/><br/>
+
+                <br/><br/><br/>
+								
+	  </div>
+
+	</div>
+        
+    <!--=====================Place  page end=========================-->
  
  
  
