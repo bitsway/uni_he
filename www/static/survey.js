@@ -3040,7 +3040,7 @@ function upload_place(){
 	//QPDS
 	//step_flag=2; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
-	$( "#sub_qpds_button").hide();
+	//$( "#sub_qpds_button").hide();
 
 
 	var image_name_place=$("#place_image_name_hidden").val();
@@ -3055,7 +3055,7 @@ function upload_shop(){
 	//QPDS
 	//step_flag=2; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
-	$( "#sub_qpds_button").hide();
+	//$( "#sub_qpds_button").hide();
 
 
 	var image_name_shop=$("#shop_image_name_hidden").val();
@@ -3113,7 +3113,7 @@ function win(r) {
 		localStorage.qpdsdataSubmit=1;
 		upload_gift_confirm();
 		upload_place();
-		upload_pshop();
+		upload_shop();
 		buttonCheck();
 	}
 	
