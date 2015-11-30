@@ -189,6 +189,13 @@ function cancel_outlet_next(){
 	$("#c_reason").html('');
 	
 	localStorage.cancel_page=0;
+	
+	
+	$("#place_outlet_nameID").empty();
+	$("#place_outlet_nameID").append(localStorage.outletIDnameShow).trigger('create');
+	$("#cpageOutletNameID").empty();
+	$("#cpageOutletNameID").append(localStorage.outletIDnameShow).trigger('create');
+	
 	var url = "#cancelPage";
 	$.mobile.navigate(url);
 	
@@ -197,8 +204,15 @@ function cancel_outlet_next_next(){
 	$("#next_option").show();
 	$("#cancel_option").hide();
 	localStorage.cancel_page=1;
+	
+	$("#place_outlet_nameID").empty();
+	$("#place_outlet_nameID").append(localStorage.outletIDnameShow).trigger('create');
+	$("#cpageOutletNameID").empty();
+	$("#cpageOutletNameID").append(localStorage.outletIDnameShow).trigger('create');
+	
 	var url = "#cancelPage";
 	$.mobile.navigate(url);
+	location.reload();
 	
 }
 
@@ -1300,6 +1314,11 @@ function syncOutlet() {
 			var fdisplayStringShowBefore=''
 			fdisplayStringShow=fdisplayStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.routeIDName+'<br>'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
 			
+			
+			fdisplayStringShowBefore=fdisplayStringShowBefore+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.routeIDName+'<br>'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
+			
+			
+			
 			localStorage.fdisplaySlabTotal=fdisplaySlabTotal
 			
 			if (parseInt(localStorage.fdisplaySlabTotal)==1){
@@ -1580,6 +1599,11 @@ function syncOutlet() {
 			$("#gift").html(localStorage.giftStringShow);
 			
 			//==========Create Marchandizing list
+			
+			var outletIDnameShow=''
+			outletIDnameShow=outletIDnameShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.routeIDName+'<br>'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
+			localStorage.outletIDnameShow=outletIDnameShow
+			//===============================
 			
 			//	Marchendising Distribution Start
 			var marchDistrbStringShow=""
@@ -2812,13 +2836,14 @@ function onFailQpds(message) {
 
 
 //===========gift======
-//QPDS
+//Gift
 function get_pic_gift() {
 	$('#gift').find('input, textarea, button, select').attr('disabled','disabled');
 	var tempTime = $.now();
 	gift_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+".jpg";
 	$("#gift_image_name_hidden").val(gift_image_name);
-	navigator.camera.getPicture(onSuccessGift, onFailGift, { quality: 5,
+	navigator.camera.getPicture(onSuccessGift, onFailGift, { quality: 70,
+		targetWidth: 450,
 		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true });
 }
 
@@ -2834,68 +2859,49 @@ function onFailGift(message) {
     alert('Failed because: ' + message);
 }
 
-
-
-
-//=================Place Image============
-//====================================Camera==========
-//fixed Shop Image
-function get_pic_shop(id) {
-	
-
-	var div_id="shop_image_div_hidden";
-	temp_image_div=div_id;
-	var hidden_name="shop_image_name_hidden";
+//===========Place======
+//Place
+function get_pic_place() {
 	var tempTime = $.now();
-	var place_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+"_shop.jpg";
-	$("#"+hidden_name).val(place_image_name);
+	place_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+"_place.jpg";
+	$("#place_image_name_hidden").val(place_image_name);
 	navigator.camera.getPicture(onSuccessPlace, onFailPlace, { quality: 70,
 		targetWidth: 450,
 		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true });
-	
 }
-
-function onSuccessShop(imageURI) {
-	var image = document.getElementById(temp_image_div);
+function onSuccessPlace(imageURI) {
+	var image = document.getElementById('place_image_div');
     image.src = imageURI;
-    var hidden_path=temp_image_div.replace("shop_image_div","shop_image_div_hidden");
+    var hidden_path="place_image_div_hidden";
 	$("#"+hidden_path).val(imageURI);
-	
+}
+function onFailPlace(message) {
+	imagePathA="";
+    alert('Failed because: ' + message);
 }
 
+//===========Shop======
+//Shop
+function get_pic_shop() {
+	var tempTime = $.now();
+	shop_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+"_shop.jpg";
+	$("#shop_image_name_hidden").val(shop_image_name);
+	navigator.camera.getPicture(onSuccessShop, onFailShop, { quality: 70,
+		targetWidth: 450,
+		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true });
+}
+function onSuccessShop(imageURI) {
+	var image = document.getElementById('shop_image_div');
+    image.src = imageURI;
+    var hidden_path="shop_image_div_hidden";
+	$("#"+hidden_path).val(imageURI);
+}
 function onFailShop(message) {
 	imagePathA="";
     alert('Failed because: ' + message);
 }
 
-//fixed place Image
-function get_pic_place(id) {
-	
 
-	var div_id="place_image_div_hidden";
-	temp_image_div=div_id;
-	var hidden_name="place_image_name_hidden";
-	var tempTime = $.now();
-	var place_image_name=tempTime.toString()+"_"+localStorage.selectedOutlet+"_place.jpg";
-	$("#"+hidden_name).val(place_image_name);
-	navigator.camera.getPicture(onSuccessPlace, onFailPlace, { quality: 70,
-		targetWidth: 450,
-		destinationType: Camera.DestinationType.FILE_URI , correctOrientation: true });
-	
-}
-
-function onSuccessPlace(imageURI) {
-	var image = document.getElementById(temp_image_div);
-    image.src = imageURI;
-    var hidden_path=temp_image_div.replace("place_image_div","place_image_div_hidden");
-	$("#"+hidden_path).val(imageURI);
-	
-}
-
-function onFailPlace(message) {
-	imagePathA="";
-    alert('Failed because: ' + message);
-}
 
 //==================upload image===============
 

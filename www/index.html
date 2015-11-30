@@ -88,8 +88,10 @@ $(document).ready(function(){
 				$("#fdisplayStringShowBefore").html(localStorage.fdisplayStringShowBefore);
 				
 				$("#qpds").html(localStorage.qpdsStringShow);
-				$("#gift").html(localStorage.giftStringShow);
-				
+				//$("#gift").html(localStorage.giftStringShow);
+				$("#gift").empty();
+				$("#gift").append(localStorage.giftStringShow).trigger('create');
+				//alert (localStorage.giftStringShow);
 				$("#marchadizing").html(localStorage.marchadizingStringShow);
 				
 				$("#startTime").val(localStorage.startTime);
@@ -203,7 +205,18 @@ $(document).ready(function(){
 				
 				
 				
+				//alert (localStorage.outletIDnameShow)
 				
+				$("#place_outlet_nameID").html(localStorage.outletIDnameShow);
+				$("#cpageOutletNameID").html(localStorage.outletIDnameShow);
+				
+				
+				
+				
+				
+				//alert (localStorage.outletIDnameShow);
+				
+				//alert (localStorage.outletIDnameShow);
 			  //====check div disable====
 			  //fdisplay
 		//	  for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
@@ -313,7 +326,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             </div>
 			
 		
-			<div align="right"  style="color:#A4C5D9; width:100%; ">Version:00010;20151130.1</div>
+			<div align="right"  style="color:#A4C5D9; width:100%; ">Version:00010;20151125.2</div>
         </div><!--/login page-->
    
      <!--  ====================== routePage ======================  -->
@@ -622,7 +635,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			
 				</br></br>
 
-				<!--<a data-role="button" href="#giftAckPage" onClick="qpds_ready_data();" >Next</a>-->
+		
                 <a data-role="button" onClick="qpds_ready_data();" >Next</a>
 				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
 				
@@ -653,7 +666,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			<div  data-role="content" style="height:90%" >
             
             
-            
+           
             <div id="gift">
 			  	
 			
@@ -844,7 +857,11 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             
           
            
-		   
+		 
+		  
+		  <div id="cpageOutletNameID"> </div>
+		  
+		  
 		  <table width="100%" border="0"><tr>
 			  <tr>
 				<td><a data-role="button" href="#" onClick="get_pic_shop()" >Take Picture </a></td></tr>
@@ -903,7 +920,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			
 				</br></br>
 
-				<!--<a data-role="button" href="#giftAckPage" onClick="qpds_ready_data();" >Next</a>-->
+			
                 <a data-role="button" onClick="fdisplay_before_page_next()" >Next</a>
 				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
 				
@@ -929,11 +946,11 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			<div  data-role="content" style="height:90%" >
             
           
-           
+           <div id="place_outlet_nameID"></div>
 		   
 		  <table width="100%" border="0"><tr>
 			  <tr>
-				<td><a data-role="button" href="#" onClick="get_pic_place()" >Take Picture </a></td></tr>
+				<td><a data-role="button"  onClick="get_pic_place()" >Take Picture </a></td></tr>
 			</table>
 			<img id="place_image_div" height="100px" width="100px"  src="" alt="Place" />
 				<input type="text" name="place_image_div_hidden" id="place_image_div_hidden" value="" >
@@ -945,7 +962,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			
 				</br></br>
 
-				<!--<a data-role="button" href="#giftAckPage" onClick="qpds_ready_data();" >Next</a>-->
+			
                 <a data-role="button" onClick="place_ready_data();" >Next</a>
 				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
 				
