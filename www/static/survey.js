@@ -3089,7 +3089,7 @@ function upload_npd(){
 	}
 	//alert (localStorage.fdisplay_data_ready)
 	//if (localStorage.fdisplay_data_ready.length > 10){
-		for (var i=0; i < localStorage.npd_data_ready-1; i++){
+		for (var i=0; i < localStorage.npdSingleTotal-1; i++){
 			var image_name=$("#npd_image_name_hidden_"+i.toString()).val();
 			var npd_image_path=$("#npd_image_div_hidden_"+i.toString()).val();
 
