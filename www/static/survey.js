@@ -2785,7 +2785,7 @@ function onSuccessNpd(imageURI) {
 	var image = document.getElementById(temp_image_div);
     image.src = imageURI;
     var hidden_path=temp_image_div.replace("npd_image_div","npd_image_div_hidden");
-	$("#"+hidden_path_before).val(imageURI);
+	$("#"+hidden_path).val(imageURI);
 }
 
 function onFailNpd(message) {
