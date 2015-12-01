@@ -3087,12 +3087,12 @@ function upload_npd(){
 	if (typeof localStorage.npd_data_ready === "undefined") {
 		localStorage.npd_data_ready = "_";
 	}
-	//alert (localStorage.fdisplay_data_ready)
+	alert ( localStorage.npdSingleTotal)
 	//if (localStorage.fdisplay_data_ready.length > 10){
 		for (var i=0; i < localStorage.npdSingleTotal-1; i++){
 			var image_name=$("#npd_image_name_hidden_"+i.toString()).val();
 			var npd_image_path=$("#npd_image_div_hidden_"+i.toString()).val();
-
+			alert (npd_image_path)
 			if (image_name.length >10){
 				uploadPhoto(npd_image_path, image_name);
 			} else {
