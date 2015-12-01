@@ -1292,6 +1292,8 @@ function syncOutlet() {
 			
 			for (var i=0; i < npdSingleTotal-1; i++){
 				npdArray = npdSingleArray[i].split('fdfd');
+				localStorage.npdArrayTotal=npdArray.length;
+				
 				itemID=npdArray[0];
 				itemName=npdArray[1];
 				minQty_npd=npdArray[2];
@@ -3087,9 +3089,9 @@ function upload_npd(){
 	if (typeof localStorage.npd_data_ready === "undefined") {
 		localStorage.npd_data_ready = "_";
 	}
-	alert ( localStorage.npdSingleTotal)
+	alert (localStorage.npdArrayTotal)
 	//if (localStorage.fdisplay_data_ready.length > 10){
-		for (var i=0; i < localStorage.npdSingleTotal-1; i++){
+		for (var i=0; i <  localStorage.npdArrayTotal-1; i++){
 			var image_name=$("#npd_image_name_hidden_"+i.toString()).val();
 			var npd_image_path=$("#npd_image_div_hidden_"+i.toString()).val();
 			alert (npd_image_path)
