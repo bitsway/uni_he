@@ -2301,7 +2301,7 @@ function submit_data() {
 								$("#submit_data").html('');
 								localStorage.step_flag=0;
 								upload_fd();
-								cancel_outlet();
+								//cancel_outlet();
 								
 								//location.reload();
 								
@@ -2674,7 +2674,7 @@ function upload_gift_confirm(){
 	
 	var image_name=$("#gift_image_name_hidden").val();
 	var gift_image_path=$("#gift_image_div_hidden").val();
-	alert (image_name.length);
+	//alert (image_name.length);
 	if (image_name.length >10){
 		uploadPhoto(gift_image_path, image_name);
 
@@ -2689,7 +2689,7 @@ function upload_gift_confirm(){
 //		}		
 		upload_shop()
 		//alert ('test')
-		buttonCheck();
+		//buttonCheck();
 	}
 	
 	
@@ -2714,7 +2714,7 @@ function upload_npd(){
 					$("#submit_data").html("Npd Image Not Available");
 					//$("#submit_data").html("");				
 
-				buttonCheck();
+			//	buttonCheck();
 			}
 					
 		}//end for
@@ -2768,18 +2768,18 @@ function upload_shop(){
 
 	}
 	upload_place()
-	buttonCheck();
+	//buttonCheck();
 
 }
 function check_step() {
 	if (localStorage.step_flag==0){
 		upload_fd();
 		
-		alert ('1')
+		//alert ('1')
 	}
 	if (localStorage.step_flag==1){
 		upload_qpds();
-		alert ('2')
+	//	alert ('2')
 	}
 	if (localStorage.step_flag==2){
 		upload_npd();
@@ -2787,19 +2787,19 @@ function check_step() {
 	}
 	if (localStorage.step_flag==3){
 		upload_gift_confirm();
-		alert ('4')
+		//alert ('4')
 	}
 	if (localStorage.step_flag==4){
 		upload_shop();
-		alert ('5')
+		//alert ('5')
 	}
 	if (localStorage.step_flag==5){
 		upload_place();
-		alert ('6')
+		//alert ('6')
 	}
 	if (localStorage.step_flag==6){
 		cancel_outlet();
-		alert ('6')
+		//alert ('6')
 	}
 }
 
@@ -2842,7 +2842,7 @@ function win(r) {
 		$("#submit_data").html("Fixed Display Synced Successfully");
 		localStorage.fddataSubmit=1;
 		upload_qpds();
-		buttonCheck();
+		//buttonCheck();
 		
 		
 	}
@@ -2851,7 +2851,7 @@ function win(r) {
 		$("#submit_data").html("Promotion Synced Successfully");
 		localStorage.qpdsdataSubmit=1;
 		upload_npd()
-		buttonCheck();
+		//buttonCheck();
 		
 	}
 	
@@ -2859,13 +2859,13 @@ function win(r) {
 		$("#submit_data").html("NPD Synced Successfully");
 		localStorage.npddataSubmit=1;
 		upload_gift_confirm();
-		buttonCheck();
+		//buttonCheck();
 	}
 	if (localStorage.step_flag==4){  // Gift
 		$("#submit_data").html("Gift Synced Successfully");
 		localStorage.giftdataSubmit=1;
 		upload_shop();
-		buttonCheck();
+	//	buttonCheck();
 	}
 	if (localStorage.step_flag==5){  // Gift
 		$("#submit_data").html("Place Synced Successfully");
@@ -2882,7 +2882,7 @@ function win(r) {
 	}
 
 	
-	step_flag=0; //Reset step flag
+	localStorage.step_flag=0; //Reset step flag
 }
 
 function fail(error) {
