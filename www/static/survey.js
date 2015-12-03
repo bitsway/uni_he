@@ -1378,8 +1378,8 @@ function syncOutlet() {
 				npdStringShow=npdStringShow+'<table width="100%" border="0"><tr>'+
 						'<td> <a data-role="button" href="#" onClick="get_pic_npd('+i_text+')" >Take Picture </a></td></tr></table>'+ 
 						'<img id="'+npd_image_div+'" height="100px" width="100px"  src="" alt="NPDPic" />'+
-						'<input type="text" name="'+ npd_image_div_hidden +'" id="'+ npd_image_div_hidden +'" value="" >'+
-						'<input type="text" name="'+ npd_image_name_hidden +'" id="'+ npd_image_name_hidden +'" value="" >'
+						'<input type="hidden" name="'+ npd_image_div_hidden +'" id="'+ npd_image_div_hidden +'" value="" >'+
+						'<input type="hidden" name="'+ npd_image_name_hidden +'" id="'+ npd_image_name_hidden +'" value="" >'
 						
 
 				
@@ -1491,8 +1491,8 @@ function syncOutlet() {
 							'<img id="'+ fdSL_image_div +'_before" height="100px" width="100px"  src="" alt="FixedDisplay" />'+ 
 							
 							
-							'<input type="text" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
-							'<input type="text" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
+							'<input type="hidden" name="'+ fdSL_image_div_hidden +'_before" id="'+ fdSL_image_div_hidden +'_before" value="" >'+
+							'<input type="hidden" name="'+ fdSL_image_name_hidden +'_before" id="'+ fdSL_image_name_hidden +'_before" value="" >'
 							
 							
 					
@@ -1502,8 +1502,8 @@ function syncOutlet() {
 							'<input type="hidden" name="'+ fdSLfdisplay +'" id="'+ fdSLfdisplay +'" value="'+fdSL_fdisplay+'" min="0">  '+
 							'<td> <a data-role="button" href="#" onClick="get_pic_fdisplay('+slab+')" >Take Picture </a></td></tr></table>'+ 
 							'<img id="'+fdSL_image_div+'" height="100px" width="100px"  src="" alt="FixedDisplay" />'+
-							'<input type="text" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
-							'<input type="text" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
+							'<input type="hidden" name="'+ fdSL_image_div_hidden +'" id="'+ fdSL_image_div_hidden +'" value="" >'+
+							'<input type="hidden" name="'+ fdSL_image_name_hidden +'" id="'+ fdSL_image_name_hidden +'" value="" >'+
 							'<input type="hidden" name="'+ fdSL_total_hidden +'" id="'+ fdSL_total_hidden +'" value="'+fdisplaySingleTotal+'" >'
 										
 			}
@@ -1597,8 +1597,8 @@ function syncOutlet() {
 				
 				 qpdsStringShow=qpdsStringShow+
 						'<img id="'+qpdsSL_image_div+'" height="100px" width="100px"  src="" alt="Promotion" />'+
-						'<input type="text" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
-						'<input type="text" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
+						'<input type="hidden" name="'+ qpdsSL_image_div_hidden +'" id="'+ qpdsSL_image_div_hidden +'" value="" >'+
+						'<input type="hidden" name="'+ qpdsSL_image_name_hidden +'" id="'+ qpdsSL_image_name_hidden +'" value="" >'+
 						'<input type="hidden" name="'+ qpdsSL_total_hidden +'" id="'+ qpdsSL_total_hidden +'" value="'+qpdsSingleTotal+'" >'
 		
 		 
@@ -1636,8 +1636,8 @@ function syncOutlet() {
 							   '<a data-role="button" href="#" onClick="get_pic_gift();" >Take Picture </a></td> </tr></table>'
 			  giftStringShow=giftStringShow+'<img id="gift_image_div"  height="100px" width="100px"  src="" alt="Gift" />'
 			  giftStringShow=giftStringShow+
-							'<input type="text" name="gift_image_div_hidden" id="gift_image_div_hidden" value="" >'+
-							'<input type="text" name="gift_image_name_hidden" id="gift_image_name_hidden" value="" >'
+							'<input type="hidden" name="gift_image_div_hidden" id="gift_image_div_hidden" value="" >'+
+							'<input type="hidden" name="gift_image_name_hidden" id="gift_image_name_hidden" value="" >'
 			
 			
 //
@@ -2590,7 +2590,7 @@ function upload_fd(){
 	if (typeof localStorage.fdisplay_data_ready === "undefined") {
 		localStorage.fdisplay_data_ready = "_";
 	}
-	localStorage.fddataSubmit=1;
+	
 		for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
 			var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
 			var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
@@ -2606,10 +2606,11 @@ function upload_fd(){
 			if (image_name.length >10){
 				uploadPhoto(fdSLfdisplay_image_path, image_name);
 				uploadPhoto(fdSLfdisplay_image_path_before, image_name_before);
+				localStorage.fddataSubmit=1;
 				//if upload is successfull then "file_upload_error" will be 0 , if error 1
 			} else {
 				localStorage.fddataSubmit=1;
-					$("#submit_data").html("Fixed Display Image Not Available");
+				$("#submit_data").html("Fixed Display Image Not Available");
 		}
 					
 		}//end for
@@ -2635,7 +2636,7 @@ function upload_qpds(){
 			
 			var image_name_before=$("#qpdsSL_image_name_hidden_"+i.toString()+"_before").val();
 			var qpds_image_path_before=$("#qpdsSL_image_div_hidden_"+i.toString()+"_before").val();
-			
+			localStorage.qpdsdataSubmit=1;
 			if (qpds_image_path.length >10){
 				uploadPhoto(qpds_image_path, image_name);
 				$("#submit_data").html("");		
@@ -2680,11 +2681,12 @@ function upload_gift_confirm(){
 //==============upload npd
 function upload_npd(){
 	localStorage.step_flag=4; 
+	localStorage.npddataSubmit=1;
 	if (typeof localStorage.npd_data_ready === "undefined") {
 		localStorage.npd_data_ready = "_";
 	}
 	//alert (localStorage.npdArrayTotal)
-	if (localStorage.npdTota > 0){
+	if (localStorage.npdTotal  > 0){
 		for (var i=0; i < localStorage.npdTotal-1; i++){
 			var image_name=$("#npd_image_name_hidden_"+i.toString()).val();
 			var npd_image_path=$("#npd_image_div_hidden_"+i.toString()).val();
@@ -2710,6 +2712,7 @@ function upload_npd(){
 
 function upload_place(){
 	localStorage.step_flag=5; 
+	localStorage.placedataSubmit=1;
 	//step_flag=2; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
 	//$( "#sub_qpds_button").hide();
@@ -2736,7 +2739,7 @@ function upload_shop(){
 	localStorage.step_flag=6;
 	file_upload_error = 0;
 	//$( "#sub_qpds_button").hide();
-
+	localStorage.shopdataSubmit=1;
 
 	var image_name_shop=$("#shop_image_name_hidden").val();
 	var shop_image_path=$("#shop_image_div_hidden").val();
@@ -2744,6 +2747,7 @@ function upload_shop(){
 	if (image_name_shop.length >10){
 				uploadPhoto(shop_image_path, image_name_shop);
 				$("#submit_data").html("");
+				
 	} else {
 
 			$("#submit_data").html("Shop Image Not Available");
