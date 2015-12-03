@@ -58,6 +58,7 @@
    <script>
 <!--
 $(document).ready(function(){
+
 				buttonCheck();
 				$("#login_image").hide();
 				$("#routeS_image").hide();
@@ -140,7 +141,7 @@ $(document).ready(function(){
 				//=======check sync date
 				var sync_date_get=get_date();
 				var sync_date=sync_date_get.substring(0,10);
-				
+				//alert ('shop_page_set');
 				//localStorage.sync_date='2014-07-11';
 				if ((localStorage.synced=='YES') & (localStorage.sync_date!=sync_date)){
 					//alert (localStorage.sync_date);
@@ -195,11 +196,15 @@ $(document).ready(function(){
 //				}
 				//=====================
 				//alert (localStorage.mhskus_data_ready);
-				mhskus_page_set();
-				mar_page_set();
-				npd_page_set();
+				
+				
+				//alert ('aaaaaa')
+				shop_page_set();
 				fdisplay_page_set();
+				
 				qpds_page_set();
+				npd_page_set();
+				mhskus_page_set();
 				gift_page_set();
 				place_page_set();
 				
@@ -210,8 +215,8 @@ $(document).ready(function(){
 				$("#place_outlet_nameID").html(localStorage.outletIDnameShow);
 				$("#cpageOutletNameID").html(localStorage.outletIDnameShow);
 				
-				
-				
+				//alert ("ssssssss");
+				buttonCheck();
 				
 				
 				//alert (localStorage.outletIDnameShow);
@@ -326,7 +331,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             </div>
 			
 		
-			<div align="right"  style="color:#A4C5D9; width:100%; ">Version:00010;20151125.2</div>
+			<div align="right"  style="color:#A4C5D9; width:100%; ">Version:00010;20151203.1</div>
         </div><!--/login page-->
    
      <!--  ====================== routePage ======================  -->
@@ -408,7 +413,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                         <img height="40px" width="40px" src="loading.gif">
                         </div>
                         <div id="outletButton" style="display:none" >
-						<a data-role="button" onClick="cancel_outlet_next()" >Cancel</a>
+						<a data-role="button" onClick="getlocationand_askhelp();cancel_outlet_next()" >Cancel</a>
                         <a data-role="button" onClick="cancel_outlet_next_next();" >Next</a>
 						</div>
 						
@@ -527,30 +532,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         
     <!--=====================MH SKUS page end=========================-->
     
-    <!--==========================Marchandizing page===================-->
-    
-    <div data-theme="c" data-role="page" id="marchandizingPage">
-   		  <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style=" height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
-                <a style="height:18px" href="#mhskusPage" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
-                <!--<a data-role="button" href="#mhskusPage" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>-->
-                <h3>Merchandising</h3>
-            </div>
-		    
-			<div  data-role="content" style="height:90%" >   
-             <span style=" font-size:5"> <br/><br/></span>
-            <div id="marchadizing"></div>
-			<div id="marchadizing_add_show"></div>
-          	
-			
-            <br/><br/>
-            <!--<a data-role="button" href="#npdPage" onClick="mar_ready_data()" >Next</a>-->
-            <a data-role="button" onClick="mar_ready_data()" >Next</a>
-            <br/><br/></br></br></br></br></br></br><br/><br/><br/>
-          <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
-            <br/><br/>
-						
-	  </div>
+
 
 	</div>
         
@@ -589,7 +571,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <div data-theme="c" data-role="page" id="fixedDisplay">
 		   <div data-theme="c" data-role="header" data-position="fixed" >
 			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
-                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right" ><img src="back1.png"></a>
                 <h3>Fixed Display Audit</h3>
             </div>
 		    
@@ -660,7 +642,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		    <div data-theme="c" data-role="header" data-position="fixed" >
 			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
-                <h3>Gift Acknowledgement</h3>
+                <h3>Gift </h3>
             </div>
 		    
 			<div  data-role="content" style="height:90%" >
@@ -715,14 +697,9 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         	<a  data-role="button" onClick="submit_data();" >Submit Data</a>
 			</div> 
 			
-			<div id="sub_fd_button">
-        	<a id="fd_button"  data-role="button" onClick="upload_fd();" >Submit FIxed Display</a>			
-			</div>  
-			<div id="sub_qpds_button">
-        	<a  id="qpds_button" data-role="button" onClick="upload_qpds();" >Submit Promotion</a>			
-			</div>
-			<div id="sub_gift_button">
-        	<a  id="gift_button" data-role="button" onClick="upload_gift_confirm();" >Complete Submission</a>			
+
+			<div id="sub_shop_button">
+        	<a  id="image_up_button" data-role="button" onClick="check_step();" >Complete Submission</a>			
 			</div>
 			<div id="NOutlet_button">
         	<a  data-role="button" onClick="cancel_outlet();menupage();" >Select New Outlet</a>
@@ -850,7 +827,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<div data-theme="c" data-role="header" data-position="fixed" >
 			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
-                <h3>Cancel</h3>
+                <h3>Outlet</h3>
             </div>
 		    
 			<div  data-role="content" style="height:90%" >
@@ -885,7 +862,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 					<option value="3">Cause 2</option>
                   </select>
               	</br>
-                <a data-role="button" onClick="cancel_outlet_Back();getlocationand_askhelp();" >End</a>				</div>
+                <a data-role="button" onClick="cancel_outlet_Back();" >End</a>				</div>
 				
 				<div id="next_option">
 				<a data-role="button" onClick="outlet_next_page();getlocationand_askhelp();" >Next</a>
@@ -921,7 +898,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 				</br></br>
 
 			
-                <a data-role="button" onClick="fdisplay_before_page_next()" >Next</a>
+                <a data-role="button" onClick="fdisplay_ready_data();fdisplay_before_page_next()" >Next</a>
 				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
 				
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
