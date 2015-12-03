@@ -2827,7 +2827,7 @@ function win(r) {
 	//alert (localStorage.step_flag)
 	if (localStorage.step_flag==1){ //for fixed display
 		$("#submit_data").html("Fixed Display Synced Successfully");
-		localStorage.fddataSubmit=1;
+		localStorage.qpdsdataSubmit=1;
 		upload_qpds();
 		//buttonCheck();
 		
@@ -2836,21 +2836,21 @@ function win(r) {
 	
 	if (localStorage.step_flag==2){ // QPDS
 		$("#submit_data").html("Promotion Synced Successfully");
-		localStorage.qpdsdataSubmit=1;
+		localStorage.npddataSubmit=1;
 		upload_npd()
 		//buttonCheck();
 		
 	}
 	
 	if (localStorage.step_flag==3){  // Gift
-		$("#submit_data").html("NPD Synced Successfully");
-		localStorage.npddataSubmit=1;
-		upload_npd();
+		$("#submit_data").html("Promotion Synced Successfully");
+		localStorage.giftdataSubmit=1;
+		upload_gift_confirm();
 		//buttonCheck();
 	}
 	if (localStorage.step_flag==4){  // Gift
 		$("#submit_data").html("Gift Synced Successfully");
-		localStorage.giftdataSubmit=1;
+		localStorage.shopdataSubmit=1;
 		upload_shop();
 	//	buttonCheck();
 	}
