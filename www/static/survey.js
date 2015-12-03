@@ -2766,7 +2766,7 @@ function check_step() {
 	}
 	if (localStorage.step_flag==2){
 		upload_npd();
-		alert ('3')
+		//alert ('3')
 	}
 	if (localStorage.step_flag==3){
 		upload_gift_confirm();
@@ -2820,7 +2820,7 @@ function win(r) {
 	file_upload_error = 0;
 	
 //	step_flag=0; //1 fd , 2 qpds, 3 gift
-	alert (localStorage.step_flag)
+	//alert (localStorage.step_flag)
 	if (localStorage.step_flag==1){ //for fixed display
 		$("#submit_data").html("Fixed Display Synced Successfully");
 		localStorage.fddataSubmit=1;
@@ -2841,7 +2841,7 @@ function win(r) {
 	if (localStorage.step_flag==3){  // Gift
 		$("#submit_data").html("NPD Synced Successfully");
 		localStorage.npddataSubmit=1;
-		upload_gift_confirm();
+		upload_npd();
 		//buttonCheck();
 	}
 	if (localStorage.step_flag==4){  // Gift
