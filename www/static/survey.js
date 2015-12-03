@@ -1186,6 +1186,7 @@ function select_outlet() {
 		  var url = "#outletPage";
 		  $.mobile.navigate(url);	
 		  $(url).trigger('create');
+		  location.reload();
 		  
 	  }
 
@@ -2206,7 +2207,7 @@ function submit_data() {
 	}
 	
 	
-	$("#submit_data_check").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&place_data='+localStorage.place_data_ready+'&shop_data='+localStorage.shop_data_ready);	
+//	$("#submit_data_check").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&place_data='+localStorage.place_data_ready+'&shop_data='+localStorage.shop_data_ready);	
 
 	$.ajax({
 				type: 'POST',
@@ -2608,14 +2609,11 @@ function upload_fd(){
 				//if upload is successfull then "file_upload_error" will be 0 , if error 1
 			} else {
 				localStorage.fddataSubmit=1;
-
 					$("#submit_data").html("Fixed Display Image Not Available");
-
-				buttonCheck();
-			}
+		}
 					
 		}//end for
-	
+	upload_qpds();
 
 }
 
@@ -2640,27 +2638,18 @@ function upload_qpds(){
 			
 			if (qpds_image_path.length >10){
 				uploadPhoto(qpds_image_path, image_name);
+				$("#submit_data").html("");		
 				
-				//uploadPhoto(qpds_image_path_before, image_name_before);
-				//if upload is successfull then "file_upload_error" will be 0 , if error 1
-			//} else {
-//				localStorage.qpdsdataSubmit=1;
-//				if (localStorage.qpdsSlabTotal > 1){
-//					$("#submit_data").html("Promotion Image Not Available");
 				}
 				else{
-					$("#submit_data").html("");				
+					$("#submit_data").html("Promotion Image Not Available");				
 				}
-			
-				buttonCheck();
-			//}
 		}//end for
 	}//end if
 	else{
 		 localStorage.qpdsdataSubmit=1;
-		 upload_npd();
-		 buttonCheck();
 	}
+	 upload_npd();
 }
 
 function upload_gift_confirm(){
@@ -2677,21 +2666,14 @@ function upload_gift_confirm(){
 	//alert (image_name.length);
 	if (image_name.length >10){
 		uploadPhoto(gift_image_path, image_name);
+		$("#submit_data").html("");
 
 	} else {
-		//localStorage.giftdataSubmit=1;
-		//if (localStorage.giftSkip== 0){
+
 			$("#submit_data").html("Gift Image Not Available");
-		//}
-//		else{
-//			$("#submit_data").html("");
-//			cancel_outlet();
-//		}		
-		upload_shop()
-		//alert ('test')
-		//buttonCheck();
+
 	}
-	
+	upload_shop()
 	
 }
 
@@ -2709,12 +2691,11 @@ function upload_npd(){
 			//alert (npd_image_path)
 			if (image_name.length >10){
 				uploadPhoto(npd_image_path, image_name);
+				$("#submit_data").html("");
 			} else {
 
 					$("#submit_data").html("Npd Image Not Available");
-					//$("#submit_data").html("");				
 
-			//	buttonCheck();
 			}
 					
 		}//end for
@@ -2739,6 +2720,7 @@ function upload_place(){
 	
 	if (image_name_place.length >10){
 				uploadPhoto(place_image_path, image_name_place);
+				$("#submit_data").html("");
 	} else {
 
 			$("#submit_data").html("Place Image Not Available");
@@ -2761,6 +2743,7 @@ function upload_shop(){
 	
 	if (image_name_shop.length >10){
 				uploadPhoto(shop_image_path, image_name_shop);
+				$("#submit_data").html("");
 	} else {
 
 			$("#submit_data").html("Shop Image Not Available");
@@ -2837,7 +2820,7 @@ function win(r) {
 	file_upload_error = 0;
 	
 //	step_flag=0; //1 fd , 2 qpds, 3 gift
-	
+	alert (localStorage.step_flag)
 	if (localStorage.step_flag==1){ //for fixed display
 		$("#submit_data").html("Fixed Display Synced Successfully");
 		localStorage.fddataSubmit=1;
@@ -3003,7 +2986,7 @@ function buttonCheck(){
 		$("#NOutlet_button").hide();
 		
 		
-		alert ('1');
+		//alert ('1');
 		$("#lat").val(0);
 		$("#long").val(0);
 		//alert ('asd');
@@ -3014,7 +2997,7 @@ function buttonCheck(){
 
 		$("#image_up_button").hide();
 		$("#NOutlet_button").hide();
-		alert ('2');
+		//alert ('2');
 	
 	}
 	if ((localStorage.latlongSubmit==1) && (localStorage.dataSubmit==1) && ((localStorage.fddataSubmit==0) || (localStorage.qpdsdataSubmit==0) || (localStorage.npddataSubmit==0) || (localStorage.giftdataSubmit==0) || (localStorage.placedataSubmit==0) || (localStorage.shopdataSubmit==0))){
@@ -3023,7 +3006,7 @@ function buttonCheck(){
 
 		$("#image_up_button").show();
 		$("#NOutlet_button").hide();
-		alert ('3');
+		//alert ('3');
 	
 	}
 	if ((localStorage.latlongSubmit==1) && (localStorage.dataSubmit==1) && (localStorage.fddataSubmit==1) && (localStorage.qpdsdataSubmit==1) && (localStorage.npddataSubmit==1) && (localStorage.giftdataSubmit==1) && (localStorage.placedataSubmit==1) && (localStorage.shopdataSubmit==1)){
@@ -3032,150 +3015,10 @@ function buttonCheck(){
 
 		$("#image_up_button").hide();
 		$("#NOutlet_button").show();
-		alert ('4');
+		//alert ('4');
 	}
 	
-//	if ((localStorage.latlongSubmit==1) &&(localStorage.dataSubmit==0) && (localStorage.fddataSubmit==0) && (localStorage.qpdsdataSubmit==0) && (localStorage.npddataSubmit==0) && (localStorage.giftdataSubmit==0) && (localStorage.placedataSubmit==0) && (localStorage.shopdataSubmit==0)){
-//		//localStorage.dataSubmit=1;
-//		
-//		//alert ('2')
-//		$("#location_button").hide();
-//		$("#sub_button_div").show();
-//		
-//		$("#sub_fd_button").hide();
-//		$("#sub_qpds_button").hide();
-//		$("#sub_npd_button").hide();
-//		$("#sub_gift_button").hide();
-//		$("#sub_place_button").hide();
-//		$("#sub_shop_button").hide();
-//		
-//		
-//		
-//		
-//		
-//		$("#NOutlet_button").hide();
-//	}
-//	if ((localStorage.latlongSubmit==1) &&(localStorage.dataSubmit==1) && (localStorage.fddataSubmit==0) && (localStorage.qpdsdataSubmit==0) && (localStorage.npddataSubmit==0) && (localStorage.giftdataSubmit==0) && (localStorage.placedataSubmit==0) && (localStorage.shopdataSubmit==0)){
-//		//alert ('3')
-//		
-//		$("#location_button").hide();
-//		$("#sub_button_div").hide();
-//		$("#sub_fd_button").show();
-//		$("#sub_qpds_button").hide();
-//		$("#sub_npd_button").hide();
-//		$("#sub_gift_button").hide();
-//		$("#sub_place_button").hide();
-//		$("#sub_shop_button").hide();
-//		
-//		
-//		$("#NOutlet_button").hide();
-//	}
-//	if ((localStorage.latlongSubmit==1) &&(localStorage.dataSubmit==1) && (localStorage.fddataSubmit==1) && (localStorage.qpdsdataSubmit==0) && (localStorage.npddataSubmit==0) && (localStorage.giftdataSubmit==0) && (localStorage.placedataSubmit==0) && (localStorage.shopdataSubmit==0)){
-//	//	alert ('4')
-//		
-//		$("#location_button").hide();
-//		$("#sub_button_div").hide();
-//		$("#sub_fd_button").hide();
-//		$("#sub_qpds_button").show();
-//		$("#sub_gift_button").hide();
-//		$("#sub_npd_button").hide();
-//		$("#sub_gift_button").hide();
-//		$("#sub_place_button").hide();
-//		$("#sub_shop_button").hide();
-//		
-//		$("#NOutlet_button").hide();
-//	}							
-//	if ((localStorage.latlongSubmit==1) &&(localStorage.dataSubmit==1) && (localStorage.fddataSubmit==1) && (localStorage.qpdsdataSubmit==1)  && (localStorage.npddataSubmit==0) && (localStorage.giftdataSubmit==0) && (localStorage.placedataSubmit==0) && (localStorage.shopdataSubmit==0)){
-//		//alert ('5')
-//		
-//		$("#location_button").hide();
-//		$("#sub_button_div").hide();
-//		$("#sub_fd_button").hide();
-//		$("#sub_qpds_button").hide();
-//		$("#sub_npd_button").show();
-//		$("#sub_gift_button").hide();
-//		$("#sub_place_button").hide();
-//		$("#sub_shop_button").hide();
-//		
-//		$("#NOutlet_button").hide();
-//	}		
-//	if ((localStorage.latlongSubmit==1) &&(localStorage.dataSubmit==1) && (localStorage.fddataSubmit==1) && (localStorage.qpdsdataSubmit==1) && (localStorage.npddataSubmit==1) && (localStorage.giftdataSubmit==0) && (localStorage.placedataSubmit==0) && (localStorage.shopdataSubmit==0)){
-//	//	alert ('6')
-//		
-//		$("#location_button").hide();
-//	
-//		$("#sub_button_div").hide();
-//		$("#sub_fd_button").hide();
-//		$("#sub_qpds_button").hide();
-//		$("#sub_npd_button").hide();
-//		$("#sub_gift_button").show();
-//		$("#sub_place_button").hide();
-//		$("#sub_shop_button").hide();
-//		
-//		$("#NOutlet_button").hide();
-//		
-//		
-//		
-//		//reload.location();
-//	}
-//	if ((localStorage.latlongSubmit==1) &&(localStorage.dataSubmit==1) && (localStorage.fddataSubmit==1) && (localStorage.qpdsdataSubmit==1) && (localStorage.npddataSubmit==1) && (localStorage.giftdataSubmit==1) && (localStorage.placedataSubmit==0) && (localStorage.shopdataSubmit==0)){
-//		//alert ('7')
-//		
-//		$("#location_button").hide();
-//	
-//		$("#sub_button_div").hide();
-//		$("#sub_fd_button").hide();
-//		$("#sub_qpds_button").hide();
-//		$("#sub_npd_button").hide();
-//		$("#sub_gift_button").hide();
-//		$("#sub_place_button").show();
-//		$("#sub_shop_button").hide();
-//		
-//		$("#NOutlet_button").hide();
-//		
-//		
-//		
-//		//reload.location();
-//	}
-//	if ((localStorage.latlongSubmit==1) &&(localStorage.dataSubmit==1) && (localStorage.fddataSubmit==1) && (localStorage.qpdsdataSubmit==1) && (localStorage.npddataSubmit==1) && (localStorage.giftdataSubmit==1) && (localStorage.placedataSubmit==1) && (localStorage.shopdataSubmit==0)){
-//		//alert ('8')
-//		
-//		$("#location_button").hide();
-//	
-//		//$("#sub_button_div").hide();
-////		$("#sub_fd_button").hide();
-////		$("#sub_qpds_button").hide();
-////		$("#sub_npd_button").hide();
-////		$("#sub_gift_button").hide();
-////		$("#sub_place_button").hide();
-//		$("#sub_shop_button").show();
-//		
-//		$("#NOutlet_button").hide();
-//		
-//		
-//		
-//		//reload.location();
-//	}
-//	if ((localStorage.latlongSubmit==1) &&(localStorage.dataSubmit==1) && (localStorage.fddataSubmit==1) && (localStorage.qpdsdataSubmit==1) && (localStorage.npddataSubmit==1) && (localStorage.giftdataSubmit==1) && (localStorage.placedataSubmit==1) && (localStorage.shopdataSubmit==1)){
-//		//alert ('9')
-//		
-//		$("#location_button").hide();
-//	
-//		$("#sub_button_div").hide();
-//		$("#sub_fd_button").hide();
-//		$("#sub_qpds_button").hide();
-//		$("#sub_npd_button").hide();
-//		$("#sub_gift_button").hide();
-//		$("#sub_place_button").hide();
-//		$("#sub_shop_button").hide();
-//		
-//		$("#NOutlet_button").show();
-//		
-//		
-//		
-//		//reload.location();
-//	}
-	//alert ('localStorage.latlongSubmit:  '+localStorage.latlongSubmit+'localStorage.dataSubmit:  '+localStorage.dataSubmit+'localStorage.fddataSubmit:  '+localStorage.fddataSubmit+'localStorage.qpdsdataSubmit:  '+localStorage.qpdsdataSubmit+'localStorage.npddataSubmit:  '+localStorage.npddataSubmit+'localStorage.giftdataSubmit:  ' +localStorage.giftdataSubmit+'localStorage.placedataSubmit:  '+localStorage.placedataSubmit+'localStorage.shopdataSubmit:  '+localStorage.shopdataSubmit)
+
 }
 
 function menupage(){
