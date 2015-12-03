@@ -1619,7 +1619,7 @@ function syncOutlet() {
 			
 			
 			  giftStringShow=giftStringShow +'<select name="gift_month" id="gift_month" >'
-			  giftStringShow=giftStringShow +'<option value=""></option>'
+			 // giftStringShow=giftStringShow +'<option value=""></option>'
 			  giftStringShow=giftStringShow +'<option value="JANUARY">JANUARY</option>'
 			  giftStringShow=giftStringShow +'<option value="FEBRUARY">FEBRUARY</option>'
 			  giftStringShow=giftStringShow +'<option value="MARCH">MARCH</option>'
@@ -2656,7 +2656,7 @@ function upload_qpds(){
 function upload_gift_confirm(){
 	//Gift
 	localStorage.giftdataSubmit=1;
-	localStorage.step_flag=3; //1 fd , 2 qpds, 3 gift
+	localStorage.step_flag=4; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
 	$( "#sub_gift_button").hide();
 	//$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
@@ -2680,7 +2680,7 @@ function upload_gift_confirm(){
 
 //==============upload npd
 function upload_npd(){
-	localStorage.step_flag=4; 
+	localStorage.step_flag=3; 
 	localStorage.npddataSubmit=1;
 	if (typeof localStorage.npd_data_ready === "undefined") {
 		localStorage.npd_data_ready = "_";
