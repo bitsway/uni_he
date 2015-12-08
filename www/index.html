@@ -53,7 +53,13 @@
 		
 	
 		</style>
-        
+        <style>
+		.disabledAnchor a{
+		   pointer-events: none !important;
+		   cursor: default;
+		   color:white;
+}
+		</style>
         
    <script>
 <!--
@@ -104,6 +110,15 @@ $(document).ready(function(){
 				
 				
 				$("#outletName_show").html(localStorage.outletNameID);
+				
+				$('#cancel_reason').empty();
+				$('#cancel_reason').append(localStorage.cancel_combo_str);
+				//alert (localStorage.place_combo_str)
+				$('#place_combo_show').empty();
+				$('#place_combo_show').append(localStorage.place_combo_str);
+				
+				
+				
    				first_page();
 				
 				
@@ -303,7 +318,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         <div data-theme="c" data-role="page" id="login"   >
             <div data-theme="c" data-role="header" data-position="fixed" >
 			
-			   <a style=" height:18px"   href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			   <a style=" height:18px"   onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                <a data-role="button" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-right ui-icon-power ui-btn-icon-notext " onClick="exit()" >Exit </a>
                 <h3>Login</h3>
             </div>
@@ -331,13 +346,13 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             </div>
 			
 		
-			<div align="right"  style="color:#A4C5D9; width:100%; ">Version:00010;20151205.1</div>
+			<div align="right"  style="color:#A4C5D9; width:100%; ">Version:00010;20151208.1</div>
         </div><!--/login page-->
    
      <!--  ====================== routePage ======================  -->
 		<div data-theme="c" data-role="page" id="routePage">
 			<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style=" height:18px"   href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a style=" height:18px"   onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Select Route</h3>
             </div>
@@ -364,7 +379,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <!--====================Route Exception==================-->
     <div data-theme="c" data-role="page" id="routeexceptionPage">
 		    <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Route Exception</h3>
             </div>
@@ -393,7 +408,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		<div data-theme="c" data-role="page" id="outletPage">
 			
 			<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a id="menujpj" style="height:18px"   href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a id="menujpj" style="height:18px"   onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a id="backjpj" style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                <!-- <a id="backjpj" data-role="button" data-rel="back" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">Back</a>-->
                 <h3>Select Outlet</h3>
@@ -437,7 +452,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
      
     <div data-theme="c" data-role="page" id="outletexceptionPage">	
 		   <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Outlet Exception</h3>
             </div>
@@ -471,7 +486,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
      
     <div data-theme="c" data-role="page" id="outletSyncingPage">	
 		   <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style=" height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a style=" height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Outlet Info</h3>
             </div>
@@ -510,7 +525,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
     <div data-theme="c" data-role="page" id="mhskusPage">	
 		  <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Must Have SKUS</h3>
             </div>
@@ -541,7 +556,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
     <div data-theme="c" data-role="page" id="npdPage">
 		   <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>NPD</h3>
             </div>
@@ -570,7 +585,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
     <div data-theme="c" data-role="page" id="fixedDisplay">
 		   <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right" ><img src="back1.png"></a>
                 <h3>Fixed Display Audit</h3>
             </div>
@@ -604,7 +619,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
     <div data-theme="c" data-role="page" id="qpdsPage">
 		<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Promotion</h3>
             </div>
@@ -640,7 +655,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
     <div data-theme="c" data-role="page" id="giftAckPage">
 		    <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Gift </h3>
             </div>
@@ -676,7 +691,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
     <div data-theme="c" data-role="page" id="submitPage">
 		    <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px"   href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a style="height:18px"   onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Submit</h3>
             </div>
@@ -796,7 +811,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
     <div data-theme="c" data-role="page" id="noticePage">
 		    <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Notice</h3>
             </div>
@@ -825,7 +840,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
     <div data-theme="c" data-role="page" id="cancelPage">
 		<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Outlet</h3>
             </div>
@@ -838,33 +853,40 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		  
 		  <div id="cpageOutletNameID"> </div>
 		  
+		 
 		  
-		  <table width="100%" border="0"><tr>
-			  <tr>
-				<td><a data-role="button" href="#" onClick="get_pic_shop()" >Take Picture </a></td></tr>
-			</table>
-			<img id="shop_image_div" height="100px" width="100px"  src="" alt="Place" />
-				<input type="hidden" name="shop_image_div_hidden" id="shop_image_div_hidden" value="" >
-				<input type="hidden" name="shop_image_name_hidden" id="shop_image_name_hidden" value="" >
-			  
-
+		  	 <div id="shop_show">
+				  <table width="100%" border="0"><tr>
+					  <tr>
+						<td><a data-role="button" href="#" onClick="get_pic_shop()" >Take Picture </a></td></tr>
+					</table>
+					<img id="shop_image_div" height="100px" width="100px"  src="" alt="Place" />
+						<input type="hidden" name="shop_image_div_hidden" id="shop_image_div_hidden" value="" >
+						<input type="hidden" name="shop_image_name_hidden" id="shop_image_name_hidden" value="" >
+								
+						</br></br>
+					<div id="cancel_option">	
+						<div id="c_reason"></div>
+						Cancel Reason:
+						<div id="cancel_reason">
+						  <!--<select name="cancel_cause" id="cancel_cause" >
+							<option value=""></option>
+							<option value="Will try later">Will try later</option>
+							<option value="Outlet is closed">Outlet is closed</option>
+							<option value="Outlet renovation">Outlet renovation</option>
+							<option value="Owner is reluctant">Owner is reluctant</option>
+							<option value="Owner not available with shop picture">Owner not available with shop picture</option>
+						  </select>-->
+						  </div> <!--cancel_reason-->
+						</br>
 				
-							
-			
-				</br></br>
-				<div id="cancel_option">
-				<div id="c_reason"></div>
-				Cancel Reason:
-				   <select name="cancel_cause" id="cancel_cause" >
-                    <option value=""></option>
-					<option value="Will try later">Will try later</option>
-					<option value="Outlet is closed">Outlet is closed</option>
-					<option value="Outlet renovation">Outlet renovation</option>
-					<option value="Owner is reluctant">Owner is reluctant</option>
-					<option value="Owner not available with shop picture">Owner not available with shop picture</option>
-                  </select>
-              	</br>
-                <a data-role="button" onClick="cancel_outlet_Back();" >End</a>				</div>
+				
+				
+                <a data-role="button" onClick="cancel_outlet_Back();" >End</a>				
+				</div> <!--cancel_option-->
+				
+				</div> <!--shop_show-->
+				
 				
 				<div id="next_option">
 				<a data-role="button" onClick="outlet_next_page();getlocationand_askhelp();" >Next</a>
@@ -885,7 +907,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
     <div data-theme="c" data-role="page" id="fdbeforePage">
 		<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Fixed Display Before Image</h3>
             </div>
@@ -917,7 +939,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     
     <div data-theme="c" data-role="page" id="placePage">
 		<div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px" href="#menuPage"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
                 <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
                 <h3>Place</h3>
             </div>
@@ -927,6 +949,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           
            <div id="place_outlet_nameID"></div>
 		   
+		  <div id="place_show" >
 		  <table width="100%" border="0"><tr>
 			  <tr>
 				<td><a data-role="button"  onClick="get_pic_place()" >Take Picture </a></td></tr>
@@ -934,8 +957,11 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			<img id="place_image_div" height="100px" width="100px"  src="" alt="Place" />
 				<input type="hidden" name="place_image_div_hidden" id="place_image_div_hidden" value="" >
 				<input type="hidden" name="place_image_name_hidden" id="place_image_name_hidden" value="" >
+				
+				
+				<div id="place_combo_show"></div>
 			  
-
+			</div>
 				
 							
 			
