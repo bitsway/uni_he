@@ -2391,7 +2391,7 @@ function place_page_set() {
 	var place_value = place_array[2];
 
 
-	//alert (image_name)
+	alert (image_name)
 	$("#place_image_name_hidden").val(image_name);
 	$("#place_image_div_hidden").val(place_image_path);
 	$("#place_value").val(place_value);
