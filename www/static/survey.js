@@ -1442,7 +1442,7 @@ function syncOutlet() {
 				
 				
 				
-				npdStringShow=npdStringShow+'<img height="100px" width="100%"  src="'+apipath_image+'static/uni_images/npd/'+npd_image+'" alt="NPD" />';
+				npdStringShow=npdStringShow+'<img src="'+apipath_image+'static/uni_images/npd/'+npd_image+'" alt="NPD" />';
 				
 				npdStringShow=npdStringShow+'<tr ><td>&nbsp;</td><td>'+itemName+
 				'<input type="hidden" name="'+ Itemnpd +'" id="'+ Itemnpd +'" value="'+itemID+'" min="0">'+
@@ -1621,7 +1621,7 @@ function syncOutlet() {
 				
 				qpdsStringShow=qpdsStringShow+'<div id="qpdsdiv_'+slab.toString()+'">'
 				
-				qpdsStringShow=qpdsStringShow+'<img height="100px" width="100%" width="100%" src="'+apipath_image+'static/uni_images/scheme/'+qpdsSlab_image+'" alt="QPDS" />';
+				qpdsStringShow=qpdsStringShow+'<img height="100px"  src="'+apipath_image+'static/uni_images/scheme/'+qpdsSlab_image+'" alt="QPDS" />';
 				qpdsStringShow=qpdsStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0">'
 				
 				qpdsStringShow=qpdsStringShow+'<tr bgcolor="#9FCED7" ><td width="1%" >&nbsp;</td><td >Item</td> <td width="50px">QTY</td><td></td><td width="50px">  </td><td></td><td>Visible</td></tr>'
@@ -2310,7 +2310,7 @@ function gift_ready_data() {
 	var url = "#placePage";
 	$.mobile.navigate(url);
 	
-	$('#gift').find('input, textarea, button, select').attr('disabled','disabled');
+	//$('#gift').find('input, textarea, button, select').attr('disabled','disabled');
 	$('#gift').addClass('disabledAnchor');	
 	localStorage.gift_next_flag=1;
 	//alert (url)
@@ -2340,7 +2340,7 @@ function gift_page_set() {
 	image.src = gift_image_path;
 	
 	if (localStorage.gift_next_flag==1){
-		$('#gift').find('input, textarea, button, select').attr('disabled','disabled');
+		//$('#gift').find('input, textarea, button, select').attr('disabled','disabled');
 		$('#gift').addClass('disabledAnchor');	
 	}
 	
@@ -2366,7 +2366,7 @@ function place_ready_data() {
 	if ((place_image_path.length > 10) && (place_value.length > 0 )){
 		var url = "#submitPage";
 		$.mobile.navigate(url);
-		$('#place_show').find('input, textarea, button, select').attr('disabled','disabled');
+	//	$('#place_show').find('input, textarea, button, select').attr('disabled','disabled');
 		$('#place_show').addClass('disabledAnchor');
 		localStorage.place_next_flag=1;
 		
@@ -2401,7 +2401,7 @@ function place_page_set() {
 	
 	
 	if (localStorage.place_next_flag==1){
-		$('#place_show').find('input, textarea, button, select').attr('disabled','disabled');
+	//	$('#place_show').find('input, textarea, button, select').attr('disabled','disabled');
 		$('#place_show').addClass('disabledAnchor');	
 	}
 	
