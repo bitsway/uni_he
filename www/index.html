@@ -232,7 +232,8 @@ $(document).ready(function(){
 				
 				//alert ("ssssssss");
 				buttonCheck();
-				
+				$("#lat").val(localStorage.latitude);
+				$("#long").val(localStorage.longitude);
 				
 				//alert (localStorage.outletIDnameShow);
 				
@@ -968,7 +969,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 				</br></br>
 
 			
-                <a data-role="button" onClick="getlocationand_askhelp();place_ready_data();" >Next</a>
+                <a data-role="button" onClick="place_ready_data();" >Next</a>
 				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
 				
               <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
