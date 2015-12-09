@@ -2316,7 +2316,7 @@ function gift_ready_data() {
 		$('#gift').addClass('disabledAnchor');	
 		localStorage.gift_next_flag=1;
 	}
-	elsse{
+	else{
 		var url = "#giftAckPage";
 		$.mobile.navigate(url);
 	}
