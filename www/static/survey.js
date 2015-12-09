@@ -469,6 +469,7 @@ function check_user() {
 								$("#error_login").html('Unauthorized User');
 							}
 							if (resultArray[0]=='SUCCESS'){
+								cancel_outlet();
 								$("#loginButton").show();
 								$("#login_image").hide();
 								var sync_date_get=get_date();
