@@ -2307,12 +2307,21 @@ function gift_ready_data() {
 	//alert ("Nadira");
 	gift_page_set();
 	
-	var url = "#placePage";
-	$.mobile.navigate(url);
 	
-	//$('#gift').find('input, textarea, button, select').attr('disabled','disabled');
-	$('#gift').addClass('disabledAnchor');	
-	localStorage.gift_next_flag=1;
+	if ((gift_image_path.length > 10) && (gift_month !='')){
+		var url = "#placePage";
+		$.mobile.navigate(url);
+		
+		//$('#gift').find('input, textarea, button, select').attr('disabled','disabled');
+		$('#gift').addClass('disabledAnchor');	
+		localStorage.gift_next_flag=1;
+	}
+	elsse{
+		var url = "#giftAckPage";
+		$.mobile.navigate(url);
+	}
+	
+	
 	//alert (url)
 	//$('#outlet_info_msg').html(localStorage.outletNameID);
 	
