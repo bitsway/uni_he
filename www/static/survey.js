@@ -33,7 +33,7 @@ var temp_image_div='';
 function getlocationand_askhelp() { //location
     $("#lat").val(0);
 	$("#long").val(0);
-	var options = { enableHighAccuracy: true};
+	var options = { enableHighAccuracy: true,timeout:5000};
 	navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 	$("#location_button").hide();
 	$("#submit_data").html("Confirming Location. Please Wait...");
@@ -520,7 +520,7 @@ function check_user() {
 								
 								//create place  combo
 								var placeArray = place_strList.split('rdrd');	
-								var place_combo_str='<select name="place_combo" id="place_combo" >'
+								var place_combo_str='Select Place Location: </br><select name="place_combo" id="place_combo" >'
 								place_combo_str=place_combo_str+'<option value=""></option>'
 								for (var i=0; i < placeArray.length-1; i++){				
 									place_combo_str=place_combo_str +'<option value="'+placeArray[i].split('fdfd')[1]+'">'+placeArray[i].split('fdfd')[1]+'</option>'			  	
@@ -1696,11 +1696,11 @@ function syncOutlet() {
 		//	alert (giftList);
 			
 			var giftStringShow=''
-			giftStringShow=giftStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.routeIDName+'<br>'+localStorage.outletNameID+'</td></tr><tr > </table></br>'
+			giftStringShow=giftStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.routeIDName+'<br>'+localStorage.outletNameID+'</td></tr><tr > </table></br>Select Month: </br>'
 			
 			
 			  giftStringShow=giftStringShow +'<select name="gift_month" id="gift_month" >'
-			  giftStringShow=giftStringShow +'<option value=""></option>'
+			  giftStringShow=giftStringShow +'<option value="No Gift">No Gift</option>'
 			  giftStringShow=giftStringShow +'<option value="JANUARY">JANUARY</option>'
 			  giftStringShow=giftStringShow +'<option value="FEBRUARY">FEBRUARY</option>'
 			  giftStringShow=giftStringShow +'<option value="MARCH">MARCH</option>'
