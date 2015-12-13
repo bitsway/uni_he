@@ -2433,7 +2433,7 @@ function place_ready_data() {
 	place_page_set();
 	//alert (place_value)
 	//if ((image_name.length > 10)){
-	if ((place_image_path.length > 10) && (place_value.length > 0 )){
+	if ((place_image_path.length > 10) ){
 		var url = "#submitPage";
 		$.mobile.navigate(url);
 	//	$('#place_show').find('input, textarea, button, select').attr('disabled','disabled');
