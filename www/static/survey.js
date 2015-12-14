@@ -14,11 +14,11 @@
 
 
 
-//var apipath='http://127.0.0.1:8000/unilever/syncmobile4/';
+//var apipath='http://127.0.0.1:8000/unilever/syncmobile_schedule/';
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
 
 
-var apipath='http://e3.businesssolutionapps.com/unilever/syncmobile4/';
+var apipath='http://e3.businesssolutionapps.com/unilever/syncmobile_schedule/';
 var apipath_image = 'http://e3.businesssolutionapps.com/unilever/';
 
  
@@ -51,6 +51,9 @@ function getlocationand_askhelp() { //location
 	navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 	$("#location_button").hide();
 	$("#submit_data").html("Confirming Location. Please Wait...");
+	
+	localStorage.placeLatLongCount=parseInt(localStorage.placeLatLongCount)+1
+	//alert (parseInt(localStorage.placeLatLongCount))
 }
 	 
 // onSuccess Geolocation
@@ -112,7 +115,7 @@ function outlet_next_page(){
 	var shop_image_name=$("#shop_image_name_hidden").val();
 	var shop_image_path=$("#shop_image_div_hidden").val();
 	
-//	if (shop_image_name.length < 10){
+	//if (shop_image_name.length < 10){
 	if (shop_image_path.length < 10){
 			var url = "#cancelPage";
 			$.mobile.navigate(url);
@@ -428,6 +431,8 @@ function cancel_outlet(){
 	localStorage.shopdataSubmit=0;
 	localStorage.placedataSubmit=0;
 	
+	
+	localStorage.placeLatLongCount=0;
 	
 	
 	localStorage.outletException='undefined';
@@ -964,7 +969,8 @@ function marketPJP() {
 		$.ajax({
 				 type: 'POST',
 				 url: apipath+'sync_route?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute,
-				 success: function(result) {					
+				 success: function(result) {	
+				
 						if (result==''){
 							alert ('Sorry Network not available');
 						}
@@ -972,157 +978,165 @@ function marketPJP() {
 							var resultArray = result.split('<SYNCDATA>');			
 							if (resultArray[0]=='FAILED'){
 								$("#error_login").html('Unauthorized User');
+								
 							}
 							if (resultArray[0]=='SUCCESS'){
 								result_string=resultArray[1];
-								
-								
-								//merchandising distribution by billal
-								var merchandisingDistribStr=resultArray[2];
-								localStorage.merchandisingDistribStr=merchandisingDistribStr
-								
-								var mar_distrib_stock=""
-								if(merchandisingDistribStr!=""){
-									var merchanDistribList=merchandisingDistribStr.split('rdrd')
-									var merchanDistribListLength=merchanDistribList.length;	
-									for (var i=0; i < merchanDistribListLength; i++){
-										merDistrbItemArray = merchanDistribList[i].split('fdfd');		
-										camp_sl=merDistrbItemArray[0];
-										allocate_qty=merDistrbItemArray[5];
-										given_qty=merDistrbItemArray[6];
-										channel=merDistrbItemArray[7];
-										
-										try{
-											var availableQty=eval(allocate_qty)-eval(given_qty);
-										}catch(e){			
-											var availableQty=0;
-										}
-										
-										campSlChannel=camp_sl.toString()+'_'+channel.toString()
-										
-										if(mar_distrib_stock==""){
-											mar_distrib_stock=campSlChannel+','+availableQty;
-										}else{
-											mar_distrib_stock+='rd'+campSlChannel+','+availableQty;
-										}
-									}
+								if (result_string=='N'){
+									outletStringShow_n='<label style="color:#800000; font-size:18px" ><table width="100%" border="0"> <tr> <td >Schedule Not Available </td>	</tr></table></label>'
+									$("#dataerror").html(outletStringShow_n);
+									$("#routeS_image").hide();
+									$("#RSButton").show();
 								}
-								localStorage.mar_distrib_stock=mar_distrib_stock;
-								
-								
-								//-----------
-								//alert(localStorage.merchandisingDistribStr);
-								//alert(merchandisingDistribStr);
-								
-								var outletArray = result_string.split('</outletList>');									
-								
-								var outletSArray = result_string.split('<outletexList>');	
-								
-								outletList = outletSArray[0].replace("<outletList>","");
-								
-								var outletAllArray = outletSArray[1].split('</outletexList>');	
+								else{
+										//merchandising distribution by billal
+										var merchandisingDistribStr=resultArray[2];
+										localStorage.merchandisingDistribStr=merchandisingDistribStr
+										
+										var mar_distrib_stock=""
+										if(merchandisingDistribStr!=""){
+											var merchanDistribList=merchandisingDistribStr.split('rdrd')
+											var merchanDistribListLength=merchanDistribList.length;	
+											for (var i=0; i < merchanDistribListLength; i++){
+												merDistrbItemArray = merchanDistribList[i].split('fdfd');		
+												camp_sl=merDistrbItemArray[0];
+												allocate_qty=merDistrbItemArray[5];
+												given_qty=merDistrbItemArray[6];
+												channel=merDistrbItemArray[7];
+												
+												try{
+													var availableQty=eval(allocate_qty)-eval(given_qty);
+												}catch(e){			
+													var availableQty=0;
+												}
+												
+												campSlChannel=camp_sl.toString()+'_'+channel.toString()
+												
+												if(mar_distrib_stock==""){
+													mar_distrib_stock=campSlChannel+','+availableQty;
+												}else{
+													mar_distrib_stock+='rd'+campSlChannel+','+availableQty;
+												}
+											}
+										}
+										localStorage.mar_distrib_stock=mar_distrib_stock;
+										
+										
+										//-----------
+										//alert(localStorage.merchandisingDistribStr);
+										//alert(merchandisingDistribStr);
+										
+										var outletArray = result_string.split('</outletList>');									
+										
+										var outletSArray = result_string.split('<outletexList>');	
+										
+										outletList = outletSArray[0].replace("<outletList>","");
+										
+										var outletAllArray = outletSArray[1].split('</outletexList>');	
+																		
+										outletExList = outletAllArray[0];
+										allOutletString = outletAllArray[1];
+										
+										localStorage.allOutletString=allOutletString;
+										
+										
+										//	============Create exception list============	
 																
-								outletExList = outletAllArray[0];
-								allOutletString = outletAllArray[1];
-								
-								localStorage.allOutletString=allOutletString;
-								
-								
-								//	============Create exception list============	
-														
-								var outletExStringShow=''
-								var outletExSingleArray = outletExList.split('rdrd');	
-								var outletExSingleTtotal = outletExSingleArray.length;
-								var outletExStringShow=''
-								for (var oe=0; oe < outletExSingleTtotal-1; oe++){
-									outletExArray = outletExSingleArray[oe].split('fdfd');
-									outletExID=outletExArray[0];
-									outletExName=outletExArray[1];
-									outletExStringShow=outletExStringShow+'<label><input type="radio" name="RadioOutletEx"    value="'+outletExName+'" > '+outletExName+'</label>'
-								}
-								localStorage.outletExStringShow=outletExStringShow;
-								$("#outletExString").html(localStorage.outletExStringShow);
-								
-								//alert (localStorage.outletExStringShow);
-								
-								
-						  		//==========Create outlet list
-								var outletSingleArray = outletList.split('rdrd');	
-								var outletSingleTtotal = outletSingleArray.length;
-								var outletStringShow=''
-								
-								outletStringShow=outletStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr style="color:#006A6A; font-size:18px;"><td>'+localStorage.routeIDName+'</td></tr></table>'
-								
-								//alert (outletSingleTtotal);
-								for (var o=0; o < outletSingleTtotal-1; o++){
-									outletArray = outletSingleArray[o].split('fdfd');
-									outletID=outletArray[0];
-									outletName=outletArray[1];
-									total_visit=outletArray[2];
-									total_visit_done=outletArray[3];
-									outlet_c=outletArray[4];
-									depot_id=outletArray[5];
-									//schedule_date=outletArray[6];
-									channel=outletArray[6];
-									schedule_date=outletArray[7];
-									//alert (schedule_date)
-									//alert (outletColor);
+										var outletExStringShow=''
+										var outletExSingleArray = outletExList.split('rdrd');	
+										var outletExSingleTtotal = outletExSingleArray.length;
+										var outletExStringShow=''
+										for (var oe=0; oe < outletExSingleTtotal-1; oe++){
+											outletExArray = outletExSingleArray[oe].split('fdfd');
+											outletExID=outletExArray[0];
+											outletExName=outletExArray[1];
+											outletExStringShow=outletExStringShow+'<label><input type="radio" name="RadioOutletEx"    value="'+outletExName+'" > '+outletExName+'</label>'
+										}
+										localStorage.outletExStringShow=outletExStringShow;
+										$("#outletExString").html(localStorage.outletExStringShow);
+										
+										//alert (localStorage.outletExStringShow);
+										
+										
+										//==========Create outlet list
+										var outletSingleArray = outletList.split('rdrd');	
+										var outletSingleTtotal = outletSingleArray.length;
+										var outletStringShow=''
+										
+										outletStringShow=outletStringShow+'<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr style="color:#006A6A; font-size:18px;"><td>'+localStorage.routeIDName+'</td></tr></table>'
+										
+										//alert (outletSingleTtotal);
+										for (var o=0; o < outletSingleTtotal-1; o++){
+											outletArray = outletSingleArray[o].split('fdfd');
+											outletID=outletArray[0];
+											outletName=outletArray[1];
+											total_visit=outletArray[2];
+											total_visit_done=outletArray[3];
+											outlet_c=outletArray[4];
+											depot_id=outletArray[5];
+											//schedule_date=outletArray[6];
+											channel=outletArray[6];
+											schedule_date=outletArray[7];
+											//alert (schedule_date)
+											//alert (outletColor);
+											
+											outletColor="";
+											if (outlet_c=='g'){
+												outletColor='<img style="height:20px; width:20px" src="green.png">';
+											}
+											if (outlet_c=='b'){
+												outletColor='<img style="height:20px; width:20px" src="orange.png">';
+											}
+											if (outlet_c=='r'){
+												outletColor='<img style="height:20px; width:20px" src="red.png">';
+											}
+											//alert (channel);
+											outletStringShow=outletStringShow+'<label ><table width="100%" border="0"> <tr> <td width="5%">'+
+															'<input type="radio" name="RadioOutlet" value="'+outletID+'rdrd'+schedule_date+'"></td><td width="60%">'+outletName +' | '+ outletID +' | '+ channel +'</td><td width="15%">'+ total_visit+'/'+total_visit_done+' </td>	<td>'+outletColor+'</td> </tr></table></label>'
+										
+											
+										}
+										
+										
+										// If schedule not available
+										//alert (outletSingleArray.length);
+										if (outletSingleArray.length==1){
+											outletStringShow=outletStringShow+'<label style="color:#800000; font-size:18px" ><table width="100%" border="0"> <tr> <td >Schedule Not Available </td>	</tr></table></label>'
+											
+										}
+										outletStringShow=outletStringShow+'<br/><br/> <a id="selectOButton" data-role="button" onClick="select_outlet();" >Next</a>'
+										
+										//outletStringShow=outletStringShow+'<div id="outletWait" style="display:none"><img height="40px" width="40px" src="loading.gif"></div>'
+										
+										localStorage.outletString=outletStringShow
+										$("#outletString").html(localStorage.outletString);
+										
+										$("#routeS_image").hide();
+										$("#RSButton").show();
+										
+										if (selected_routeDay==today_get){
+											localStorage.selectedRoute=selected_routeID;
+											localStorage.routeException_found='0';
+										
+											var url = "#menuPage";
+										   $.mobile.navigate(url);	
+										}
+										else {
+											localStorage.selectedRoute=selected_routeID;
+											localStorage.routeException_found='1';
+											
+											
+											var url = "#routeexceptionPage";
+											$.mobile.navigate(url);	
+											$('#routeexceptionPage').trigger('create');
+										}
 									
-									outletColor="";
-									if (outlet_c=='g'){
-										outletColor='<img style="height:20px; width:20px" src="green.png">';
+									//=======end outlet list====================								
 									}
-									if (outlet_c=='b'){
-										outletColor='<img style="height:20px; width:20px" src="orange.png">';
-									}
-									if (outlet_c=='r'){
-										outletColor='<img style="height:20px; width:20px" src="red.png">';
-									}
-									//alert (channel);
-									outletStringShow=outletStringShow+'<label ><table width="100%" border="0"> <tr> <td width="5%">'+
-													'<input type="radio" name="RadioOutlet" value="'+outletID+'rdrd'+schedule_date+'"></td><td width="60%">'+outletName +' | '+ outletID +' | '+ channel +'</td><td width="15%">'+ total_visit+'/'+total_visit_done+' </td>	<td>'+outletColor+'</td> </tr></table></label>'
-								
-									
+		
 								}
 								
-								
-								// If schedule not available
-								//alert (outletSingleArray.length);
-								if (outletSingleArray.length==1){
-									outletStringShow=outletStringShow+'<label style="color:#800000; font-size:18px" ><table width="100%" border="0"> <tr> <td >Schedule Not Available </td>	</tr></table></label>'
-									
-								}
-								outletStringShow=outletStringShow+'<br/><br/> <a id="selectOButton" data-role="button" onClick="select_outlet();" >Next</a>'
-								
-								//outletStringShow=outletStringShow+'<div id="outletWait" style="display:none"><img height="40px" width="40px" src="loading.gif"></div>'
-								
-								localStorage.outletString=outletStringShow
-								$("#outletString").html(localStorage.outletString);
-								
-								$("#routeS_image").hide();
-								$("#RSButton").show();
-								
-								if (selected_routeDay==today_get){
-									localStorage.selectedRoute=selected_routeID;
-									localStorage.routeException_found='0';
-								
-									var url = "#menuPage";
-								   $.mobile.navigate(url);	
-								}
-								else {
-									localStorage.selectedRoute=selected_routeID;
-									localStorage.routeException_found='1';
-									
-									
-									var url = "#routeexceptionPage";
-									$.mobile.navigate(url);	
-									$('#routeexceptionPage').trigger('create');
-								}
-							
-							//=======end outlet list====================								
-							}
-
-						}
+						   }//end else
 				      },
 				  error: function(result) {
 					  
@@ -1179,7 +1193,7 @@ function select_outlet() {
 		localStorage.giftdataSubmit=0;
 		localStorage.shopdataSubmit=0;
 		localStorage.placedataSubmit=0;
-		
+		localStorage.placeLatLongCount=0
 		
 		
 		
@@ -1979,7 +1993,7 @@ function fdisplay_ready_data() {
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val(); 
 		var fdSLfdisplay_image_name=$("#fdSL_image_name_hidden_"+i.toString()).val(); 
 		
-		//if (fdSLfdisplay_image_name.length<10){
+	//if (fdSLfdisplay_image_name.length<10){
 		if (fdSLfdisplay_image_path.length<10){
 			image_flag=1
 		}
@@ -2178,7 +2192,6 @@ function qpds_ready_data() {
 		
 		
 		
-		//if (qpdsSL_image_name.length<10){
 		if (qpdsSL_image_path.length<10){
 			qpds_image_flag=1
 		}
@@ -2433,7 +2446,7 @@ function place_ready_data() {
 	place_page_set();
 	//alert (place_value)
 	//if ((image_name.length > 10)){
-	if ((place_image_path.length > 10) ){
+	if ((place_image_path.length > 10)){
 		var url = "#submitPage";
 		$.mobile.navigate(url);
 	//	$('#place_show').find('input, textarea, button, select').attr('disabled','disabled');
@@ -3304,6 +3317,21 @@ function buttonCheck(){
 		
 		$("#location_button").show();
 		$("#sub_button_div").hide();
+
+		$("#image_up_button").hide();
+		$("#NOutlet_button").hide();
+		
+		
+		//alert ('1');
+		$("#lat").val(0);
+		$("#long").val(0);
+		//alert ('asd');
+	}
+	if ((localStorage.latlongSubmit==0) && (localStorage.placeLatLongCount >3)){
+		//alert ('1')
+		
+		$("#location_button").hide();
+		$("#sub_button_div").show();
 
 		$("#image_up_button").hide();
 		$("#NOutlet_button").hide();
