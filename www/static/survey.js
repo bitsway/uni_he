@@ -3313,6 +3313,7 @@ function checkQtyQpds(i){
 function buttonCheck(){
 		if ((localStorage.latlongSubmit==0) && (localStorage.placeLatLongCount >3)){
 		localStorage.latlongSubmit=1
+		
 		//alert ('1')
 		//
 //		$("#location_button").hide();
