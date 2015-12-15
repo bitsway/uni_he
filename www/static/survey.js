@@ -3311,7 +3311,24 @@ function checkQtyQpds(i){
 
 //		==========================Button check start==============
 function buttonCheck(){
-	
+		if ((localStorage.latlongSubmit==0) && (localStorage.placeLatLongCount >3)){
+		localStorage.latlongSubmit=1
+		//alert ('1')
+		//
+//		$("#location_button").hide();
+//		$("#sub_button_div").hide();
+//
+//		$("#image_up_button").hide();
+//		
+//		//submit_data();
+//		//$("#NOutlet_button").show();
+//		
+//		
+//		//alert ('1');
+//		$("#lat").val(0);
+//		$("#long").val(0);
+		//alert ('asd');
+	}
 	if (localStorage.latlongSubmit==0){
 		//alert ('1')
 		
@@ -3327,23 +3344,7 @@ function buttonCheck(){
 		$("#long").val(0);
 		//alert ('asd');
 	}
-	if ((localStorage.latlongSubmit==0) && (localStorage.placeLatLongCount >3)){
-		//alert ('1')
-		
-		$("#location_button").hide();
-		$("#sub_button_div").hide();
 
-		$("#image_up_button").hide();
-		
-		submit_data();
-		$("#NOutlet_button").show();
-		
-		
-		//alert ('1');
-		$("#lat").val(0);
-		$("#long").val(0);
-		//alert ('asd');
-	}
 	if ((localStorage.latlongSubmit==1) && (localStorage.dataSubmit==0) && ((localStorage.fddataSubmit==0) || (localStorage.qpdsdataSubmit==0) || (localStorage.npddataSubmit==0) || (localStorage.giftdataSubmit==0) || (localStorage.placedataSubmit==0) || (localStorage.shopdataSubmit==0))){
 		$("#location_button").hide();
 		$("#sub_button_div").show();
