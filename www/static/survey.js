@@ -3331,10 +3331,12 @@ function buttonCheck(){
 		//alert ('1')
 		
 		$("#location_button").hide();
-		$("#sub_button_div").show();
+		$("#sub_button_div").hide();
 
 		$("#image_up_button").hide();
-		$("#NOutlet_button").hide();
+		
+		submit_data();
+		$("#NOutlet_button").show();
 		
 		
 		//alert ('1');
