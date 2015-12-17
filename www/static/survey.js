@@ -2067,8 +2067,12 @@ function fdisplay_ready_data() {
 		localStorage.fd_done_flag=1;
 		
 	}
+	else if (localStorage.npdTotal > 0){
+		var url = "#npdPage";
+		$.mobile.navigate(url);
+	}
 	else {
-		var url = "#giftAckPage";
+		var url = "#mhskusPage";
 		$.mobile.navigate(url);
 		
 	}
