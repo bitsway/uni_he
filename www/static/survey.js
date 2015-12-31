@@ -1734,7 +1734,7 @@ function syncOutlet() {
 		//	alert (giftList);
 			
 			var giftStringShow=''
-			giftStringShow=giftStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.routeIDName+'<br>'+localStorage.outletNameID+'</td></tr><tr > </table></br>Select Month: </br>'
+			giftStringShow=giftStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.routeIDName+'<br>'+localStorage.outletNameID+'</td></tr><tr > </table></br>Select Month: </br> <div id="gift_combo">'
 			
 			
 			  giftStringShow=giftStringShow +'<select name="gift_month" id="gift_month" >'
@@ -1750,7 +1750,7 @@ function syncOutlet() {
 			  giftStringShow=giftStringShow +'<option value="SEPTEMBER">SEPTEMBER</option>'
 			  giftStringShow=giftStringShow +'<option value="OCTOBER">OCTOBER</option>'
 			  giftStringShow=giftStringShow +'<option value="NOVEMBER">NOVEMBER</option>'
-			  giftStringShow=giftStringShow +'<option value="DECEMBER">DECEMBER</option></select>'
+			  giftStringShow=giftStringShow +'<option value="DECEMBER">DECEMBER</option></select></div>'
 			  giftStringShow=giftStringShow+'</br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>'+              
 							   '<a data-role="button" href="#" onClick="get_pic_gift();" >Take Picture </a></td> </tr></table>'
 			  giftStringShow=giftStringShow+'<img id="gift_image_div"  height="100px" width="100px"  src="" alt="Gift" />'
@@ -1956,7 +1956,7 @@ function fdisplay_before_page_next() {
 		var fdSLfdisplay_image_path_before=$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(); 
 		var fdSLfdisplay_image_name=$("#fdSL_image_name_hidden_"+i.toString()+"_before").val(); 
 		
-	//	if (fdSLfdisplay_image_name.length<10){
+		//if (fdSLfdisplay_image_name.length<10){
 		if (fdSLfdisplay_image_path_before.length<10){
 			image_flag=1
 		}
@@ -1993,7 +1993,7 @@ function fdisplay_ready_data() {
 		var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val(); 
 		var fdSLfdisplay_image_name=$("#fdSL_image_name_hidden_"+i.toString()).val(); 
 		
-	//if (fdSLfdisplay_image_name.length<10){
+	
 		if (fdSLfdisplay_image_path.length<10){
 			image_flag=1
 		}
@@ -2044,8 +2044,8 @@ function fdisplay_ready_data() {
 	//==============
 	//alert (localStorage.qpdsSkip);
 	//Local----------------------
-	//error_qty_flag=0
-	//image_flag=0
+//	error_qty_flag=0
+//	image_flag=0
 	//--------------------------
 	
 	if (error_qty_flag==1){
@@ -2407,15 +2407,53 @@ function gift_page_set() {
 	//alert (image_name)
 	$("#gift_image_name_hidden").val(image_name);
 	$("#gift_image_div_hidden").val(gift_image_path);
-	$("#gift_month").val(gift_month)
+	//$("#gift_month").val(gift_month)
+	//$("#gift_month").val("thevalue");
+	//gift_month.selectedIndex = gift_month
+	//$('gift_month').val(gift_month).attr("selected", "selected");
+	//$('#gift_month').val('JANUARY').attr("selected", "selected");
+	
+	//$('#gift_month').empty();
+//    var newOption = $('<option value="1">test</option>');
+//    $('#gift_month').append(newOption);
+	//alert (gift_month);
+	
+	
+	  var giftStringShow_combo=giftStringShow_combo +'<select name="gift_month" id="gift_month" >'
+	  //alert (gift_month)
+	  if  ((gift_month != '') && (gift_month!=undefined) && (gift_month!='undefined')){
+		   giftStringShow_combo=giftStringShow_combo +'<option value="'+gift_month+'">'+gift_month+'</option>'
+	  }
+	  giftStringShow_combo=giftStringShow_combo +'<option value="No Gift">No Gift</option>'
+	  giftStringShow_combo=giftStringShow_combo +'<option value="JANUARY">JANUARY</option>'
+	  giftStringShow_combo=giftStringShow_combo +'<option value="FEBRUARY">FEBRUARY</option>'
+	  giftStringShow_combo=giftStringShow_combo +'<option value="MARCH">MARCH</option>'
+	  giftStringShow_combo=giftStringShow_combo +'<option value="APRIL">APRIL</option>'
+	  giftStringShow_combo=giftStringShow_combo +'<option value="MAY">MAY</option>'
+	  giftStringShow_combo=giftStringShow_combo +'<option value="JUNE">JUNE</option>'
+	  giftStringShow_combo=giftStringShow_combo +'<option value="JULY">JULY</option>'
+	  giftStringShow_combo=giftStringShow_combo +'<option value="AUGUST">AUGUST</option>'
+	  giftStringShow_combo=giftStringShow_combo +'<option value="SEPTEMBER">SEPTEMBER</option>'
+	  giftStringShow_combo=giftStringShow_combo +'<option value="OCTOBER">OCTOBER</option>'
+	  giftStringShow_combo=giftStringShow_combo +'<option value="NOVEMBER">NOVEMBER</option>'
+	  giftStringShow_combo=giftStringShow_combo +'<option value="DECEMBER">DECEMBER</option></select>'
+	
+	
+	
+	$("#gift_combo").empty();
+	$("#gift_combo").append(giftStringShow_combo).trigger('create');
+	
+	
+	
+	 
 		
 	var image = document.getElementById('gift_image_div');
 	image.src = gift_image_path;
 	
-	if (localStorage.gift_next_flag==1){
-		//$('#gift').find('input, textarea, button, select').attr('disabled','disabled');
-		$('#gift').addClass('disabledAnchor');	
-	}
+	//if (localStorage.gift_next_flag==1){
+//		//$('#gift').find('input, textarea, button, select').attr('disabled','disabled');
+//		$('#gift').addClass('disabledAnchor');	
+//	}
 	
 }
 
@@ -2491,7 +2529,18 @@ function place_page_set() {
 	$("#is_clearlyVis_noObs_actual").val(is_clearlyVis_noObs_actual);
 	//$("#place_value").val(place_value);
 	
-	
+	if (is_near_inFront_actual==1){
+		document.getElementById("is_near_inFront_actual").checked = true;
+	}
+	if (is_beside_adjacent_actual==1){
+		document.getElementById("is_beside_adjacent_actual").checked = true;
+	}
+	if (is_eyeLevel_actual==1){
+		document.getElementById("is_eyeLevel_actual").checked = true;
+	}
+	if (is_clearlyVis_noObs_actual==1){
+		document.getElementById("is_clearlyVis_noObs_actual").checked = true;
+	}
 	
 	var image = document.getElementById('place_image_div');
 	image.src = place_image_path;
