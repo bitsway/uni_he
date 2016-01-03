@@ -3478,8 +3478,8 @@ function munu_page_check(){
 					localStorage.gift_data_ready="";
 					localStorage.mar_data_ready="";
 					
-					localStorage.sync_date=sync_date;
-					localStorage.synced=='YES';
+					//localStorage.sync_date=sync_date;
+					//localStorage.synced=='YES';
 					
 					
 					//distributon
@@ -3489,7 +3489,7 @@ function munu_page_check(){
 					
 					
 					//alert (localStorage.sync_date)
-					check_route();
+					//check_route();
 					var url = "#login";
 					$.mobile.navigate(url);
 					
