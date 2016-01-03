@@ -3479,7 +3479,7 @@ function munu_page_check(){
 					localStorage.mar_data_ready="";
 					
 					//localStorage.sync_date=sync_date;
-					//localStorage.synced=='YES';
+					localStorage.synced=='YES';
 					
 					
 					//distributon
