@@ -493,7 +493,14 @@ function check_user() {
 								$("#loginButton").show();
 								$("#login_image").hide();
 								var sync_date_get=get_date();
-								var sync_date=sync_date_get.substring(0,10);
+								var sync_date_get=get_date();
+								
+								var sync_y=sync_date_get.split('-')[0];
+								var sync_m=sync_date_get.split('-')[1];
+								if (sync_m.length==1){sync_m='0'+sync_m}
+								var sync_d=sync_date_get.split('-')[2].split(' ')[0];
+								if (sync_d.length==1){sync_d='0'+sync_d}
+								var sync_date=sync_y +'-'+ sync_m +'-'+sync_d;
 								localStorage.sync_date=sync_date;
 								
 								localStorage.synced='YES';
@@ -939,8 +946,13 @@ function marketPJP() {
 	var today_get = weekday[d.getDay()];
 	
 	var sync_date_get=get_date();
-	var sync_date=sync_date_get.substring(0,10);
-	
+	//var sync_date=sync_date_get.substring(0,10);
+	var sync_y=sync_date_get.split('-')[0];
+	var sync_m=sync_date_get.split('-')[1];
+	if (sync_m.length==1){sync_m='0'+sync_m}
+	var sync_d=sync_date_get.split('-')[2].split(' ')[0];
+	if (sync_d.length==1){sync_d='0'+sync_d}
+	var sync_date=sync_y +'-'+ sync_m +'-'+sync_d;
 	//sync_date.substring(1,10)
 	//alert (sync_date);
 	localStorage.sync_date=sync_date;
@@ -2567,7 +2579,7 @@ function submit_data() {
 	//=========================AJAX Submit==========================	
 	var lat=$( "#lat").val();
 	var long=$( "#long").val();
-	var visitDate=get_date().substring(0,10);
+	var visitDate=get_date().split(' ')[0];
     var endTime=get_date();
 	var giftImage=$( "#gift_image_name_hidden").val();
 	var latlong=lat.toString()+","+long.toString()
@@ -3448,7 +3460,13 @@ function menupage(){
 
 function munu_page_check(){
 	var sync_date_get=get_date();
-	var sync_date=sync_date_get.substring(0,10);
+	//var sync_date=sync_date_get.split(' ')[0];
+	var sync_y=sync_date_get.split('-')[0];
+	var sync_m=sync_date_get.split('-')[1];
+	if (sync_m.length==1){sync_m='0'+sync_m}
+	var sync_d=sync_date_get.split('-')[2].split(' ')[0];
+	if (sync_d.length==1){sync_d='0'+sync_d}
+	var sync_date=sync_y +'-'+ sync_m +'-'+sync_d;
 	//localStorage.sync_date="2015-1204"
 	//alert (localStorage.sync_date)
 	if ((localStorage.synced=='YES') & (localStorage.sync_date!=sync_date)){
