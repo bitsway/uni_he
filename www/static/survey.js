@@ -758,6 +758,7 @@ function check_user() {
 function check_route() {		
 		
 		$("#dataerror").html('');
+		
 		result_string=localStorage.routeString_bak;
 		
 		var routeArray = result_string.split('</routeList>');									
