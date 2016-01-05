@@ -2558,6 +2558,9 @@ function place_page_set() {
 
 
 function submit_data() { 
+	
+	munu_page_check();
+	
 	$("#sub_button").hide();
 	
 	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
