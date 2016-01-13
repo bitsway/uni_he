@@ -464,7 +464,8 @@ function check_user() {
 		localStorage.cid='UNILEVER';
 		localStorage.cm_id=cm_id;
    		localStorage.cm_pass=cm_pass;
-		localStorage.synced='NO'
+		localStorage.synced='NO';
+		localStorage.outletString='';
 		
 	//	clear_autho();
    		
