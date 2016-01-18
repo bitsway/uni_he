@@ -10,7 +10,7 @@
 //var apipath_image = 'http://127.0.0.1:8000/unilever/';
 
 
-var apipath='http://e3.businesssolutionapps.com/unilever/syncmobile_schedule/';
+var apipath='http://e3.businesssolutionapps.com/unilever/syncmobile_schedule_new/';
 var apipath_image = 'http://e3.businesssolutionapps.com/unilever/';
 
  
@@ -1088,7 +1088,7 @@ function marketPJP() {
 										
 										//alert (outletSingleTtotal);
 										for (var o=0; o < outletSingleTtotal-1; o++){
-											alert (outletSingleArray[o])
+											//alert (outletSingleArray[o])
 											outletArray = outletSingleArray[o].split('fdfd');
 											outletID=outletArray[0];
 											outletName=outletArray[1];
@@ -2832,8 +2832,9 @@ function submit_data() {
 								  
 								  localStorage.outletString=check_outlet.replace('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">','<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'" disabled="True">');
 								//  alert ('BB')
-								  localStorage.saved_req=localStorage.saved_req+'<savedsaved><'+localStorage.selectedOutlet+'><OidOid>'+localStorage.outletIDnameShow+'<showshow>'+apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&place_data='+localStorage.place_data_ready+'&shop_data='+localStorage.shop_data_ready+'</'+localStorage.selectedOutlet+'>'
-							 	
+								  localStorage.saved_req=localStorage.saved_req+'<savedsaved><'+localStorage.selectedOutlet+'><OidOid>'+localStorage.outletIDnameShow+'<showshow>'+apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+localStorage.fdisplay_data_ready+'&qpds_data='+localStorage.qpds_data_ready+'&gift_data='+localStorage.gift_data_ready+'&place_data='+localStorage.place_data_ready+'&shop_data='+localStorage.shop_data_ready+'&fdisplayTotal='+localStorage.fdisplayTotal+'&qpdsSlabTotal='localStorage.qpdsSlabTotal+'</'+localStorage.selectedOutlet+'>'
+							 	;
+								
 								$("#outletString").empty();
 								$("#outletString").append(localStorage.outletString).trigger('create');
 								//alert ('NN')
@@ -3507,7 +3508,7 @@ function buttonCheck(){
 //
 //		$("#image_up_button").hide();
 //		
-//		//submit_data();
+//		//submit_data();localStorage.fdisplaySlabTotal
 //		//$("#NOutlet_button").show();
 //		
 //		
@@ -3711,6 +3712,8 @@ function submi_saved_req(i){
 	var place_data=submit_dataList[20].replace('place_data=','')
 	var shop_data=submit_dataList[21].replace('shop_data=','')
 	
+	var fdisplayTotal=submit_dataList[22].replace('fdisplayTotal=','')
+	var qpdsSlabTotal=submit_dataList[23].replace('qpdsSlabTotal=','')
 	
 	selectedRoute = route
 	routeException = routeEx
@@ -3724,6 +3727,8 @@ function submi_saved_req(i){
 	localStorage.gift_data_ready = gift_data
 	localStorage.place_data_ready = place_data
 	localStorage.shop_data_ready = shop_data
+	localStorage.fdisplayTotal = fdisplayTotal
+	localStorage.qpdsSlabTotal = qpdsSlabTotal
 	
 	visitDate=submit_dataList[10].replace('visitDate=','')
 	startTime=submit_dataList[10].replace('startTime=','')
@@ -3795,6 +3800,10 @@ function submi_saved_req(i){
 							localStorage.gift_data_ready = ''
 							localStorage.place_data_ready = ''
 							localStorage.shop_data_ready = ''
+							
+							localStorage.fdisplayTotal=0;
+							localStorage.qpdsSlabTotal=0;
+							
 							//alert ('savedsaved'+submit_data)
 							var saved_req=localStorage.saved_req
 							
