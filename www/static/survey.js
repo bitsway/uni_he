@@ -3876,7 +3876,8 @@ function upload_fd_saved(){
 	var fdisplay_detail=fdisplay_array[1];
 	var fdisplay_head_array =  fdisplay_head.split('rdrd');
 	
-	for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
+	//alert (localStorage.fdisplaySlabTotal)
+	for (var i=0; i < localStorage.fdisplayTotal-1; i++){
 		var head_s_array=fdisplay_head_array[i].split('fdfd');
 		//alert (head_s_array);
 		var slabfdisplay =head_s_array[0];
@@ -3889,22 +3890,7 @@ function upload_fd_saved(){
 		var fdisplayImg_path_before=head_s_array[5].replace("rdrd","");
 		
 		
-		//$("#fdSL_image_div_hidden_"+i.toString()).val(fdisplayImg_path);
-//		$("#fdSL_image_name_hidden_"+i.toString()).val(fdisplayImg);
-//		
-//		
-//		$("#fdSL_image_div_hidden_"+i.toString()+"_before").val(fdisplayImg_path_before); 
-//		$("#fdSL_image_name_hidden_"+i.toString()+"_before").val(fdisplayImg_before);
 			
-		
-		
-		//var image = document.getElementById('fdSL_image_div_'+i.toString());
-//    	image.src = fdisplayImg_path;
-//		//alert (fdisplayImg_before)
-//		var image_before = document.getElementById('fdSL_image_div_'+i.toString()+"_before");
-//    	image_before.src = fdisplayImg_path_before;
-		
-		
 		//==============
 		
 		
@@ -3936,13 +3922,6 @@ function upload_fd_saved(){
 	}//endfor
 	
 	
-	
-	//===============================
-	
-	
-	
-	
-	//	}//end for
 	//upload_qpds_saved();
 
 }
