@@ -3771,92 +3771,92 @@ function submi_saved_req(i){
 //	$.mobile.navigate(url);
 //	locatio.reload();
 
-	//$.ajax({
-//			type: 'POST',
-//			url: url_submit,
-//			 success: function(result) {	
-//					
-//					if (result==''){
-//						alert ('Sorry Network not available');
-//					}
-//					else{
-//
-//						if (result!='SUCCESS'){
-//							$("#submit_data_check").html(result);
-//						}
-//						if (result=='SUCCESS'){
-//							
-//
-//							
-//							
-//							
-//							var check_outlet= localStorage.outletString;
-//							//alert (localStorage.saved_req)
-//
-//						//	localStorage.outletString=check_outlet.replace('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">','<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'" disabled="True">');
-//							
-//							//localStorage.outletString=outletStringShow
-//							//$("#outletString").html(localStorage.outletString);
-//							
-//							
-//							//$("#outletString").empty();
-//							//$("#outletString").append(localStorage.outletString).trigger('create');
-//							
-//							
-//							
-//							$("#savedVisitRecordError").html("Data Synced Successfully");
-//							//$("#submit_data").html('');
-//							//localStorage.step_flag=0;
-//							
-//							
-//							// Enable disable div end
-//							
+	$.ajax({
+			type: 'POST',
+			url: url_submit,
+			 success: function(result) {	
+					
+					if (result==''){
+						alert ('Sorry Network not available');
+					}
+					else{
+
+						if (result!='SUCCESS'){
+							$("#submit_data_check").html(result);
+						}
+						if (result=='SUCCESS'){
+							
+
+							
+							
+							
+							var check_outlet= localStorage.outletString;
+							//alert (localStorage.saved_req)
+
+						//	localStorage.outletString=check_outlet.replace('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">','<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'" disabled="True">');
+							
+							//localStorage.outletString=outletStringShow
+							//$("#outletString").html(localStorage.outletString);
+							
+							
+							//$("#outletString").empty();
+							//$("#outletString").append(localStorage.outletString).trigger('create');
+							
+							
+							
+							$("#savedVisitRecordError").html("Data Synced Successfully");
+							//$("#submit_data").html('');
+							//localStorage.step_flag=0;
+							
+							
+							// Enable disable div end
+							
 							
 							upload_fd_saved();
 							
 							
-							//localStorage.mhskus_data_ready = ''
-//							localStorage.npd_data_ready = ''
-//							localStorage.fdisplay_data_ready = ''
-//							localStorage.qpds_data_ready = ''
-//							localStorage.gift_data_ready = ''
-//							localStorage.place_data_ready = ''
-//							localStorage.shop_data_ready = ''
-//							
-//							localStorage.fdisplayTotal=0;
-//							localStorage.qpdsSlabTotal=0;
-//							
-//							//alert ('savedsaved'+submit_data)
-//							var saved_req=localStorage.saved_req
-//							
-//							var s_data=saved_req.split('<savedsaved>')[i]
-//							//alert (s_data);
-//							saved_req=saved_req.replace('<savedsaved>'+s_data,'')
-//							localStorage.saved_req=saved_req
-//							
-//							
-//							
-//							
-//							
-//							savedVisit();
-//							
-//							//location.reload();
-//							 //$("#savedVisitRecordError").html("Please try later");
-//							
-//						}
-//						
-//								
-//					}
-//					
-//				  }, 
-//			  error: function(result) {
-//					
-//				  $("#savedVisitRecordError").html("Please try later");
-//					  
-//					
-//			
-//			  }
-//		  });//end ajax
+							localStorage.mhskus_data_ready = ''
+							localStorage.npd_data_ready = ''
+							localStorage.fdisplay_data_ready = ''
+							localStorage.qpds_data_ready = ''
+							localStorage.gift_data_ready = ''
+							localStorage.place_data_ready = ''
+							localStorage.shop_data_ready = ''
+							
+							localStorage.fdisplayTotal=0;
+							localStorage.qpdsSlabTotal=0;
+							
+							//alert ('savedsaved'+submit_data)
+							var saved_req=localStorage.saved_req
+							
+							var s_data=saved_req.split('<savedsaved>')[i]
+							//alert (s_data);
+							saved_req=saved_req.replace('<savedsaved>'+s_data,'')
+							localStorage.saved_req=saved_req
+							
+							
+							
+							
+							
+							savedVisit();
+							
+							//location.reload();
+							 //$("#savedVisitRecordError").html("Please try later");
+							
+						}
+						
+								
+					}
+					
+				  }, 
+			  error: function(result) {
+					
+				  $("#savedVisitRecordError").html("Please try later");
+					  
+					
+			
+			  }
+		  });//end ajax
 	//alert (submit_data);
 }
 
