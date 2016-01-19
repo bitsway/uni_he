@@ -3911,14 +3911,15 @@ function upload_fd_saved(){
 		
 		var image_name=fdisplayImg_path;
 		var fdSLfdisplay_image_path=fdisplayImg;
+		alert (image_name)	
+		alert (fdSLfdisplay_image_path)
+		
 			
 		var image_name_before=fdisplayImg_path_before;
 		var fdSLfdisplay_image_path_before=fdisplayImg_before;
-			
-			
-			//alert (image_name);
-		//	alert (image_name_before);
-			
+		alert (image_name_before)	
+		alert (fdSLfdisplay_image_path_before)
+
 			if (image_name.length >10){
 				uploadPhoto(fdSLfdisplay_image_path, image_name);
 				uploadPhoto(fdSLfdisplay_image_path_before, image_name_before);
@@ -3941,40 +3942,8 @@ function upload_fd_saved(){
 	
 	
 	
-	//$( "#sub_fd_button").hide();
-//	$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
-//	//$("#submit_data").html('localStorage.fdisplay_data_ready:' + localStorage.fdisplay_data_ready);
-//	
-//	
-//	$("#savedVisitRecordError").text(localStorage.fdisplay_data_ready);
-//	if (typeof localStorage.fdisplay_data_ready === "undefined") {
-//		localStorage.fdisplay_data_ready = "_";
-//	}
-//	
-//		for (var i=0; i < localStorage.fdisplaySlabTotal-1; i++){
-//			var image_name=$("#fdSL_image_name_hidden_"+i.toString()).val();
-//			var fdSLfdisplay_image_path=$("#fdSL_image_div_hidden_"+i.toString()).val();
-//			
-//			
-//			var image_name_before=$("#fdSL_image_name_hidden_"+i.toString() + "_before").val();
-//			var fdSLfdisplay_image_path_before=$("#fdSL_image_div_hidden_"+i.toString()+ "_before").val();
-//			
-//			
-//			//alert (image_name);
-//		//	alert (image_name_before);
-//			
-//			if (image_name.length >10){
-//				uploadPhoto(fdSLfdisplay_image_path, image_name);
-//				uploadPhoto(fdSLfdisplay_image_path_before, image_name_before);
-//				localStorage.fddataSubmit=1;
-//				//if upload is successfull then "file_upload_error" will be 0 , if error 1
-//			} else {
-//				localStorage.fddataSubmit=1;
-//				$("#submit_data").html("Fixed Display Image Not Available");
-//		}
-					
 	//	}//end for
-	upload_qpds_saved();
+	//upload_qpds_saved();
 
 }
 
