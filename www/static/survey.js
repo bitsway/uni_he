@@ -3895,22 +3895,24 @@ function upload_fd_saved(){
 		
 		
 		
-		var image_name=fdisplayImg_path;
-		var fdSLfdisplay_image_path=fdisplayImg;
+		var image_name=fdisplayImg;
+		var fdSLfdisplay_image_path=fdisplayImg_path;
 		alert (image_name)	
 		alert (fdSLfdisplay_image_path)
 		
 			
-		var image_name_before=fdisplayImg_path_before;
-		var fdSLfdisplay_image_path_before=fdisplayImg_before;
+		var image_name_before=fdisplayImg_before;
+		var fdSLfdisplay_image_path_before=fdisplayImg_path_before;
 		alert (image_name_before)	
 		alert (fdSLfdisplay_image_path_before)
 		
-		var image = document.getElementById('shop_image_div_test');
-   		image.src = fdSLfdisplay_image_path_before;
 		
-			
-			if (image_name.length >10){
+		
+			if (image_name_before.length >10){
+				$("#test").text(fdSLfdisplay_image_path_before);
+				var image = document.getElementById('shop_image_div_test');
+   				image.src = fdSLfdisplay_image_path_before;
+				
 				uploadPhoto(fdSLfdisplay_image_path, image_name);
 				uploadPhoto(fdSLfdisplay_image_path_before, image_name_before);
 				localStorage.fddataSubmit=1;
@@ -3919,6 +3921,8 @@ function upload_fd_saved(){
 				localStorage.fddataSubmit=1;
 				$("#submit_data").html("Fixed Display Image Not Available");
 		}
+			
+	
 			
 	
 		
