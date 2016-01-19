@@ -3905,7 +3905,11 @@ function upload_fd_saved(){
 		var fdSLfdisplay_image_path_before=fdisplayImg_before;
 		alert (image_name_before)	
 		alert (fdSLfdisplay_image_path_before)
-
+		
+		var image = document.getElementById('shop_image_div_test');
+   		image.src = fdSLfdisplay_image_path_before;
+		
+			
 			if (image_name.length >10){
 				uploadPhoto(fdSLfdisplay_image_path, image_name);
 				uploadPhoto(fdSLfdisplay_image_path_before, image_name_before);
