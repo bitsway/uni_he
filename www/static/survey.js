@@ -3793,14 +3793,14 @@ function submi_saved_req(i){
 							var check_outlet= localStorage.outletString;
 							//alert (localStorage.saved_req)
 
-						//	localStorage.outletString=check_outlet.replace('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">','<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'" disabled="True">');
+							localStorage.outletString=check_outlet.replace('<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'">','<input type="radio" name="RadioOutlet" value="'+localStorage.selectedOutlet+'rdrd'+localStorage.selected_date_get+'" disabled="True">');
 							
-							//localStorage.outletString=outletStringShow
-							//$("#outletString").html(localStorage.outletString);
+							localStorage.outletString=outletStringShow
+							$("#outletString").html(localStorage.outletString);
 							
 							
-							//$("#outletString").empty();
-							//$("#outletString").append(localStorage.outletString).trigger('create');
+							$("#outletString").empty();
+							$("#outletString").append(localStorage.outletString).trigger('create');
 							
 							
 							
@@ -3814,6 +3814,7 @@ function submi_saved_req(i){
 							
 							upload_fd_saved();
 							
+							$("#savedVisitRecordError").html("Image Uploaded Successfully");
 							
 							localStorage.mhskus_data_ready = ''
 							localStorage.npd_data_ready = ''
@@ -3835,7 +3836,7 @@ function submi_saved_req(i){
 							localStorage.saved_req=saved_req
 							
 							
-							
+							cancel_outlet();
 							
 							
 							savedVisit();
