@@ -3838,6 +3838,17 @@ function submi_saved_req(i){
 							localStorage.saved_req=saved_req
 							
 							
+							
+							// Enable all disable div start
+							$('#mhskus').find('input, textarea, button, select').attr('disabled',false);
+							$('#npd').find('input, textarea, button, select').attr('disabled',false);
+							$('#fdisplayStringShowBefore').find('input, textarea, button, select').attr('disabled',false);
+							$('#fdisplay').find('input, textarea, button, select').attr('disabled',false);
+							$('#qpds').find('input, textarea, button, select').attr('disabled',false);
+							$('#gift').find('input, textarea, button, select').attr('disabled',false);
+							$('#place_show').find('input, textarea, button, select').attr('disabled',false);
+							$('#shop_show').find('input, textarea, button, select').attr('disabled',false);
+							
 							cancel_outlet();
 							
 							
@@ -3915,9 +3926,9 @@ function upload_fd_saved(){
 				
 				
 				if (image_name_before.length >10){
-					$("#test").text(fdSLfdisplay_image_path_before);
-					var image = document.getElementById('shop_image_div_test');
-					image.src = fdSLfdisplay_image_path_before;
+					//$("#test").text(fdSLfdisplay_image_path_before);
+//					var image = document.getElementById('shop_image_div_test');
+//					image.src = fdSLfdisplay_image_path_before;
 					
 					uploadPhoto(fdSLfdisplay_image_path, image_name);
 					uploadPhoto(fdSLfdisplay_image_path_before, image_name_before);
@@ -3964,9 +3975,9 @@ function upload_qpds_saved(){
 				for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
 					var image_name=qpdsImg;
 					var qpds_image_path=qpdsImg_path;
-					$("#test").text(qpds_image_path);
-					var image = document.getElementById('shop_image_div_test');
-					image.src = qpds_image_path;
+					//$("#test").text(qpds_image_path);
+//					var image = document.getElementById('shop_image_div_test');
+//					image.src = qpds_image_path;
 					localStorage.qpdsdataSubmit=1;
 						if (qpds_image_path.length >10){
 						uploadPhoto(qpds_image_path, image_name);
@@ -3997,8 +4008,8 @@ function upload_npd_saved(){
 		var image_name=npd_single_array[4];
 
 		if (image_name.length >10){
-			var image = document.getElementById('shop_image_div_test');
-			image.src = npd_image_path;
+			//var image = document.getElementById('shop_image_div_test');
+//			image.src = npd_image_path;
 			uploadPhoto(npd_image_path, image_name);
 			$("#submit_data").html("");
 		} else {
@@ -4030,8 +4041,8 @@ function upload_gift_confirm_saved(){
 	
 
 	if (image_name.length >10){
-		var image = document.getElementById('shop_image_div_test');
-		image.src = gift_image_path;
+		//var image = document.getElementById('shop_image_div_test');
+//		image.src = gift_image_path;
 		uploadPhoto(gift_image_path, image_name);
 		$("#submit_data").html("");
 
@@ -4055,8 +4066,8 @@ function upload_shop_saved(){
 	var shop_image_path = shop_array[1];
 
 	if (image_name_shop.length >10){
-				var image = document.getElementById('shop_image_div_test');
-				image.src = shop_image_path;
+				//var image = document.getElementById('shop_image_div_test');
+//				image.src = shop_image_path;
 				uploadPhoto(shop_image_path, image_name_shop);
 				$("#submit_data").html("");
 				
@@ -4081,8 +4092,8 @@ function upload_place_saved(){
 	var place_image_path = place_array[1];
 	
 	if (image_name_place.length >10){
-				var image = document.getElementById('shop_image_div_test');
-				image.src = place_image_path;
+				//var image = document.getElementById('shop_image_div_test');
+//				image.src = place_image_path;
 				uploadPhoto(place_image_path, image_name_place);
 				$("#submit_data").html("");
 	} else {
