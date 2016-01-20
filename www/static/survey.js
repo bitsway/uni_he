@@ -3864,6 +3864,7 @@ function submi_saved_req(i){
 
 
 //------------------------------------------------------------------------
+//------------------------------------------------------------------------
 function upload_fd_saved(){
 	//fixed display
 	localStorage.step_flag=1; //1 fd , 2 qpds, 3 gift
@@ -3875,113 +3876,159 @@ function upload_fd_saved(){
 	var fdisplay_head=fdisplay_array[0].replace("headstart","");
 	var fdisplay_detail=fdisplay_array[1];
 	var fdisplay_head_array =  fdisplay_head.split('rdrd');
-	
+	localStorage.fdisplayTotal=fdisplay_head_array.length
+	$("#test").text(fdisplay_head);
 	//alert (localStorage.fdisplaySlabTotal)
 	for (var i=0; i < localStorage.fdisplayTotal-1; i++){
-		var head_s_array=fdisplay_head_array[i].split('fdfd');
-		//alert (head_s_array);
-		var slabfdisplay =head_s_array[0];
-		var fdisplayTotal=head_s_array[1];
-		var fdisplayImg=head_s_array[2];
-		var fdisplayImg_path=head_s_array[3];
-		
-		var fdisplayImg_before=head_s_array[4];
-		
-		var fdisplayImg_path_before=head_s_array[5].replace("rdrd","");
-		
-		
-			
-		//==============
-		
-		
-		
-		var image_name=fdisplayImg;
-		var fdSLfdisplay_image_path=fdisplayImg_path;
-		alert (image_name)	
-		alert (fdSLfdisplay_image_path)
-		
-			
-		var image_name_before=fdisplayImg_before;
-		var fdSLfdisplay_image_path_before=fdisplayImg_path_before;
-		alert (image_name_before)	
-		alert (fdSLfdisplay_image_path_before)
-		
-		
-		
-			if (image_name_before.length >10){
-				$("#test").text(fdSLfdisplay_image_path_before);
-				var image = document.getElementById('shop_image_div_test');
-   				image.src = fdSLfdisplay_image_path_before;
+		//alert (fdisplay_head_array[i])
+				var head_s_array=fdisplay_head_array[i].split('fdfd');
+				//alert (head_s_array);
+				var slabfdisplay =head_s_array[0];
+				var fdisplayTotal=head_s_array[1];
+				var fdisplayImg=head_s_array[2];
+				var fdisplayImg_path=head_s_array[3];
 				
-				uploadPhoto(fdSLfdisplay_image_path, image_name);
-				uploadPhoto(fdSLfdisplay_image_path_before, image_name_before);
-				localStorage.fddataSubmit=1;
-				//if upload is successfull then "file_upload_error" will be 0 , if error 1
-			} else {
-				localStorage.fddataSubmit=1;
-				$("#submit_data").html("Fixed Display Image Not Available");
-		}
+				var fdisplayImg_before=head_s_array[4];
+				
+				var fdisplayImg_path_before=head_s_array[5].replace("rdrd","");
+				
+				
+					
+				//==============
+				
+				
+				
+				var image_name=fdisplayImg;
+				var fdSLfdisplay_image_path=fdisplayImg_path;
+				//alert (image_name)	
+				//alert (fdSLfdisplay_image_path)
+				
+					
+				var image_name_before=fdisplayImg_before;
+				var fdSLfdisplay_image_path_before=fdisplayImg_path_before;
+				//alert (image_name_before)	
+				//alert (fdSLfdisplay_image_path_before)
+				
+				
+				
+				if (image_name_before.length >10){
+					$("#test").text(fdSLfdisplay_image_path_before);
+					var image = document.getElementById('shop_image_div_test');
+					image.src = fdSLfdisplay_image_path_before;
+					
+					uploadPhoto(fdSLfdisplay_image_path, image_name);
+					uploadPhoto(fdSLfdisplay_image_path_before, image_name_before);
+					localStorage.fddataSubmit=1;
+					//if upload is successfull then "file_upload_error" will be 0 , if error 1
+					} else {
+						localStorage.fddataSubmit=1;
+						$("#submit_data").html("Fixed Display Image Not Available");
+					}
 			
 	
 			
-	
 		
 		
 	}//endfor
 	
-	
-	//upload_qpds_saved();
+	upload_qpds_saved();
 
 }
 
 function upload_qpds_saved(){
-	//QPDS
 	localStorage.step_flag=2; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
-	$( "#sub_qpds_button").hide();
 	
-	
-	if (typeof localStorage.qpds_data_ready === "undefined") {
-		localStorage.qpds_data_ready ="_";
-	}
- localStorage.qpdsdataSubmit=1;
-	if (localStorage.qpds_data_ready.length > 10){	
-		for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
-			var image_name=$("#qpdsSL_image_name_hidden_"+i.toString()).val();
-			var qpds_image_path=$("#qpdsSL_image_div_hidden_"+i.toString()).val();
+	var qpds_array =  localStorage.qpds_data_ready.split('headend');
+	var qpds_head=qpds_array[0].replace("headstart","");
+	var qpds_detail=qpds_array[1];
+	var qpds_head_array =  qpds_head.split('rdrd');
+	localStorage.qpdsSlabTotal=qpds_head_array.length
+
+	 for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
+			//alert (qpds_head_array[i]);
+			var head_s_array=qpds_head_array[i].split('fdfd');
+			var slabqpds =head_s_array[0];
+			var qpdsTotal=head_s_array[1];
 			
-			var image_name_before=$("#qpdsSL_image_name_hidden_"+i.toString()+"_before").val();
-			var qpds_image_path_before=$("#qpdsSL_image_div_hidden_"+i.toString()+"_before").val();
-			localStorage.qpdsdataSubmit=1;
-			if (qpds_image_path.length >10){
-				uploadPhoto(qpds_image_path, image_name);
-				$("#submit_data").html("");		
-				
-				}
-				else{
-					$("#submit_data").html("Promotion Image Not Available");				
-				}
-		}//end for
-	}//end if
-	else{
-		 localStorage.qpdsdataSubmit=1;
-	}
+			var qpdsImg=head_s_array[2];
+			var qpdsImg_path=head_s_array[3];
+	
+			
+		
+			
+			if (localStorage.qpds_data_ready.length > 10){	
+				for (var i=0; i < localStorage.qpdsSlabTotal-1; i++){
+					var image_name=qpdsImg;
+					var qpds_image_path=qpdsImg_path;
+					$("#test").text(qpds_image_path);
+					var image = document.getElementById('shop_image_div_test');
+					image.src = qpds_image_path;
+					localStorage.qpdsdataSubmit=1;
+						if (qpds_image_path.length >10){
+						uploadPhoto(qpds_image_path, image_name);
+						$("#submit_data").html("");		
+						
+						}
+						else{
+							$("#submit_data").html("Promotion Image Not Available");				
+						}
+				}//end for
+			}//end if
+	
+		}
 	 upload_npd_saved();
 }
 
+
+
+//==============upload npd
+function upload_npd_saved(){
+	localStorage.step_flag=3; 
+	localStorage.npddataSubmit=1;
+	var npd_array =  localStorage.npd_data_ready.split('rdrd');
+	for (var i=0; i < npd_array.length-1; i++){
+		var npd_single_array = npd_array[i].split('fdfd');	
+		var itemQty=npd_single_array[1];
+		var npd_image_path=npd_single_array[3];
+		var image_name=npd_single_array[4];
+
+		if (image_name.length >10){
+			var image = document.getElementById('shop_image_div_test');
+			image.src = npd_image_path;
+			uploadPhoto(npd_image_path, image_name);
+			$("#submit_data").html("");
+		} else {
+
+				$("#submit_data").html("Npd Image Not Available");
+
+		}
+					
+	}//end for
+	
+	
+	upload_gift_confirm()
+		
+	
+
+}
+
+//==================Gift
 function upload_gift_confirm_saved(){
-	//Gift
 	localStorage.giftdataSubmit=1;
 	localStorage.step_flag=4; //1 fd , 2 qpds, 3 gift
 	file_upload_error = 0;
-	$( "#sub_gift_button").hide();
-	//$("#submit_data").html('<img height="40px" width="40px" src="loading.gif">');
-	//$("#submit_data").html('Gift');
 	
-	var image_name=$("#gift_image_name_hidden").val();
-	var gift_image_path=$("#gift_image_div_hidden").val();
-	//alert (image_name.length);
+	
+	var gift_data =  localStorage.gift_data_ready.replace("rdrd","");
+	var gift_array =  gift_data.split('fdfd');
+	var image_name = gift_array[0];
+	var gift_image_path = gift_array[1];
+	
+
 	if (image_name.length >10){
+		var image = document.getElementById('shop_image_div_test');
+		image.src = gift_image_path;
 		uploadPhoto(gift_image_path, image_name);
 		$("#submit_data").html("");
 
@@ -3993,74 +4040,20 @@ function upload_gift_confirm_saved(){
 	upload_shop_saved()
 	
 }
-
-//==============upload npd
-function upload_npd_saved(){
-	localStorage.step_flag=3; 
-	localStorage.npddataSubmit=1;
-	if (typeof localStorage.npd_data_ready === "undefined") {
-		localStorage.npd_data_ready = "_";
-	}
-	//alert (localStorage.npdArrayTotal)
-	if (localStorage.npdTotal  > 0){
-		for (var i=0; i < localStorage.npdTotal-1; i++){
-			var image_name=$("#npd_image_name_hidden_"+i.toString()).val();
-			var npd_image_path=$("#npd_image_div_hidden_"+i.toString()).val();
-			//alert (npd_image_path)
-			if (image_name.length >10){
-				uploadPhoto(npd_image_path, image_name);
-				$("#submit_data").html("");
-			} else {
-
-					$("#submit_data").html("Npd Image Not Available");
-
-			}
-					
-		}//end for
-	}
-	else{
-		upload_gift_confirm()
-		buttonCheck();
-	}
-
-}
-//========================Place upload
-
-function upload_place_saved(){
-	localStorage.step_flag=5; 
-	localStorage.placedataSubmit=1;
-	//step_flag=2; //1 fd , 2 qpds, 3 gift
-	file_upload_error = 0;
-	//$( "#sub_qpds_button").hide();
-
-
-	var image_name_place=$("#place_image_name_hidden").val();
-	var place_image_path=$("#place_image_div_hidden").val();
-	
-	if (image_name_place.length >10){
-				uploadPhoto(place_image_path, image_name_place);
-				$("#submit_data").html("");
-	} else {
-
-			$("#submit_data").html("Place Image Not Available");
-			//$("#submit_data").html("");				
-
-	}
-	
-	
-	buttonCheck();
-
-}
+//===============Shop
 function upload_shop_saved(){
 	localStorage.step_flag=6;
 	file_upload_error = 0;
 	//$( "#sub_qpds_button").hide();
-	localStorage.shopdataSubmit=1;
-
-	var image_name_shop=$("#shop_image_name_hidden").val();
-	var shop_image_path=$("#shop_image_div_hidden").val();
 	
+	var shop_data =  localStorage.shop_data_ready.replace("rdrd","");
+	var shop_array =  shop_data.split('fdfd');
+	var image_name = shop_array[0];
+	var shop_image_path = shop_array[1];
+
 	if (image_name_shop.length >10){
+				var image = document.getElementById('shop_image_div_test');
+				image.src = shop_image_path;
 				uploadPhoto(shop_image_path, image_name_shop);
 				$("#submit_data").html("");
 				
@@ -4071,6 +4064,31 @@ function upload_shop_saved(){
 
 	}
 	upload_place_saved()
-	//buttonCheck();
+
+}
+//========================Place upload
+
+function upload_place_saved(){
+	localStorage.step_flag=5; 
+	file_upload_error = 0;
+
+	var place_data =  localStorage.place_data_ready.replace("rdrd","");
+	var place_array =  place_data.split('fdfd');
+	var image_name = place_array[0];
+	var place_image_path = place_array[1];
+	
+	if (image_name_place.length >10){
+				var image = document.getElementById('shop_image_div_test');
+				image.src = place_image_path;
+				uploadPhoto(place_image_path, image_name_place);
+				$("#submit_data").html("");
+	} else {
+
+			$("#submit_data").html("Place Image Not Available");
+			//$("#submit_data").html("");				
+
+	}
+	
+	
 
 }
