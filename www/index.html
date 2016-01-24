@@ -64,7 +64,7 @@
    <script>
 <!--
 $(document).ready(function(){
-				//alert (localStorage.saved_req);
+
 				buttonCheck();
 				$("#login_image").hide();
 				$("#routeS_image").hide();
@@ -165,9 +165,6 @@ $(document).ready(function(){
 				//alert (sync_date);
 				//alert (localStorage.sync_date);
 				//localStorage.sync_date='2014-07-11';
-				
-				//alert (localStorage.synced);
-				
 				if (localStorage.synced=='YES'){
 					$("#cm_id").val(localStorage.cm_id);
 					$("#cm_pass").val(localStorage.cm_pass);
@@ -248,12 +245,6 @@ $(document).ready(function(){
 				$("#lat").val(localStorage.latitude);
 				$("#long").val(localStorage.longitude);
 				
-				if (localStorage.saved_visit=='YES'){
-				
-				$("#saved_button").html('<a data-role="button" onClick="savedVisit()" ><img src="saved_visit.png"></a>')
-				
-				}
-				
 				//alert (localStorage.outletIDnameShow);
 				
 				//alert (localStorage.outletIDnameShow);
@@ -322,8 +313,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             	<br><br>
 				
 				<font color="#CCFFCC" face="Arial, Helvetica, sans-serif" size="-1">       
-			   <a data-role="button" onClick="marketPJP_check()" ><img src="market_pjp.png"></a>
-			   <div id="saved_button">dasfasfdf</div>
+				<a data-role="button" onClick="marketPJP_check()" ><img src="market_pjp.png"></a>
                <a data-role="button" href="#noticePage" onClick="test()" ><img src="notice_icon.png"></a>
 				
                 </font>
@@ -367,7 +357,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             </div>
 			
 		
-			<div align="right"  style="color:#A4C5D9; width:100%; ">Version:00010;20160120.1</div>
+			<div align="right"  style="color:#A4C5D9; width:100%; ">Version:00010;20160124WS.1</div>
         </div><!--/login page-->
    
      <!--  ====================== routePage ======================  -->
@@ -1004,35 +994,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         
     <!--=====================Place  page end=========================-->
  
-<!-- ============Saved visit Page Start================-->
-    <div data-theme="c" data-role="page" id="savedVisitPage">
-		    <div data-theme="c" data-role="header" data-position="fixed" >
-			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
-                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
-                <h3>Saved Visit</h3>
-            </div>
-		    
-			<div  data-role="content" style="height:90%" >	
-             <span style=" font-size:5"> <br/><br/></span>				
-					<div id="savedVisitRecordError"> </div>	
-              		<div id="savedVisitRecord"> </div>		
-			
-				<br/><br/>
-
-				
-				<!--<img id="shop_image_div_test" height="100px" width="100px"  src="" alt="Place" />
-				<div id="test">ddddd</div>-->
-                
-                <div id="dataerrorsave" style="color:#006291"> </div>
-                <br/><br/>
-
-                <br/><br/><br/>
-								
-			</div>
-		 
-		</div><!-- /route page -->
-        
-<!--=====================Saved visit Page end=============-->
+ 
  
  <script type="text/javascript" src="phonegap.js"></script>
  
