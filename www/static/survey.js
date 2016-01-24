@@ -300,7 +300,7 @@ function cancel_outlet_Back(){
 	
 	var latitude=$("#lat").val();
 	var longitude=$("#long").val();
-	alert (latitude);
+	//alert (latitude);
 	
 	//alert (cancel_reason)
 	if (cancel_reason==""){
