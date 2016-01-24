@@ -2705,7 +2705,7 @@ function submit_data() {
 								
 								
 								upload_fd();
-								//cancel_outlet();
+								cancel_outlet();
 								
 								//location.reload();
 								
