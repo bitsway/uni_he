@@ -302,6 +302,8 @@ function cancel_outlet_Back(){
 	var cancel_reason=$("#cancel_cause").val();
 	var imageName=$("#shop_image_name_hidden").val();
 	var imagePath=$("#shop_image_div_hidden").val();
+	
+	getlocationand_askhelp()
 	var latitude=$("#lat").val();
 	var longitude=$("#long").val();
 	//alert (latitude);
