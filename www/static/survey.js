@@ -2,15 +2,7 @@
 
 // Put your custom code here
 
-//var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile1/';
-//var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
 
-//var apipath='http://e2.businesssolutionapps.com/unilever/syncmobile2/';
-//var apipath_image = 'http://e2.businesssolutionapps.com/unilever/';
-
-
-//var apipath='http://eapps001.cloudapp.net/unilever/syncmobile3/';
-//var apipath_image = 'http://eapps001.cloudapp.net/unilever/';
 
 
 
@@ -299,14 +291,16 @@ function shop_page_set() {
 
 
 function cancel_outlet_Back(){
+	
+	//alert (localStorage.latitude)
 	var cancel_reason=$("#cancel_cause").val();
 	var imageName=$("#shop_image_name_hidden").val();
 	var imagePath=$("#shop_image_div_hidden").val();
 	
-	getlocationand_askhelp()
+	
 	var latitude=$("#lat").val();
 	var longitude=$("#long").val();
-	//alert (latitude);
+	alert (latitude);
 	
 	//alert (cancel_reason)
 	if (cancel_reason==""){
@@ -1125,7 +1119,7 @@ function marketPJP() {
 											outletStringShow=outletStringShow+'<label style="color:#800000; font-size:18px" ><table width="100%" border="0"> <tr> <td >Schedule Not Available </td>	</tr></table></label>'
 											
 										}
-										outletStringShow=outletStringShow+'<br/><br/> <a id="selectOButton" data-role="button" onClick="select_outlet();" >Next</a>'
+										outletStringShow=outletStringShow+'<br/><br/> <a id="selectOButton" data-role="button" onClick="select_outlet();getlocationand_askhelp()" >Next</a>'
 										
 										//outletStringShow=outletStringShow+'<div id="outletWait" style="display:none"><img height="40px" width="40px" src="loading.gif"></div>'
 										
