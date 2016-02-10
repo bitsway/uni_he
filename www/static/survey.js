@@ -2441,6 +2441,7 @@ function gift_page_set() {
 	  if  ((gift_month != '') && (gift_month!=undefined) && (gift_month!='undefined')){
 		   giftStringShow_combo=giftStringShow_combo +'<option value="'+gift_month+'">'+gift_month+'</option>'
 	  }
+	  giftStringShow_combo=giftStringShow_combo +'<option value="">Gift Month</option>'
 	  giftStringShow_combo=giftStringShow_combo +'<option value="No Gift">No Gift</option>'
 	  giftStringShow_combo=giftStringShow_combo +'<option value="JANUARY">JANUARY</option>'
 	  giftStringShow_combo=giftStringShow_combo +'<option value="FEBRUARY">FEBRUARY</option>'
