@@ -2751,7 +2751,7 @@ function submit_data() {
 														$("#submit_data_check").html("Data Synced Successfully");
 														$("#submit_data").html('');
 														localStorage.step_flag=0;
-														
+														localStorage.latlongSubmit==1
 														
 														// Enable all disable div start
 														$('#mhskus').find('input, textarea, button, select').attr('disabled',false);
@@ -2767,6 +2767,8 @@ function submit_data() {
 														
 														
 														upload_fd();
+														
+														
 														buttonCheck();
 														cancel_outlet();
 														
