@@ -2730,7 +2730,7 @@ function submit_data() {
 														
 														
 														localStorage.dataSubmit=1;
-														buttonCheck();
+														
 														
 														
 														localStorage.show_cancel=0;
@@ -2767,6 +2767,7 @@ function submit_data() {
 														
 														
 														upload_fd();
+														buttonCheck();
 														cancel_outlet();
 														
 														//location.reload();
@@ -2782,7 +2783,7 @@ function submit_data() {
 											 // alert (result);
 											 $("#sub_button").show();
 											 
-											// $("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
+											 $("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
 											 localStorage.dataSubmit=0;
 											 buttonCheck();
 											 var url = "#submitPage";
