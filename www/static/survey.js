@@ -2751,7 +2751,7 @@ function submit_data() {
 														$("#submit_data_check").html("Data Synced Successfully");
 														$("#submit_data").html('');
 														localStorage.step_flag=0;
-														localStorage.latlongSubmit==1
+														//localStorage.latlongSubmit==1
 														
 														// Enable all disable div start
 														$('#mhskus').find('input, textarea, button, select').attr('disabled',false);
@@ -2769,9 +2769,12 @@ function submit_data() {
 														upload_fd();
 														
 														
+														
+														
 														buttonCheck();
 														cancel_outlet();
-														
+														var url = "#menuPage";
+														$.mobile.navigate(url);
 														//location.reload();
 														
 														
@@ -2785,7 +2788,7 @@ function submit_data() {
 											 // alert (result);
 											 $("#sub_button").show();
 											 
-											 $("#submit_data").html("Network timeout. Please ensure you have good network signal and working Internet.");
+											 $("#submit_data").html("Network timeout. Please try again.");
 											 localStorage.dataSubmit=0;
 											 buttonCheck();
 											 var url = "#submitPage";
