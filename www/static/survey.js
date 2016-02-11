@@ -3452,7 +3452,7 @@ function checkQtyQpds(i){
 
 //		==========================Button check start==============
 function buttonCheck(){
-		if ((localStorage.latlongSubmit==0) && (localStorage.placeLatLongCount >3)){
+		if ((localStorage.latlongSubmit==0) && (localStorage.placeLatLongCount >1)){
 		localStorage.latlongSubmit=1
 		
 		//alert ('1')
