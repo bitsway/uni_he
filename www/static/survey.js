@@ -590,6 +590,7 @@ function check_user() {
 								
 								//alert (today_get);
 								var alowSl=''
+								
 								for (var rs=0; rs < routeSingleTtotal-1; rs++){
 									routeSArray = routeSingleArray[rs].split('fdfd');
 									routeSID=routeSArray[0];
@@ -623,7 +624,7 @@ function check_user() {
 										r_sdaySl=7;
 									}
 									//alert (r_sdaySl);
-									if (r_sday==today_get){	
+									//if (r_sday==today_get){	
 											if (r_sdaySl==1){
 												alowSl=	'7,6,5,1'
 											}
@@ -648,7 +649,7 @@ function check_user() {
 											
 									}
 									
-								}
+							//	}
 								//alert (alowSl);
 								
                 
