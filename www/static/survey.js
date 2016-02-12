@@ -818,7 +818,7 @@ function check_route() {
 				r_sdaySl=7;
 			}
 			//alert (r_sdaySl);
-			if (r_sday==today_get){	
+			//if (r_sday==today_get){	
 					if (r_sdaySl==1){
 						alowSl=	'7,6,5,1'
 					}
@@ -843,7 +843,7 @@ function check_route() {
 					
 			}
 			
-		}
+		//}
 		//alert (alowSl);
 		
 
@@ -3453,7 +3453,7 @@ function checkQtyQpds(i){
 
 //		==========================Button check start==============
 function buttonCheck(){
-		if ((localStorage.latlongSubmit==0) && (localStorage.placeLatLongCount >1)){
+		if ((localStorage.latlongSubmit==0) && (localStorage.placeLatLongCount >2)){
 		localStorage.latlongSubmit=1
 		
 		//alert ('1')
