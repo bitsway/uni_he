@@ -2773,7 +2773,7 @@ function submit_data() {
 														
 														buttonCheck();
 														cancel_outlet();
-														var url = "#menuPage";
+														var url = "#outletPage";
 														$.mobile.navigate(url);
 														//location.reload();
 														
