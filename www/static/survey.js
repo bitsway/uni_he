@@ -40,6 +40,7 @@ function getlocationand_askhelp() { //location
     $("#lat").val(0);
 	$("#long").val(0);
 	//var options = { enableHighAccuracy: true,timeout:15000};
+	
 	var options = { timeout:15000};
 	navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 	$("#location_button").hide();
