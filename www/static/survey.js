@@ -62,6 +62,7 @@ function onSuccess(position) {
 	$("#lat").val(localStorage.latitude);
 	$("#long").val(localStorage.longitude);
 	$("#submit_data").html("Location Confirmed");
+	alert ("Location Confirmed")
 	localStorage.latlongSubmit=1;
 	buttonCheck();
 	
