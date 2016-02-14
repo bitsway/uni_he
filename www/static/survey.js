@@ -40,8 +40,12 @@ function getlocationand_askhelp() { //location
     $("#lat").val(0);
 	$("#long").val(0);
 	//var options = { enableHighAccuracy: true,timeout:15000};
-	
-	var options = { timeout:15000};
+	if (localStorage.placeLatLongCount < 1){
+		var options = { timeout:60000};
+	}
+	else{
+		var options = { timeout:15000};
+	}
 	navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 	$("#location_button").hide();
 	$("#submit_data").html("Confirming Location. Please Wait...");
