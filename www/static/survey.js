@@ -1751,7 +1751,7 @@ function syncOutlet() {
 		//	alert (giftList);
 			
 			var giftStringShow=''
-			giftStringShow=giftStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.routeIDName+'<br>'+localStorage.outletNameID+'</td></tr><tr > </table></br>Select Month: </br> <div id="gift_combo">'
+			giftStringShow=giftStringShow+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.routeIDName+'<br>'+localStorage.outletNameID+'</td></tr><tr > </table></br>Select Month: </br>'// <div id="gift_combo">'
 			
 			
 			  giftStringShow=giftStringShow +'<select name="gift_month" id="gift_month" >'
@@ -1768,7 +1768,7 @@ function syncOutlet() {
 			  giftStringShow=giftStringShow +'<option value="SEPTEMBER">SEPTEMBER</option>'
 			  giftStringShow=giftStringShow +'<option value="OCTOBER">OCTOBER</option>'
 			  giftStringShow=giftStringShow +'<option value="NOVEMBER">NOVEMBER</option>'
-			  giftStringShow=giftStringShow +'<option value="DECEMBER">DECEMBER</option></select></div>'
+			  giftStringShow=giftStringShow +'<option value="DECEMBER">DECEMBER</option></select>'//</div>'
 			  giftStringShow=giftStringShow+'</br><table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td>'+              
 							   '<a data-role="button" href="#" onClick="get_pic_gift();" >Take Picture </a></td> </tr></table>'
 			  giftStringShow=giftStringShow+'<img id="gift_image_div"  height="100px" width="100px"  src="" alt="Gift" />'
