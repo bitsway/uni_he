@@ -2444,6 +2444,7 @@ function gift_page_set() {
 	//alert (gift_month);
 	
 	  var giftStringShow_combo='';
+	  
 	  giftStringShow_combo=giftStringShow_combo +'<select name="gift_month" id="gift_month" >'
 	  //alert (gift_month)
 	  if  ((gift_month != '') && (gift_month!=undefined) && (gift_month!='undefined')){
