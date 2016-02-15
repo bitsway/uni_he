@@ -62,7 +62,7 @@ function onSuccess(position) {
 	$("#lat").val(localStorage.latitude);
 	$("#long").val(localStorage.longitude);
 	$("#submit_data").html("Location Confirmed");
-	alert ("Location Confirmed")
+	//alert ("Location Confirmed")
 	localStorage.latlongSubmit=1;
 	buttonCheck();
 	
@@ -2444,10 +2444,12 @@ function gift_page_set() {
 	//alert (gift_month);
 	
 	
-	  var giftStringShow_combo=giftStringShow_combo +'<select name="gift_month" id="gift_month" >'
+	  var giftStringShow_combo=giftStringShow_combo+'<table width="100%" border="0"><tr style="color:#0329C0"> <td colspan="2" style="color:#006A6A; font-size:18px;">'+localStorage.routeIDName+'<br>'+localStorage.outletNameID+'</td></tr><tr > </table></br>Select Month: </br> '//<div id="gift_combo">'
+	   giftStringShow_combo=giftStringShow_combo +'<select name="gift_month" id="gift_month" >'
 	  //alert (gift_month)
 	  if  ((gift_month != '') && (gift_month!=undefined) && (gift_month!='undefined')){
-		   giftStringShow_combo=giftStringShow_combo +'<option value="'+gift_month+'">'+gift_month+'</option>'
+		  giftStringShow_combo=giftStringShow_combo +'<option value="'+gift_month+'" selected="selected"  >'+gift_month+'</option>'
+		  
 	  }
 	  giftStringShow_combo=giftStringShow_combo +'<option value="">Gift Month</option>'
 	  giftStringShow_combo=giftStringShow_combo +'<option value="No Gift">No Gift</option>'
@@ -2466,8 +2468,8 @@ function gift_page_set() {
 	
 	
 	
-	$("#gift_combo").empty();
-	$("#gift_combo").append(giftStringShow_combo).trigger('create');
+	$("#gift").empty();
+	$("#gift").append(giftStringShow_combo).trigger('create');
 	
 	
 	
