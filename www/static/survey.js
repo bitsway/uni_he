@@ -3605,3 +3605,43 @@ function munu_page_check(){
 			$.mobile.navigate(url);
 		}
 }
+
+
+function notice(){
+
+	$.ajax({
+			 type: 'POST',
+			 url: apipath+'notice?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode,
+			 success: function(result) {
+				// alert (result)
+					if (result==''){
+						alert ('Sorry Network not available');
+					}
+					else{
+						if (result=='FAILED'){
+							
+							$("#notice_div").html('Unauthorized User');
+							var url = "#noticePage";
+							$.mobile.navigate(url);
+						}
+						else {
+							
+							$("#notice_div").html(result);
+							var url = "#noticePage";
+							$.mobile.navigate(url);
+							//$('#shop_show').find('input, textarea, button, select').attr('disabled','disabled');
+							
+						}
+				   }
+				  },
+			  error: function(result) {
+				 // $("#error_login").html(apipath+'check_user?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode);
+				  $("#notice_div").html('Network timeout. Please ensure you have good network signal and working Internet.');
+				 
+				 var url = "#noticePage";
+				$.mobile.navigate(url);
+				  
+			  }
+		  });//end ajax
+	
+}
