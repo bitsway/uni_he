@@ -410,6 +410,7 @@ function cancel_outlet(){
 	
 	localStorage.shop_data_ready="";
 	localStorage.place_data_ready="";
+	localStorage.key_data_ready="";
 	
 	localStorage.shop_next_flag=0;
 	localStorage.before_flag=0;
@@ -2516,7 +2517,8 @@ function place_ready_data() {
 	//alert (place_value)
 	//if ((image_name.length > 10)){
 	if ((place_image_path.length > 10)){
-		var url = "#submitPage";
+		//var url = "#submitPage";
+		var url = "#keyTaskPage";
 		$.mobile.navigate(url);
 	//	$('#place_show').find('input, textarea, button, select').attr('disabled','disabled');
 		$('#place_show').addClass('disabledAnchor');
@@ -2581,7 +2583,65 @@ function place_page_set() {
 	//getlocationand_askhelp();
 }
 
+//======================================
 
+function task_ready_data() { 
+	var key_data=''
+	var planKey= ($('#planKey').is(':checked') ? 1 : 0);
+	var productKey= ($('#productKey').is(':checked') ? 1 : 0);
+	var posmKey= ($('#posmKey').is(':checked') ? 1 : 0);
+	var catKey= ($('#catKey').is(':checked') ? 1 : 0);
+	
+
+	
+	key_data=key_data+planKey+'fdfd'+productKey+'fdfd'+posmKey+'fdfd'+catKey+'rdrd';
+
+	localStorage.key_data_ready=key_data
+	
+	keyTaskPage_set();
+
+	var url = "#submitPage";
+	$.mobile.navigate(url);
+}
+//==============================================
+function keyTaskPage_set() { 
+	//alert (localStorage.place_data_ready);
+	var key_data =  localStorage.key_data_ready.replace("rdrd","");
+	
+	var key_array =  key_data.split('fdfd');
+
+	var planKey= key_array[0];
+	var productKey= key_array[1];
+	var posmKey= key_array[2];
+	var catKey=key_array[3];
+
+
+	
+
+	
+	//$("#planKey").val(planKey);
+	//$("#productKey").val(productKey);
+	//$("#posmKey").val(posmKey);
+	//$("#catKey").val(catKey);
+	//$("#place_value").val(place_value);
+	
+	if (planKey==1){
+		document.getElementById("planKey").checked = true;
+	}
+	if (productKey==1){
+		document.getElementById("productKey").checked = true;
+	}
+	if (posmKey==1){
+		document.getElementById("posmKey").checked = true;
+	}
+	if (catKey==1){
+		document.getElementById("catKey").checked = true;
+	}
+	
+	//alert ('sdas')
+}
+
+//=========================================
 
 
 function submit_data() { 
@@ -2627,7 +2687,7 @@ function submit_data() {
 					localStorage.qpds_data_ready="";
 					localStorage.gift_data_ready="";
 					localStorage.mar_data_ready="";
-					
+					localStorage.key_data_ready="";
 					//localStorage.sync_date=sync_date;
 					//localStorage.synced=='YES';
 					
@@ -2665,12 +2725,12 @@ function submit_data() {
 					
 					var fdisplay_data=localStorage.fdisplay_data_ready.replace('detaildetail','')
 					var qpds_data=localStorage.qpds_data_ready.replace('detaildetail','')
-					//$("#submit_data_check").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+fdisplay_data+'&qpds_data='+qpds_data+'&gift_data='+localStorage.gift_data_ready+'&place_data='+localStorage.place_data_ready+'&shop_data='+localStorage.shop_data_ready);	
+					//$("#submit_data_check").html(apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+fdisplay_data+'&qpds_data='+qpds_data+'&gift_data='+localStorage.gift_data_ready+'&place_data='+localStorage.place_data_ready+'&shop_data='+localStorage.shop_data_ready+'&key_data='+localStorage.key_data_ready);	
 					if (localStorage.selectedOutlet != ''){
 					
 							$.ajax({
 										type: 'POST',
-										url: apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+fdisplay_data+'&qpds_data='+qpds_data+'&gift_data='+localStorage.gift_data_ready+'&place_data='+localStorage.place_data_ready+'&shop_data='+localStorage.shop_data_ready,
+										url: apipath+'syncSubmitData?cid='+localStorage.cid+'&cm_id='+localStorage.cm_id+'&cm_pass='+localStorage.cm_pass+'&synccode='+localStorage.synccode+'&route='+localStorage.selectedRoute+'&routeEx='+localStorage.routeException+'&outlet='+localStorage.selectedOutlet+'&scheduleDate='+ localStorage.selected_date +'&outletEx='+localStorage.outletException+'&channel='+localStorage.outletChannel+'&latlong='+latlong+'&visitDate='+visitDate+'&startTime='+localStorage.startTime+'&endTime='+endTime+'&giftImage='+giftImage+'&mhskus_data='+localStorage.mhskus_data_ready+'&npd_data='+localStorage.npd_data_ready+'&fdisplay_data='+fdisplay_data+'&qpds_data='+qpds_data+'&gift_data='+localStorage.gift_data_ready+'&place_data='+localStorage.place_data_ready+'&shop_data='+localStorage.shop_data_ready+'&key_data='+localStorage.key_data_ready,
 										 success: function(result) {	
 												
 												if (result==''){

@@ -233,7 +233,7 @@ $(document).ready(function(){
 				mhskus_page_set();
 				gift_page_set();
 				place_page_set();
-				
+				keyTaskPage_set();
 				
 				//alert (localStorage.outletIDnameShow)
 				
@@ -994,7 +994,47 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	</div>
         
     <!--=====================Place  page end=========================-->
- 
+  <!-- ============================Key Task  page Start============================-->
+    
+    <div data-theme="c" data-role="page" id="keyTaskPage">
+		<div data-theme="c" data-role="header" data-position="fixed" >
+			    <a style="height:18px" onClick="munu_page_check()"  class="ui-btn-left ui-btn-icon-notext"><img src="unilogo13.png"></a>
+                <a style="height:18px" data-rel="back" data-iconpos="left" class="ui-btn-right"><img src="back1.png"></a>
+                <h3>KeyTask</h3>
+            </div>
+		    
+			<div  data-role="content" style="height:90%" >
+            
+          
+           <div id="place_outlet_nameID"></div>
+		   </br></br>
+		  <div id="place_show" >
+				Key Tasks Performed:
+				<label><input type="checkbox" name="planKey" id="planKey" value=""/>Plan o gram maintenance</label>	
+				<label ><input type="checkbox" name="productKey" id="productKey" value=""/>Product cleaning</label>
+				<label  ><input type="checkbox" name="posmKey" id="posmKey" value=""/>POSM execution</label>	
+				<label  ><input type="checkbox" name="catKey" id="catKey" value=""/>Category Shelf managementf</label>	
+			  
+			</div>
+				
+							
+			
+				</br></br>
+
+			
+                <a data-role="button" onClick="task_ready_data();" >Next</a>
+				<br/><br/></br></br></br></br></br></br><br/><br/><br/>
+				
+              <div id="dataerror" style="color:#FF0; font-family:Arial, Helvetica, sans-serif; text-decoration:none; font-size:12px; font-style:normal; font-weight:lighter; text-shadow:none"  align="center"> </div>
+                <br/><br/>
+
+                <br/><br/><br/>
+								
+	  </div>
+
+	</div>
+        
+    <!--=====================Key Task page end=========================-->
  
  
  <script type="text/javascript" src="phonegap.js"></script>
